@@ -1,0 +1,23 @@
+## Misc
+.DS_Store
+
+## Publics
+/public/assets/css/build
+/public/assets/js/build
+/public/build
+/public/packages
+
+## Modules/Packages
+/vendor
+/node_modules
+
+## Environment Settings
+.env
+
+## Storage
+/storage
+
+## Vagrant/Ansible Setup
+/.vagrant/**
+/ansible
+/provision.yml

@@ -1,0 +1,53 @@
+/**
+ * Fonts
+ */
+$font: "jaf-facitweb", sans-serif;
+
+/**
+ * Generic Colors
+ */
+$white: #FFF;
+$black: #000;
+
+/**
+ * Social Media
+ */
+$facebook: #3b5998;
+$twitter: #00aced;
+$google: #dd4b39;
+$youtube: #bb0000;
+$linkedin: #007bb6;
+$instagram: #517fa4;
+$pinterest: #cb2027;
+$vine: #00bf8f;
+$snapchat: #fffc00;
+$flickr: #ff0084;
+$vimeo: #aad450;
+$foursquare: #0072b1;
+$github: #4078c0;
+
+/**
+ * Primary
+ */
+$primary: #FFDD14;
+
+/**
+ * Secondary
+ */
+$secondary: #212121;
+$secondary-shaded: tint($secondary, 75%);
+$secondary-border: tint($secondary, 85%);
+$secondary-background: tint($secondary, 95%);
+$secondary-sub-heading: tint($secondary, 60%);
+$secondary-link-hover: tint($secondary, 45%);
+
+/**
+ * Error
+ */
+$error: #FF7878;
+$error-background: tint($error, 92%);
+
+/**
+ * Margins
+ */
+$section-margin: 50px;

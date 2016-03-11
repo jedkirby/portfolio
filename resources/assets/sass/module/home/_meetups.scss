@@ -1,0 +1,61 @@
+.meetups {
+
+    $off-white: tint($secondary, 40%);
+
+    background: $secondary;
+    padding: 40px 0;
+
+    &__title {
+        color: $off-white;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    &__events {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    &__event {
+
+        @include transition(background 0.2s, border 0.2s);
+        background: tint($secondary, 5%);
+        border-left: 3px $primary solid;
+        padding: 15px;
+        margin: 2px 0;
+
+        h3 {
+            color: tint($secondary, 85%);
+            line-height: 2.6rem;
+            margin-bottom: 2px;
+        }
+
+        &:hover {
+            background: tint($secondary, 3%);
+            border-left-width: 6px;
+        }
+
+    }
+
+    &__meta {
+
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        text-align: left;
+
+        li {
+            color: $secondary-sub-heading;
+            display: inline-block;
+            font-size: 1.1rem;
+            margin-right: 5px;
+        }
+
+        i {
+            margin-right: 1px;
+        }
+
+    }
+
+}

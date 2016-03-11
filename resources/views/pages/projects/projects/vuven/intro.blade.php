@@ -1,0 +1,1 @@
+<p>Vuven required a complete re-brand as they have, since launching in March 2012, changed their company direction. This required work for their brand, logo, and website, all of which I undertook.</p>

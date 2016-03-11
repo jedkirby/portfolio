@@ -1,0 +1,1 @@
+<p>During my employment at <a href="http://www.blitzgamesstudios.com" target="_blank">Blitz Games Studios</a> (Blitz) a division of theirs, BlitzTech, needed their old website to be re-designed and developed. During the re-designing process, web technologies like responsive web design and single page smooth scrollers were decided upon.</p>

@@ -1,0 +1,39 @@
+.col {
+
+	float: left;
+
+	@for $i from 1 through 12 {
+		&--#{$i} { width: ((100% / 12) * $i); }
+	}
+
+	&--fr {
+		float: right;
+	}
+
+	&--wrapper {
+
+		@include clearfix;
+
+		&--table {
+			display: table;
+		}
+
+	}
+
+	&--table-cell {
+
+		display: table-cell;
+
+		&--middle {
+			padding-left: 10px;
+			vertical-align: middle;
+		}
+
+	}
+
+}
+
+.hidden {
+	display: none;
+	visibility: hidden;
+}

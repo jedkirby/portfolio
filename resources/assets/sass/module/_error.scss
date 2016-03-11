@@ -1,0 +1,44 @@
+.error {
+
+	$text-color: darken($white, 10%);
+
+	&__generic {
+		background: url('/assets/img/error-background.jpg') 100%;
+	}
+
+	&__wrap {
+		padding: 300px 0;
+	}
+
+	&__heading,
+	&__body {
+		background: $secondary;
+		color: $text-color;
+		display: inline-block;
+		padding: 0 15px;
+	}
+
+	&__heading {
+		font-size: 4rem;
+	}
+
+	&__body {
+
+		padding: 15px;
+
+		a {
+
+			background: none;
+			color: $text-color;
+			padding: 0;
+
+			&:hover {
+				background: none;
+				color: $secondary-link-hover;
+			}
+
+		}
+
+	}
+
+}

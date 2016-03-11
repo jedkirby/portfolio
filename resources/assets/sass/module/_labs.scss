@@ -1,0 +1,99 @@
+.labs {
+
+	&__header {
+
+		@include clearfix;
+		background: $secondary;
+
+		h1 {
+
+			$logo-width: 55px;
+			$logo-height: 55px;
+
+			@include transition(opacity .2s ease-in-out);
+			background-color: $primary;
+			background-image: url('/assets/img/logo-text.svg');
+			background-size: $logo-width $logo-height;
+			font-size: 0;
+			float: left;
+			height: $logo-height;
+			width: $logo-width;
+
+			a {
+				display: block;
+				height: $logo-height;
+				width: $logo-width;
+			}
+
+			&:hover {
+				opacity: 0.65;
+			}
+
+		}
+
+		h2 {
+			color: $white;
+			float: left;
+			font-size: 2.3rem;
+			margin: 12px 15px;
+		}
+
+	}
+
+	&__social {
+		float: right;
+	}
+
+	&__stream {
+
+		@include transition(opacity .2s ease-in-out);
+		color: $white;
+		display: block;
+		float: left;
+		font-size: 2.0rem;
+		height: 55px;
+		text-align: center;
+		width: 55px;
+
+		&--facebook {
+			background: $facebook;
+		}
+
+		&--twitter {
+			background: $twitter;
+		}
+
+		i {
+			position: relative;
+			top: 13px;
+		}
+
+		&:hover {
+			opacity: 0.65;
+		}
+
+	}
+
+	&__about {
+
+		background: $primary;
+
+		p {
+			color: $secondary;
+			margin: 0;
+			padding: 10px;
+			text-align: center;
+		}
+
+	}
+
+	&__content {
+		position: relative;
+	}
+
+	@import "module/labs/counter";
+	@import "module/labs/eye";
+	@import "module/labs/particles";
+	@import "module/labs/twitter";
+
+}

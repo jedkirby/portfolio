@@ -1,0 +1,6 @@
+#!/bin/bash
+
+##
+# Framework
+##
+source $HOOK_FRAMEWORKS_PATH/laravel-5

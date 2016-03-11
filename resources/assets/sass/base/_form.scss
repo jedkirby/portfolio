@@ -1,0 +1,29 @@
+.form {
+
+	&__field,
+	&__button {
+		@include prefixer(appearance, none, webkit moz o spec);
+		border: none;
+		border-radius: 0;
+		font-family: $font;
+		font-size: 1.3rem;
+		font-weight: 200;
+		outline: none;
+	}
+
+	&__field {
+
+		padding: 11px;
+
+		&--error {
+			background: $error-background;
+		}
+
+	}
+
+	&__button {
+		padding: 0 25px;
+		text-transform: uppercase;
+	}
+
+}

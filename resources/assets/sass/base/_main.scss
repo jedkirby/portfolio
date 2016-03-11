@@ -1,0 +1,364 @@
+html,
+body {
+	height: 100%;
+}
+
+.site {
+
+	&__full,
+	&__medium,
+	&__small {
+		@include clearfix;
+		margin: 0 auto;
+		padding: 0 24px;
+	}
+
+	&__full {
+		max-width: 1048px;
+	}
+
+	&__medium {
+		max-width: 748px;
+	}
+
+	@include max-screen(640px) {
+
+		&__wrapper {
+			padding: 0 12px;
+		}
+
+	}
+
+}
+
+.header {
+
+	background: $secondary;
+	@include clearfix;
+
+	&__ident {
+
+		float: left;
+		padding: 10px 0;
+
+		h1 {
+
+			$logo-width: 55px;
+			$logo-height: 55px;
+
+			@include transition(opacity .2s ease-in-out);
+			background: url('/assets/img/logo.svg');
+			background-size: $logo-width $logo-height;
+			font-size: 0;
+			height: $logo-height;
+			width: $logo-width;
+
+			a {
+				display: block;
+				height: $logo-height;
+				width: $logo-width;
+			}
+
+			&:hover {
+				opacity: 0.65;
+			}
+
+		}
+
+	}
+
+	&__handle {
+
+		$lines-height: 4px;
+		$lines-spacing-between: 5px;
+		$lines-top-margin: 14px;
+		$lines-left-right-pad: 5px;
+
+		display: none;
+		float: right;
+		padding: 10px 0;
+
+		&--inner {
+
+			@include clearfix;
+			@include prefixer(user-select, none, webkit ms spec);
+			cursor: pointer;
+			float: right;
+			height: 50px;
+			margin-top: 1px;
+			position: relative;
+			width: 50px;
+
+			span {
+
+				@include transition(all .4s);
+				background: $primary;
+				display: block;
+				height: $lines-height;
+				left: $lines-left-right-pad;
+				position: absolute;
+				right: $lines-left-right-pad;
+
+				&:nth-child(1) {
+					top: $lines-top-margin;
+				}
+
+				&:nth-child(2) {
+					top: $lines-top-margin + ($lines-height + $lines-spacing-between);
+				}
+
+				&:nth-child(3) {
+					top: $lines-top-margin + (($lines-height + $lines-spacing-between) * 2);
+				}
+
+			}
+
+		}
+
+		&--active {
+
+			span {
+
+				$lines-active-top-margin: 9px;
+
+				&:nth-child(1) {
+					top: ($lines-top-margin + $lines-active-top-margin);
+					transform: rotate(45deg);
+				}
+
+				&:nth-child(2) {
+					left: 20px;
+					opacity: 0;
+					right: 20px;
+				}
+
+				&:nth-child(3) {
+					top: ($lines-top-margin + $lines-active-top-margin);
+					transform: rotate(-45deg);
+				}
+
+			}
+
+		}
+
+	}
+
+	&__nav {
+
+		float: right;
+
+		ul {
+
+			@include clearfix;
+			float: right;
+			list-style: none;
+			margin: 0;
+			padding: 0;
+
+			li {
+
+				float: left;
+
+				a {
+
+					@include transition(color .1s ease-in-out);
+					border-top: 3px solid $secondary;
+					color: $white;
+					display: block;
+					font-size: 1.2rem;
+					padding: 25px;
+					text-decoration: none;
+
+					&.active {
+						background: tint($secondary, 5%);
+						border-top-color: $primary;
+					}
+
+					&:hover:not(.active) {
+						color: tint($secondary, 40%);
+					}
+
+				}
+
+			}
+
+		}
+
+	}
+
+	@include max-screen(640px) {
+
+
+		&__ident,
+		&__handle {
+			width: 50%;
+		}
+
+		&__handle {
+			display: block;
+		}
+
+		&__nav {
+
+			@include transition(max-height .4s);
+			clear: both;
+			max-height: 0;
+			overflow: hidden;
+			width: 100%;
+
+			nav {
+				margin: 10px 0 30px;	
+			}
+
+			ul {
+
+				float: none;
+
+				li {
+
+					background: tint($secondary, 5%);
+					float: none;
+					margin-bottom: 2px;
+
+					a {
+
+						border-top: none;
+						padding: 12px;
+						text-align: center;
+
+						&.active {
+							background: $primary;
+							color: $secondary;
+						}
+
+					}
+
+					&:last-child {
+						margin-bottom: 0;
+					}
+
+				}
+
+			}
+
+			&--visible {
+				max-height: 285px;
+			}
+
+		}
+
+	}
+
+}
+
+.footer {
+
+		$text: tint($secondary, 30%);
+		$hover: #FFF;
+
+		background: $secondary;
+		border-bottom: 8px solid $primary;
+		padding: 60px 0;
+
+		&__social {
+
+			ul {
+
+				list-style: none;
+				margin: 0;
+				padding: 0;
+
+				li {
+
+					display: inline-block;
+					width: 25px;
+					text-align: center;
+
+					a {
+
+						@include transition(color .1s ease-in-out);
+						color: $text;
+						font-size: 2.0rem;
+
+						&:hover,
+						&:active,
+						&:focus {
+							color: $hover;
+						}
+
+					}
+				}
+
+			}
+
+		}
+
+		&__copyright {
+
+			margin-top: 5px;
+			text-align: right;
+
+			p {
+				color: $text;
+				font-size: 1.0rem;
+				line-height: 1.3rem;
+				margin: 0;
+			}
+
+		}
+
+		@include max-screen(640px) {
+
+			padding: 30px 0;
+
+			&__social,
+			&__copyright {
+				margin: 5px 0;
+				text-align: center;
+				width: 100% !important;
+			}
+
+		}
+
+}
+
+.social {
+
+	&__button {
+
+		margin: 2px 0 !important;
+		padding: 0 12px !important;
+		font-size: 1.1rem !important;
+		line-height: 3rem !important;
+
+		i {
+			font-size: 1.6rem;
+			vertical-align: middle;
+		}
+
+		&:hover,
+		&:active,
+		&:focus {
+			background: $secondary;
+			color: $white;
+		}
+
+		&--facebook {
+			background-color: $facebook;
+		}
+
+		&--twitter {
+			background-color: $twitter;
+		}
+
+		&--google {
+			background-color: $google;
+		}
+
+		&--pinterest {
+			background-color: $pinterest;
+		}
+
+	}
+
+}

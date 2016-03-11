@@ -1,0 +1,99 @@
+/**
+ * Generic
+ */
+html {
+	font-size: 62.5%;
+}
+body {
+	font-size: 1.4rem;
+	font-family: $font;
+}
+
+/**
+ * Headings
+ */
+h1, h2, h3, h4, h5, h6 {
+
+	color: $secondary;
+	font-weight: 200;
+	margin: 30px 0 0;
+
+	&:first-child {
+		margin-top: 0;
+	}
+
+	& + p {
+		margin-top: 5px;
+	}
+
+}
+h1 {
+	font-size: 3.0rem;
+}
+h2 {
+	font-size: 2.8rem;
+}
+h3 {
+	font-size: 2.2rem;
+}
+h4 {
+	font-size: 1.6rem;
+}
+h5 {}
+h6 {}
+
+/**
+ * Body
+ */
+p, blockquote, ul {
+	color: $secondary;
+	font-weight: 200;
+	line-height: 2.3rem;
+}
+p {
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+}
+blockquote {
+	font-style: italic;
+}
+pre {
+	color: tint($secondary, 10%);
+	font-size: 1.2rem;
+}
+
+/**
+ * Links
+ */
+a {
+	color: $secondary;
+	text-decoration: none;
+}
+p > a, .links a {
+
+	@include transition(background 0.2s, color 0.2s);
+	background: tint($secondary, 92%);
+	padding: 0 3px;
+
+	&:hover {
+		background: tint($secondary, 70%);
+		color: #FFF;
+	}
+
+}
+
+/**
+ * Text Helpers
+ */
+.text-left {
+	text-align: left;
+}
+.text-center {
+	text-align: center;
+}
+.text-right {
+	text-align: right;
+}

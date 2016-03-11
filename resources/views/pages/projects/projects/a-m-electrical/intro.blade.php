@@ -1,0 +1,1 @@
+<p>Aaron Middleton required a position on the internet allowing him to showcase his latest work and gain business. He required a website which was accessible on all devices which had a clean and professional style.</p>

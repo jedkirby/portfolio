@@ -1,0 +1,53 @@
+.btn {
+
+	@include transition(color 0.2s, background 0.2s);
+
+	border: none;
+	color: $white;
+	cursor: pointer;
+	display: inline-block;
+	font-family: $font;
+	font-size: 1.3rem;
+	font-weight: 200;
+	line-height: 4rem;
+	margin: 0;
+	padding: 0 20px;
+	text-align: center;
+	text-transform: uppercase;
+	vertical-align: middle;
+
+	&__primary {
+
+		background-color: $primary;
+		color: $secondary;
+
+		&:hover,
+		&:active,
+		&:focus {
+			background: $secondary;
+			color: $white;
+		}
+
+		&--outline {
+			background: none;
+			border: 2px $secondary solid;
+			color: $secondary;
+		}
+
+	}
+
+	&__full {
+		width: 100%;
+	}
+
+	&__icon {
+
+		padding-left: 17px;
+
+		i {
+			margin-right: 5px;
+		}
+
+	}
+
+}

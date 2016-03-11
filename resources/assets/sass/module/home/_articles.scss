@@ -1,0 +1,86 @@
+.articles {
+
+	background: $secondary;
+	overflow: hidden;
+
+	.article {
+
+		display: block;
+		position: relative;
+
+		&__image {
+			@include transition(opacity 0.4s);
+			background: $secondary-background;
+			max-height: 400px;
+			opacity: 0.5;
+			vertical-align: bottom;
+			width: 100%;
+		}
+
+		&__meta {
+			@include transition(top 0.4s);
+			left: 10%;
+			position: absolute;
+			top: 24%;
+			width: 80%;
+		}
+
+		&__date {
+
+			color: $white;
+			font-size: 1.0rem;
+			font-weight: 300;
+			margin: 0;
+			text-transform: uppercase;
+
+			i {
+				margin-right: 3px;
+			}
+
+		}
+
+		&__title {
+			@include transition(color 0.4s);
+			@include ellipsis(90%);
+			color: $white;
+			font-size: 2.4rem;
+			font-weight: 500;
+			margin: 10px 0 0;
+			width: 100%;
+		}
+
+		&__sub {
+			@include ellipsis(90%);
+			color: shade($white, 25%);
+			font-size: 1.4rem;
+			font-weight: 300;
+			margin: 0;
+		}
+
+		&:hover {
+
+			.article__meta {
+				top: 20%;
+			}
+
+			.article__image {
+				opacity: 0.2;
+			}
+
+			.article__title {
+				color: $primary;
+			}
+
+		}
+
+	}
+
+	@include max-screen(640px) {
+
+		article {
+			width: 100%;
+		}
+
+	}
+
+}

@@ -1,0 +1,56 @@
+.project {
+
+	float: left;
+
+	&__content {
+		margin: 0 10px 20px;
+		overflow: hidden;
+	}
+
+	&__image {
+		background: $secondary-background;
+		height: 100%;
+		vertical-align: bottom;
+		width: 100%;
+	}
+
+	&__meta {
+		@include transition(background 0.2s);
+		background: $secondary-background;
+		padding: 25px 7%;
+		position: relative;
+		text-align: left;
+	}
+
+	&__title {
+		font-weight: 300;
+	}
+
+	&__sub {
+		color: $secondary-sub-heading;
+		font-size: 1.1rem;
+		line-height: 1.1rem;
+		margin: 3px 0 0 0;
+	}
+
+	&__icon {
+		@include transition(background 0.2s);
+		background: $secondary-background;
+		border-radius: 50%;
+		color: $secondary;
+		left: 10%;
+		margin: -17px 0 0 -17px;
+		padding: 10px;
+		position: absolute;
+		top: 0;
+	}
+
+	&:hover {
+
+		.project__meta, .project__icon {
+			background: $primary;
+		}
+
+	}
+
+}

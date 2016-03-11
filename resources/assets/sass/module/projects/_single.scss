@@ -1,0 +1,171 @@
+.single {
+
+	.project {
+
+		h2 {
+			font-weight: 200;
+		}
+
+		&__sub {
+			color: $secondary-sub-heading;
+			margin: 0;
+		}
+
+		&__expired {
+			background-color: $error-background;
+			border: 1px $error solid;
+			color: darken($error, 20%);
+			font-size: 1.3rem;
+			font-weight: 200;
+			padding: 10px 20px;
+			text-transform: uppercase;
+			text-align: center;
+		}
+
+		&__intro {
+			margin-top: 50px;
+		}
+
+		&__content {
+			margin-bottom: 25px;
+		}
+
+		&__social {
+			margin: 25px 0 50px;
+		}
+
+		.browser {
+
+			$browser-background: #DDD;
+			$browser-border: #CCC;
+			$browser-button-default: #EEE;
+			$browser-button-primary: #FC605B;
+			$browser-button-secondary: #FDBD40;
+			$browser-button-tertiary: #33C748;
+
+			max-width: 700px;
+			margin: 50px 0;
+
+			&__inner {
+
+				border-bottom: 2px solid $browser-border;
+				background: $browser-background;
+				display: inline-block;
+				line-height: 0;
+				padding: 20px 0 0;
+				position: relative;
+				width: 100%;
+
+				img {
+					width: 100%;
+				}
+
+			}
+
+			&__frame {
+
+				display: block;
+				height: 15px;
+				left: 1px;
+				position: absolute;
+				top: 6px;
+
+				span {
+
+					border-radius: 9px;
+					background-color: $browser-button-default;
+					border: 1px solid $browser-background;
+					cursor: pointer;
+					float: left;
+					height: 9px;
+					margin: 0 0 0 4px;
+					width: 9px;
+
+					&:nth-child(1) {
+						background-color: $browser-button-primary;
+					}
+
+					&:nth-child(2) {
+						background-color: $browser-button-secondary;
+					}
+
+					&:nth-child(3) {
+						background-color: $browser-button-tertiary;
+					}
+
+					&:active,
+					&.active {
+						background-color: $browser-button-default;
+					}
+
+				}
+
+			}
+
+			&__slider {
+
+				&--slide {
+					width: 100%;
+				}
+
+			}
+
+			.flickity-prev-next-button {
+
+				border-radius: 0px;
+				background: $secondary;
+				height: 65px;
+				width: 25px;
+
+				&:hover {
+
+					background: $primary;
+
+					.arrow {
+						fill: $secondary;
+					}
+
+				}
+
+				.arrow {
+					fill: $white;
+				}
+
+			}
+
+		}
+
+	}
+
+	.testimonial {
+
+		background: $secondary-background;
+		padding: 50px 0;
+		text-align: center;
+
+		&__date {
+
+			color: tint($secondary, 60%);
+			font-weight: 200;
+			font-size: 1.1rem;
+
+			i {
+				color: tint($secondary, 70%);
+				margin-right: 3px;
+			}
+
+		}
+
+		h3 {
+			font-weight: 200;
+			margin: 0;
+		}
+
+		blockquote {
+			margin-left: 0;
+			margin-right: 0;
+		}
+
+	}
+
+}

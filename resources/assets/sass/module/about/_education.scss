@@ -1,0 +1,62 @@
+.education {
+
+	background-color: tint($secondary, 5%);
+	padding: 50px 0;
+
+	&__items {
+		margin: 0 auto;
+		width: 90%;
+	}
+
+	&__item {
+
+		margin: 15px 0.5%;
+		padding: 1% 1.5%;
+		width: 49%;
+
+		&--left {
+			float: left;
+		}
+
+		&--right {
+			float: right;
+		}
+
+		h3 {
+
+			margin-top: 7px;
+
+			a {
+
+				@include transition(color 0.2s);
+				color: $white;
+
+				&:hover {
+					color: $primary;
+				}
+
+			}
+
+		}
+
+		p {
+			color: $secondary-sub-heading;
+			margin-top: 0;
+		}
+
+		i {
+			font-size: 2.5rem;
+			color: tint($secondary, 30%);
+		}
+
+	}
+
+	@include max-screen(540px) {
+
+		&__item {
+			width: 100%;
+		}
+
+	}
+
+}
