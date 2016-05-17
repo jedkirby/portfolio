@@ -74,13 +74,11 @@ class Meetup extends Command
 
                     $events = [];
                     foreach ($data as $eventData) {
-
                         $event = MeetupIntegration::createEventFromArray($eventData);
-
-                        if (!$event->hasPassed()) {
-                            $events[] = $event;
+                        if ($event->hasPassed()) {
+                            continue;
                         }
-
+                        $events[] = $event;
                     }
 
                     MeetupIntegration::storeEvents($events);
