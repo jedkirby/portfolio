@@ -3,7 +3,10 @@
 	"description": "James Kirby's Portfolio.",
 	"type": "project",
 	"repositories": [
-		{"type": "composer", "url": "http://toran.pixelatedesign.com/repo/private/"}
+		{
+			"type": "composer",
+			"url": "http://toran.pixelatedesign.com/repo/private/"
+		}
 	],
 	"require": {
 		"laravel/framework": "5.1.*",
@@ -18,7 +21,7 @@
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",
 		"phpspec/phpspec": "~2.1",
-		"pixelate/vm": "1.0.*@dev"
+		"pixelate/vm": "~1.0"
 	},
 	"autoload": {
 		"classmap": [
@@ -32,6 +35,7 @@
 		]
 	},
 	"config": {
-		"preferred-install": "dist"
+		"preferred-install": "dist",
+		"secure-http": false
 	}
 }
