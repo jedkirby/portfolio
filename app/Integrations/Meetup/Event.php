@@ -14,11 +14,12 @@ class Event
     private $groupName;
     private $venueName;
     private $rsvpCount;
+    private $status;
 
     /**
      * Constructor.
      */
-    private function __construct($id, $name, $link, $groupName, $venueName, $rsvpCount)
+    private function __construct($id, $name, $link, $groupName, $venueName, $rsvpCount, $status)
     {
         $this->id = (int) $id;
         $this->name = (string) $name;
@@ -26,6 +27,7 @@ class Event
         $this->groupName = (string) $groupName;
         $this->venueName = (string) $venueName;
         $this->rsvpCount = (int) $rsvpCount;
+        $this->status = (string) $status;
     }
 
     /**
@@ -39,9 +41,9 @@ class Event
      * @param  integer $rsvpCount
      * @return \App\Integrations\Meetup\Event
      */
-    public static function make($id, $name, $link, $groupName = false, $venueName = false, $rsvpCount = 0)
+    public static function make($id, $name, $link, $groupName = false, $venueName = false, $rsvpCount = 0, $status = 'past')
     {
-        return new self($id, $name, $link, $groupName, $venueName, $rsvpCount);
+        return new self($id, $name, $link, $groupName, $venueName, $rsvpCount, $status);
     }
 
     /**
@@ -105,6 +107,16 @@ class Event
     }
 
     /**
+     * Return the status of the event.
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
      * Return if there is a group assigned.
      *
      * @return boolean
@@ -122,6 +134,16 @@ class Event
     public function hasVenue()
     {
         return (bool) $this->getVenueName();
+    }
+
+    /**
+     * Return if the event has passed already.
+     *
+     * @return boolean
+     */
+    public function hasPassed()
+    {
+        return in_array($this->getStatus(), array('past'));
     }
 
 }
