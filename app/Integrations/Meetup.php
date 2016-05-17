@@ -27,7 +27,8 @@ class Meetup
             array_get($event, 'link'),
             array_get($event, 'group.name', false),
             array_get($event, 'venue.name', false),
-            array_get($event, 'yes_rsvp_count', 0)
+            array_get($event, 'yes_rsvp_count', 0),
+            array_get($event, 'status', 'past')
         );
     }
 
