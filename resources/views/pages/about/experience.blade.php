@@ -1,7 +1,7 @@
 <div class="experience">
 
 	<div class="experience__title  text-center">
-		<h3>Work Experience</h3>
+		<h3>Experience</h3>
 	</div>
 
 	<div class="experience__content">
@@ -31,6 +31,21 @@
 						</div>
 						<div class="experience__desc  experience__desc--right">
 							<h3>
+								<a href="http://phpwarks.co.uk" target="_blank">PHP Warwickshire</a>
+							</h3>
+							<div class="experience__meta">
+								<time>December 2014</time> - <time>Present</time>
+							</div>
+							<p>As the PHP community grows, new user groups have been popping up all over the world. <a href="https://twitter.com/Ben_Plummer" target="_blank">Ben Plummer</a>, <a href="https://twitter.com/steadweb" target="_blank">Luke Steadman</a> and (me) <a href="{{ Config::get('site.social.streams.twitter.url') }}" target="_blank">James Kirby</a> decided to establish a new PHP user group in the Warwickshire area. We arrange venues, merchandise and arrange a speaker for each last Thursday of the month. Check out our <a href="http://www.meetup.com/PHP-Warwickshire">Meetup</a> account for the next event.</p>
+						</div>
+					</div>
+
+					<div class="experience__item  text-right">
+						<div class="experience__icon">
+							<i class="fa fa-square"></i>
+						</div>
+						<div class="experience__desc  experience__desc--left">
+							<h3>
 								<a href="http://www.propcom.co.uk" target="_blank">Propeller Communications</a>
 							</h3>
 							<div class="experience__meta">
@@ -40,11 +55,11 @@
 						</div>
 					</div>
 
-					<div class="experience__item  text-right">
+					<div class="experience__item  text-left">
 						<div class="experience__icon">
 							<i class="fa fa-square"></i>
 						</div>
-						<div class="experience__desc  experience__desc--left">
+						<div class="experience__desc  experience__desc--right">
 							<h3>
 								<a href="http://www.blitzgamesstudios.com" target="_blank">Blitz Games Studios</a>
 							</h3>
