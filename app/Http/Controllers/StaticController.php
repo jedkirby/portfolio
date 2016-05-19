@@ -2,7 +2,6 @@
 
 use Carbon\Carbon;
 use App\Http\Controllers\ProjectController as Projects;
-use App\Http\Controllers\LabController as Labs;
 use App\Http\Controllers\BlogController as Blogs;
 
 class StaticController extends RootController {
