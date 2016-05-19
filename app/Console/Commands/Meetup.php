@@ -73,15 +73,25 @@ class Meetup extends Command
                 if ($data && is_array($data)) {
 
                     $events = [];
+
                     foreach ($data as $eventData) {
+
                         $event = MeetupIntegration::createEventFromArray($eventData);
                         if ($event->hasPassed()) {
                             continue;
                         }
-                        $events[] = $event;
+
+                        $events[
+                            $event->getTime()
+                        ] = $event;
+
                     }
 
-                    MeetupIntegration::storeEvents($events);
+                    ksort($events);
+
+                    $latestEvent = head($events);
+
+                    MeetupIntegration::storeEvent($latestEvent);
 
                 }
 
@@ -90,8 +100,6 @@ class Meetup extends Command
         } catch (Exception $e ) {
             Log::error($e);
         }
-
-        return [];
 
     }
 

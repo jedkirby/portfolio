@@ -4,8 +4,8 @@
     @include('pages.home.introduction')
     @include('pages.home.projects')
 
-    @if($meetups)
-        @include('pages.home.meetups')
+    @if($meetup)
+        @include('pages.home.meetup')
     @else
         @include('pages.home.interest')
     @endif

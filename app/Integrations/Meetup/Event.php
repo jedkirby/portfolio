@@ -11,6 +11,7 @@ class Event
     private $id;
     private $name;
     private $link;
+    private $time;
     private $groupName;
     private $venueName;
     private $rsvpCount;
@@ -19,11 +20,12 @@ class Event
     /**
      * Constructor.
      */
-    private function __construct($id, $name, $link, $groupName, $venueName, $rsvpCount, $status)
+    private function __construct($id, $name, $link, $time, $groupName, $venueName, $rsvpCount, $status)
     {
         $this->id = (int) $id;
         $this->name = (string) $name;
         $this->link = (string) $link;
+        $this->time = (int) $time;
         $this->groupName = (string) $groupName;
         $this->venueName = (string) $venueName;
         $this->rsvpCount = (int) $rsvpCount;
@@ -36,14 +38,16 @@ class Event
      * @param  int  $id
      * @param  string  $name
      * @param  string  $link
+     * @param  integer $time
      * @param  boolean $groupName
      * @param  boolean $venueName
      * @param  integer $rsvpCount
+     * @param  string  $status
      * @return \App\Integrations\Meetup\Event
      */
-    public static function make($id, $name, $link, $groupName = false, $venueName = false, $rsvpCount = 0, $status = 'past')
+    public static function make($id, $name, $link, $time, $groupName = false, $venueName = false, $rsvpCount = 0, $status = 'past')
     {
-        return new self($id, $name, $link, $groupName, $venueName, $rsvpCount, $status);
+        return new self($id, $name, $link, $time, $groupName, $venueName, $rsvpCount, $status);
     }
 
     /**
@@ -114,6 +118,16 @@ class Event
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Return the time of the event as a timestamp.
+     *
+     * @return int
+     */
+    public function getTime()
+    {
+        return $this->time;
     }
 
     /**

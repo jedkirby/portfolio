@@ -13,7 +13,7 @@ class HomeController extends RootController {
 
 		return view('pages.home', [
 			'tweet'    => Twitter::getLatest(),
-			'meetups'  => Meetup::getEvents(),
+			'meetup'   => Meetup::getEvent(),
 			'articles' => BlogController::articles(2),
 			'projects' => ProjectController::projects(3)
 		]);
