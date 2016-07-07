@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -28,10 +29,16 @@ class Kernel extends ConsoleKernel
 	 */
 	protected function schedule(Schedule $schedule)
 	{
-		$schedule->command('app:tweets')->everyFiveMinutes();
-		$schedule->command('app:instagram')->twiceDaily();
-		$schedule->command('app:errors')->daily(); // Once every day just gone midnight
+
 		$schedule->command('app:meetup')->hourly();
+		$schedule->command('app:instagram')->twiceDaily();
+		$schedule->command('app:tweets')->everyFiveMinutes();
+
+		if (App::environment('production')) {
+			$schedule->command('app:errors')->daily(); // Once every day just gone midnight
+		}
+
 	}
+
 
 }
