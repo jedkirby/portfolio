@@ -19,9 +19,9 @@
 
 							<div class="instagram__post">
 
-								<a href="{{ array_get($post, 'link') }}" target="_blank">
+								<a href="{{ $post->getLink() }}" target="_blank">
 
-									<img src="{{ asset('assets/img/blank.png') }}" data-src="{{ array_get($post, 'images.low_resolution.url') }}" title="{{ array_get($post, 'caption.text', 'No Caption') }}" class="lazyload" />
+									<img src="{{ asset('assets/img/blank.png') }}" data-src="{{ $post->getImage() }}" title="{{ $post->getText('No Caption') }}" class="lazyload" />
 
 								</a>
 

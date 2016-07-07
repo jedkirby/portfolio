@@ -72,7 +72,8 @@ return [
 				'icon'  => 'fa fa-instagram',
 				'api'   => [
 					'access_token' => env('INSTAGRAM_ACCESS_TOKEN')
-				]
+				],
+				'ignore' => explode('|', env('INSTAGRAM_IGNORE', ''))
 			],
 			'meetup' => [
 				'api' => [

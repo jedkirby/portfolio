@@ -1,8 +1,14 @@
-<?php namespace App\Console\Commands;
+<?php
 
+namespace App\Console\Commands;
+
+use Config;
 use Illuminate\Console\Command;
+use App\Integrations\Instagram as InstagramIntegration;
+use Pixelate\Shared\Social\Stream\Instagram as InstagramStream;
 
-class Instagram extends Command {
+class Instagram extends Command
+{
 
 	/**
 	 * The console command name.
@@ -23,14 +29,7 @@ class Instagram extends Command {
 	 * 
 	 * @var integer
 	 */
-	protected $postLimit = 8;
-
-	/**
-	 * An array of image ID's to ignore and not store for use on the website.
-	 *
-	 * @var array
-	 */
-	protected $ignoreIds = [];
+    const POST_LIMIT = 8;
 
 	/**
 	 * Execute the console command.
@@ -40,84 +39,49 @@ class Instagram extends Command {
 	public function fire()
 	{
 
-		$instagram = new \Pixelate\Shared\Social\Stream\Instagram;
-		$instagram->setAccessToken(\Config::get('site.social.streams.instagram.api.access_token'));
-		$instagram->setUserId(\Config::get('site.social.streams.instagram.id'));
+		$instagram = new InstagramStream;
+		$instagram->setAccessToken(Config::get('site.social.streams.instagram.api.access_token'));
+		$instagram->setUserId(Config::get('site.social.streams.instagram.id'));
 
 		// Attempt to get the instagram feed
 		if( ($feed = $instagram->getFeed()) ){
 
-			// Remove any ignored images
-			$allowedFeed = $this->removeIgnoredImages($feed);
+            // Convert to posts, remove ignored posts, and limit
+            $posts = $this->convertFeedToApprovedPosts($feed);
 
-			// Store the tweet in the cache
-			$this->storeFeedInCache($allowedFeed);
+            // Store the entire feed
+            InstagramIntegration::storePosts($posts);
 
-		}
-		else {
+            // Give some output
+            $this->info('Instagram posts fetched!');
 
-			// Notify about the failure
-			$this->emailFailure();
+		} else {
 
-		}
+            // We have an issue
+            $this->info('Failed to fetch Instagram posts.');
 
-	}
-
-	/**
-	 * Cycle through the feed and ensure only allowed images are returned,
-	 * then return the max allowed images.
-	 *
-	 * @param  array $feed
-	 * @return array
-	 */
-	protected function removeIgnoredImages($feed)
-	{
-		$allowedFeed = [];
-		foreach($feed as $image){
-			if(!in_array($image['id'], $this->ignoreIds)){
-				$allowedFeed[] = $image;
-			}
-		}
-		return array_slice($allowedFeed, 0, $this->postLimit);
-	}
-
-	/**
-	 * Store the instagram feed in the cache forever.
-	 * 
-	 * @param  array $feed
-	 * @return void
-	 */
-	protected function storeFeedInCache($feed = [])
-	{
-		\Cache::forever('instagram', $feed);
-	}
-
-	/**
-	 * Email when fetching failed.
-	 * 
-	 * @return void
-	 */
-	protected function emailFailure()
-	{
-
-		if( !\App::environment('production') ) return;
-
-		try {
-
-			\Mail::send(
-				'emails.instagram.failed',
-				[],
-				function($message) {
-					$message->from(\Config::get('site.meta.email.from'), 'Portfolio');
-					$message->to(\Config::get('site.meta.email.to'), \Config::get('site.meta.title'));
-					$message->subject('Instagram Fetch Failure');
-				}
-			);
-
-		} catch( \Exception $e ) {
-			\Log::error($e);
-		}
+        }
 
 	}
+
+    /**
+     * Convert an array of instagram feeds into an array of posts, removing
+     * the ignored posts and limiting.
+     *
+     * @param array $feed
+     * @return array
+     */
+    private function convertFeedToApprovedPosts(array $feed)
+    {
+        $posts = [];
+        $ignoreIds = Config::get('site.social.streams.instagram.ignore', []);
+        foreach ($feed as $post) {
+            $post = InstagramIntegration::createPostFromArray($post);
+            if (!in_array($post->getId(), $ignoreIds)) {
+                $posts[] = $post;
+            }
+        }
+        return array_slice($posts, 0, self::POST_LIMIT);
+    }
 
 }
