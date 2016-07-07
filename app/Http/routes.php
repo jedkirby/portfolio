@@ -27,8 +27,12 @@
 \Route::get('blog/{slug}', 'BlogController@getSingle');
 
 // Contact
-\Route::get('contact/{section?}', 'ContactController@getForm');
-\Route::post('contact', 'ContactController@postForm');
+\Route::group(['middleware' => 'csrf'], function(){
+
+    \Route::get('contact/{section?}', 'ContactController@getForm');
+    \Route::post('contact', 'ContactController@postForm');
+
+});
 
 // Api(s)
 \Route::group(['prefix' => 'api'], function(){

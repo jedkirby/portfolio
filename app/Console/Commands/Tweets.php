@@ -9,7 +9,7 @@ use Config;
 use Exception;
 use Illuminate\Console\Command;
 use App\Integrations\Twitter\Tweet;
-use App\Integrations\Twitter as TwitterManager;
+use App\Integrations\Twitter as TwitterIntegration;
 use Pixelate\Shared\Social\Stream\Twitter as TwitterStream;
 
 class Tweets extends Command
@@ -34,7 +34,7 @@ class Tweets extends Command
 	 *
 	 * @var string
 	 */
-	protected $hashtags = ['work', 'php', 'php7', 'javascript', 'confrence', 'phpwarks'];
+	protected $hashtags = ['work', 'php', 'php7', 'javascript', 'confrence', 'phpwarks', 'ssl'];
 
 	/**
 	 * Execute the console command.
@@ -58,17 +58,30 @@ class Tweets extends Command
 			if (($tweet = $this->pluckReleventTweet($tweets))) {
 
 				// Generate a useable Tweet object from the tweet
-				$tweet = TwitterManager::createTweetFromArray($tweet);
+				$tweet = TwitterIntegration::createTweetFromArray($tweet);
 
 				// If the tweet has changed, email to notify
 				if ($this->hasTweetChanged($tweet) && App::environment('production')) {
 					$this->emailTweetChange($tweet);
 				}
 
-				// Store the relevent 
-				TwitterManager::storeTweet($tweet);
+				// Store the relevant
+				TwitterIntegration::storeTweet($tweet);
+
+				// Give some output
+				$this->info('Latest Tweets fetched!');
+
+			} else {
+
+				// Give some output
+				$this->info('Unable to pluck a latest Tweet.');
 
 			}
+
+		} else {
+
+			// We have an issue
+			$this->info('Failed to fetch latest Tweets.');
 
 		}
 
@@ -100,7 +113,7 @@ class Tweets extends Command
 	 */
 	private function hasTweetChanged(Tweet $tweet)
 	{
-		if (($previousTweet = TwitterManager::getLatest())) {
+		if (($previousTweet = TwitterIntegration::getLatest())) {
 			return ($previousTweet->getId() !== $tweet->getId());
 		}
 		return true;

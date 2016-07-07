@@ -36,7 +36,7 @@ class Tweet
      * @param string $text
      * @param int $retweetCount
      * @param int $favoriteCount
-     * @param string $location
+     * @param boolean|string $location
      * @return Tweet
      */
     public static function make($id, $text, $retweetCount = 0, $favoriteCount = 0, $location = false)

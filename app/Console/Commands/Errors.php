@@ -1,10 +1,14 @@
-<?php namespace App\Console\Commands;
+<?php
 
-use Illuminate\Console\Command;
+namespace App\Console\Commands;
+
+use App;
 use Carbon\Carbon;
+use Illuminate\Console\Command;
 use Dubture\Monolog\Reader\LogReader;
 
-class Errors extends Command {
+class Errors extends Command
+{
 
 	/**
 	 * The console command name.
@@ -28,14 +32,15 @@ class Errors extends Command {
 	public function fire()
 	{
 
-		// We only need this for production
-		if( !\App::environment('production') ) return;
-
 		// Log file date we should check
 		$date = Carbon::yesterday();
 
 		// Build the name of the log to read
-		$path = \App::storagePath().'/logs/laravel-'.$date->format('Y-m-d').'.log';
+		$path = sprintf(
+			'%s/logs/laravel-%s.log',
+			App::storagePath(),
+			$date->format('Y-m-d')
+		);
 
 		// Ensure there is a log file
 		if( file_exists($path) ){

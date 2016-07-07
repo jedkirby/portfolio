@@ -1,123 +1,87 @@
-<?php namespace App\Console\Commands;
+<?php
 
+namespace App\Console\Commands;
+
+use Config;
 use Illuminate\Console\Command;
+use App\Integrations\Instagram as InstagramIntegration;
+use Pixelate\Shared\Social\Stream\Instagram as InstagramStream;
 
-class Instagram extends Command {
+class Instagram extends Command
+{
 
-	/**
-	 * The console command name.
-	 *
-	 * @var string
-	 */
-	protected $name = 'app:instagram';
+    /**
+     * The console command name.
+     *
+     * @var string
+     */
+    protected $name = 'app:instagram';
 
-	/**
-	 * The console command description.
-	 *
-	 * @var string
-	 */
-	protected $description = 'Fetch the latest instagram posts';
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Fetch the latest instagram posts';
 
-	/**
-	 * The amount of posts to store.
-	 * 
-	 * @var integer
-	 */
-	protected $postLimit = 8;
+    /**
+     * The amount of posts to store.
+     *
+     * @var integer
+     */
+    const POST_LIMIT = 8;
 
-	/**
-	 * An array of image ID's to ignore and not store for use on the website.
-	 *
-	 * @var array
-	 */
-	protected $ignoreIds = [];
+    /**
+     * Execute the console command.
+     *
+     * @return mixed
+     */
+    public function fire()
+    {
 
-	/**
-	 * Execute the console command.
-	 *
-	 * @return mixed
-	 */
-	public function fire()
-	{
+        $instagram = new InstagramStream;
+        $instagram->setAccessToken(Config::get('site.social.streams.instagram.api.access_token'));
+        $instagram->setUserId(Config::get('site.social.streams.instagram.id'));
 
-		$instagram = new \Pixelate\Shared\Social\Stream\Instagram;
-		$instagram->setAccessToken(\Config::get('site.social.streams.instagram.api.access_token'));
-		$instagram->setUserId(\Config::get('site.social.streams.instagram.id'));
+        // Attempt to get the instagram feed
+        if( ($feed = $instagram->getFeed()) ){
 
-		// Attempt to get the instagram feed
-		if( ($feed = $instagram->getFeed()) ){
+            // Convert to posts, remove ignored posts, and limit
+            $posts = $this->convertFeedToApprovedPosts($feed);
 
-			// Remove any ignored images
-			$allowedFeed = $this->removeIgnoredImages($feed);
+            // Store the entire feed
+            InstagramIntegration::storePosts($posts);
 
-			// Store the tweet in the cache
-			$this->storeFeedInCache($allowedFeed);
+            // Give some output
+            $this->info('Instagram posts fetched!');
 
-		}
-		else {
+        } else {
 
-			// Notify about the failure
-			$this->emailFailure();
+            // We have an issue
+            $this->info('Failed to fetch Instagram posts.');
 
-		}
+        }
 
-	}
+    }
 
-	/**
-	 * Cycle through the feed and ensure only allowed images are returned,
-	 * then return the max allowed images.
-	 *
-	 * @param  array $feed
-	 * @return array
-	 */
-	protected function removeIgnoredImages($feed)
-	{
-		$allowedFeed = [];
-		foreach($feed as $image){
-			if(!in_array($image['id'], $this->ignoreIds)){
-				$allowedFeed[] = $image;
-			}
-		}
-		return array_slice($allowedFeed, 0, $this->postLimit);
-	}
-
-	/**
-	 * Store the instagram feed in the cache forever.
-	 * 
-	 * @param  array $feed
-	 * @return void
-	 */
-	protected function storeFeedInCache($feed = [])
-	{
-		\Cache::forever('instagram', $feed);
-	}
-
-	/**
-	 * Email when fetching failed.
-	 * 
-	 * @return void
-	 */
-	protected function emailFailure()
-	{
-
-		if( !\App::environment('production') ) return;
-
-		try {
-
-			\Mail::send(
-				'emails.instagram.failed',
-				[],
-				function($message) {
-					$message->from(\Config::get('site.meta.email.from'), 'Portfolio');
-					$message->to(\Config::get('site.meta.email.to'), \Config::get('site.meta.title'));
-					$message->subject('Instagram Fetch Failure');
-				}
-			);
-
-		} catch( \Exception $e ) {
-			\Log::error($e);
-		}
-
-	}
+    /**
+     * Convert an array of instagram feeds into an array of posts, removing
+     * the ignored posts and limiting.
+     *
+     * @param array $feed
+     * @return array
+     */
+    private function convertFeedToApprovedPosts(array $feed)
+    {
+        $posts = [];
+        $ignoreIds = Config::get('site.social.streams.instagram.ignore', []);
+        foreach ($feed as $post) {
+            $post = InstagramIntegration::createPostFromArray($post);
+            if (!in_array($post->getId(), $ignoreIds)) {
+                $posts[] = $post;
+            }
+        }
+        return array_slice($posts, 0, self::POST_LIMIT);
+    }
 
 }

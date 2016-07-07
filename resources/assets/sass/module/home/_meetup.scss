@@ -1,39 +1,33 @@
-.meetups {
+.meetup {
 
     $off-white: tint($secondary, 40%);
 
     background: $secondary;
     padding: 40px 0;
+    text-align: center;
 
     &__title {
         color: $off-white;
+        font-size: 1.4rem;
         margin-bottom: 20px;
-        text-align: center;
-    }
-
-    &__events {
-        list-style: none;
-        margin: 0;
-        padding: 0;
     }
 
     &__event {
 
-        @include transition(background 0.2s, border 0.2s);
-        background: tint($secondary, 5%);
-        border-left: 3px $primary solid;
         padding: 15px;
         margin: 2px 0;
 
         h3 {
+
+            @include transition(color 0.2s);
             color: tint($secondary, 85%);
             line-height: 2.6rem;
             margin-bottom: 2px;
-        }
 
-        &:hover {
-            background: tint($secondary, 3%);
-            border-left-width: 6px;
+            &:hover {
+                color: $primary;    
+            }
+
         }
 
     }
@@ -41,9 +35,8 @@
     &__meta {
 
         list-style: none;
-        margin: 0;
+        margin: 3px auto 0;
         padding: 0;
-        text-align: left;
 
         li {
             color: $secondary-sub-heading;

@@ -17,7 +17,7 @@ class Meetup
      * Create an event from a given array.
      *
      * @param  array  $event
-     * @return \App\Integrations\Meetup\Event
+     * @return Event
      */
     public static function createEventFromArray(array $event)
     {
@@ -25,6 +25,7 @@ class Meetup
             array_get($event, 'id'),
             array_get($event, 'name'),
             array_get($event, 'link'),
+            array_get($event, 'time'),
             array_get($event, 'group.name', false),
             array_get($event, 'venue.name', false),
             array_get($event, 'yes_rsvp_count', 0),
@@ -33,22 +34,22 @@ class Meetup
     }
 
     /**
-     * Store events within the cache forever.
+     * Store event within the cache forever.
      *
-     * @param  array  $events
+     * @param  Event  $event
      * @return void
      */
-    public static function storeEvents(array $events)
+    public static function storeEvent(Event $event)
     {
-        Cache::forever(self::CACHE_NAME, $events);
+        Cache::forever(self::CACHE_NAME, $event);
     }
 
     /**
-     * Return the meetup events stored within the cache.
+     * Return the latest meetup event stored within the cache.
      *
      * @return array|boolean
      */
-    public static function getEvents()
+    public static function getEvent()
     {
         return Cache::get(self::CACHE_NAME, []);
     }

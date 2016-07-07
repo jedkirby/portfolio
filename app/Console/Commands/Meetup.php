@@ -73,25 +73,42 @@ class Meetup extends Command
                 if ($data && is_array($data)) {
 
                     $events = [];
+
                     foreach ($data as $eventData) {
+
                         $event = MeetupIntegration::createEventFromArray($eventData);
                         if ($event->hasPassed()) {
                             continue;
                         }
-                        $events[] = $event;
+
+                        $events[
+                            $event->getTime()
+                        ] = $event;
+
                     }
 
-                    MeetupIntegration::storeEvents($events);
+                    ksort($events);
+
+                    $latestEvent = head($events);
+
+                    MeetupIntegration::storeEvent($latestEvent);
 
                 }
 
             }
 
-        } catch (Exception $e ) {
-            Log::error($e);
-        }
+            // Give some output
+            $this->info('Meetup events fetched!');
 
-        return [];
+        } catch (Exception $e ) {
+
+            // Bit of logging
+            Log::error($e);
+
+            // We have an issue
+            $this->info('Failed to fetch Meetup events.');
+
+        }
 
     }
 
