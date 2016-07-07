@@ -10,41 +10,41 @@ use Pixelate\Shared\Social\Stream\Instagram as InstagramStream;
 class Instagram extends Command
 {
 
-	/**
-	 * The console command name.
-	 *
-	 * @var string
-	 */
-	protected $name = 'app:instagram';
+    /**
+     * The console command name.
+     *
+     * @var string
+     */
+    protected $name = 'app:instagram';
 
-	/**
-	 * The console command description.
-	 *
-	 * @var string
-	 */
-	protected $description = 'Fetch the latest instagram posts';
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Fetch the latest instagram posts';
 
-	/**
-	 * The amount of posts to store.
-	 * 
-	 * @var integer
-	 */
+    /**
+     * The amount of posts to store.
+     *
+     * @var integer
+     */
     const POST_LIMIT = 8;
 
-	/**
-	 * Execute the console command.
-	 *
-	 * @return mixed
-	 */
-	public function fire()
-	{
+    /**
+     * Execute the console command.
+     *
+     * @return mixed
+     */
+    public function fire()
+    {
 
-		$instagram = new InstagramStream;
-		$instagram->setAccessToken(Config::get('site.social.streams.instagram.api.access_token'));
-		$instagram->setUserId(Config::get('site.social.streams.instagram.id'));
+        $instagram = new InstagramStream;
+        $instagram->setAccessToken(Config::get('site.social.streams.instagram.api.access_token'));
+        $instagram->setUserId(Config::get('site.social.streams.instagram.id'));
 
-		// Attempt to get the instagram feed
-		if( ($feed = $instagram->getFeed()) ){
+        // Attempt to get the instagram feed
+        if( ($feed = $instagram->getFeed()) ){
 
             // Convert to posts, remove ignored posts, and limit
             $posts = $this->convertFeedToApprovedPosts($feed);
@@ -55,14 +55,14 @@ class Instagram extends Command
             // Give some output
             $this->info('Instagram posts fetched!');
 
-		} else {
+        } else {
 
             // We have an issue
             $this->info('Failed to fetch Instagram posts.');
 
         }
 
-	}
+    }
 
     /**
      * Convert an array of instagram feeds into an array of posts, removing
