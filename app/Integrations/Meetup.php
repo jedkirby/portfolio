@@ -17,7 +17,7 @@ class Meetup
      * Create an event from a given array.
      *
      * @param  array  $event
-     * @return \App\Integrations\Meetup\Event
+     * @return Event
      */
     public static function createEventFromArray(array $event)
     {
@@ -36,7 +36,7 @@ class Meetup
     /**
      * Store event within the cache forever.
      *
-     * @param  \App\Integrations\Meetup\Event  $event
+     * @param  Event  $event
      * @return void
      */
     public static function storeEvent(Event $event)
