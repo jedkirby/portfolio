@@ -97,8 +97,17 @@ class Meetup extends Command
 
             }
 
+            // Give some output
+            $this->info('Meetup events fetched!');
+
         } catch (Exception $e ) {
+
+            // Bit of logging
             Log::error($e);
+
+            // We have an issue
+            $this->info('Failed to fetch Meetup events.');
+
         }
 
     }
