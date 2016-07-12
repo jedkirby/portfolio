@@ -54,4 +54,14 @@ class Meetup
         return Cache::get(self::CACHE_NAME, []);
     }
 
+    /**
+     * Forget any content that's stored within the cache.
+     *
+     * @return void
+     */
+    public static function clearStored()
+    {
+        Cache::forget(self::CACHE_NAME);
+    }
+
 }

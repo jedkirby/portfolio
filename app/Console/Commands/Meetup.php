@@ -87,18 +87,29 @@ class Meetup extends Command
 
                     }
 
-                    ksort($events);
+                    if ($events) {
 
-                    $latestEvent = head($events);
+                        ksort($events);
 
-                    MeetupIntegration::storeEvent($latestEvent);
+                        $latestEvent = head($events);
+
+                        MeetupIntegration::storeEvent($latestEvent);
+
+                        // Give some output
+                        $this->info('Latest Meetup event fetched!');
+
+                    } else {
+
+                        MeetupIntegration::clearStored();
+
+                        // We got nothin'
+                        $this->info('There are no upcoming Meetup events.');
+
+                    }
 
                 }
 
             }
-
-            // Give some output
-            $this->info('Meetup events fetched!');
 
         } catch (Exception $e ) {
 
