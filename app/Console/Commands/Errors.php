@@ -3,6 +3,10 @@
 namespace App\Console\Commands;
 
 use App;
+use Log;
+use Mail;
+use Config;
+use Exception;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Dubture\Monolog\Reader\LogReader;
@@ -43,17 +47,17 @@ class Errors extends Command
 		);
 
 		// Ensure there is a log file
-		if( file_exists($path) ){
+		if (file_exists($path)) {
 
 			// Storage for each error
 			$errors = [];
 
 			// Cycle through all the log items
 			$reader = new LogReader($path);			
-			foreach($reader as $log){
+			foreach ($reader as $log) {
 
 				// Store only errors
-				if(array_get($log, 'level') === 'ERROR'){
+				if (array_get($log, 'level') === 'ERROR') {
 					$errors[] = [
 						'date'    => array_get($log, 'date'),
 						'message' => array_get($log, 'message')
@@ -63,24 +67,33 @@ class Errors extends Command
 			}
 
 			// Ensure we have at least one error, if so send it!
-			if( $errors ){
-
-				$errorCount = count($errors);
+			if (($errorCount = count($errors))) {
 
 				try {
 
-					\Mail::send(
+					Mail::send(
 						'emails.errors',
 						compact('date', 'errors'),
-						function($message) use ($date, $errorCount) {
-							$message->from(\Config::get('site.meta.email.from'), 'Portfolio');
-							$message->to(\Config::get('site.meta.email.to'), \Config::get('site.meta.title'));
-							$message->subject($errorCount.' site errors for '.$date->format('F j'));
+						function ($message) use ($date, $errorCount) {
+							$message
+								->from(
+									Config::get('site.meta.email.from'),
+									'Portfolio'
+								)
+								->to(
+									Config::get('site.meta.email.to'),
+									Config::get('site.meta.title')
+								)
+								->subject(sprintf(
+									'%s site errors for %s',
+									$errorCount,
+									$date->format('F j')
+								));
 						}
 					);
 
-				} catch( \Exception $e ) {
-					\Log::error($e);
+				} catch (Exception $e) {
+					Log::error($e);
 				}
 
 			}
