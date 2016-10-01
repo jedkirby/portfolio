@@ -30,13 +30,6 @@ class Tweets extends Command
 	protected $description = 'Fetch the latest tweet from a spcific account which matches specific hashtags';
 
 	/**
-	 * Hashtag to find the latest tweet with. Make sure this is lowercase.
-	 *
-	 * @var string
-	 */
-	protected $hashtags = ['work', 'php', 'php7', 'javascript', 'confrence', 'phpwarks', 'ssl'];
-
-	/**
 	 * Execute the console command.
 	 *
 	 * @return mixed
@@ -69,12 +62,21 @@ class Tweets extends Command
 				TwitterIntegration::storeTweet($tweet);
 
 				// Give some output
-				$this->info('Latest Tweets fetched!');
+				$this->info(sprintf(
+					'Tweet #%s has been stored/updated!',
+					$tweet->getId()
+				));
 
 			} else {
 
 				// Give some output
-				$this->info('Unable to pluck a latest Tweet.');
+				$this->info(sprintf(
+					'Unable to pluck latest Tweet. None were found with hashtags: %s',
+					implode(
+						', ',
+						Config::get('site.social.streams.twitter.hashtags', [])
+					)
+				));
 
 			}
 
@@ -95,9 +97,10 @@ class Tweets extends Command
 	 */
 	private function pluckReleventTweet($tweets)
 	{
+		$allowedHashtags = Config::get('site.social.streams.twitter.hashtags', []);
 		foreach ($tweets as $t) {
 			foreach (array_get($t, 'entities.hashtags', []) as $h) {
-				if (in_array(strtolower(array_get($h, 'text')), array_map('strtolower', $this->hashtags))) {
+				if (in_array(strtolower(array_get($h, 'text')), array_map('strtolower', $allowedHashtags))) {
 					return $t;
 				}
 			}
@@ -132,9 +135,18 @@ class Tweets extends Command
 				'emails.tweet',
 				compact('tweet'),
 				function($message) {
-					$message->from(\Config::get('site.meta.email.from'), 'Portfolio');
-					$message->to(Config::get('site.meta.email.to'), Config::get('site.meta.title'));
-					$message->subject('Tweet Update');
+					$message
+						->from(
+							Config::get('site.meta.email.from'),
+							'Portfolio'
+						)
+						->to(
+							Config::get('site.meta.email.to'),
+							Config::get('site.meta.title')
+						)
+						->subject(
+							'Tweet Update'
+						);
 				}
 			);
 		} catch (Exception $e) {
