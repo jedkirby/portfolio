@@ -43,7 +43,8 @@ return [
 					'consumer_secret' => env('TWITTER_CONSUMER_SECRET'),
 					'token'           => env('TWITTER_TOKEN'),
 					'token_secret'    => env('TWITTER_TOKEN_SECRET')
-				]
+				],
+				'hashtags' => explode('|', env('TWITTER_HASHTAGS', ''))
 			],
 			'facebook' => [
 				'title' => 'Facebook',
