@@ -34,6 +34,11 @@
 			"app/Support/helpers.php"
 		]
 	},
+	"autoload-dev": {
+		"psr-4": {
+			"Test\\App\\": "tests/"
+		}
+	},
 	"config": {
 		"preferred-install": "dist",
 		"secure-http": false
