@@ -26,7 +26,7 @@ class Tweet
         $this->text = (string) $text;
         $this->retweetCount = (int) $retweetCount;
         $this->favoriteCount = (int) $favoriteCount;
-        $this->location = (string) $location;
+        $this->location = $location;
     }
 
     /**

@@ -2,12 +2,6 @@
 	"name": "jedkirby/portfolio",
 	"description": "James Kirby's Portfolio.",
 	"type": "project",
-	"repositories": [
-		{
-			"type": "composer",
-			"url": "http://toran.pixelatedesign.com/repo/private/"
-		}
-	],
 	"require": {
 		"laravel/framework": "5.1.*",
 		"illuminate/html": "5.*",
@@ -15,13 +9,12 @@
 		"fzaninotto/faker": "1.4.0",
 		"social-links/social-links": "1.5.*",
 		"pulse00/monolog-parser": "^0.0.3",
-		"guzzlehttp/guzzle": "4.*",
-		"pixelate/shared": "0.0.*"
+		"guzzlehttp/guzzle": "^6.0",
+		"guzzlehttp/oauth-subscriber": "^0.3.0"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",
-		"phpspec/phpspec": "~2.1",
-		"pixelate/vm": "~1.0"
+		"phpspec/phpspec": "~2.1"
 	},
 	"autoload": {
 		"classmap": [
