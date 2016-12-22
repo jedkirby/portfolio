@@ -2,6 +2,7 @@
 
 use Carbon\Carbon;
 use SocialLinks\Page;
+use App\Blog\TagManager as Tag;
 
 class BlogController extends RootController {
 
@@ -15,7 +16,13 @@ class BlogController extends RootController {
 				'content'  => view('pages.blog.articles.digital-ocean'),
 				'image'    => cached_asset('assets/img/blog/digital-ocean.jpg'),
 				'keywords' => ['digital', 'ocean', 'vps', 'ubuntu', 'linux', 'apache', 'mysql'],
-				'tags'     => ['Digital Ocean', 'VPS', 'Ubuntu', 'Nginx', 'MySQL']
+				'tags'     => [
+					Tag::get('server-config'), // Server Config
+					Tag::get('mysql'), // MySQL
+					Tag::get('digital-ocean'), // Digital Ocean
+					Tag::get('nginx'), // NGINX
+					Tag::get('ubuntu') // Ubuntu
+				]
 			],
 			'multiple-apache-virtual-host-configuration-files' => [
 				'title'    => 'Multiple apache virtual host configuration files',
@@ -24,7 +31,11 @@ class BlogController extends RootController {
 				'content'  => view('pages.blog.articles.multiple-apache-virtual-host-configuration-files'),
 				'image'    => cached_asset('assets/img/blog/apache-virtual-hosts.jpg'),
 				'keywords' => ['apache', 'vhosts', 'virtual', 'hosts', 'server', 'configuration'],
-				'tags'     => ['Virtual Hosts', 'Apache', 'Server Configuration']
+				'tags'     => [
+					Tag::get('server-config'),  // Server Config
+					Tag::get('apache'), // Apache
+					Tag::get('virtual-hosts') // Virtual Hosts
+				]
 			],
 			'oculus-rift-virtual-experience-trials' => [
 				'title'    => 'Oculus rift virtual experience trials',
