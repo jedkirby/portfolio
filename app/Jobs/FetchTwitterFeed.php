@@ -7,9 +7,7 @@ use Config;
 use App\Jobs\Job;
 use App\Integrations\Twitter;
 use App\Integrations\Twitter\Tweet;
-use GuzzleHttp\Client as GuzzleClient;
-use GuzzleHttp\HandlerStack as GuzzleHandlerStack;
-use GuzzleHttp\Subscriber\Oauth\Oauth1 as GuzzleAuth;
+use App\Integrations\Twitter\Connection as TwitterConnection;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -141,21 +139,14 @@ class FetchTwitterFeed extends Job implements SelfHandling, ShouldQueue
     {
 
         $tweet = false;
-        $stack = GuzzleHandlerStack::create();
+        $connection = new TwitterConnection(
+            Config::get('site.social.streams.twitter.api.consumer_key'),
+            Config::get('site.social.streams.twitter.api.consumer_secret'),
+            Config::get('site.social.streams.twitter.api.token'),
+            Config::get('site.social.streams.twitter.api.token_secret')
+        );
 
-        $middleware = new GuzzleAuth([
-            'consumer_key'    => Config::get('site.social.streams.twitter.api.consumer_key'),
-            'consumer_secret' => Config::get('site.social.streams.twitter.api.consumer_secret'),
-            'token'           => Config::get('site.social.streams.twitter.api.token'),
-            'token_secret'    => Config::get('site.social.streams.twitter.api.token_secret')
-        ]);
-
-        $stack->push($middleware);
-
-        $this->client = new GuzzleClient([
-            'base_uri' => 'https://api.twitter.com/1.1/',
-            'handler'  => $stack
-        ]);
+        $this->client = $connection->getClient();
 
         $storedTweet = false;
         // $storedTweet = Twitter::getLatest();
