@@ -2,7 +2,7 @@
 
 namespace App\Blog\Tags;
 
-abstract class Tag
+abstract class AbstractTag
 {
 
     /**

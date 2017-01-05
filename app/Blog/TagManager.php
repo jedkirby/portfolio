@@ -3,45 +3,89 @@
 namespace App\Blog;
 
 use Exception;
+use App\Blog\Contracts\Tag;
 
 class TagManager
 {
 
     /**
-     * Array of registered, and available, tag aliases to classes.
-     *
-     * @var array
+     * @var string
      */
-    private static $tags = [
-        'mysql'         => Tags\Mysql::class,
-        'digital-ocean' => Tags\DigitalOcean::class,
-        'nginx'         => Tags\Nginx::class,
-        'server-config' => Tags\ServerConfiguration::class
-    ];
+    private $alias;
 
     /**
-     * Get a specific tag using its alias.
+     * @param string $alias
      *
-     * @param $alias string
-     * @return \App\Blog\Contracts\Tag
-     * @throws Exception
+     * @return TagManager
+     */
+    public static function make($alias)
+    {
+        return new static($alias);
+    }
+
+    /**
+     * @param string $alias
+     *
+     * @return Tag
      */
     public static function get($alias)
     {
+        return static::make($alias)->getTag();
+    }
 
-        $tag = array_get(static::$tags, $alias, false);
+    /**
+     * @param string $alias
+     */
+    private function __construct($alias)
+    {
+        $this->alias = $alias;
+    }
 
-        if ($tag === false) {
-            throw new Exception(sprintf('Unable to load the tag "%s".', $alias));
+    /**
+     * @return string
+     */
+    public function getAlias()
+    {
+        return $this->alias;
+    }
+
+    /**
+     * @return string
+     */
+    public function getClassName()
+    {
+        $alias = $this->getAlias();
+        $alias = strtolower($alias);
+        $alias = str_replace('-', ' ', $alias);
+        $alias = ucwords($alias);
+        $alias = str_replace(' ', '', $alias);
+        return sprintf('\\App\\Blog\\Tags\\%s', $alias);
+    }
+
+    /**
+     * @throws Exception
+     * @return Tag
+     */
+    public function getTag()
+    {
+
+        $className = $this->getClassName();
+
+        if (!class_exists($className)) {
+            throw new Exception(sprintf(
+                'Unable to load the tag "%s" with the class "%s".',
+                $this->getAlias(),
+                $className
+            ));
         }
 
-        $tag = new $tag;
+        $tag = new $className;
 
-        if (!$tag instanceof Contracts\Tag) {
+        if (!$tag instanceof Tag) {
             throw new Exception(sprintf(
                 'The loaded tag "%s" does not implement the "%s" contract.',
-                $alias,
-                Contracts\Tag::class
+                $this->getAlias(),
+                Tag::class
             ));
         }
 

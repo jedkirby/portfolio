@@ -5,7 +5,7 @@ namespace App\Blog\Tags;
 use App\Blog\Tags\AbstractTag;
 use App\Blog\Contracts\Tag as TagContract;
 
-class Nginx extends AbstractTag implements TagContract
+class JustForFun extends AbstractTag implements TagContract
 {
 
     /**
@@ -13,7 +13,7 @@ class Nginx extends AbstractTag implements TagContract
      */
     public function getName()
     {
-        return 'Nginx';
+        return 'Just For Fun';
     }
 
 }
