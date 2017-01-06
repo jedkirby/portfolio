@@ -32,7 +32,7 @@ class TwitterTest extends AbstractTestCase
      */
     private function getTweet()
     {
-        return Twitter::createTweetFromArray($this->tweetDetails);
+        return Twitter::createFromArray($this->tweetDetails);
     }
 
     /**
@@ -81,7 +81,7 @@ class TwitterTest extends AbstractTestCase
         $tweetDetails['text'] = $tweetInputText;
 
         return $this->assertEquals(
-            Twitter::createTweetFromArray($tweetDetails)->getText(),
+            Twitter::createFromArray($tweetDetails)->getText(),
             $tweetExpectedText
         );
 
@@ -104,7 +104,7 @@ class TwitterTest extends AbstractTestCase
     public function itCorrectlyHasNoRetweets()
     {
         return $this->assertFalse(
-            Twitter::createTweetFromArray([
+            Twitter::createFromArray([
                 'id' => 1,
                 'text' => 'Tweet Text!'
             ])->hasRetweets()
@@ -128,7 +128,7 @@ class TwitterTest extends AbstractTestCase
     public function itCorrectlyHasNoFavorites()
     {
         return $this->assertFalse(
-            Twitter::createTweetFromArray([
+            Twitter::createFromArray([
                 'id' => 1,
                 'text' => 'Tweet Text!'
             ])->hasFavorites()
@@ -152,7 +152,7 @@ class TwitterTest extends AbstractTestCase
     public function itCorrectlyHasNoLocation()
     {
         return $this->assertFalse(
-            Twitter::createTweetFromArray([
+            Twitter::createFromArray([
                 'id' => 1,
                 'text' => 'Tweet Text!'
             ])->hasLocation()
