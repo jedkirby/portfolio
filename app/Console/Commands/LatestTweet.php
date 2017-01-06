@@ -2,15 +2,15 @@
 
 namespace App\Console\Commands;
 
-use App;
 use Log;
 use Mail;
 use Config;
-use App\Integrations\Twitter;
+use Exception;
 use Illuminate\Console\Command;
-use App\Integrations\Twitter\Tweet;
-use App\Integrations\Twitter\Connection;
-use App\Integrations\Twitter\Exceptions\UnableToGetLatestTweetException;
+use App\Services\Twitter\Tweet;
+use App\Services\Twitter\TweetManager;
+use App\Services\Twitter\TwitterService;
+use App\Services\Twitter\Exceptions\UnableToGetLatestTweetException;
 
 class LatestTweet extends Command
 {
@@ -27,92 +27,56 @@ class LatestTweet extends Command
      *
      * @var string
      */
-    protected $description = 'Fetch the latest twitter home timeline.';
+    protected $description = 'Fetch or update the latest relevant tweet.';
 
     /**
-     * @var Connection
+     * @var TwitterService
      */
-    protected $conn;
+    protected $service;
 
     /**
      * Create a new command instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(TwitterService $service)
     {
         parent::__construct();
-        $this->conn = Connection::make();
+
+        $this->service = $service;
     }
 
     /**
-     * Return the home timeline feed for the user.
-     *
-     * @return array
-     */
-    private function getFeed()
-    {
-
-        $feed = [];
-        $response = $this->conn->get(
-            'statuses/user_timeline.json',
-            [
-                'auth' => 'oauth',
-                'query' => [
-                    'screen_name'         => Config::get('site.social.streams.twitter.name'),
-                    'trim_user'           => true,
-                    'exclude_replies'     => true,
-                    'contributor_details' => false,
-                    'include_rts'         => false
-                ]
-            ]
-        );
-
-        if (in_array($response->getStatusCode(), [200])) {
-            $data = json_decode($response->getBody(), true);
-            if ($data && is_array($data)) {
-                $feed = $data;
-            }
-        }
-
-        return $feed;
-
-    }
-
-    /**
-     * Get the most relevant latest tweet.
+     * @param array $timeline
      *
      * @throws UnableToGetLatestTweetException
-     *
      * @return Tweet
      */
-    private function getLatestTweet()
+    public function getLatestTweet(array $timeline = [])
     {
 
-        $allowedHashtags = Config::get('site.social.streams.twitter.hashtags', []);
+        $allowedHashtags = TweetManager::getAllowedHashtags();
 
-        foreach ($this->getFeed() as $tweet) {
-            foreach (array_get($tweet, 'entities.hashtags', []) as $hashtag) {
-                if (in_array(strtolower(array_get($hashtag, 'text')), array_map('strtolower', $allowedHashtags))) {
-                    return Twitter::createFromArray($tweet);
+        foreach ($timeline as $tweet) {
+            foreach ($tweet->getHashtags() as $hashtag) {
+                if (in_array(strtolower(array_get($hashtag, 'text')), $allowedHashtags)) {
+                    return $tweet;
                 }
             }
         }
 
-        throw new UnableToGetLatestTweetException('No Relevant Tweet Found');
+        throw new UnableToGetLatestTweetException('No relevant tweet found.');
 
     }
 
     /**
-     * Determine if the tweet has changed.
-     *
      * @param Tweet $tweet
      *
      * @return boolean
      */
-    private function hasTweetChanged(Tweet $tweet)
+    public function hasTweetChanged(Tweet $tweet)
     {
-        if (($storedTweet = Twitter::getTweet())) {
+        if ($storedTweet = TweetManager::getTweet()) {
             return ($storedTweet->getId() !== $tweet->getId());
         }
         return true;
@@ -125,7 +89,7 @@ class LatestTweet extends Command
      *
      * @return void
      */
-    private function sendChangedEmail(Tweet $tweet)
+    public function sendChangedEmail(Tweet $tweet)
     {
         Mail::send(
             'emails.tweet',
@@ -152,18 +116,29 @@ class LatestTweet extends Command
      *
      * @return mixed
      */
-    public function fire()
+    public function handle()
     {
 
         try {
 
-            $tweet = $this->getLatestTweet();
+            $timeline = $this->service->getConnection()->getTimeline();
 
-            if ($this->hasTweetChanged($tweet) && App::environment('production')) {
-                $this->sendChangedEmail($tweet);
+            if ($tweet = $this->getLatestTweet($timeline)) {
+
+                if ($this->hasTweetChanged($tweet)) {
+                    $this->sendChangedEmail($tweet);
+                }
+
+                TweetManager::setTweet($tweet);
+
+                $this->info(
+                    sprintf(
+                        'Tweet has been updated/set to: %s',
+                        $tweet->getTextRaw()
+                    )
+                );
+
             }
-
-            Twitter::setTweet($tweet);
 
         } catch (Exception $e) {
             Log::error($e);
