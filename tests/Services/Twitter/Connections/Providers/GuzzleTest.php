@@ -37,8 +37,8 @@ class GuzzleConnectionTest extends AbstractTestCase
     {
 
         $provider = $this->getProvider();
-
         $response = $this->getMockBuilder(Response::class)->getMock();
+
         $response
             ->method('getStatusCode')
             ->willReturn($statusCode);
@@ -60,8 +60,8 @@ class GuzzleConnectionTest extends AbstractTestCase
     {
 
         $body = ['one', 'two'];
-        $provider = $this->getProvider();
 
+        $provider = $this->getProvider();
         $response = $this->getMockBuilder(Response::class)->getMock();
 
         $response
@@ -83,6 +83,30 @@ class GuzzleConnectionTest extends AbstractTestCase
             $decodedResponse,
             $body
         );
+
+    }
+
+    /**
+     * @test
+     * @group twitter
+     */
+    public function itReturnsFalseForNoneArrayOkResponse()
+    {
+
+        $provider = $this->getProvider();
+        $response = $this->getMockBuilder(Response::class)->getMock();
+
+        $response
+            ->method('getStatusCode')
+            ->willReturn(200);
+
+        $response
+            ->method('getBody')
+            ->willReturn('');
+
+        $decodedResponse = $provider->decodeResponse($response);
+
+        $this->assertFalse($decodedResponse);
 
     }
 
