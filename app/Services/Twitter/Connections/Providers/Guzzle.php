@@ -43,6 +43,7 @@ class Guzzle
      * @param string $consumerSecret
      * @param string $token
      * @param string $tokenSecret
+     * @param string $baseUri
      */
     public function __construct(
         $consumerKey,
