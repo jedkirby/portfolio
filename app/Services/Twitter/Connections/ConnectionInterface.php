@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Services\Twitter;
+namespace App\Services\Twitter\Connections;
 
 use App\Services\Twitter\Tweet;
 
-interface TwitterConnectionInterface
+interface ConnectionInterface
 {
 
     /**

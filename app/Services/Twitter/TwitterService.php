@@ -2,26 +2,26 @@
 
 namespace App\Services\Twitter;
 
-use App\Services\Twitter\TwitterConnectionInterface;
+use App\Services\Twitter\Connections\ConnectionInterface;
 
 class TwitterService
 {
 
     /**
-     * @var TwitterConnectionInterface
+     * @var ConnectionInterface
      */
     private $connection;
 
     /**
-     * @param TwitterConnectionInterface $connection
+     * @param ConnectionInterface $connection
      */
-    public function __construct(TwitterConnectionInterface $connection)
+    public function __construct(ConnectionInterface $connection)
     {
         $this->connection = $connection;
     }
 
     /**
-     * @return TwitterConnectionInterface
+     * @return ConnectionInterface
      */
     public function getConnection()
     {

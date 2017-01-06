@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Twitter;
+namespace App\Services\Twitter\Connections\Providers;
 
 use Log;
 use Config;
@@ -9,10 +9,8 @@ use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\HandlerStack as GuzzleHandlerStack;
 use GuzzleHttp\Subscriber\Oauth\Oauth1 as GuzzleAuth;
-use App\Services\Twitter\TwitterConnectionInterface;
-use App\Services\Twitter\TweetManager;
 
-class TwitterConnection implements TwitterConnectionInterface
+class Guzzle
 {
 
     /**
@@ -61,16 +59,18 @@ class TwitterConnection implements TwitterConnectionInterface
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * @return GuzzleClient
      */
-    public function getClient()
+    private function getClient()
     {
 
         $middleware = new GuzzleAuth([
-            'consumer_key'    => $this->consumerKey,
+            'consumer_key' => $this->consumerKey,
             'consumer_secret' => $this->consumerSecret,
-            'token'           => $this->token,
-            'token_secret'    => $this->tokenSecret
+            'token' => $this->token,
+            'token_secret' => $this->tokenSecret
         ]);
 
         $stack = GuzzleHandlerStack::create();
@@ -78,40 +78,18 @@ class TwitterConnection implements TwitterConnectionInterface
 
         return new GuzzleClient([
             'base_uri' => $this->baseUri,
-            'handler'  => $stack
+            'handler' => $stack
         ]);
 
     }
 
     /**
-     * @param Response $response
+     * @codeCoverageIgnore
      *
      * @return boolean|array
      */
-    private function getDecodedResponse(Response $response)
-    {
-
-        if (!in_array($response->getStatusCode(), [200])) {
-            return false;
-        }
-
-        $data = json_decode($response->getBody(), true);
-
-        if ($data && is_array($data)) {
-            return $data;
-        }
-
-        return false;
-
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function getTimeline()
     {
-
-        $timeline = [];
 
         try {
 
@@ -120,34 +98,31 @@ class TwitterConnection implements TwitterConnectionInterface
                 [
                     'auth' => 'oauth',
                     'query' => [
-                        'screen_name'         => Config::get('site.social.streams.twitter.name'),
-                        'count'               => Config::get('site.social.streams.twitter.limit', 200),
-                        'trim_user'           => true,
-                        'exclude_replies'     => true,
+                        'screen_name' => Config::get('site.social.streams.twitter.name'),
+                        'count' => 200,
+                        'trim_user' => true,
+                        'exclude_replies' => true,
                         'contributor_details' => false,
-                        'include_rts'         => false
+                        'include_rts' => false
                     ]
                 ]
             );
 
-            $tweets = $this->getDecodedResponse($response);
-
-            if ($tweets) {
-                foreach ($tweets as $tweet) {
-                    $timeline[] = TweetManager::createFromArray($tweet);
-                }
-            }
+            return $this->decodeResponse($response);
 
         } catch (ClientException $e) {
             Log::error($e);
         }
 
-        return $timeline;
+        return false;
 
     }
 
     /**
-     * {@inheritDoc}
+     * @codeCoverageIgnore
+     *
+     * @param int $id
+     * @return boolean|array
      */
     public function getTweetById($id)
     {
@@ -159,19 +134,39 @@ class TwitterConnection implements TwitterConnectionInterface
                 [
                     'auth' => 'oauth',
                     'query' => [
-                        'id'                 => $id,
-                        'trim_user'          => true,
+                        'id' => $id,
+                        'trim_user' => true,
                         'include_my_retweet' => false
                     ]
                 ]
             );
 
-            if ($tweet = $this->getDecodedResponse($response)) {
-                return TweetManager::createFromArray($tweet);
-            }
+            return $this->decodeResponse($response);
 
         } catch (ClientException $e) {
             Log::error($e);
+        }
+
+        return false;
+
+    }
+
+    /**
+     * @param Response $response
+     *
+     * @return boolean|array
+     */
+    public function decodeResponse(Response $response)
+    {
+
+        if (!in_array($response->getStatusCode(), [200])) {
+            return false;
+        }
+
+        $data = json_decode($response->getBody(), true);
+
+        if ($data && is_array($data)) {
+            return $data;
         }
 
         return false;

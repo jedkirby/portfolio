@@ -5,8 +5,8 @@ namespace App\Services\Twitter;
 use Config;
 use Illuminate\Support\ServiceProvider;
 use App\Services\Twitter\TwitterService;
-use App\Services\Twitter\TwitterConnection;
-use App\Services\Twitter\TwitterConnectionInterface;
+use App\Services\Twitter\Connections\GuzzleConnection;
+use App\Services\Twitter\Connections\Providers\Guzzle as GuzzleProvider;
 
 class TwitterServiceProvider extends ServiceProvider
 {
@@ -33,11 +33,13 @@ class TwitterServiceProvider extends ServiceProvider
             TwitterService::class,
             function () {
                 return new TwitterService(
-                    new TwitterConnection(
-                        Config::get('site.social.streams.twitter.api.consumer_key'),
-                        Config::get('site.social.streams.twitter.api.consumer_secret'),
-                        Config::get('site.social.streams.twitter.api.token'),
-                        Config::get('site.social.streams.twitter.api.token_secret')
+                    new GuzzleConnection(
+                        new GuzzleProvider(
+                            Config::get('site.social.streams.twitter.api.consumer_key'),
+                            Config::get('site.social.streams.twitter.api.consumer_secret'),
+                            Config::get('site.social.streams.twitter.api.token'),
+                            Config::get('site.social.streams.twitter.api.token_secret')
+                        )
                     )
                 );
             }
