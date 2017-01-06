@@ -4,11 +4,15 @@ namespace App\Console\Commands;
 
 use Config;
 use Illuminate\Console\Command;
+use App\Jobs\SendTweetUpdateEmail;
 use App\Services\Twitter\TweetManager;
 use App\Services\Twitter\TwitterService;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 
 class LatestTweet extends Command
 {
+
+    use DispatchesJobs;
 
     /**
      * The console command name.
@@ -59,7 +63,13 @@ class LatestTweet extends Command
         $allowedHashtags = $this->manager->getAllowedHashtags();
 
         if ($tweet = $this->manager->getLatestTweet($timeline, $allowedHashtags)) {
+
+            if ($this->manager->hasTweetChanged($tweet)) {
+                $this->dispatch(new SendTweetUpdateEmail($tweet));
+            }
+
             $this->manager->setTweet($tweet);
+
         }
 
 
