@@ -12,7 +12,7 @@ use App\Integrations\Twitter\Tweet;
 use App\Integrations\Twitter\Connection;
 use App\Integrations\Twitter\Exceptions\UnableToGetLatestTweetException;
 
-class TwitterFeed extends Command
+class LatestTweet extends Command
 {
 
     /**
@@ -20,7 +20,7 @@ class TwitterFeed extends Command
      *
      * @var string
      */
-    protected $name = 'app:tweets';
+    protected $name = 'app:latest-tweet';
 
     /**
      * The console command description.
