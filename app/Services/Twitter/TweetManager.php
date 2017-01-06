@@ -47,10 +47,7 @@ class TweetManager
      */
     public static function getAllowedHashtags()
     {
-        return array_map(
-            'strtolower',
-            Config::get('site.social.streams.twitter.hashtags', [])
-        );
+        return Config::get('site.social.streams.twitter.hashtags', []);
     }
 
     /**
@@ -97,7 +94,7 @@ class TweetManager
 
         foreach ($timeline as $tweet) {
             foreach ($tweet->getHashtags() as $hashtag) {
-                if (in_array(strtolower(array_get($hashtag, 'text')), $allowedHashtags)) {
+                if (in_array(strtolower(array_get($hashtag, 'text')), array_map('strtolower', $allowedHashtags))) {
                     return $tweet;
                 }
             }
