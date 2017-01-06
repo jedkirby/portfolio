@@ -16,6 +16,7 @@ class TwitterConnectionTest extends AbstractTestCase
      */
     private function getConnection()
     {
+        var_dump($_ENV);
         return new TwitterConnection(
             $_ENV['TWITTER_CONSUMER_KEY'],
             $_ENV['TWITTER_CONSUMER_SECRET'],
