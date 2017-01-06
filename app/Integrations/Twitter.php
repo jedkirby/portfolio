@@ -9,17 +9,18 @@ class Twitter
 {
 
     /**
-     * Cache Namespace
+     * @var string
      */
     const CACHE_NAME = 'tweet';
 
     /**
      * Create a tweet from a given array.
      *
-     * @param  array  $tweet
+     * @param array $tweet
+     *
      * @return Tweet
      */
-    public static function createTweetFromArray(array $tweet)
+    public static function createFromArray(array $tweet)
     {
         return Tweet::make(
             array_get($tweet, 'id'),
@@ -31,24 +32,25 @@ class Twitter
     }
 
     /**
-     * Store tweet within the cache forever.
-     *
-     * @param  Tweet  $tweet
-     * @return void
-     */
-    public static function storeTweet(Tweet $tweet)
-    {
-        Cache::forever(self::CACHE_NAME, $tweet);
-    }
-
-    /**
      * Attempt to retrieve the tweet from the cache.
      *
      * @return Tweet|boolean
      */
-    public static function getLatest()
+    public static function getTweet()
     {
         return Cache::get(self::CACHE_NAME, false);
+    }
+
+    /**
+     * Store tweet within the cache forever.
+     *
+     * @param Tweet $tweet
+     *
+     * @return void
+     */
+    public static function setTweet(Tweet $tweet)
+    {
+        Cache::forever(self::CACHE_NAME, $tweet);
     }
 
 }

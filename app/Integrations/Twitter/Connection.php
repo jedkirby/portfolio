@@ -2,6 +2,7 @@
 
 namespace App\Integrations\Twitter;
 
+use Config;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\HandlerStack as GuzzleHandlerStack;
 use GuzzleHttp\Subscriber\Oauth\Oauth1 as GuzzleAuth;
@@ -9,36 +10,39 @@ use GuzzleHttp\Subscriber\Oauth\Oauth1 as GuzzleAuth;
 class Connection
 {
 
-    private $stack;
-
-    private $middleware;
-
+    /**
+     * @var GuzzleClient
+     */
     private $client;
 
-    public function __construct($consumerKey, $consumerSecret, $token, $tokenSecret)
+    public static function make()
     {
-        
-        $this->middleware = new GuzzleAuth([
-            'consumer_key' => $consumerKey,
-            'consumer_secret' => $consumerSecret,
-            'token' => $token,
-            'token_secret' => $tokenSecret
+        return new self();
+    }
+
+    private function __construct()
+    {
+
+        $middleware = new GuzzleAuth([
+            'consumer_key'    => Config::get('site.social.streams.twitter.api.consumer_key'),
+            'consumer_secret' => Config::get('site.social.streams.twitter.api.consumer_secret'),
+            'token'           => Config::get('site.social.streams.twitter.api.token'),
+            'token_secret'    => Config::get('site.social.streams.twitter.api.token_secret')
         ]);
 
-        $this->stack = GuzzleHandlerStack::create();
-        $this->stack->push($this->middleware);
+        $stack = GuzzleHandlerStack::create();
+        $stack->push($middleware);
+
+        $this->client = new GuzzleClient([
+            'base_uri' => 'https://api.twitter.com/1.1/',
+            'handler'  => $stack
+        ]);
 
     }
 
-    public function getClient()
+    public function __call($method, $args)
     {
-        if (is_null($this->client)) {
-            $this->client = new GuzzleClient([
-                'base_uri' => 'https://api.twitter.com/1.1/',
-                'handler' => $this->stack
-            ]);
-        }
-        return $this->client;
+        return call_user_func_array(array($this->client, $method), $args);
     }
 
 }
