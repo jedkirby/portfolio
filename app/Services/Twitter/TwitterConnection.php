@@ -63,7 +63,7 @@ class TwitterConnection implements TwitterConnectionInterface
     /**
      * @return GuzzleClient
      */
-    private function getClient()
+    public function getClient()
     {
 
         $middleware = new GuzzleAuth([
@@ -85,15 +85,14 @@ class TwitterConnection implements TwitterConnectionInterface
 
     /**
      * @param Response $response
-     * @param array $default
      *
-     * @return mixed
+     * @return boolean|array
      */
-    private function getDecodedResponse(Response $response, $default = false)
+    private function getDecodedResponse(Response $response)
     {
 
         if (!in_array($response->getStatusCode(), [200])) {
-            return $default;
+            return false;
         }
 
         $data = json_decode($response->getBody(), true);
@@ -102,7 +101,7 @@ class TwitterConnection implements TwitterConnectionInterface
             return $data;
         }
 
-        return $default;
+        return false;
 
     }
 
@@ -122,7 +121,7 @@ class TwitterConnection implements TwitterConnectionInterface
                     'auth' => 'oauth',
                     'query' => [
                         'screen_name'         => Config::get('site.social.streams.twitter.name'),
-                        'count'               => 200,
+                        'count'               => Config::get('site.social.streams.twitter.limit', 200),
                         'trim_user'           => true,
                         'exclude_replies'     => true,
                         'contributor_details' => false,
@@ -131,10 +130,12 @@ class TwitterConnection implements TwitterConnectionInterface
                 ]
             );
 
-            $tweets = $this->getDecodedResponse($response, []);
+            $tweets = $this->getDecodedResponse($response);
 
-            foreach ($tweets as $tweet) {
-                $timeline[] = TweetManager::createFromArray($tweet);
+            if ($tweets) {
+                foreach ($tweets as $tweet) {
+                    $timeline[] = TweetManager::createFromArray($tweet);
+                }
             }
 
         } catch (ClientException $e) {

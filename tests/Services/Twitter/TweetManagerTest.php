@@ -51,6 +51,7 @@ class TweetManagerTest extends AbstractTestCase
 
     /**
      * @test
+     * @group twitter
      */
     public function itReturnsAnArrayOfAllowedHashtags()
     {
@@ -62,10 +63,11 @@ class TweetManagerTest extends AbstractTestCase
 
     /**
      * @test
+     * @group twitter
      */
     public function itReturnAnInstanceOfTheCorrectClass()
     {
-        return $this->assertInstanceOf(
+        $this->assertInstanceOf(
             Tweet::class,
             $this->getTweet()
         );
@@ -73,6 +75,7 @@ class TweetManagerTest extends AbstractTestCase
 
     /**
      * @test
+     * @group twitter
      */
     public function itCanStoreAndGetTheTweetInMemory()
     {
@@ -95,10 +98,11 @@ class TweetManagerTest extends AbstractTestCase
 
     /**
      * @test
+     * @group twitter
      */
     public function itHasTheCorrectId()
     {
-        return $this->assertEquals(
+        $this->assertEquals(
             $this->getTweet()->getId(),
             $this->tweetDetails['id']
         );
@@ -106,10 +110,11 @@ class TweetManagerTest extends AbstractTestCase
 
     /**
      * @test
+     * @group twitter
      */
     public function itHasTheCorrectRawText()
     {
-        return $this->assertEquals(
+        $this->assertEquals(
             $this->getTweet()->getTextRaw(),
             $this->tweetDetails['text']
         );
@@ -117,10 +122,11 @@ class TweetManagerTest extends AbstractTestCase
 
     /**
      * @test
+     * @group twitter
      */
     public function itParsesTheTweetTextCorrectly()
     {
-        return $this->assertEquals(
+        $this->assertEquals(
             $this->getTweet()->getText(),
             'This is the tweet text with a @<a href="https://twitter.com/mention" target="_blank">mention</a>, #<a href="https://twitter.com/hashtag/Hashtag" target="_blank">Hashtag</a>, and a link <a href="https://t.co/qeSnkprYiP" target="_blank">https://jedkirby.com</a>.'
         );
@@ -128,10 +134,11 @@ class TweetManagerTest extends AbstractTestCase
 
     /**
      * @test
+     * @group twitter
      */
     public function itHasTheCorrectRetweetCount()
     {
-        return $this->assertEquals(
+        $this->assertEquals(
             $this->getTweet()->getRetweetCount(),
             $this->tweetDetails['retweet_count']
         );
@@ -139,10 +146,11 @@ class TweetManagerTest extends AbstractTestCase
 
     /**
      * @test
+     * @group twitter
      */
     public function itCorrectlyHasNoRetweets()
     {
-        return $this->assertFalse(
+        $this->assertFalse(
             TweetManager::createFromArray([
                 'id' => 1,
                 'text' => 'Tweet Text!'
@@ -152,10 +160,11 @@ class TweetManagerTest extends AbstractTestCase
 
     /**
      * @test
+     * @group twitter
      */
     public function itHasTheCorrectFavoriteCount()
     {
-        return $this->assertEquals(
+        $this->assertEquals(
             $this->getTweet()->getFavoriteCount(),
             $this->tweetDetails['favorite_count']
         );
@@ -163,10 +172,11 @@ class TweetManagerTest extends AbstractTestCase
 
     /**
      * @test
+     * @group twitter
      */
     public function itCorrectlyHasNoFavorites()
     {
-        return $this->assertFalse(
+        $this->assertFalse(
             TweetManager::createFromArray([
                 'id' => 1,
                 'text' => 'Tweet Text!'
@@ -176,10 +186,11 @@ class TweetManagerTest extends AbstractTestCase
 
     /**
      * @test
+     * @group twitter
      */
     public function itHasTheCorrectLocation()
     {
-        return $this->assertEquals(
+        $this->assertEquals(
             $this->getTweet()->getLocation(),
             $this->tweetDetails['place']['full_name']
         );
@@ -187,10 +198,23 @@ class TweetManagerTest extends AbstractTestCase
 
     /**
      * @test
+     * @group twitter
+     */
+    public function itHasTheCorrectHashtags()
+    {
+        $this->assertEquals(
+            $this->getTweet()->getHashtags(),
+            $this->tweetDetails['entities']['hashtags']
+        );
+    }
+
+    /**
+     * @test
+     * @group twitter
      */
     public function itCorrectlyHasNoLocation()
     {
-        return $this->assertFalse(
+        $this->assertFalse(
             TweetManager::createFromArray([
                 'id' => 1,
                 'text' => 'Tweet Text!'
@@ -200,10 +224,11 @@ class TweetManagerTest extends AbstractTestCase
 
     /**
      * @test
+     * @group twitter
      */
     public function itBuildTheTweetUrlCorrectly()
     {
-        return $this->assertEquals(
+        $this->assertEquals(
             $this->getTweet()->getLink(),
             Config::get('site.social.streams.twitter.url') . '/status/' . $this->tweetDetails['id']
         );
