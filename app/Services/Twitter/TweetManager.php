@@ -5,6 +5,7 @@ namespace App\Services\Twitter;
 use Cache;
 use Config;
 use App\Services\Twitter\Tweet;
+use App\Services\Twitter\Exceptions\UnableToGetLatestTweetException;
 
 class TweetManager
 {
@@ -82,6 +83,41 @@ class TweetManager
     public static function clearCache()
     {
         Cache::forget(self::CACHE_NAME);
+    }
+
+    /**
+     * @param array $timeline
+     * @param array $allowedHashtags
+     *
+     * @throws UnableToGetLatestTweetException
+     * @return Tweet
+     */
+    public static function getLatestTweet(array $timeline = [], array $allowedHashtags = [])
+    {
+
+        foreach ($timeline as $tweet) {
+            foreach ($tweet->getHashtags() as $hashtag) {
+                if (in_array(strtolower(array_get($hashtag, 'text')), $allowedHashtags)) {
+                    return $tweet;
+                }
+            }
+        }
+
+        throw new UnableToGetLatestTweetException('No relevant tweet found.');
+
+    }
+
+    /**
+     * @param Tweet $tweet
+     *
+     * @return boolean
+     */
+    public static function hasTweetChanged(Tweet $tweet)
+    {
+        if ($storedTweet = self::getTweet()) {
+            return ($storedTweet->getId() !== $tweet->getId());
+        }
+        return true;
     }
 
 }

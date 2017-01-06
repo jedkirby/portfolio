@@ -24,6 +24,8 @@ class TwitterServiceProvider extends ServiceProvider
     /**
      * Register any application services.
      *
+     * @codeCoverageIgnore
+     * 
      * @return void
      */
     public function register()

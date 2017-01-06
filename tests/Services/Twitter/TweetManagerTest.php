@@ -6,6 +6,8 @@ use Config;
 use Test\App\AbstractTestCase;
 use App\Services\Twitter\Tweet;
 use App\Services\Twitter\TweetManager;
+use App\Services\Twitter\TwitterService;
+use Test\App\Services\Twitter\Connections\StaticConnection;
 
 class TweetManagerTest extends AbstractTestCase
 {
@@ -47,6 +49,16 @@ class TweetManagerTest extends AbstractTestCase
     private function getTweet()
     {
         return TweetManager::createFromArray($this->tweetDetails);
+    }
+
+    /**
+     * @return TwitterService
+     */
+    private function getService()
+    {
+        return new TwitterService(
+            new StaticConnection()
+        );
     }
 
     /**
@@ -232,6 +244,101 @@ class TweetManagerTest extends AbstractTestCase
             $this->getTweet()->getLink(),
             Config::get('site.social.streams.twitter.url') . '/status/' . $this->tweetDetails['id']
         );
+    }
+
+    /**
+     * @test
+     * @group twitter
+     */
+    public function itGetsTheCorrectLatestTweet()
+    {
+
+        $service = $this->getService();
+        $timeline = $service->getConnection()->getTimeline();
+
+        $tweet = TweetManager::getLatestTweet($timeline, ['hashtag']);
+
+        $this->assertInstanceOf(
+            Tweet::class,
+            $tweet
+        );
+
+        $this->assertEquals(
+            $tweet->getTextRaw(),
+            'First Tweet with #Hashtag'
+        );
+
+    }
+
+    /**
+     * @test
+     * @group twitter
+     * @expectedException App\Services\Twitter\Exceptions\UnableToGetLatestTweetException
+     */
+    public function itThrowsAnExceptionWhenNoLatestTweetIsFound()
+    {
+
+        $service = $this->getService();
+        $timeline = $service->getConnection()->getTimeline();
+
+        $tweet = TweetManager::getLatestTweet($timeline);
+
+    }
+
+    /**
+     * @test
+     * @group twitter
+     */
+    public function itCorrectlyKnowsWhenTheTweetHasChanged()
+    {
+
+        $storedTweet = TweetManager::createFromArray(['id' => 1, 'text' => 'Stored Tweet']);
+        $newTweet = TweetManager::createFromArray(['id' => 2, 'text' => 'New Tweet']);
+
+        TweetManager::setTweet($storedTweet);
+
+        $this->assertTrue(
+            TweetManager::hasTweetChanged($newTweet)
+        );
+
+        TweetManager::clearCache();
+
+    }
+
+    /**
+     * @test
+     * @group twitter
+     */
+    public function itReportsTheTweetChangingWhenOneIsNotStored()
+    {
+
+        $tweet = TweetManager::createFromArray(['id' => 1, 'text' => 'Tweet']);
+
+        TweetManager::clearCache();
+
+        $this->assertTrue(
+            TweetManager::hasTweetChanged($tweet)
+        );
+
+    }
+
+    /**
+     * @test
+     * @group twitter
+     */
+    public function itCorrectlyKnowsWhenTheTweetHasNotChanged()
+    {
+
+        $tweet = TweetManager::createFromArray(['id' => 1, 'text' => 'Tweet']);
+
+        TweetManager::setTweet($tweet);
+
+        $this->assertFalse(
+            TweetManager::hasTweetChanged($tweet)
+        );
+
+        TweetManager::clearCache();
+
     }
 
 }

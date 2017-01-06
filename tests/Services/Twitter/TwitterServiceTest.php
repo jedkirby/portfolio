@@ -4,7 +4,7 @@ namespace Test\App\Services\Twitter;
 
 use Test\App\AbstractTestCase;
 use App\Services\Twitter\TwitterService;
-use Test\App\Services\Twitter\Fixtures\NullConnection;
+use Test\App\Services\Twitter\Connections\NullConnection;
 
 class TwitterServiceTest extends AbstractTestCase
 {
