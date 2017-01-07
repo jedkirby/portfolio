@@ -1,32 +1,34 @@
 <?php
 
-if ( ! function_exists('cached_asset'))
+use App\Support\Exceptions\AssetNotFoundException;
+
+if ( !function_exists('cached_asset'))
 {
 	/**
 	 * Returns the asset with the modified timestamp appended to it.
 	 *
-	 * @param  string  $path
+	 * @param string $path
+	 * 
+	 * @throws AssetNotFoundException
 	 * @return string
-	 *
-	 * @throws LogicException
 	 */
 	function cached_asset($path)
 	{
 
-		// Get the full path to the asset.
 		$realPath = public_path($path);
 
-		if ( ! file_exists($realPath)) {
-			throw new LogicException("File not found at [{$realPath}]");
+		if (!file_exists($realPath)) {
+			throw new AssetNotFoundException(sprintf(
+				'File "%s" not found.',
+				$realPath
+			));
 		}
 
-		// Get the last updated timestamp of the file.
-		$timestamp = filemtime($realPath);
-
-		// Append the timestamp to the path as a query string.
-		$path .= '?'.$timestamp;
-
-		return asset($path);
+		return asset(sprintf(
+			'%s?%s',
+			$path,
+			filemtime($realPath)
+		));
 
 	}
 }
@@ -42,10 +44,10 @@ if ( ! function_exists('client_version'))
 	{
 
 		// Get the path to the version file.
-		$filename = base_path().DIRECTORY_SEPARATOR.'VERSION';
+		$filename = base_path() . DIRECTORY_SEPARATOR . 'VERSION';
 
 		// Return the content as a string
-		return (string) trim(\File::get($filename));
+		return (string) trim(File::get($filename));
 
 	}
 }

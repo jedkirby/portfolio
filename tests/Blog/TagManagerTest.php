@@ -12,6 +12,7 @@ class TagManagerTest extends AbstractTestCase
      * Create an instance of the tag manager setting the testing namespace.
      *
      * @param string $alias
+     *
      * @return TagManager
      */
     private function getTestableTagManager($alias)
@@ -19,6 +20,9 @@ class TagManagerTest extends AbstractTestCase
         return TagManager::make($alias)->setNamespace('\\Test\\App\\Blog\\Fixtures');
     }
 
+    /**
+     * @return array
+     */
     public function aliasToClassNameProvider()
     {
         return [
