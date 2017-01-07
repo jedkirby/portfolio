@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Twitter;
+namespace App\Services\Twitter\Entity;
 
 use Config;
 use Jedkirby\TweetEntityLinker\Tweet as TweetEntityLinker;

@@ -2,7 +2,7 @@
 
 namespace Test\App\Services\Twitter;
 
-use App\Services\Twitter\Tweet;
+use App\Services\Twitter\Entity\Tweet;
 use App\Services\Twitter\TweetManager;
 use App\Services\Twitter\TwitterService;
 use Config;

@@ -22,7 +22,7 @@ class TweetManager
      */
     public static function createFromArray(array $tweet)
     {
-        return Tweet::make(
+        return Entity\Tweet::make(
             array_get($tweet, 'id'),
             array_get($tweet, 'text', ''),
             array_get(
@@ -63,7 +63,7 @@ class TweetManager
      *
      * @param Tweet $tweet
      */
-    public static function setTweet(Tweet $tweet)
+    public static function setTweet(Entity\Tweet $tweet)
     {
         Cache::forever(self::CACHE_NAME, $tweet);
     }
@@ -102,7 +102,7 @@ class TweetManager
      *
      * @return bool
      */
-    public static function hasTweetChanged(Tweet $tweet)
+    public static function hasTweetChanged(Entity\Tweet $tweet)
     {
         if ($storedTweet = self::getTweet()) {
             return $storedTweet->getId() !== $tweet->getId();

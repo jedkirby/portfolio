@@ -2,7 +2,7 @@
 
 namespace App\Services\Twitter\Mail;
 
-use App\Services\Twitter\Tweet;
+use App\Services\Twitter\Entity\Tweet;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 

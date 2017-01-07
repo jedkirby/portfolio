@@ -4,7 +4,7 @@ namespace Test\App\Services\Twitter\Connections;
 
 use App\Services\Twitter\Connections\GuzzleConnection;
 use App\Services\Twitter\Connections\Providers\Guzzle;
-use App\Services\Twitter\Tweet;
+use App\Services\Twitter\Entity\Tweet;
 use Test\App\AbstractTestCase;
 
 class GuzzleConnectionTest extends AbstractTestCase

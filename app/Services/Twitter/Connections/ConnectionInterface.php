@@ -2,7 +2,7 @@
 
 namespace App\Services\Twitter\Connections;
 
-use App\Services\Twitter\Tweet;
+use App\Services\Twitter\Entity\Tweet;
 
 /**
  * @codeCoverageIgnore
