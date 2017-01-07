@@ -2,14 +2,12 @@
 
 namespace App\Services\Twitter;
 
+use App\Services\Twitter\Exceptions\UnableToGetLatestTweetException;
 use Cache;
 use Config;
-use App\Services\Twitter\Tweet;
-use App\Services\Twitter\Exceptions\UnableToGetLatestTweetException;
 
 class TweetManager
 {
-
     /**
      * @var string
      */
@@ -28,12 +26,12 @@ class TweetManager
             array_get($tweet, 'id'),
             array_get($tweet, 'text', ''),
             array_get(
-                $tweet, 
+                $tweet,
                 'entities',
                 [
                     'hashtags' => [],
                     'user_mentions' => [],
-                    'urls' => []
+                    'urls' => [],
                 ]
             ),
             array_get($tweet, 'retweet_count', 0),
@@ -53,7 +51,7 @@ class TweetManager
     /**
      * Attempt to retrieve the tweet from the cache.
      *
-     * @return Tweet|boolean
+     * @return Tweet|bool
      */
     public static function getTweet()
     {
@@ -64,8 +62,6 @@ class TweetManager
      * Store tweet within the cache forever.
      *
      * @param Tweet $tweet
-     *
-     * @return void
      */
     public static function setTweet(Tweet $tweet)
     {
@@ -74,8 +70,6 @@ class TweetManager
 
     /**
      * Clear the cache.
-     *
-     * @return void
      */
     public static function clearCache()
     {
@@ -87,11 +81,11 @@ class TweetManager
      * @param array $allowedHashtags
      *
      * @throws UnableToGetLatestTweetException
+     *
      * @return Tweet
      */
     public static function getLatestTweet(array $timeline = [], array $allowedHashtags = [])
     {
-
         foreach ($timeline as $tweet) {
             foreach ($tweet->getHashtags() as $hashtag) {
                 if (in_array(strtolower(array_get($hashtag, 'text')), array_map('strtolower', $allowedHashtags))) {
@@ -101,20 +95,19 @@ class TweetManager
         }
 
         throw new UnableToGetLatestTweetException('No relevant tweet found.');
-
     }
 
     /**
      * @param Tweet $tweet
      *
-     * @return boolean
+     * @return bool
      */
     public static function hasTweetChanged(Tweet $tweet)
     {
         if ($storedTweet = self::getTweet()) {
-            return ($storedTweet->getId() !== $tweet->getId());
+            return $storedTweet->getId() !== $tweet->getId();
         }
+
         return true;
     }
-
 }

@@ -7,7 +7,6 @@ use Jedkirby\TweetEntityLinker\Tweet as TweetEntityLinker;
 
 class Tweet
 {
-
     /**
      * @var int
      */
@@ -34,7 +33,7 @@ class Tweet
     private $favoriteCount;
 
     /**
-     * @var array|boolean
+     * @var array|bool
      */
     private $location;
 
@@ -44,7 +43,7 @@ class Tweet
      * @param array $entities
      * @param int $retweetCount
      * @param int $favoriteCount
-     * @param array|boolean $location
+     * @param array|bool $location
      */
     private function __construct($id, $text, $entities, $retweetCount, $favoriteCount, $location)
     {
@@ -62,7 +61,7 @@ class Tweet
      * @param array $entities
      * @param int $retweetCount
      * @param int $favoriteCount
-     * @param array|boolean $location
+     * @param array|bool $location
      */
     public static function make($id, $text, $entities, $retweetCount = 0, $favoriteCount = 0, $location = false)
     {
@@ -143,7 +142,7 @@ class Tweet
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function hasLocation()
     {
@@ -151,7 +150,7 @@ class Tweet
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function hasRetweets()
     {
@@ -159,11 +158,10 @@ class Tweet
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function hasFavorites()
     {
         return (bool) $this->getFavoriteCount();
     }
-
 }

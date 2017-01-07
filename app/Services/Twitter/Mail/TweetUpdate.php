@@ -2,13 +2,12 @@
 
 namespace App\Services\Twitter\Mail;
 
+use App\Services\Twitter\Tweet;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
-use App\Services\Twitter\Tweet;
 
 class TweetUpdate extends Mailable
 {
-
     use Queueable;
 
     /**
@@ -35,8 +34,7 @@ class TweetUpdate extends Mailable
             ->view('emails.tweet')
             ->subject('Tweet Update')
             ->with([
-                'tweet' => $this->tweet
+                'tweet' => $this->tweet,
             ]);
     }
-
 }

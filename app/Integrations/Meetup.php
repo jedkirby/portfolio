@@ -2,14 +2,13 @@
 
 namespace App\Integrations;
 
-use Cache;
 use App\Integrations\Meetup\Event;
+use Cache;
 
 class Meetup
 {
-
     /**
-     * Cache Namespace
+     * Cache Namespace.
      */
     const CACHE_NAME = 'meetups';
 
@@ -17,6 +16,7 @@ class Meetup
      * Create an event from a given array.
      *
      * @param  array  $event
+     *
      * @return Event
      */
     public static function createEventFromArray(array $event)
@@ -37,7 +37,6 @@ class Meetup
      * Store event within the cache forever.
      *
      * @param  Event  $event
-     * @return void
      */
     public static function storeEvent(Event $event)
     {
@@ -47,7 +46,7 @@ class Meetup
     /**
      * Return the latest meetup event stored within the cache.
      *
-     * @return array|boolean
+     * @return array|bool
      */
     public static function getEvent()
     {
@@ -56,12 +55,9 @@ class Meetup
 
     /**
      * Forget any content that's stored within the cache.
-     *
-     * @return void
      */
     public static function clearStored()
     {
         Cache::forget(self::CACHE_NAME);
     }
-
 }

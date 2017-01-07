@@ -4,7 +4,6 @@ namespace App\Integrations\Instagram;
 
 class Post
 {
-
     /**
      * Post Data.
      */
@@ -30,7 +29,8 @@ class Post
      * @param string $id
      * @param string $link
      * @param string $image
-     * @param boolean|string $text
+     * @param bool|string $text
+     *
      * @return Post
      */
     public static function make($id, $link, $image, $text = false)
@@ -72,6 +72,7 @@ class Post
      * Return the text.
      *
      * @param string $default
+     *
      * @return string
      */
     public function getText($default = '')
@@ -88,5 +89,4 @@ class Post
     {
         return (bool) $this->text;
     }
-
 }

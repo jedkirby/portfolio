@@ -2,18 +2,16 @@
 
 namespace App\Services\Twitter\Jobs;
 
-use Mail;
-use Config;
-use App\Services\Twitter\Tweet;
-use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Mail\Mailer;
-use Illuminate\Queue\InteractsWithQueue;
 use App\Services\Twitter\Mail\TweetUpdate;
+use App\Services\Twitter\Tweet;
+use Config;
+use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
+use Mail;
 
 class SendTweetUpdate implements ShouldQueue
 {
-
     use Queueable, InteractsWithQueue;
 
     /**
@@ -23,8 +21,6 @@ class SendTweetUpdate implements ShouldQueue
 
     /**
      * Create a new job instance.
-     *
-     * @return void
      */
     public function __construct(Tweet $tweet)
     {
@@ -33,8 +29,6 @@ class SendTweetUpdate implements ShouldQueue
 
     /**
      * Execute the job.
-     * 
-     * @return void
      */
     public function handle(Mail $mail)
     {
@@ -42,13 +36,12 @@ class SendTweetUpdate implements ShouldQueue
             collect([
                 [
                     'email' => Config::get('site.meta.email.to'),
-                    'name' => Config::get('site.meta.title')
-                ]
+                    'name' => Config::get('site.meta.title'),
+                ],
             ])
         )
         ->send(
             new TweetUpdate($this->tweet)
         );
     }
-
 }

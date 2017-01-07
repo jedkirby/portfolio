@@ -3,12 +3,11 @@
 namespace App\Blog;
 
 use App\Blog\Contracts\Tag;
-use App\Blog\Exceptions\TagDoesNotExist;
 use App\Blog\Exceptions\DoesNotImplementContract;
+use App\Blog\Exceptions\TagDoesNotExist;
 
 class TagManager
 {
-
     /**
      * @var string
      */
@@ -73,6 +72,7 @@ class TagManager
         $alias = str_replace('-', ' ', $alias);
         $alias = ucwords($alias);
         $alias = str_replace(' ', '', $alias);
+
         return $alias;
     }
 
@@ -84,7 +84,6 @@ class TagManager
      */
     public function getTag()
     {
-
         $className = sprintf(
             '%s\\%s',
             $this->getNamespace(),
@@ -99,7 +98,7 @@ class TagManager
             ));
         }
 
-        $tag = new $className;
+        $tag = new $className();
 
         if (!$tag instanceof Tag) {
             throw new DoesNotImplementContract(sprintf(
@@ -109,8 +108,7 @@ class TagManager
             ));
         }
 
-        return new $tag;
-
+        return new $tag();
     }
 
     /**
@@ -121,7 +119,7 @@ class TagManager
     public function setNamespace($namespace)
     {
         $this->namespace = $namespace;
+
         return $this;
     }
-
 }

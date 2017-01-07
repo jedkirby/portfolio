@@ -1,23 +1,21 @@
-<?php namespace App\Http\Controllers;
+<?php
 
-use Carbon\Carbon;
+namespace App\Http\Controllers;
+
 use App\Integrations\Meetup;
 use App\Integrations\Twitter;
 
-class HomeController extends RootController {
+class HomeController extends RootController
+{
+    public function getHome()
+    {
+        $this->setDescription('Website and application developer based in Stratford Upon Avon, UK. An avid blogger of anything related to social media, business, entertainment or technology. Primarily covering Warwickshire, but expanding to the rest of the world to provide a stress free and professional service. Available for hire.');
 
-	public function getHome()
-	{
-
-		$this->setDescription('Website and application developer based in Stratford Upon Avon, UK. An avid blogger of anything related to social media, business, entertainment or technology. Primarily covering Warwickshire, but expanding to the rest of the world to provide a stress free and professional service. Available for hire.');
-
-		return view('pages.home', [
-			'tweet'    => Twitter::getTweet(),
-			'meetup'   => Meetup::getEvent(),
-			'articles' => BlogController::articles(2),
-			'projects' => ProjectController::projects(3)
-		]);
-
-	}
-
+        return view('pages.home', [
+            'tweet' => Twitter::getTweet(),
+            'meetup' => Meetup::getEvent(),
+            'articles' => BlogController::articles(2),
+            'projects' => ProjectController::projects(3),
+        ]);
+    }
 }

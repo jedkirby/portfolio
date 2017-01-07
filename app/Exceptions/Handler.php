@@ -5,12 +5,11 @@ namespace App\Exceptions;
 use Config;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Handler extends ExceptionHandler
 {
-
     /**
      * A list of the exception types that should not be reported.
      *
@@ -31,7 +30,6 @@ class Handler extends ExceptionHandler
      * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
      *
      * @param  \Exception  $exception
-     * @return void
      */
     public function report(Exception $exception)
     {
@@ -43,6 +41,7 @@ class Handler extends ExceptionHandler
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Exception  $exception
+     *
      * @return \Illuminate\Http\Response
      */
     public function render($request, Exception $exception)
@@ -54,23 +53,23 @@ class Handler extends ExceptionHandler
      * Render the given HttpException.
      *
      * @param  \Symfony\Component\HttpKernel\Exception\HttpException  $e
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     protected function renderHttpException(HttpException $e)
     {
-
         $status = $e->getStatusCode();
 
-        $unique = 'errors.'.$status;
+        $unique = 'errors.' . $status;
         $generic = 'errors.generic';
 
-        switch(true){
+        switch (true) {
             case view()->exists($unique):
-                $view  = $unique;
+                $view = $unique;
                 $class = $status;
                 break;
             case view()->exists($generic):
-                $view  = $generic;
+                $view = $generic;
                 $class = 'generic';
                 break;
             default:
@@ -80,17 +79,16 @@ class Handler extends ExceptionHandler
         return response()->view(
             $view,
             [
-                'title'       => $status,
+                'title' => $status,
                 'description' => '',
-                'keywords'    => '',
-                'pageid'      => implode('  ', ['error', 'error__'.$class]),
-                'facebookId'  => Config::get('site.social.streams.facebook.id'),
-                'status'      => $status
+                'keywords' => '',
+                'pageid' => implode('  ', ['error', 'error__' . $class]),
+                'facebookId' => Config::get('site.social.streams.facebook.id'),
+                'status' => $status,
             ],
             $status,
             $e->getHeaders()
         );
-
     }
 
     /**
@@ -98,6 +96,7 @@ class Handler extends ExceptionHandler
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Illuminate\Auth\AuthenticationException  $exception
+     *
      * @return \Illuminate\Http\Response
      */
     protected function unauthenticated($request, AuthenticationException $exception)
@@ -108,5 +107,4 @@ class Handler extends ExceptionHandler
 
         return redirect()->guest('login');
     }
-
 }

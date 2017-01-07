@@ -2,17 +2,16 @@
 
 namespace App\Services\Twitter\Connections\Providers;
 
-use Log;
 use Config;
-use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\HandlerStack as GuzzleHandlerStack;
+use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Subscriber\Oauth\Oauth1 as GuzzleAuth;
+use Log;
 
 class Guzzle
 {
-
     /**
      * @var string
      */
@@ -66,12 +65,11 @@ class Guzzle
      */
     private function getClient()
     {
-
         $middleware = new GuzzleAuth([
             'consumer_key' => $this->consumerKey,
             'consumer_secret' => $this->consumerSecret,
             'token' => $this->token,
-            'token_secret' => $this->tokenSecret
+            'token_secret' => $this->tokenSecret,
         ]);
 
         $stack = GuzzleHandlerStack::create();
@@ -79,21 +77,18 @@ class Guzzle
 
         return new GuzzleClient([
             'base_uri' => $this->baseUri,
-            'handler' => $stack
+            'handler' => $stack,
         ]);
-
     }
 
     /**
      * @codeCoverageIgnore
      *
-     * @return boolean|array
+     * @return bool|array
      */
     public function getTimeline()
     {
-
         try {
-
             $response = $this->getClient()->get(
                 'statuses/user_timeline.json',
                 [
@@ -104,32 +99,29 @@ class Guzzle
                         'trim_user' => true,
                         'exclude_replies' => true,
                         'contributor_details' => false,
-                        'include_rts' => false
-                    ]
+                        'include_rts' => false,
+                    ],
                 ]
             );
 
             return $this->decodeResponse($response);
-
         } catch (ClientException $e) {
             Log::error($e);
         }
 
         return false;
-
     }
 
     /**
      * @codeCoverageIgnore
      *
      * @param int $id
-     * @return boolean|array
+     *
+     * @return bool|array
      */
     public function getTweetById($id)
     {
-
         try {
-
             $response = $this->getClient()->get(
                 'statuses/show.json',
                 [
@@ -137,29 +129,26 @@ class Guzzle
                     'query' => [
                         'id' => $id,
                         'trim_user' => true,
-                        'include_my_retweet' => false
-                    ]
+                        'include_my_retweet' => false,
+                    ],
                 ]
             );
 
             return $this->decodeResponse($response);
-
         } catch (ClientException $e) {
             Log::error($e);
         }
 
         return false;
-
     }
 
     /**
      * @param Response $response
      *
-     * @return boolean|array
+     * @return bool|array
      */
     public function decodeResponse(Response $response)
     {
-
         if (!in_array($response->getStatusCode(), [200])) {
             return false;
         }
@@ -171,7 +160,5 @@ class Guzzle
         }
 
         return false;
-
     }
-
 }

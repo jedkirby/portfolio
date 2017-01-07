@@ -2,16 +2,14 @@
 
 namespace App\Services\Twitter\Commands;
 
-use Config;
-use Illuminate\Console\Command;
+use App\Services\Twitter\Jobs\SendTweetUpdate;
 use App\Services\Twitter\TweetManager;
 use App\Services\Twitter\TwitterService;
+use Illuminate\Console\Command;
 use Illuminate\Foundation\Bus\DispatchesJobs;
-use App\Services\Twitter\Jobs\SendTweetUpdate;
 
 class LatestTweet extends Command
 {
-
     use DispatchesJobs;
 
     /**
@@ -40,8 +38,6 @@ class LatestTweet extends Command
 
     /**
      * Create a new command instance.
-     *
-     * @return void
      */
     public function __construct(TwitterService $service, TweetManager $manager)
     {
@@ -58,20 +54,15 @@ class LatestTweet extends Command
      */
     public function handle()
     {
-
         $timeline = $this->service->getConnection()->getTimeline();
         $allowedHashtags = $this->manager->getAllowedHashtags();
 
         if ($tweet = $this->manager->getLatestTweet($timeline, $allowedHashtags)) {
-
             if ($this->manager->hasTweetChanged($tweet)) {
                 $this->dispatch(new SendTweetUpdate($tweet));
             }
 
             $this->manager->setTweet($tweet);
-
         }
-
     }
-
 }

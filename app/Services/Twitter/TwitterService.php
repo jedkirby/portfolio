@@ -6,7 +6,6 @@ use App\Services\Twitter\Connections\ConnectionInterface;
 
 class TwitterService
 {
-
     /**
      * @var ConnectionInterface
      */
@@ -27,5 +26,4 @@ class TwitterService
     {
         return $this->connection;
     }
-
 }

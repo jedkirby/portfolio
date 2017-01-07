@@ -2,14 +2,13 @@
 
 namespace App\Integrations;
 
-use Cache;
 use App\Integrations\Instagram\Post;
+use Cache;
 
 class Instagram
 {
-
     /**
-     * Cache Namespace
+     * Cache Namespace.
      */
     const CACHE_NAME = 'instagram';
 
@@ -17,6 +16,7 @@ class Instagram
      * Create a post from a given array.
      *
      * @param  array  $post
+     *
      * @return Post
      */
     public static function createPostFromArray(array $post)
@@ -33,7 +33,6 @@ class Instagram
      * Store posts within the cache forever.
      *
      * @param  array  $posts
-     * @return void
      */
     public static function storePosts(array $posts)
     {
@@ -49,5 +48,4 @@ class Instagram
     {
         return Cache::get(self::CACHE_NAME, []);
     }
-
 }

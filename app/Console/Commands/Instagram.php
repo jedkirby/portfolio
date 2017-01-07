@@ -2,14 +2,13 @@
 
 namespace App\Console\Commands;
 
+use App\Integrations\Instagram as InstagramIntegration;
 use Config;
 use Illuminate\Console\Command;
-use App\Integrations\Instagram as InstagramIntegration;
 use Pixelate\Shared\Social\Stream\Instagram as InstagramStream;
 
 class Instagram extends Command
 {
-
     /**
      * The console command name.
      *
@@ -27,7 +26,7 @@ class Instagram extends Command
     /**
      * The amount of posts to store.
      *
-     * @var integer
+     * @var int
      */
     const POST_LIMIT = 8;
 
@@ -38,14 +37,12 @@ class Instagram extends Command
      */
     public function fire()
     {
-
-        $instagram = new InstagramStream;
+        $instagram = new InstagramStream();
         $instagram->setAccessToken(Config::get('site.social.streams.instagram.api.access_token'));
         $instagram->setUserId(Config::get('site.social.streams.instagram.id'));
 
         // Attempt to get the instagram feed
-        if( ($feed = $instagram->getFeed()) ){
-
+        if (($feed = $instagram->getFeed())) {
             // Convert to posts, remove ignored posts, and limit
             $posts = $this->convertFeedToApprovedPosts($feed);
 
@@ -54,14 +51,10 @@ class Instagram extends Command
 
             // Give some output
             $this->info('Instagram posts fetched!');
-
         } else {
-
             // We have an issue
             $this->info('Failed to fetch Instagram posts.');
-
         }
-
     }
 
     /**
@@ -69,6 +62,7 @@ class Instagram extends Command
      * the ignored posts and limiting.
      *
      * @param array $feed
+     *
      * @return array
      */
     private function convertFeedToApprovedPosts(array $feed)
@@ -81,7 +75,7 @@ class Instagram extends Command
                 $posts[] = $post;
             }
         }
+
         return array_slice($posts, 0, self::POST_LIMIT);
     }
-
 }

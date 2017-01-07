@@ -6,7 +6,7 @@ use PhpCsFixer\Finder;
 use Jedkirby\PhpCs\Config;
 
 $finder = Finder::create();
-$finder->in(__DIR__ . '/src');
+$finder->in(__DIR__ . '/app');
 
 $config = new Config();
 $config->setFinder($finder);

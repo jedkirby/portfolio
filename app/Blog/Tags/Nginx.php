@@ -2,7 +2,6 @@
 
 namespace App\Blog\Tags;
 
-use App\Blog\Tags\AbstractTag;
 use App\Blog\Contracts\Tag as TagContract;
 
 /**
@@ -10,7 +9,6 @@ use App\Blog\Contracts\Tag as TagContract;
  */
 class Nginx extends AbstractTag implements TagContract
 {
-
     /**
      * @inherit
      */
@@ -18,5 +16,4 @@ class Nginx extends AbstractTag implements TagContract
     {
         return 'Nginx';
     }
-
 }

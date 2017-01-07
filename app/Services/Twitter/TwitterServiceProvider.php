@@ -2,36 +2,27 @@
 
 namespace App\Services\Twitter;
 
-use Config;
-use Illuminate\Support\ServiceProvider;
-use App\Services\Twitter\TweetManager;
-use App\Services\Twitter\TwitterService;
 use App\Services\Twitter\Connections\GuzzleConnection;
 use App\Services\Twitter\Connections\Providers\Guzzle as GuzzleProvider;
+use Config;
+use Illuminate\Support\ServiceProvider;
 
 class TwitterServiceProvider extends ServiceProvider
 {
-
     /**
      * Bootstrap any application services.
-     *
-     * @return void
      */
     public function boot()
     {
-
     }
 
     /**
      * Register any application services.
      *
      * @codeCoverageIgnore
-     * 
-     * @return void
      */
     public function register()
     {
-
         $this->app->singleton(
             TwitterService::class,
             function () {
@@ -54,7 +45,5 @@ class TwitterServiceProvider extends ServiceProvider
                 return new TweetManager();
             }
         );
-
     }
-
 }

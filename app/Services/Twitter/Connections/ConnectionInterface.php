@@ -9,7 +9,6 @@ use App\Services\Twitter\Tweet;
  */
 interface ConnectionInterface
 {
-
     /**
      * Return a users home timeline.
      *
@@ -25,5 +24,4 @@ interface ConnectionInterface
      * @return Tweet
      */
     public function getTweetById($id);
-
 }

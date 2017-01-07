@@ -4,7 +4,6 @@ namespace App\Integrations\Meetup;
 
 class Event
 {
-
     /**
      * Event Data.
      */
@@ -38,11 +37,12 @@ class Event
      * @param  int  $id
      * @param  string  $name
      * @param  string  $link
-     * @param  integer $time
-     * @param  boolean $groupName
-     * @param  boolean $venueName
-     * @param  integer $rsvpCount
+     * @param  int $time
+     * @param  bool $groupName
+     * @param  bool $venueName
+     * @param  int $rsvpCount
      * @param  string  $status
+     *
      * @return \App\Integrations\Meetup\Event
      */
     public static function make($id, $name, $link, $time, $groupName = false, $venueName = false, $rsvpCount = 0, $status = 'past')
@@ -52,7 +52,7 @@ class Event
 
     /**
      * Return the ID.
-     * 
+     *
      * @return int
      */
     public function getId()
@@ -133,7 +133,7 @@ class Event
     /**
      * Return if there is a group assigned.
      *
-     * @return boolean
+     * @return bool
      */
     public function hasGroup()
     {
@@ -143,7 +143,7 @@ class Event
     /**
      * Return if there is a venue assigned.
      *
-     * @return boolean
+     * @return bool
      */
     public function hasVenue()
     {
@@ -153,11 +153,10 @@ class Event
     /**
      * Return if the event has passed already.
      *
-     * @return boolean
+     * @return bool
      */
     public function hasPassed()
     {
-        return in_array($this->getStatus(), array('past'));
+        return in_array($this->getStatus(), ['past']);
     }
-
 }

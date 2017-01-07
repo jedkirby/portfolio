@@ -7,7 +7,6 @@ namespace App\Blog\Tags;
  */
 abstract class AbstractTag
 {
-
     /**
      * Create a new instance of the tag.
      *
@@ -15,7 +14,7 @@ abstract class AbstractTag
      */
     public static function make()
     {
-        return new static;
+        return new static();
     }
 
     /**
@@ -27,5 +26,4 @@ abstract class AbstractTag
     {
         return $this->getName();
     }
-
 }
