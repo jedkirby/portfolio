@@ -2,6 +2,9 @@
 
 namespace App\Blog\Tags;
 
+/**
+ * @codeCoverageIgnore
+ */
 abstract class AbstractTag
 {
 
