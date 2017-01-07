@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e17b93d4bb16c2d32bdcb1a87c1aee41",
-    "content-hash": "dc675998f6b3503e1fd87357230ce416",
+    "hash": "62ef0007330c3ac9871d178ba58ead91",
+    "content-hash": "660a8e4294d63a4124baae31701dab14",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -2568,6 +2568,46 @@
                 "test"
             ],
             "time": "2015-05-11 14:41:42"
+        },
+        {
+            "name": "jedkirby/php-cs",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jedkirby/php-cs.git",
+                "reference": "52040ca10a7c50588ba119228d9c8fe7d76a5af1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jedkirby/php-cs/zipball/52040ca10a7c50588ba119228d9c8fe7d76a5af1",
+                "reference": "52040ca10a7c50588ba119228d9c8fe7d76a5af1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.4"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Jedkirby\\PhpCs\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "James Kirby",
+                    "email": "me@jedkirby.com"
+                }
+            ],
+            "description": "Coding styling for PHP based projects.",
+            "homepage": "https://jedkirby.com",
+            "time": "2017-01-07 02:07:44"
         },
         {
             "name": "mockery/mockery",
