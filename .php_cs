@@ -7,6 +7,7 @@ use Jedkirby\PhpCs\Config;
 
 $finder = Finder::create();
 $finder->in(__DIR__ . '/app');
+$finder->in(__DIR__ . '/tests');
 
 $config = new Config();
 $config->setFinder($finder);

@@ -7,7 +7,6 @@ use Test\App\AbstractTestCase;
 
 class TagManagerTest extends AbstractTestCase
 {
-
     /**
      * Create an instance of the tag manager setting the testing namespace.
      *
@@ -29,7 +28,7 @@ class TagManagerTest extends AbstractTestCase
             ['tag-name', 'TagName'],
             ['this-is-the-tag', 'ThisIsTheTag'],
             ['What-EvEn-iS-ThIs', 'WhatEvenIsThis'],
-            ['Strange---Class-Name', 'StrangeClassName']
+            ['Strange---Class-Name', 'StrangeClassName'],
         ];
     }
 
@@ -85,5 +84,4 @@ class TagManagerTest extends AbstractTestCase
             'My Tag'
         );
     }
-
 }

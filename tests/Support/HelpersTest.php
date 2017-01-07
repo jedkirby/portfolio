@@ -6,7 +6,6 @@ use Test\App\AbstractTestCase;
 
 class HelpersTest extends AbstractTestCase
 {
-
     /**
      * @test
      * @group support
@@ -24,7 +23,7 @@ class HelpersTest extends AbstractTestCase
      * @test
      * @group support
      * @group support.helpers
-     * @expectedException App\Support\Exceptions\AssetNotFoundException
+     * @expectedException \App\Support\Exceptions\AssetNotFoundException
      */
     public function itThrowsAnExceptionForUnfoundFile()
     {
@@ -38,7 +37,6 @@ class HelpersTest extends AbstractTestCase
      */
     public function itAppendsTheCorrectTimestampToCachedAsset()
     {
-
         $asset = 'assets/img/logo.svg';
         $assetCached = cached_asset($asset);
 
@@ -49,7 +47,5 @@ class HelpersTest extends AbstractTestCase
         $this->assertTrue(
             ends_with($assetCached, $filemtime)
         );
-
     }
-
 }

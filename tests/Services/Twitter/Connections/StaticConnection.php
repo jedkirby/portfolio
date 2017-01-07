@@ -2,14 +2,13 @@
 
 namespace Test\App\Services\Twitter\Connections;
 
-use App\Services\Twitter\TweetManager;
 use App\Services\Twitter\Connections\ConnectionInterface;
+use App\Services\Twitter\TweetManager;
 
 class StaticConnection implements ConnectionInterface
 {
-
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getTimeline()
     {
@@ -20,26 +19,25 @@ class StaticConnection implements ConnectionInterface
                 'entities' => [
                     'hashtags' => [
                         [
-                            'text' => "Hashtag"
-                        ]
+                            'text' => 'Hashtag',
+                        ],
                     ],
                     'user_mentions' => [],
-                    'urls' => []
-                ]
+                    'urls' => [],
+                ],
             ]),
             TweetManager::createFromArray([
                 'id' => 2,
-                'text' => 'Second Tweet'
-            ])
+                'text' => 'Second Tweet',
+            ]),
         ];
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getTweetById($id)
     {
         return false;
     }
-
 }

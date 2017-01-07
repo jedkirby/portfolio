@@ -2,17 +2,15 @@
 
 namespace Test\App\Services\Twitter\Jobs;
 
-use Mail;
-use Mockery;
-use Test\App\AbstractTestCase;
+use App\Services\Twitter\Jobs\SendTweetUpdate;
 use App\Services\Twitter\Mail\TweetUpdate;
 use App\Services\Twitter\TweetManager;
 use Illuminate\Foundation\Bus\DispatchesJobs;
-use App\Services\Twitter\Jobs\SendTweetUpdate;
+use Mail;
+use Test\App\AbstractTestCase;
 
 class SendTweetUpdateTest extends AbstractTestCase
 {
-
     use DispatchesJobs;
 
     /**
@@ -21,7 +19,6 @@ class SendTweetUpdateTest extends AbstractTestCase
      */
     public function itCorrectlySendsTheEmail()
     {
-
         Mail::fake();
 
         $tweet = TweetManager::createFromArray(['id' => 1, 'text' => 'First Tweet']);
@@ -30,12 +27,10 @@ class SendTweetUpdateTest extends AbstractTestCase
         $this->dispatch($job);
 
         Mail::assertSent(
-            TweetUpdate::class, 
+            TweetUpdate::class,
             function ($mail) use ($tweet) {
                 return $mail->tweet->getId() === $tweet->getId();
             }
         );
-
     }
-
 }

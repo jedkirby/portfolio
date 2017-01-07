@@ -2,14 +2,12 @@
 
 namespace Test\App\Integrtions;
 
-use Config;
 use App\Integrations\Instagram;
 use App\Integrations\Instagram\Post;
 use Test\App\AbstractTestCase;
 
 class InstagramTest extends AbstractTestCase
 {
-
     /**
      * Default post details.
      *
@@ -20,12 +18,12 @@ class InstagramTest extends AbstractTestCase
         'link' => 'https://www.instagram.com/p/BJGINgWDSjR/',
         'images' => [
             'low_resolution' => [
-                'url' => 'https://scontent.cdninstagram.com/t51.2885-15/s320x320/e35/14026723_591240597730224_1149797403_n.jpg?ig_cache_key=MTMxNjc3NjA1MzUwNzQzNDcwNQ%3D%3D.2'
-            ]
+                'url' => 'https://scontent.cdninstagram.com/t51.2885-15/s320x320/e35/14026723_591240597730224_1149797403_n.jpg?ig_cache_key=MTMxNjc3NjA1MzUwNzQzNDcwNQ%3D%3D.2',
+            ],
         ],
         'caption' => [
-            'text' => 'This is the caption text!'
-        ]
+            'text' => 'This is the caption text!',
+        ],
     ];
 
     /**
@@ -98,23 +96,20 @@ class InstagramTest extends AbstractTestCase
      */
     public function itUsesTheDefaultText()
     {
-
         $postExpectedDefaultText = 'This is the default text!';
         $post = Instagram::createPostFromArray([
             'id' => 'ABC123CDE',
             'link' => 'http://url.com',
             'images' => [
                 'low_resolution' => [
-                    'url' => 'http://url.com/image/1'
-                ]
-            ]
+                    'url' => 'http://url.com/image/1',
+                ],
+            ],
         ]);
 
         return $this->assertEquals(
             $post->getText($postExpectedDefaultText),
             $postExpectedDefaultText
         );
-
     }
-
 }

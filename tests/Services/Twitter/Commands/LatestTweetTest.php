@@ -2,26 +2,23 @@
 
 namespace Test\App\Services\Twitter\Commands;
 
-use Config;
-use Artisan;
-use Test\App\AbstractTestCase;
+use App\Services\Twitter\Commands\LatestTweet;
+use App\Services\Twitter\Jobs\SendTweetUpdate;
 use App\Services\Twitter\Tweet;
 use App\Services\Twitter\TweetManager;
 use App\Services\Twitter\TwitterService;
-use App\Services\Twitter\Commands\LatestTweet;
-use App\Services\Twitter\Jobs\SendTweetUpdate;
+use Config;
+use Test\App\AbstractTestCase;
 use Test\App\Services\Twitter\Connections\StaticConnection;
 
 class LatestTweetTest extends AbstractTestCase
 {
-
     /**
      * @test
      * @group twitter
      */
     public function itRunsTheCommandCorrectly()
     {
-
         Config::set('site.social.streams.twitter.hashtags', ['Hashtag']);
 
         $this->expectsJobs(SendTweetUpdate::class);
@@ -30,7 +27,6 @@ class LatestTweetTest extends AbstractTestCase
         $service = new TwitterService(
             new StaticConnection()
         );
-        ;
 
         $this->assertFalse(
             $manager::getTweet()
@@ -49,8 +45,5 @@ class LatestTweetTest extends AbstractTestCase
             $tweet->getTextRaw(),
             'First Tweet with #Hashtag'
         );
-
     }
-
-
 }

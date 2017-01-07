@@ -2,12 +2,11 @@
 
 namespace Test\App\Blog\Fixtures;
 
-use App\Blog\Tags\AbstractTag;
 use App\Blog\Contracts\Tag as TagContract;
+use App\Blog\Tags\AbstractTag;
 
 class MyTag extends AbstractTag implements TagContract
 {
-
     /**
      * @inherit
      */
@@ -15,5 +14,4 @@ class MyTag extends AbstractTag implements TagContract
     {
         return 'My Tag';
     }
-
 }

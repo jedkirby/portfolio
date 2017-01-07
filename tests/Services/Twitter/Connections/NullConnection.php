@@ -6,9 +6,8 @@ use App\Services\Twitter\Connections\ConnectionInterface;
 
 class NullConnection implements ConnectionInterface
 {
-
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getTimeline()
     {
@@ -16,11 +15,10 @@ class NullConnection implements ConnectionInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getTweetById($id)
     {
         return false;
     }
-
 }

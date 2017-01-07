@@ -2,13 +2,12 @@
 
 namespace Test\App\Services\Twitter\Connections\Providers;
 
+use App\Services\Twitter\Connections\Providers\Guzzle;
 use GuzzleHttp\Psr7\Response;
 use Test\App\AbstractTestCase;
-use App\Services\Twitter\Connections\Providers\Guzzle;
 
 class GuzzleConnectionTest extends AbstractTestCase
 {
-
     /**
      * @return Guzzle
      */
@@ -24,7 +23,7 @@ class GuzzleConnectionTest extends AbstractTestCase
     {
         return [
             [100, false],
-            [201, false]
+            [201, false],
         ];
     }
 
@@ -35,7 +34,6 @@ class GuzzleConnectionTest extends AbstractTestCase
      */
     public function itReturnsCorrectlyForNonOkHttpCodes($statusCode, $expectedReturn)
     {
-
         $provider = $this->getProvider();
         $response = $this->getMockBuilder(Response::class)->getMock();
 
@@ -49,7 +47,6 @@ class GuzzleConnectionTest extends AbstractTestCase
             $decodedResponse,
             $expectedReturn
         );
-
     }
 
     /**
@@ -58,7 +55,6 @@ class GuzzleConnectionTest extends AbstractTestCase
      */
     public function itReturnsCorrectlyForOkHttpCodes()
     {
-
         $body = ['one', 'two'];
 
         $provider = $this->getProvider();
@@ -83,7 +79,6 @@ class GuzzleConnectionTest extends AbstractTestCase
             $decodedResponse,
             $body
         );
-
     }
 
     /**
@@ -92,7 +87,6 @@ class GuzzleConnectionTest extends AbstractTestCase
      */
     public function itReturnsFalseForNoneArrayOkResponse()
     {
-
         $provider = $this->getProvider();
         $response = $this->getMockBuilder(Response::class)->getMock();
 
@@ -107,7 +101,5 @@ class GuzzleConnectionTest extends AbstractTestCase
         $decodedResponse = $provider->decodeResponse($response);
 
         $this->assertFalse($decodedResponse);
-
     }
-
 }

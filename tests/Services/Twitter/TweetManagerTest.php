@@ -2,16 +2,15 @@
 
 namespace Test\App\Services\Twitter;
 
-use Config;
-use Test\App\AbstractTestCase;
 use App\Services\Twitter\Tweet;
 use App\Services\Twitter\TweetManager;
 use App\Services\Twitter\TwitterService;
+use Config;
+use Test\App\AbstractTestCase;
 use Test\App\Services\Twitter\Connections\StaticConnection;
 
 class TweetManagerTest extends AbstractTestCase
 {
-
     /**
      * @var array
      */
@@ -21,26 +20,26 @@ class TweetManagerTest extends AbstractTestCase
         'entities' => [
             'hashtags' => [
                 [
-                    'text' => 'Hashtag'
-                ]
+                    'text' => 'Hashtag',
+                ],
             ],
             'user_mentions' => [
                 [
-                    'screen_name' => 'mention'
-                ]
+                    'screen_name' => 'mention',
+                ],
             ],
             'urls' => [
                 [
                     'url' => 'https://t.co/qeSnkprYiP',
-                    'display_url' => 'https://jedkirby.com'
-                ]
-            ]
+                    'display_url' => 'https://jedkirby.com',
+                ],
+            ],
         ],
         'retweet_count' => 123,
         'favorite_count' => 456,
         'place' => [
-            'full_name' => 'Stratford Upon Avon, UK'
-        ]
+            'full_name' => 'Stratford Upon Avon, UK',
+        ],
     ];
 
     /**
@@ -91,7 +90,6 @@ class TweetManagerTest extends AbstractTestCase
      */
     public function itCanStoreAndGetTheTweetInMemory()
     {
-
         $tweet = $this->getTweet();
 
         TweetManager::setTweet($tweet);
@@ -104,9 +102,7 @@ class TweetManagerTest extends AbstractTestCase
         );
 
         TweetManager::clearCache();
-
     }
-
 
     /**
      * @test
@@ -165,7 +161,7 @@ class TweetManagerTest extends AbstractTestCase
         $this->assertFalse(
             TweetManager::createFromArray([
                 'id' => 1,
-                'text' => 'Tweet Text!'
+                'text' => 'Tweet Text!',
             ])->hasRetweets()
         );
     }
@@ -191,7 +187,7 @@ class TweetManagerTest extends AbstractTestCase
         $this->assertFalse(
             TweetManager::createFromArray([
                 'id' => 1,
-                'text' => 'Tweet Text!'
+                'text' => 'Tweet Text!',
             ])->hasFavorites()
         );
     }
@@ -229,7 +225,7 @@ class TweetManagerTest extends AbstractTestCase
         $this->assertFalse(
             TweetManager::createFromArray([
                 'id' => 1,
-                'text' => 'Tweet Text!'
+                'text' => 'Tweet Text!',
             ])->hasLocation()
         );
     }
@@ -252,7 +248,6 @@ class TweetManagerTest extends AbstractTestCase
      */
     public function itGetsTheCorrectLatestTweet()
     {
-
         $service = $this->getService();
         $timeline = $service->getConnection()->getTimeline();
 
@@ -267,22 +262,19 @@ class TweetManagerTest extends AbstractTestCase
             $tweet->getTextRaw(),
             'First Tweet with #Hashtag'
         );
-
     }
 
     /**
      * @test
      * @group twitter
-     * @expectedException App\Services\Twitter\Exceptions\UnableToGetLatestTweetException
+     * @expectedException \App\Services\Twitter\Exceptions\UnableToGetLatestTweetException
      */
     public function itThrowsAnExceptionWhenNoLatestTweetIsFound()
     {
-
         $service = $this->getService();
         $timeline = $service->getConnection()->getTimeline();
 
         $tweet = TweetManager::getLatestTweet($timeline);
-
     }
 
     /**
@@ -291,7 +283,6 @@ class TweetManagerTest extends AbstractTestCase
      */
     public function itCorrectlyKnowsWhenTheTweetHasChanged()
     {
-
         $storedTweet = TweetManager::createFromArray(['id' => 1, 'text' => 'Stored Tweet']);
         $newTweet = TweetManager::createFromArray(['id' => 2, 'text' => 'New Tweet']);
 
@@ -302,7 +293,6 @@ class TweetManagerTest extends AbstractTestCase
         );
 
         TweetManager::clearCache();
-
     }
 
     /**
@@ -311,7 +301,6 @@ class TweetManagerTest extends AbstractTestCase
      */
     public function itReportsTheTweetChangingWhenOneIsNotStored()
     {
-
         $tweet = TweetManager::createFromArray(['id' => 1, 'text' => 'Tweet']);
 
         TweetManager::clearCache();
@@ -319,7 +308,6 @@ class TweetManagerTest extends AbstractTestCase
         $this->assertTrue(
             TweetManager::hasTweetChanged($tweet)
         );
-
     }
 
     /**
@@ -328,7 +316,6 @@ class TweetManagerTest extends AbstractTestCase
      */
     public function itCorrectlyKnowsWhenTheTweetHasNotChanged()
     {
-
         $tweet = TweetManager::createFromArray(['id' => 1, 'text' => 'Tweet']);
 
         TweetManager::setTweet($tweet);
@@ -338,7 +325,5 @@ class TweetManagerTest extends AbstractTestCase
         );
 
         TweetManager::clearCache();
-
     }
-
 }

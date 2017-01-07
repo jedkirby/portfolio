@@ -2,14 +2,13 @@
 
 namespace Test\App\Services\Twitter\Connections;
 
-use Test\App\AbstractTestCase;
-use App\Services\Twitter\Tweet;
-use App\Services\Twitter\Connections\Providers\Guzzle;
 use App\Services\Twitter\Connections\GuzzleConnection;
+use App\Services\Twitter\Connections\Providers\Guzzle;
+use App\Services\Twitter\Tweet;
+use Test\App\AbstractTestCase;
 
 class GuzzleConnectionTest extends AbstractTestCase
 {
-
     /**
      * @param string $endpoint
      *
@@ -42,7 +41,6 @@ class GuzzleConnectionTest extends AbstractTestCase
      */
     public function itCanGetTheTimeline()
     {
-
         $provider = $this->getProviderMock();
         $provider
             ->method('getTimeline')
@@ -70,7 +68,6 @@ class GuzzleConnectionTest extends AbstractTestCase
                 $tweet
             );
         }
-
     }
 
     /**
@@ -79,7 +76,6 @@ class GuzzleConnectionTest extends AbstractTestCase
      */
     public function itReturnsAnEmptyArrayWhenThereAreNoTimelineResults()
     {
-
         $provider = $this->getProviderMock();
         $provider
             ->method('getTimeline')
@@ -95,7 +91,6 @@ class GuzzleConnectionTest extends AbstractTestCase
         );
 
         $this->assertEmpty($timeline);
-
     }
 
     /**
@@ -104,7 +99,6 @@ class GuzzleConnectionTest extends AbstractTestCase
      */
     public function itCanGetTheTweetById()
     {
-
         $provider = $this->getProviderMock();
         $provider
             ->method('getTweetById')
@@ -120,7 +114,6 @@ class GuzzleConnectionTest extends AbstractTestCase
             Tweet::class,
             $tweet
         );
-
     }
 
     /**
@@ -129,7 +122,6 @@ class GuzzleConnectionTest extends AbstractTestCase
      */
     public function itReturnsFalseForNoneExistentTweet()
     {
-
         $provider = $this->getProviderMock();
         $provider
             ->method('getTweetById')
@@ -140,7 +132,5 @@ class GuzzleConnectionTest extends AbstractTestCase
         $this->assertFalse(
             $connection->getTweetById('--')
         );
-
     }
-
 }

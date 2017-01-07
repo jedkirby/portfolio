@@ -6,7 +6,6 @@ use App\Blog\Tags\AbstractTag;
 
 class WrongImplementation extends AbstractTag
 {
-
     /**
      * @inherit
      */
@@ -14,5 +13,4 @@ class WrongImplementation extends AbstractTag
     {
         return 'Wrong Implementation';
     }
-
 }

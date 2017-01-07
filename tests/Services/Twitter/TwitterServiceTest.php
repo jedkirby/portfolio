@@ -2,13 +2,12 @@
 
 namespace Test\App\Services\Twitter;
 
-use Test\App\AbstractTestCase;
 use App\Services\Twitter\TwitterService;
+use Test\App\AbstractTestCase;
 use Test\App\Services\Twitter\Connections\NullConnection;
 
 class TwitterServiceTest extends AbstractTestCase
 {
-
     /**
      * @return TwitterService
      */
@@ -30,5 +29,4 @@ class TwitterServiceTest extends AbstractTestCase
             $this->getService()->getConnection()
         );
     }
-
 }
