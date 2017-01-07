@@ -1,15 +1,15 @@
 <?php
 
-namespace Test\App\Console\Commands;
+namespace Test\App\Services\Twitter\Commands;
 
 use Config;
 use Artisan;
 use Test\App\AbstractTestCase;
 use App\Services\Twitter\Tweet;
-use App\Jobs\SendTweetUpdateEmail;
-use App\Console\Commands\LatestTweet;
 use App\Services\Twitter\TweetManager;
 use App\Services\Twitter\TwitterService;
+use App\Services\Twitter\Commands\LatestTweet;
+use App\Services\Twitter\Jobs\SendTweetUpdate;
 use Test\App\Services\Twitter\Connections\StaticConnection;
 
 class LatestTweetTest extends AbstractTestCase
@@ -24,7 +24,7 @@ class LatestTweetTest extends AbstractTestCase
 
         Config::set('site.social.streams.twitter.hashtags', ['Hashtag']);
 
-        $this->expectsJobs(SendTweetUpdateEmail::class);
+        $this->expectsJobs(SendTweetUpdate::class);
 
         $manager = new TweetManager();
         $service = new TwitterService(

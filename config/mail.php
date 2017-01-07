@@ -54,7 +54,10 @@ return [
 	|
 	*/
 
-	'from' => ['address' => null, 'name' => null],
+	'from' => [
+		'address' => env('USER_META_EMAIL_FROM'),
+		'name' => 'Portfolio'
+	],
 
 	/*
 	|--------------------------------------------------------------------------

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Services\Twitter\Commands;
 
 use Config;
 use Illuminate\Console\Command;
-use App\Jobs\SendTweetUpdateEmail;
 use App\Services\Twitter\TweetManager;
 use App\Services\Twitter\TwitterService;
 use Illuminate\Foundation\Bus\DispatchesJobs;
+use App\Services\Twitter\Jobs\SendTweetUpdate;
 
 class LatestTweet extends Command
 {
@@ -65,13 +65,12 @@ class LatestTweet extends Command
         if ($tweet = $this->manager->getLatestTweet($timeline, $allowedHashtags)) {
 
             if ($this->manager->hasTweetChanged($tweet)) {
-                $this->dispatch(new SendTweetUpdateEmail($tweet));
+                $this->dispatch(new SendTweetUpdate($tweet));
             }
 
             $this->manager->setTweet($tweet);
 
         }
-
 
     }
 

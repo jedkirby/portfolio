@@ -4,6 +4,9 @@ namespace App\Services\Twitter\Connections;
 
 use App\Services\Twitter\Tweet;
 
+/**
+ * @codeCoverageIgnore
+ */
 interface ConnectionInterface
 {
 
