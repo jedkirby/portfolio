@@ -12,7 +12,7 @@ class ForceConsoleTasks extends Migration
         'cache:clear',
         'app:instagram',
         'app:meetup',
-        'app:tweets'
+        'app:latest-tweet'
     ];
 
     /**

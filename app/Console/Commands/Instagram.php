@@ -37,6 +37,7 @@ class Instagram extends Command
      */
     public function fire()
     {
+        /*
         $instagram = new InstagramStream();
         $instagram->setAccessToken(Config::get('site.social.streams.instagram.api.access_token'));
         $instagram->setUserId(Config::get('site.social.streams.instagram.id'));
@@ -54,7 +55,7 @@ class Instagram extends Command
         } else {
             // We have an issue
             $this->info('Failed to fetch Instagram posts.');
-        }
+        }*/
     }
 
     /**

@@ -1,0 +1,33 @@
+- name: "Install"
+  apt:
+    name: nginx
+    state: present
+
+- name: "Create website directory"
+  file:
+    path: "{{ nginx_root }}"
+    state: directory
+    owner: "{{ system_user }}"
+    group: "{{ system_group }}"
+    mode: 0775
+
+- name: "Copy custom nginx.conf file"
+  template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/nginx.conf
+    owner: root
+    mode: 0600
+  notify: nginx_restart
+
+- name: "Configure Site"
+  template:
+    src: sites/default.j2
+    dest: /etc/nginx/sites-available/default
+    owner: root
+    mode: 0600
+  notify: nginx_restart
+
+- name: "Ensure service is running"
+  service:
+    name: nginx
+    state: started

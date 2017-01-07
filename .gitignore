@@ -1,6 +1,5 @@
 ## Misc
 /build
-.DS_Store
 
 ## Publics
 /public/assets/css/build
@@ -19,7 +18,5 @@
 /storage
 
 ## Vagrant/Ansible Setup
+/server/ansible/*.retry
 /.vagrant/**
-/ansible
-/provision.yml
-/Vagrantfile

@@ -1,0 +1,6 @@
+---
+mysql_root_password: 768e2bdjs
+mysql_web_user: web
+mysql_web_password: 09njeqwd2
+mysql_host: localhost
+mysql_database: primary

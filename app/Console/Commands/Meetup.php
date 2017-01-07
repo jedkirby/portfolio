@@ -52,6 +52,7 @@ class Meetup extends Command
      */
     public function fire()
     {
+        /*
         try {
             $response = $this->getClient()->get(
                 'https://api.meetup.com/self/events',
@@ -104,5 +105,6 @@ class Meetup extends Command
             // We have an issue
             $this->info('Failed to fetch Meetup events.');
         }
+        */
     }
 }
