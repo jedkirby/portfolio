@@ -31,6 +31,8 @@ class LatestTweetTest extends AbstractTestCase
             )
         );
 
+        $manager::clearCache();
+
         $this->assertFalse(
             $manager::getTweet()
         );
@@ -48,5 +50,7 @@ class LatestTweetTest extends AbstractTestCase
             $tweet->getTextRaw(),
             "Along with our new #Twitterbird, we've also updated our Display Guidelines: https://t.co/Ed4omjYs"
         );
+
+        $manager::clearCache();
     }
 }
