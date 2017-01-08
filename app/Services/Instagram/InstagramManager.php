@@ -3,7 +3,7 @@
 namespace App\Services\Instagram;
 
 use App\Services\Instagram\Entity\Post;
-use App\Services\Twitter\Exceptions\UnableToGetInstagramFeedPostsException;
+use App\Services\Instagram\Exceptions\UnableToGetInstagramFeedPostsException;
 use Cache;
 use Config;
 
@@ -59,6 +59,15 @@ class InstagramManager
         Cache::forget(self::CACHE_NAME);
     }
 
+    /**
+     * @param array $feed
+     * @param bool $limit
+     * @param array $ignoredIds
+     *
+     * @throws UnableToGetInstagramFeedPostsException
+     *
+     * @return array
+     */
     public static function getAllowedPosts(array $feed, $limit = false, $ignoredIds = [])
     {
         $posts = [];
@@ -76,6 +85,9 @@ class InstagramManager
         return $limit ? array_slice($posts, 0, $limit) : $posts;
     }
 
+    /**
+     * @return array
+     */
     public static function getIgnoredIds()
     {
         return Config::get('site.social.streams.instagram.ignore', []);

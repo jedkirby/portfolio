@@ -2,7 +2,6 @@
 
 namespace App\Services\Instagram\Connections\Providers;
 
-use Config;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\ClientException;
 use Log;
@@ -51,13 +50,11 @@ class Guzzle implements ProviderInterface
     {
         try {
             $response = $this->getClient()->get(
-                sprintf(
-                    'users/%s/media/recent.json',
-                    Config::get('site.social.streams.instagram.id')
-                ),
+                'users/self/media/recent',
                 [
                     'query' => [
                         'access_token' => $this->accessToken,
+                        'count' => 20,
                     ],
                 ]
             );
