@@ -15,7 +15,6 @@ class Interest extends BaseController
 {
     public function postRegister(InterestRequest $request)
     {
-
         $success = false;
         $error = false;
         $site = $request->server('HTTP_HOST');
@@ -24,7 +23,6 @@ class Interest extends BaseController
         $sent = Carbon::now()->toDayDateTimeString();
 
         try {
-
             Mail::send(
                 'emails.interest',
                 compact('site', 'email', 'ip', 'sent'),
@@ -43,13 +41,11 @@ class Interest extends BaseController
             );
 
             $success = true;
-
         } catch (Exception $e) {
             Log::error($e);
             $error = $e->getMessage();
         }
 
         return Response::json(compact('success', 'error'), 200);
-
     }
 }

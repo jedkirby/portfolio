@@ -2636,16 +2636,16 @@
         },
         {
             "name": "jedkirby/php-cs",
-            "version": "1.0.5",
+            "version": "1.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jedkirby/php-cs.git",
-                "reference": "a6ccc364262cddd504d1d8cf5f03b119e8e2173d"
+                "reference": "63e6440ba66646daeb3f2dd3027bd54afa1b6c4a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jedkirby/php-cs/zipball/a6ccc364262cddd504d1d8cf5f03b119e8e2173d",
-                "reference": "a6ccc364262cddd504d1d8cf5f03b119e8e2173d",
+                "url": "https://api.github.com/repos/jedkirby/php-cs/zipball/63e6440ba66646daeb3f2dd3027bd54afa1b6c4a",
+                "reference": "63e6440ba66646daeb3f2dd3027bd54afa1b6c4a",
                 "shasum": ""
             },
             "require": {
@@ -2670,7 +2670,7 @@
             ],
             "description": "Coding styling for PHP based projects.",
             "homepage": "https://jedkirby.com",
-            "time": "2017-01-08T10:52:43+00:00"
+            "time": "2017-01-08T11:19:15+00:00"
         },
         {
             "name": "mockery/mockery",

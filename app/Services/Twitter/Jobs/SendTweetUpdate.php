@@ -2,8 +2,8 @@
 
 namespace App\Services\Twitter\Jobs;
 
-use App\Services\Twitter\Mail\TweetUpdate;
 use App\Services\Twitter\Entity\Tweet;
+use App\Services\Twitter\Mail\TweetUpdate;
 use Config;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;

@@ -7,5 +7,4 @@ namespace App\Services\Instagram\Connections;
  */
 interface ConnectionInterface
 {
-
 }

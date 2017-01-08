@@ -1,5 +1,6 @@
 ## Misc
 /build
+/.php_cs.cache
 
 ## Publics
 /public/assets/css/build
