@@ -12,7 +12,6 @@ use Log;
  */
 class Guzzle implements ProviderInterface
 {
-
     /**
      * @var string
      */
@@ -41,7 +40,7 @@ class Guzzle implements ProviderInterface
     private function getClient()
     {
         return new GuzzleClient([
-            'base_uri' => $this->baseUri
+            'base_uri' => $this->baseUri,
         ]);
     }
 
@@ -50,9 +49,7 @@ class Guzzle implements ProviderInterface
      */
     public function getFeed()
     {
-
         try {
-
             $response = $this->getClient()->get(
                 sprintf(
                     'users/%s/media/recent.json',
@@ -60,7 +57,7 @@ class Guzzle implements ProviderInterface
                 ),
                 [
                     'query' => [
-                        'access_token' => $this->accessToken
+                        'access_token' => $this->accessToken,
                     ],
                 ]
             );
@@ -76,14 +73,10 @@ class Guzzle implements ProviderInterface
                     return $data['data'];
                 }
             }
-
         } catch (ClientException $e) {
             Log::error($e);
         }
 
         return false;
-
     }
-
-
 }

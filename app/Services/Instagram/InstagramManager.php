@@ -9,7 +9,6 @@ use Config;
 
 class InstagramManager
 {
-
     /**
      * @var string
      */
@@ -62,7 +61,6 @@ class InstagramManager
 
     public static function getAllowedPosts(array $feed, $limit = false, $ignoredIds = [])
     {
-
         $posts = [];
 
         foreach ($feed as $post) {
@@ -75,13 +73,11 @@ class InstagramManager
             throw new UnableToGetInstagramFeedPostsException('Unable to get allowed Instagram feed posts.');
         }
 
-        return ($limit ? array_slice($posts, 0, $limit) : $posts);
-
+        return $limit ? array_slice($posts, 0, $limit) : $posts;
     }
 
     public static function getIgnoredIds()
     {
         return Config::get('site.social.streams.instagram.ignore', []);
     }
-
 }

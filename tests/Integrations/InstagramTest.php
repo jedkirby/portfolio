@@ -8,7 +8,7 @@ use App\Tests\AbstractTestCase;
 
 class InstagramTest extends AbstractTestCase
 {
-    /**
+    /*
      * Default post details.
      *
      * @var array
@@ -26,7 +26,7 @@ class InstagramTest extends AbstractTestCase
         ],
     ];*/
 
-    /**
+    /*
      * Return a post instance with the default details.
      *
      * @return Post
@@ -36,7 +36,7 @@ class InstagramTest extends AbstractTestCase
         return Instagram::createPostFromArray($this->postDetails);
     }*/
 
-    /**
+    /*
      * @test
      */
     /*public function itReturnAnInstanceOfTheCorrectClass()
@@ -47,7 +47,7 @@ class InstagramTest extends AbstractTestCase
         );
     }*/
 
-    /**
+    /*
      * @test
      */
     /*public function itHasTheCorrectId()
@@ -58,7 +58,7 @@ class InstagramTest extends AbstractTestCase
         );
     }*/
 
-    /**
+    /*
      * @test
      */
     /*public function itHasTheCorrectLink()
@@ -69,7 +69,7 @@ class InstagramTest extends AbstractTestCase
         );
     }*/
 
-    /**
+    /*
      * @test
      */
     /*public function itHasTheCorrectImage()
@@ -80,7 +80,7 @@ class InstagramTest extends AbstractTestCase
         );
     }*/
 
-    /**
+    /*
      * @test
      */
     /*public function itHasTheCorrectText()
@@ -91,7 +91,7 @@ class InstagramTest extends AbstractTestCase
         );
     }*/
 
-    /**
+    /*
      * @test
      */
     /*public function itUsesTheDefaultText()

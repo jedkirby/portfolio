@@ -16,7 +16,9 @@ Route::get('/', 'HomeController@getHome');
 
 // Static
 Route::get('about', 'StaticController@getAbout');
-Route::get('version', function(){ dd(client_version()); });
+Route::get('version', function () {
+    dd(client_version());
+});
 
 // Work
 Route::get('work', 'ProjectController@getProjects');
@@ -35,11 +37,9 @@ Route::get('blog/{slug}', 'BlogController@getSingle');
 // });
 
 // Api(s)
-Route::group(['prefix' => 'api'], function(){
-
+Route::group(['prefix' => 'api'], function () {
     // Interest
     Route::post('interest/register', '\\App\\Http\\Api\\Interest@postRegister');
-
 });
 
 // Sitemap

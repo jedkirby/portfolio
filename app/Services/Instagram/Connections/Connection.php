@@ -25,7 +25,6 @@ class Connection implements ConnectionInterface
      */
     public function getFeed()
     {
-
         $feed = [];
 
         if ($response = $this->provider->getFeed()) {
@@ -35,6 +34,5 @@ class Connection implements ConnectionInterface
         }
 
         return $feed;
-
     }
 }

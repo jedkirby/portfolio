@@ -4,7 +4,6 @@ namespace App\Services\Instagram\Entity;
 
 class Post
 {
-
     /**
      * @var string
      */
@@ -21,12 +20,12 @@ class Post
     private $image;
 
     /**
-     * @var string|boolean
+     * @var string|bool
      */
     private $text;
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     private function __construct($id, $link, $image, $text)
     {
@@ -40,7 +39,7 @@ class Post
      * @param string $id
      * @param string $link
      * @param string $image
-     * @param string|boolean $text
+     * @param string|bool $text
      */
     public static function make($id, $link, $image, $text = false)
     {
@@ -82,11 +81,10 @@ class Post
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function hasText()
     {
         return (bool) $this->text;
     }
-
 }

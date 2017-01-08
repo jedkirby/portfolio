@@ -2,10 +2,10 @@
 
 namespace App\Services\Twitter;
 
+use App\Services\Twitter\Entity\Tweet;
 use App\Services\Twitter\Exceptions\UnableToGetLatestTweetException;
 use Cache;
 use Config;
-use App\Services\Twitter\Entity\Tweet;
 
 class TweetManager
 {

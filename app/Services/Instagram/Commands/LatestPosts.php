@@ -2,13 +2,12 @@
 
 namespace App\Services\Instagram\Commands;
 
-use Illuminate\Console\Command;
 use App\Services\Instagram\InstagramManager;
 use App\Services\Instagram\InstagramService;
+use Illuminate\Console\Command;
 
 class LatestPosts extends Command
 {
-
     /**
      * The amount of posts to store.
      *
@@ -58,7 +57,6 @@ class LatestPosts extends Command
      */
     public function fire()
     {
-
         $feed = $this->service->getConnection()->getFeed();
 
         $posts = $this->manager->getAllowedPosts(
@@ -70,7 +68,5 @@ class LatestPosts extends Command
         if ($posts) {
             $this->manager->setPosts($posts);
         }
-
     }
-
 }

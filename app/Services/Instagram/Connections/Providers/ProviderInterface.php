@@ -10,7 +10,7 @@ interface ProviderInterface
     /**
      * Return a users instagram feed.
      *
-     * @return array|boolean
+     * @return array|bool
      */
     public function getFeed();
 }

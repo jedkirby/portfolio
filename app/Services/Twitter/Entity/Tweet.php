@@ -38,7 +38,7 @@ class Tweet
     private $location;
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     private function __construct($id, $text, $entities, $retweetCount, $favoriteCount, $location)
     {
