@@ -27,7 +27,7 @@ class LatestTweetTest extends AbstractTestCase
         $manager = new TweetManager();
         $service = new TwitterService(
             new Connection(
-                new StaticContentProvider
+                new StaticContentProvider()
             )
         );
 
@@ -48,6 +48,5 @@ class LatestTweetTest extends AbstractTestCase
             $tweet->getTextRaw(),
             "Along with our new #Twitterbird, we've also updated our Display Guidelines: https://t.co/Ed4omjYs"
         );
-
     }
 }

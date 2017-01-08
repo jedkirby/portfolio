@@ -17,7 +17,7 @@ class TwitterServiceTest extends AbstractTestCase
     {
         return new TwitterService(
             new Connection(
-                new StaticContentProvider
+                new StaticContentProvider()
             )
         );
     }

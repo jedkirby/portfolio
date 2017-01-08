@@ -6,7 +6,6 @@ use App\Services\Twitter\Connections\Providers\ProviderInterface;
 
 class StaticContent implements ProviderInterface
 {
-
     /**
      * @param string $endpoint
      *
@@ -40,5 +39,4 @@ class StaticContent implements ProviderInterface
     {
         return $this->getSampleApiResponse('tweet');
     }
-
 }

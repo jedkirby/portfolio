@@ -6,7 +6,6 @@ use App\Services\Twitter\Connections\Providers\ProviderInterface;
 
 class EmptyContent implements ProviderInterface
 {
-
     /**
      * {@inheritdoc}
      */
@@ -22,5 +21,4 @@ class EmptyContent implements ProviderInterface
     {
         return false;
     }
-
 }

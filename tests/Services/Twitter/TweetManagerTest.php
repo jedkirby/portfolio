@@ -10,7 +10,6 @@ use App\Tests\AbstractTestCase;
 use App\Tests\Services\Twitter\Connections\Providers\Fixtures\StaticContent as StaticContentProvider;
 use Config;
 
-
 class TweetManagerTest extends AbstractTestCase
 {
     /**
@@ -59,7 +58,7 @@ class TweetManagerTest extends AbstractTestCase
     {
         return new TwitterService(
             new Connection(
-                new StaticContentProvider
+                new StaticContentProvider()
             )
         );
     }
