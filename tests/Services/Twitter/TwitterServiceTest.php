@@ -2,9 +2,11 @@
 
 namespace App\Tests\Services\Twitter;
 
+use App\Services\Twitter\Connections\Connection;
+use App\Services\Twitter\Connections\ConnectionInterface;
 use App\Services\Twitter\TwitterService;
 use App\Tests\AbstractTestCase;
-use App\Tests\Services\Twitter\Connections\NullConnection;
+use App\Tests\Services\Twitter\Connections\Providers\Fixtures\StaticContent as StaticContentProvider;
 
 class TwitterServiceTest extends AbstractTestCase
 {
@@ -14,7 +16,9 @@ class TwitterServiceTest extends AbstractTestCase
     private function getService()
     {
         return new TwitterService(
-            new NullConnection()
+            new Connection(
+                new StaticContentProvider
+            )
         );
     }
 
@@ -22,10 +26,10 @@ class TwitterServiceTest extends AbstractTestCase
      * @test
      * @group twitter
      */
-    public function itReturnsTheCorrectConnection()
+    public function itReturnsTheCorrectConnectionImplementation()
     {
         $this->assertInstanceOf(
-            NullConnection::class,
+            ConnectionInterface::class,
             $this->getService()->getConnection()
         );
     }

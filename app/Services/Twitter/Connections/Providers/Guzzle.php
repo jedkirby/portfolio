@@ -10,7 +10,10 @@ use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Subscriber\Oauth\Oauth1 as GuzzleAuth;
 use Log;
 
-class Guzzle
+/**
+ * @codeCoverageIgnore
+ */
+class Guzzle implements ProviderInterface
 {
     /**
      * @var string
@@ -59,8 +62,6 @@ class Guzzle
     }
 
     /**
-     * @codeCoverageIgnore
-     *
      * @return GuzzleClient
      */
     private function getClient()
@@ -82,9 +83,7 @@ class Guzzle
     }
 
     /**
-     * @codeCoverageIgnore
-     *
-     * @return bool|array
+     * {@inheritdoc}
      */
     public function getTimeline()
     {
@@ -113,11 +112,7 @@ class Guzzle
     }
 
     /**
-     * @codeCoverageIgnore
-     *
-     * @param int $id
-     *
-     * @return bool|array
+     * {@inheritdoc}
      */
     public function getTweetById($id)
     {
@@ -147,7 +142,7 @@ class Guzzle
      *
      * @return bool|array
      */
-    public function decodeResponse(Response $response)
+    private function decodeResponse(Response $response)
     {
         if (!in_array($response->getStatusCode(), [200])) {
             return false;

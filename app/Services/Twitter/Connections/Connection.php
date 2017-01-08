@@ -2,20 +2,20 @@
 
 namespace App\Services\Twitter\Connections;
 
-use App\Services\Twitter\Connections\Providers\Guzzle;
+use App\Services\Twitter\Connections\Providers\ProviderInterface;
 use App\Services\Twitter\TweetManager;
 
-class GuzzleConnection implements ConnectionInterface
+class Connection implements ConnectionInterface
 {
     /**
-     * @var Guzzle
+     * @var ProviderInterface
      */
     private $provider;
 
     /**
-     * @param Guzzle $provider
+     * @param ProviderInterface $provider
      */
-    public function __construct(Guzzle $provider)
+    public function __construct(ProviderInterface $provider)
     {
         $this->provider = $provider;
     }

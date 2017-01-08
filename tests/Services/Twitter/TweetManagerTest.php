@@ -2,12 +2,14 @@
 
 namespace App\Tests\Services\Twitter;
 
+use App\Services\Twitter\Connections\Connection;
 use App\Services\Twitter\Entity\Tweet;
 use App\Services\Twitter\TweetManager;
 use App\Services\Twitter\TwitterService;
 use App\Tests\AbstractTestCase;
-use App\Tests\Services\Twitter\Connections\StaticConnection;
+use App\Tests\Services\Twitter\Connections\Providers\Fixtures\StaticContent as StaticContentProvider;
 use Config;
+
 
 class TweetManagerTest extends AbstractTestCase
 {
@@ -56,7 +58,9 @@ class TweetManagerTest extends AbstractTestCase
     private function getService()
     {
         return new TwitterService(
-            new StaticConnection()
+            new Connection(
+                new StaticContentProvider
+            )
         );
     }
 
@@ -251,7 +255,7 @@ class TweetManagerTest extends AbstractTestCase
         $service = $this->getService();
         $timeline = $service->getConnection()->getTimeline();
 
-        $tweet = TweetManager::getLatestTweet($timeline, ['hashtag']);
+        $tweet = TweetManager::getLatestTweet($timeline, ['Twitterbird']);
 
         $this->assertInstanceOf(
             Tweet::class,
@@ -260,7 +264,7 @@ class TweetManagerTest extends AbstractTestCase
 
         $this->assertEquals(
             $tweet->getTextRaw(),
-            'First Tweet with #Hashtag'
+            "Along with our new #Twitterbird, we've also updated our Display Guidelines: https://t.co/Ed4omjYs"
         );
     }
 
@@ -274,7 +278,7 @@ class TweetManagerTest extends AbstractTestCase
         $service = $this->getService();
         $timeline = $service->getConnection()->getTimeline();
 
-        $tweet = TweetManager::getLatestTweet($timeline);
+        $tweet = TweetManager::getLatestTweet($timeline, []);
     }
 
     /**

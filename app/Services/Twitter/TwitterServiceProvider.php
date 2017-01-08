@@ -2,7 +2,7 @@
 
 namespace App\Services\Twitter;
 
-use App\Services\Twitter\Connections\GuzzleConnection;
+use App\Services\Twitter\Connections\Connection;
 use App\Services\Twitter\Connections\Providers\Guzzle as GuzzleProvider;
 use Config;
 use Illuminate\Support\ServiceProvider;
@@ -27,7 +27,7 @@ class TwitterServiceProvider extends ServiceProvider
             TwitterService::class,
             function () {
                 return new TwitterService(
-                    new GuzzleConnection(
+                    new Connection(
                         new GuzzleProvider(
                             Config::get('site.social.streams.twitter.api.consumer_key'),
                             Config::get('site.social.streams.twitter.api.consumer_secret'),

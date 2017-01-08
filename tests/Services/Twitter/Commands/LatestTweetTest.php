@@ -3,12 +3,13 @@
 namespace App\Tests\Services\Twitter\Commands;
 
 use App\Services\Twitter\Commands\LatestTweet;
+use App\Services\Twitter\Connections\Connection;
 use App\Services\Twitter\Entity\Tweet;
 use App\Services\Twitter\Jobs\SendTweetUpdate;
 use App\Services\Twitter\TweetManager;
 use App\Services\Twitter\TwitterService;
 use App\Tests\AbstractTestCase;
-use App\Tests\Services\Twitter\Connections\StaticConnection;
+use App\Tests\Services\Twitter\Connections\Providers\Fixtures\StaticContent as StaticContentProvider;
 use Config;
 
 class LatestTweetTest extends AbstractTestCase
@@ -19,13 +20,15 @@ class LatestTweetTest extends AbstractTestCase
      */
     public function itRunsTheCommandCorrectly()
     {
-        Config::set('site.social.streams.twitter.hashtags', ['Hashtag']);
+        Config::set('site.social.streams.twitter.hashtags', ['Twitterbird']);
 
         $this->expectsJobs(SendTweetUpdate::class);
 
         $manager = new TweetManager();
         $service = new TwitterService(
-            new StaticConnection()
+            new Connection(
+                new StaticContentProvider
+            )
         );
 
         $this->assertFalse(
@@ -43,7 +46,8 @@ class LatestTweetTest extends AbstractTestCase
 
         $this->assertEquals(
             $tweet->getTextRaw(),
-            'First Tweet with #Hashtag'
+            "Along with our new #Twitterbird, we've also updated our Display Guidelines: https://t.co/Ed4omjYs"
         );
+
     }
 }
