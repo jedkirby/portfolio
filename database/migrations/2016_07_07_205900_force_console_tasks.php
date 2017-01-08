@@ -10,9 +10,8 @@ class ForceConsoleTasks extends Migration
      */
     const COMMANDS = [
         'cache:clear',
-        'app:instagram',
-        'app:meetup',
-        'app:latest-tweet'
+        'instagram:latest-posts',
+        'twitter:latest-tweet'
     ];
 
     /**

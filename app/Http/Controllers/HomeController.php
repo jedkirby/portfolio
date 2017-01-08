@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Integrations\Meetup;
 use App\Services\Twitter\TweetManager;
 
 class HomeController extends RootController
@@ -13,7 +12,6 @@ class HomeController extends RootController
 
         return view('pages.home', [
             'tweet' => TweetManager::getTweet(),
-            'meetup' => Meetup::getEvent(),
             'articles' => BlogController::articles(2),
             'projects' => ProjectController::projects(3),
         ]);

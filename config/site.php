@@ -75,11 +75,6 @@ return [
 					'access_token' => env('INSTAGRAM_ACCESS_TOKEN')
 				],
 				'ignore' => explode('|', env('INSTAGRAM_IGNORE', ''))
-			],
-			'meetup' => [
-				'api' => [
-					'key' => env('MEETUP_API_KEY')
-				]
 			]
 		]
 	],
