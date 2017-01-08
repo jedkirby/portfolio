@@ -1,13 +1,13 @@
 <?php
 
-namespace Test\App\Services\Twitter;
+namespace App\Tests\Services\Twitter;
 
 use App\Services\Twitter\Entity\Tweet;
 use App\Services\Twitter\TweetManager;
 use App\Services\Twitter\TwitterService;
+use App\Tests\AbstractTestCase;
+use App\Tests\Services\Twitter\Connections\StaticConnection;
 use Config;
-use Test\App\AbstractTestCase;
-use Test\App\Services\Twitter\Connections\StaticConnection;
 
 class TweetManagerTest extends AbstractTestCase
 {

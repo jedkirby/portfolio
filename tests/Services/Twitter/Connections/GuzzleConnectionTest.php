@@ -1,11 +1,11 @@
 <?php
 
-namespace Test\App\Services\Twitter\Connections;
+namespace App\Tests\Services\Twitter\Connections;
 
 use App\Services\Twitter\Connections\GuzzleConnection;
 use App\Services\Twitter\Connections\Providers\Guzzle;
 use App\Services\Twitter\Entity\Tweet;
-use Test\App\AbstractTestCase;
+use App\Tests\AbstractTestCase;
 
 class GuzzleConnectionTest extends AbstractTestCase
 {

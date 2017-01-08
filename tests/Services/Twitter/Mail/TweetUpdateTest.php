@@ -1,10 +1,10 @@
 <?php
 
-namespace Test\App\Services\Twitter\Mail;
+namespace App\Tests\Services\Twitter\Mail;
 
 use App\Services\Twitter\Mail\TweetUpdate;
 use App\Services\Twitter\TweetManager;
-use Test\App\AbstractTestCase;
+use App\Tests\AbstractTestCase;
 
 class TweetUpdateTest extends AbstractTestCase
 {

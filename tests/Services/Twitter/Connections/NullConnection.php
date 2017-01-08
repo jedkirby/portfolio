@@ -1,6 +1,6 @@
 <?php
 
-namespace Test\App\Services\Twitter\Connections;
+namespace App\Tests\Services\Twitter\Connections;
 
 use App\Services\Twitter\Connections\ConnectionInterface;
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace Test\App\Services\Twitter;
+namespace App\Tests\Services\Twitter;
 
 use App\Services\Twitter\TwitterService;
-use Test\App\AbstractTestCase;
-use Test\App\Services\Twitter\Connections\NullConnection;
+use App\Tests\AbstractTestCase;
+use App\Tests\Services\Twitter\Connections\NullConnection;
 
 class TwitterServiceTest extends AbstractTestCase
 {

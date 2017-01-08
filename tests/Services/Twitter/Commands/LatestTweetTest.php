@@ -1,15 +1,15 @@
 <?php
 
-namespace Test\App\Services\Twitter\Commands;
+namespace App\Tests\Services\Twitter\Commands;
 
 use App\Services\Twitter\Commands\LatestTweet;
 use App\Services\Twitter\Entity\Tweet;
 use App\Services\Twitter\Jobs\SendTweetUpdate;
 use App\Services\Twitter\TweetManager;
 use App\Services\Twitter\TwitterService;
+use App\Tests\AbstractTestCase;
+use App\Tests\Services\Twitter\Connections\StaticConnection;
 use Config;
-use Test\App\AbstractTestCase;
-use Test\App\Services\Twitter\Connections\StaticConnection;
 
 class LatestTweetTest extends AbstractTestCase
 {

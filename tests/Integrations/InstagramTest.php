@@ -1,10 +1,10 @@
 <?php
 
-namespace Test\App\Integrtions;
+namespace App\Tests\Integrtions;
 
 use App\Integrations\Instagram;
 use App\Integrations\Instagram\Post;
-use Test\App\AbstractTestCase;
+use App\Tests\AbstractTestCase;
 
 class InstagramTest extends AbstractTestCase
 {

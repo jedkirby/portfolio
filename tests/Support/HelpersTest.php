@@ -1,8 +1,8 @@
 <?php
 
-namespace Test\App\Support;
+namespace App\Tests\Support;
 
-use Test\App\AbstractTestCase;
+use App\Tests\AbstractTestCase;
 
 class HelpersTest extends AbstractTestCase
 {

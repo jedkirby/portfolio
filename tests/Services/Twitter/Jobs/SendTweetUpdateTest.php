@@ -1,13 +1,13 @@
 <?php
 
-namespace Test\App\Services\Twitter\Jobs;
+namespace App\Tests\Services\Twitter\Jobs;
 
 use App\Services\Twitter\Jobs\SendTweetUpdate;
 use App\Services\Twitter\Mail\TweetUpdate;
 use App\Services\Twitter\TweetManager;
+use App\Tests\AbstractTestCase;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Mail;
-use Test\App\AbstractTestCase;
 
 class SendTweetUpdateTest extends AbstractTestCase
 {

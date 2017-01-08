@@ -1,10 +1,10 @@
 <?php
 
-namespace Test\App\Services\Twitter\Connections\Providers;
+namespace App\Tests\Services\Twitter\Connections\Providers;
 
 use App\Services\Twitter\Connections\Providers\Guzzle;
+use App\Tests\AbstractTestCase;
 use GuzzleHttp\Psr7\Response;
-use Test\App\AbstractTestCase;
 
 class GuzzleConnectionTest extends AbstractTestCase
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Test\App\Blog;
+namespace App\Tests\Blog;
 
 use App\Blog\TagManager;
-use Test\App\AbstractTestCase;
+use App\Tests\AbstractTestCase;
 
 class TagManagerTest extends AbstractTestCase
 {
@@ -16,7 +16,7 @@ class TagManagerTest extends AbstractTestCase
      */
     private function getTestableTagManager($alias)
     {
-        return TagManager::make($alias)->setNamespace('\\Test\\App\\Blog\\Fixtures');
+        return TagManager::make($alias)->setNamespace('\\App\\Tests\\Blog\\Fixtures');
     }
 
     /**
