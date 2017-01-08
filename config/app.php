@@ -161,6 +161,7 @@ return [
 		App\Providers\RouteServiceProvider::class,
 		App\Providers\BroadcastServiceProvider::class,
 		App\Services\Twitter\TwitterServiceProvider::class,
+		App\Services\Instagram\InstagramServiceProvider::class,
 
 	],
 

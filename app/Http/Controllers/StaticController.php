@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\BlogController as Blogs;
 use App\Http\Controllers\ProjectController as Projects;
-use App\Integrations\Instagram;
+use App\Services\Instagram\InstagramManager;
 use Carbon\Carbon;
 
 class StaticController extends RootController
@@ -19,7 +19,7 @@ class StaticController extends RootController
         $totalArticles = count(Blogs::articles());
 
         return view('pages.about', [
-            'instagram' => Instagram::getPosts(),
+            'instagram' => InstagramManager::getPosts(),
             'counts' => [
                 'tea' => $startedWorking->diffInDays(),
                 'food' => $startedWorking->diffInWeeks(),

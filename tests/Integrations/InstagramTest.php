@@ -2,8 +2,8 @@
 
 namespace App\Tests\Integrtions;
 
-use App\Integrations\Instagram;
-use App\Integrations\Instagram\Post;
+// use App\Integrations\Instagram;
+// use App\Integrations\Instagram\Post;
 use App\Tests\AbstractTestCase;
 
 class InstagramTest extends AbstractTestCase
@@ -13,7 +13,7 @@ class InstagramTest extends AbstractTestCase
      *
      * @var array
      */
-    private $postDetails = [
+    /*private $postDetails = [
         'id' => 'BJGINgWDSjR',
         'link' => 'https://www.instagram.com/p/BJGINgWDSjR/',
         'images' => [
@@ -24,77 +24,77 @@ class InstagramTest extends AbstractTestCase
         'caption' => [
             'text' => 'This is the caption text!',
         ],
-    ];
+    ];*/
 
     /**
      * Return a post instance with the default details.
      *
      * @return Post
      */
-    private function getPost()
+    /*private function getPost()
     {
         return Instagram::createPostFromArray($this->postDetails);
-    }
+    }*/
 
     /**
      * @test
      */
-    public function itReturnAnInstanceOfTheCorrectClass()
+    /*public function itReturnAnInstanceOfTheCorrectClass()
     {
         return $this->assertInstanceOf(
             Post::class,
             $this->getPost()
         );
-    }
+    }*/
 
     /**
      * @test
      */
-    public function itHasTheCorrectId()
+    /*public function itHasTheCorrectId()
     {
         return $this->assertEquals(
             $this->getPost()->getId(),
             $this->postDetails['id']
         );
-    }
+    }*/
 
     /**
      * @test
      */
-    public function itHasTheCorrectLink()
+    /*public function itHasTheCorrectLink()
     {
         return $this->assertEquals(
             $this->getPost()->getLink(),
             $this->postDetails['link']
         );
-    }
+    }*/
 
     /**
      * @test
      */
-    public function itHasTheCorrectImage()
+    /*public function itHasTheCorrectImage()
     {
         return $this->assertEquals(
             $this->getPost()->getImage(),
             $this->postDetails['images']['low_resolution']['url']
         );
-    }
+    }*/
 
     /**
      * @test
      */
-    public function itHasTheCorrectText()
+    /*public function itHasTheCorrectText()
     {
         return $this->assertEquals(
             $this->getPost()->getText(),
             $this->postDetails['caption']['text']
         );
-    }
+    }*/
 
     /**
      * @test
      */
-    public function itUsesTheDefaultText()
+    /*public function itUsesTheDefaultText()
     {
         $postExpectedDefaultText = 'This is the default text!';
         $post = Instagram::createPostFromArray([
@@ -111,5 +111,5 @@ class InstagramTest extends AbstractTestCase
             $post->getText($postExpectedDefaultText),
             $postExpectedDefaultText
         );
-    }
+    }*/
 }

@@ -15,9 +15,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         \App\Services\Twitter\Commands\LatestTweet::class,
-        \App\Console\Commands\Instagram::class,
+        \App\Services\Instagram\Commands\LatestPosts::class,
         \App\Console\Commands\Errors::class,
-        \App\Console\Commands\Meetup::class,
     ];
 
     /**
@@ -27,9 +26,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('app:meetup')->hourly();
-        $schedule->command('app:instagram')->twiceDaily();
-        $schedule->command('app:latest-tweet')->everyFiveMinutes();
+        $schedule->command('instagram:latest-posts')->twiceDaily();
+        $schedule->command('twitter:latest-tweet')->everyFiveMinutes();
 
         if (App::environment('production')) {
             $schedule->command('app:errors')->daily(); // Once every day just gone midnight

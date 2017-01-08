@@ -7,6 +7,9 @@ use App\Services\Twitter\Connections\Providers\Guzzle as GuzzleProvider;
 use Config;
 use Illuminate\Support\ServiceProvider;
 
+/**
+ * @codeCoverageIgnore
+ */
 class TwitterServiceProvider extends ServiceProvider
 {
     /**
@@ -18,8 +21,6 @@ class TwitterServiceProvider extends ServiceProvider
 
     /**
      * Register any application services.
-     *
-     * @codeCoverageIgnore
      */
     public function register()
     {

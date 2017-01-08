@@ -17,14 +17,14 @@ class LatestTweet extends Command
      *
      * @var string
      */
-    protected $name = 'app:latest-tweet';
+    protected $name = 'twitter:latest-tweet';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Fetch or update the latest relevant tweet.';
+    protected $description = 'Fetch or update the latest relevant tweet';
 
     /**
      * @var TwitterService

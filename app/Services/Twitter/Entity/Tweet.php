@@ -38,12 +38,7 @@ class Tweet
     private $location;
 
     /**
-     * @param int $id
-     * @param string $text
-     * @param array $entities
-     * @param int $retweetCount
-     * @param int $favoriteCount
-     * @param array|bool $location
+     * {@inheritDoc}
      */
     private function __construct($id, $text, $entities, $retweetCount, $favoriteCount, $location)
     {

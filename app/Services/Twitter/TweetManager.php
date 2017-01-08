@@ -5,6 +5,7 @@ namespace App\Services\Twitter;
 use App\Services\Twitter\Exceptions\UnableToGetLatestTweetException;
 use Cache;
 use Config;
+use App\Services\Twitter\Entity\Tweet;
 
 class TweetManager
 {
@@ -22,7 +23,7 @@ class TweetManager
      */
     public static function createFromArray(array $tweet)
     {
-        return Entity\Tweet::make(
+        return Tweet::make(
             array_get($tweet, 'id'),
             array_get($tweet, 'text', ''),
             array_get(
@@ -63,7 +64,7 @@ class TweetManager
      *
      * @param Tweet $tweet
      */
-    public static function setTweet(Entity\Tweet $tweet)
+    public static function setTweet(Tweet $tweet)
     {
         Cache::forever(self::CACHE_NAME, $tweet);
     }
@@ -102,7 +103,7 @@ class TweetManager
      *
      * @return bool
      */
-    public static function hasTweetChanged(Entity\Tweet $tweet)
+    public static function hasTweetChanged(Tweet $tweet)
     {
         if ($storedTweet = self::getTweet()) {
             return $storedTweet->getId() !== $tweet->getId();
