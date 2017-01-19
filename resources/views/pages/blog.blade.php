@@ -18,24 +18,23 @@
 
 					<div class="articles" itemscope itemtype="http://schema.org/Blog">
 
-						@foreach($articles as $slug => $article)
-
+						@foreach($articles as $article)
 
 							<article class="articles__article" itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
 
-								<h2 itemprop="headline"><a href="{{ \URL::to('blog', [$slug]) }}" itemprop="url">{{ array_get($article, 'title') }}</a></h2>
+								<h2 itemprop="headline"><a href="#" itemprop="url">{{ $article->name }}</a></h2>
 
-								<time class="articles__article--metadata" pubdate="{{ array_get($article, 'date')->format('Y-m-d') }}" itemprop="datePublished" datetime="{{ array_get($article, 'date')->format('Y-m-d') }}" content="{{ array_get($article, 'date')->format('Y-m-d') }}">{{ array_get($article, 'date')->format('F j, Y') }}</time>
+								<time class="articles__article--metadata" pubdate="" itemprop="datePublished" datetime="" content="">{{ \DateTime::createFromFormat(\DateTime::ATOM, $article->date)->format('F j, Y') }}</time>
 
-								@if( ($image = array_get($article, 'image', false)) )
-									<a class="articles__article--link" href="{{ \URL::to('blog', [$slug]) }}">
+								@if( ($image = $article->image) )
+									<a class="articles__article--link" href="#">
 										<img src="{{ asset('assets/img/blank.png') }}" data-src="{{ $image }}" class="articles__article--hero  lazyload">
 									</a>
 								@endif
 
 								<div class="articles__article--summary">
-									<p itemprop="articleBody">{{ array_get($article, 'snippet') }} ...</p>
-									<a href="{{ \URL::to('blog', [$slug]) }}" class="articles__article--more">
+									<p itemprop="articleBody">{{ $article->content }}..</p>
+									<a href="#" class="articles__article--more">
 										<i class="fa fa-angle-double-right"></i>
 										Read More
 									</a>

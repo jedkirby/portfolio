@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Dynamify\PhpSdk\Dynamify;
 use App\Blog\TagManager as Tag;
 use Carbon\Carbon;
 use SocialLinks\Page;
@@ -176,14 +177,14 @@ class BlogController extends RootController
         return  $limit ? array_slice($articles, 0, $limit) : $articles;
     }
 
-    public function getArticles()
+    public function getArticles(Dynamify $dynamify)
     {
         $this->setTitle('Blog');
         $this->setDescription('From time to time I create articles. These could range from server configuration guides to life experiences. Feel free to get to know me more by reading a few of my articles.');
         $this->setKeywords('blog, articles, life stories, guides, php, mysql, javascript');
 
         return view('pages.blog', [
-            'articles' => static::articles(),
+            'articles' => $dynamify->entity('blog.post')->all(),
         ]);
     }
 
