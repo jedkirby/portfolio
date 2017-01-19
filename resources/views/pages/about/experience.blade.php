@@ -15,14 +15,14 @@
 							<i class="fa fa-square"></i>
 						</div>
 						<div class="experience__desc  experience__desc--left">
-							<h3>
+							<h3 id="jadu">
 								<a href="https://www.jadu.net/xforms-professional-forms-solution" target="_blank">Jadu</a>
 							</h3>
 							<div class="experience__meta">
 								<time>January 2017</time> - <time>Present</time>
 							</div>
 							<p>
-								I've rotated from my role in <a href="https://spacecraft.digital" target="_blank">Spacecraft Digital</a> (See Below) into the <a href="https://www.jadu.net/xforms-professional-forms-solution" target="_blank">XForms Professional</a> team within <a href="https://jadu.net" target="_blank">Jadu</a>. This mean's I'm now a part of Jadu's core, giving me involvement in developing a product. It's also given me the experience working in a fully autonomous agile team consisting of quoting, scrums and retrospectives.
+								I've rotated from my role in <a href="#spacecraft-digital">Spacecraft Digital</a> into the <a href="https://www.jadu.net/xforms-professional-forms-solution" target="_blank">XForms Professional</a> team within <a href="https://jadu.net" target="_blank">Jadu</a>. This mean's I'm now a part of Jadu's core, giving me involvement in developing a product. It's also given me the experience working in a fully autonomous agile team consisting of quoting, scrums and retrospectives.
 							</p>
 						</div>
 					</div>
@@ -32,7 +32,24 @@
 							<i class="fa fa-square"></i>
 						</div>
 						<div class="experience__desc  experience__desc--right">
-							<h3>
+							<h3 id="php-warwickshire">
+								<a href="http://phpwarks.co.uk" target="_blank">PHP Warwickshire</a>
+							</h3>
+							<div class="experience__meta">
+								<time>December 2014</time> - <time>Present</time>
+							</div>
+							<p>
+								As the PHP community grows, new user groups have been popping up all over the world. <a href="https://twitter.com/Ben_Plummer" target="_blank">Ben Plummer</a>, <a href="https://twitter.com/steadweb" target="_blank">Luke Steadman</a> and (me) <a href="{{ Config::get('site.social.streams.twitter.url') }}" target="_blank">James Kirby</a> decided to establish a new PHP user group in the Warwickshire area. We arrange venues, merchandise and arrange a speaker for each last Thursday of the month. Check out our <a href="http://www.meetup.com/PHP-Warwickshire" target="_blank">Meetup</a> account for the next event.
+							</p>
+						</div>
+					</div>
+
+					<div class="experience__item  text-right">
+						<div class="experience__icon">
+							<i class="fa fa-square"></i>
+						</div>
+						<div class="experience__desc  experience__desc--left">
+							<h3 id="spacecraft-digital">
 								<a href="https://spacecraft.digital" target="_blank">Spacecraft Digital</a>
 							</h3>
 							<div class="experience__meta">
@@ -44,29 +61,12 @@
 						</div>
 					</div>
 
-					<div class="experience__item  text-right">
-						<div class="experience__icon">
-							<i class="fa fa-square"></i>
-						</div>
-						<div class="experience__desc  experience__desc--left">
-							<h3>
-								<a href="http://phpwarks.co.uk" target="_blank">PHP Warwickshire</a>
-							</h3>
-							<div class="experience__meta">
-								<time>December 2014</time> - <time>Present</time>
-							</div>
-							<p>
-								As the PHP community grows, new user groups have been popping up all over the world. <a href="https://twitter.com/Ben_Plummer" target="_blank">Ben Plummer</a>, <a href="https://twitter.com/steadweb" target="_blank">Luke Steadman</a> and (me) <a href="{{ Config::get('site.social.streams.twitter.url') }}" target="_blank">James Kirby</a> decided to establish a new PHP user group in the Warwickshire area. We arrange venues, merchandise and arrange a speaker for each last Thursday of the month. Check out our <a href="http://www.meetup.com/PHP-Warwickshire">Meetup</a> account for the next event.
-							</p>
-						</div>
-					</div>
-
 					<div class="experience__item  text-left">
 						<div class="experience__icon">
 							<i class="fa fa-square"></i>
 						</div>
 						<div class="experience__desc  experience__desc--right">
-							<h3>
+							<h3 id="propeller-communication">
 								<a href="http://www.propcom.co.uk" target="_blank">Propeller Communications</a>
 							</h3>
 							<div class="experience__meta">
@@ -83,7 +83,7 @@
 							<i class="fa fa-square"></i>
 						</div>
 						<div class="experience__desc  experience__desc--left">
-							<h3>
+							<h3 id="blitz-games-studios">
 								<a href="http://www.blitzgamesstudios.com" target="_blank">Blitz Games Studios</a>
 							</h3>
 							<div class="experience__meta">

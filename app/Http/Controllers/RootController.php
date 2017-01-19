@@ -1,86 +1,83 @@
-<?php namespace App\Http\Controllers;
+<?php
+
+namespace App\Http\Controllers;
 
 use Illuminate\Routing\Controller as BaseController;
 
-class RootController extends BaseController {
+class RootController extends BaseController
+{
+    /**
+     * Setup the base controller.
+     */
+    public function __construct()
+    {
+        $this->setTitle(\Config::get('site.meta.title'));
+        $this->setDescription('');
+        $this->setKeywords(\Config::get('site.meta.keywords'));
+        $this->setId(static::buildId());
 
-	/**
-	 * Setup the base controller.
-	 *
-	 * @return void
-	 */
-	public function __construct()
-	{
+        $this->setViewData('twitterHandle', \Config::get('site.social.streams.twitter.handle'));
+        $this->setViewData('facebookId', \Config::get('site.social.streams.facebook.id'));
+    }
 
-		$this->setTitle(\Config::get('site.meta.title'));
-		$this->setDescription('');
-		$this->setKeywords(\Config::get('site.meta.keywords'));
-		$this->setId(static::buildId());
+    /**
+     * Build an id based on the segements of the url.
+     *
+     * @return string
+     */
+    protected static function buildId()
+    {
+        return \Request::segment(1) ?: 'home';
+    }
 
-		$this->setViewData('twitterHandle', \Config::get('site.social.streams.twitter.handle'));
-		$this->setViewData('facebookId', \Config::get('site.social.streams.facebook.id'));
+    /**
+     * Set a meta data value.
+     *
+     * @param string $key
+     * @param string $value
+     */
+    public function setViewData($key, $value)
+    {
+        \View::share($key, $value);
+    }
 
-	}
+    /**
+     * Helper: Set the page title.
+     *
+     * @param string $title
+     */
+    public function setTitle($title)
+    {
+        $this->setViewData('title', $title);
+    }
 
-	/**
-	 * Build an id based on the segements of the url.
-	 *
-	 * @return string
-	 */
-	protected static function buildId()
-	{
-		return (\Request::segment(1) ?: 'home');
-	}
+    /**
+     * Helper: Set the page description.
+     *
+     * @param string $description
+     */
+    public function setDescription($description)
+    {
+        $this->setViewData('description', $description);
+    }
 
-	/**
-	 * Set a meta data value.
-	 * 
-	 * @param string $key
-	 * @param string $value
-	 */
-	public function setViewData($key, $value)
-	{
-		\View::share($key, $value);
-	}
+    /**
+     * Helper: Set the page keywords.
+     *
+     * @param string $keywords
+     */
+    public function setKeywords($keywords)
+    {
+        $this->setViewData('keywords', $keywords);
+    }
 
-	/**
-	 * Helper: Set the page title.
-	 * 
-	 * @param string $title
-	 */
-	public function setTitle($title)
-	{
-		$this->setViewData('title', $title);
-	}
-
-	/**
-	 * Helper: Set the page description.
-	 * 
-	 * @param string $description
-	 */
-	public function setDescription($description)
-	{
-		$this->setViewData('description', $description);
-	}
-
-	/**
-	 * Helper: Set the page keywords.
-	 * 
-	 * @param string $keywords
-	 */
-	public function setKeywords($keywords)
-	{
-		$this->setViewData('keywords', $keywords);
-	}
-
-	/**
-	 * Helper: Set the page id.
-	 * 
-	 * @param string $id
-	 */
-	public function setId($id)
-	{
-		$this->setViewData('pageid', $id);
-	}
-
+    /**
+     * Helper: Set the page id.
+     *
+     * @param string $id
+     */
+    public function setId($id)
+    {
+        $this->setViewData('pageid', $id);
+    }
 }

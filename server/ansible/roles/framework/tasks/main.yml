@@ -1,0 +1,4 @@
+- name: Execute migrations
+  shell: php artisan migrate
+  args:
+    chdir: "{{ nginx_root }}"

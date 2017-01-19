@@ -1,0 +1,47 @@
+- name: "Stat for MySQL config"
+  stat:
+    path: "/root/.my.cnf"
+  register: my
+
+- name: "Install"
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - python-mysqldb
+    - mysql-server
+
+- name: "Update root password"
+  mysql_user:
+    name: root
+    password: "{{ mysql_root_password }}"
+    host: "{{ mysql_host }}"
+  when: not my.stat.exists
+  notify: mysql_restart
+
+- name: "Copy my.cnf file with credentials for Root"
+  template:
+    src: my.cnf.j2
+    dest: "/root/.my.cnf"
+    owner: "{{ system_user }}"
+    mode: 0600
+  when: not my.stat.exists
+  notify: mysql_restart
+
+- name: "Create database (As Root)"
+  mysql_db:
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+    name: "{{ mysql_database }}"
+    state: present
+  notify: mysql_restart
+
+- name: "Create web user and allow on web database"
+  mysql_user:
+    user: "{{ mysql_web_user }}"
+    password: "{{ mysql_web_password }}"
+    state: present
+    append_privs: yes
+    priv: "{{ item }}"
+  with_items:
+    - '{{ mysql_database }}.*:ALL'

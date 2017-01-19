@@ -1,0 +1,3 @@
+---
+nginx_root: /var/www
+nginx_server_name: site.com www.site.com

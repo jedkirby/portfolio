@@ -1,87 +1,110 @@
-<?php namespace App\Exceptions;
+<?php
 
+namespace App\Exceptions;
+
+use Config;
 use Exception;
-use Symfony\Component\HttpKernel\Exception\HttpException;
-use Symfony\Component\Debug\ExceptionHandler as SymfonyDisplayer;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
-class Handler extends ExceptionHandler {
+class Handler extends ExceptionHandler
+{
+    /**
+     * A list of the exception types that should not be reported.
+     *
+     * @var array
+     */
+    protected $dontReport = [
+        \Illuminate\Auth\AuthenticationException::class,
+        \Illuminate\Auth\Access\AuthorizationException::class,
+        \Symfony\Component\HttpKernel\Exception\HttpException::class,
+        \Illuminate\Database\Eloquent\ModelNotFoundException::class,
+        \Illuminate\Session\TokenMismatchException::class,
+        \Illuminate\Validation\ValidationException::class,
+    ];
 
-	/**
-	 * A list of the exception types that should not be reported.
-	 *
-	 * @var array
-	 */
-	protected $dontReport = [
-		'Symfony\Component\HttpKernel\Exception\HttpException',
-		'Symfony\Component\HttpKernel\Exception\NotFoundHttpException'
-	];
+    /**
+     * Report or log an exception.
+     *
+     * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
+     *
+     * @param  \Exception  $exception
+     */
+    public function report(Exception $exception)
+    {
+        parent::report($exception);
+    }
 
-	/**
-	 * Report or log an exception.
-	 *
-	 * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
-	 *
-	 * @param  \Exception  $e
-	 * @return void
-	 */
-	public function report(Exception $e)
-	{
-		return parent::report($e);
-	}
+    /**
+     * Render an exception into an HTTP response.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Exception  $exception
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function render($request, Exception $exception)
+    {
+        return parent::render($request, $exception);
+    }
 
-	/**
-	 * Render an exception into an HTTP response.
-	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @param  \Exception  $e
-	 * @return \Illuminate\Http\Response
-	 */
-	public function render($request, Exception $e)
-	{
-		return parent::render($request, $e);
-	}
+    /**
+     * Render the given HttpException.
+     *
+     * @param  \Symfony\Component\HttpKernel\Exception\HttpException  $e
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    protected function renderHttpException(HttpException $e)
+    {
+        $status = $e->getStatusCode();
 
-	/**
-	 * Render the given HttpException.
-	 *
-	 * @param  \Symfony\Component\HttpKernel\Exception\HttpException  $e
-	 * @return \Symfony\Component\HttpFoundation\Response
-	 */
-	protected function renderHttpException(HttpException $e)
-	{
+        $unique = 'errors.' . $status;
+        $generic = 'errors.generic';
 
-		$status = $e->getStatusCode();
+        switch (true) {
+            case view()->exists($unique):
+                $view = $unique;
+                $class = $status;
+                break;
+            case view()->exists($generic):
+                $view = $generic;
+                $class = 'generic';
+                break;
+            default:
+                return $this->convertExceptionToResponse($e);
+        }
 
-		$unique = 'errors.'.$status;
-		$generic = 'errors.generic';
+        return response()->view(
+            $view,
+            [
+                'title' => $status,
+                'description' => '',
+                'keywords' => '',
+                'pageid' => implode('  ', ['error', 'error__' . $class]),
+                'facebookId' => Config::get('site.social.streams.facebook.id'),
+                'status' => $status,
+            ],
+            $status,
+            $e->getHeaders()
+        );
+    }
 
-		switch(true){
-			case view()->exists($unique):
-				$view  = $unique;
-				$class = $status;
-				break;
-			case view()->exists($generic):
-				$view  = $generic;
-				$class = 'generic';
-				break;
-			default:
-				return (new SymfonyDisplayer(config('app.debug')))->createResponse($e);
-		}
+    /**
+     * Convert an authentication exception into an unauthenticated response.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Auth\AuthenticationException  $exception
+     *
+     * @return \Illuminate\Http\Response
+     */
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        if ($request->expectsJson()) {
+            return response()->json(['error' => 'Unauthenticated.'], 401);
+        }
 
-		return response()->view(
-			$view,
-			[
-				'title'       => $status,
-				'description' => '',
-				'keywords'    => '',
-				'pageid'      => implode('  ', ['error', 'error__'.$class]),
-				'facebookId'  => \Config::get('site.social.streams.facebook.id'),
-				'status'      => $status
-			],
-			$status
-		);
-
-	}
-
+        return redirect()->guest('login');
+    }
 }

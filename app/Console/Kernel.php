@@ -8,37 +8,37 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
 {
+    /**
+     * The Artisan commands provided by your application.
+     *
+     * @var array
+     */
+    protected $commands = [
+        \App\Services\Twitter\Commands\LatestTweet::class,
+        \App\Services\Instagram\Commands\LatestPosts::class,
+        \App\Console\Commands\Errors::class,
+    ];
 
-	/**
-	 * The Artisan commands provided by your application.
-	 *
-	 * @var array
-	 */
-	protected $commands = [
-		'App\Console\Commands\Tweets',
-		'App\Console\Commands\Instagram',
-		'App\Console\Commands\Errors',
-		'App\Console\Commands\Meetup',
-	];
+    /**
+     * Define the application's command schedule.
+     *
+     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
+     */
+    protected function schedule(Schedule $schedule)
+    {
+        $schedule->command('instagram:latest-posts')->twiceDaily();
+        $schedule->command('twitter:latest-tweet')->everyFiveMinutes();
 
-	/**
-	 * Define the application's command schedule.
-	 *
-	 * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
-	 * @return void
-	 */
-	protected function schedule(Schedule $schedule)
-	{
+        if (App::environment('production')) {
+            $schedule->command('app:errors')->daily(); // Once every day just gone midnight
+        }
+    }
 
-		$schedule->command('app:meetup')->hourly();
-		$schedule->command('app:instagram')->twiceDaily();
-		$schedule->command('app:tweets')->everyFiveMinutes();
-
-		if (App::environment('production')) {
-			$schedule->command('app:errors')->daily(); // Once every day just gone midnight
-		}
-
-	}
-
-
+    /**
+     * Register the Closure based commands for the application.
+     */
+    protected function commands()
+    {
+        require base_path('routes/console.php');
+    }
 }

@@ -2,26 +2,25 @@
 	"name": "jedkirby/portfolio",
 	"description": "James Kirby's Portfolio.",
 	"type": "project",
-	"repositories": [
-		{
-			"type": "composer",
-			"url": "http://toran.pixelatedesign.com/repo/private/"
-		}
-	],
 	"require": {
-		"laravel/framework": "5.1.*",
-		"illuminate/html": "5.*",
-		"thujohn/twitter": "2.0.*@dev",
+		"php": ">=5.6.4",
+		"laravel/framework": "5.3.*",
 		"fzaninotto/faker": "1.4.0",
 		"social-links/social-links": "1.5.*",
 		"pulse00/monolog-parser": "^0.0.3",
-		"guzzlehttp/guzzle": "4.*",
-		"pixelate/shared": "0.0.*"
+		"guzzlehttp/guzzle": "^6.0",
+		"guzzlehttp/oauth-subscriber": "^0.3.0",
+		"jedkirby/tweet-entity-linker": "^1.1",
+		"laravelcollective/html": "^5.2.0"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",
 		"phpspec/phpspec": "~2.1",
-		"pixelate/vm": "~1.0"
+		"satooshi/php-coveralls": "^1.0",
+		"mockery/mockery": "^0.9.7",
+		"symfony/dom-crawler": "~3.1",
+		"symfony/css-selector": "~3.1",
+		"jedkirby/php-cs": "^1.0"
 	},
 	"autoload": {
 		"classmap": [
@@ -36,11 +35,7 @@
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"Test\\App\\": "tests/"
+			"App\\Tests\\": "tests/"
 		}
-	},
-	"config": {
-		"preferred-install": "dist",
-		"secure-http": false
 	}
 }

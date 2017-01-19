@@ -1,31 +1,34 @@
 <?php
 
-namespace Test\App\Blog;
+namespace App\Tests\Blog;
 
 use App\Blog\TagManager;
-use Test\App\AbstractTestCase;
+use App\Tests\AbstractTestCase;
 
 class TagManagerTest extends AbstractTestCase
 {
-
     /**
      * Create an instance of the tag manager setting the testing namespace.
      *
      * @param string $alias
+     *
      * @return TagManager
      */
     private function getTestableTagManager($alias)
     {
-        return TagManager::make($alias)->setNamespace('\\Test\\App\\Blog\\Fixtures');
+        return TagManager::make($alias)->setNamespace('\\App\\Tests\\Blog\\Fixtures');
     }
 
+    /**
+     * @return array
+     */
     public function aliasToClassNameProvider()
     {
         return [
             ['tag-name', 'TagName'],
             ['this-is-the-tag', 'ThisIsTheTag'],
             ['What-EvEn-iS-ThIs', 'WhatEvenIsThis'],
-            ['Strange---Class-Name', 'StrangeClassName']
+            ['Strange---Class-Name', 'StrangeClassName'],
         ];
     }
 
@@ -81,5 +84,4 @@ class TagManagerTest extends AbstractTestCase
             'My Tag'
         );
     }
-
 }

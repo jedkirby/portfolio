@@ -1,23 +1,19 @@
-<?php namespace App\Http\Controllers;
+<?php
 
-use Carbon\Carbon;
-use App\Integrations\Meetup;
-use App\Integrations\Twitter;
+namespace App\Http\Controllers;
 
-class HomeController extends RootController {
+use App\Services\Twitter\TweetManager;
 
-	public function getHome()
-	{
+class HomeController extends RootController
+{
+    public function getHome()
+    {
+        $this->setDescription('Website and application developer based in Stratford Upon Avon, UK. An avid blogger of anything related to social media, business, entertainment or technology. Primarily covering Warwickshire, but expanding to the rest of the world to provide a stress free and professional service. Available for hire.');
 
-		$this->setDescription('Website and application developer based in Stratford Upon Avon, UK. An avid blogger of anything related to social media, business, entertainment or technology. Primarily covering Warwickshire, but expanding to the rest of the world to provide a stress free and professional service. Available for hire.');
-
-		return view('pages.home', [
-			'tweet'    => Twitter::getLatest(),
-			'meetup'   => Meetup::getEvent(),
-			'articles' => BlogController::articles(2),
-			'projects' => ProjectController::projects(3)
-		]);
-
-	}
-
+        return view('pages.home', [
+            'tweet' => TweetManager::getTweet(),
+            'articles' => BlogController::articles(2),
+            'projects' => ProjectController::projects(3),
+        ]);
+    }
 }

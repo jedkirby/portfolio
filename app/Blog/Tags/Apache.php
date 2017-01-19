@@ -2,12 +2,13 @@
 
 namespace App\Blog\Tags;
 
-use App\Blog\Tags\AbstractTag;
 use App\Blog\Contracts\Tag as TagContract;
 
+/**
+ * @codeCoverageIgnore
+ */
 class Apache extends AbstractTag implements TagContract
 {
-
     /**
      * @inherit
      */
@@ -15,5 +16,4 @@ class Apache extends AbstractTag implements TagContract
     {
         return 'Apache';
     }
-
 }

@@ -1,12 +1,11 @@
 <?php
 
-namespace Test\App\Blog\Fixtures;
+namespace App\Tests\Blog\Fixtures;
 
 use App\Blog\Tags\AbstractTag;
 
 class WrongImplementation extends AbstractTag
 {
-
     /**
      * @inherit
      */
@@ -14,5 +13,4 @@ class WrongImplementation extends AbstractTag
     {
         return 'Wrong Implementation';
     }
-
 }
