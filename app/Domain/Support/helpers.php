@@ -1,6 +1,6 @@
 <?php
 
-use App\Support\Exceptions\AssetNotFoundException;
+use App\Domain\Support\Exception\AssetNotFoundException;
 
 if (!function_exists('cached_asset')) {
     /**

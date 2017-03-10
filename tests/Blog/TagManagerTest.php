@@ -3,9 +3,9 @@
 namespace App\Tests\Blog;
 
 use App\Blog\TagManager;
-use App\Tests\AbstractTestCase;
+use App\Tests\AbstractAppTestCase;
 
-class TagManagerTest extends AbstractTestCase
+class TagManagerTest extends AbstractAppTestCase
 {
     /**
      * Create an instance of the tag manager setting the testing namespace.

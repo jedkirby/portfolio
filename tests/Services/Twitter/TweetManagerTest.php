@@ -6,11 +6,11 @@ use App\Services\Twitter\Connections\Connection;
 use App\Services\Twitter\Entity\Tweet;
 use App\Services\Twitter\TweetManager;
 use App\Services\Twitter\TwitterService;
-use App\Tests\AbstractTestCase;
+use App\Tests\AbstractAppTestCase;
 use App\Tests\Services\Twitter\Connections\Providers\Fixtures\StaticContent as StaticContentProvider;
 use Config;
 
-class TweetManagerTest extends AbstractTestCase
+class TweetManagerTest extends AbstractAppTestCase
 {
     /**
      * @var array

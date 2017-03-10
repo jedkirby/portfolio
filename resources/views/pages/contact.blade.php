@@ -1,4 +1,6 @@
 @extends('master')
+
+@section('id', 'contact')
 @section('content')
 
 	<div class="site__medium">
@@ -26,8 +28,8 @@
 							<div class="form__wrap form__wrap--poof">
 								{!!
 									Form::text(
-										'title',
-										\Input::old('title'),
+										'honeypot',
+										$command->honeypot,
 										[
 											'class' => 'form__field',
 											'placeholder' => 'Title'
@@ -36,11 +38,11 @@
 								!!}
 							</div>
 
-							<div class="form__wrap  {{ ($errors->first('name')) ? 'form__wrap--error' : '' }}">
+							<div class="form__wrap  {{ array_has($errors, 'name') ? 'form__wrap--error' : '' }}">
 								{!!
 									Form::text(
 										'name',
-										\Input::old('name'),
+										$command->name,
 										[
 											'class' => 'form__field',
 											'placeholder' => 'Name',
@@ -48,49 +50,49 @@
 										]
 									)
 								!!}
-								<span class="form__error">{{ $errors->first('name') }}</span>
+								<span class="form__error">{{ array_get($errors, 'name') }}</span>
 							</div>
 
-							<div class="form__wrap  {{ ($errors->first('email')) ? 'form__wrap--error' : '' }}">
+							<div class="form__wrap  {{ array_has($errors, 'email') ? 'form__wrap--error' : '' }}">
 								{!!
 									Form::email(
 										'email',
-										\Input::old('email'),
+										$command->email,
 										[
 											'class' => 'form__field',
 											'placeholder' => 'Email'
 										]
 									)
 								!!}
-								<span class="form__error">{{ $errors->first('email') }}</span>
+								<span class="form__error">{{ array_get($errors, 'email') }}</span>
 							</div>
 
-							<div class="form__wrap  {{ ($errors->first('subject')) ? 'form__wrap--error' : '' }}">
+							<div class="form__wrap  {{ array_has($errors, 'subject') ? 'form__wrap--error' : '' }}">
 								{!!
 									Form::text(
 										'subject',
-										\Input::old('subject', $subject),
+										$command->subject,
 										[
 											'class' => 'form__field',
 											'placeholder' => 'Subject'
 										]
 									)
 								!!}
-								<span class="form__error">{{ $errors->first('subject') }}</span>
+								<span class="form__error">{{ array_get($errors, 'subject') }}</span>
 							</div>
 
-							<div class="form__wrap  {{ ($errors->first('content')) ? '  form__wrap--error' : '' }}">
+							<div class="form__wrap  {{ array_has($errors, 'message') ? 'form__wrap--error' : '' }}">
 								{!!
 									Form::textarea(
-										'content',
-										\Input::old('content'),
+										'message',
+										$command->message,
 										[
 											'class' => 'form__field  form__field--resize-vertical',
 											'placeholder' => 'Brief Project Description'
 										]
 									)
 								!!}
-								<span class="form__error">{{ $errors->first('content') }}</span>
+								<span class="form__error">{{ array_get($errors, 'message') }}</span>
 							</div>
 
 							<div class="form__control">

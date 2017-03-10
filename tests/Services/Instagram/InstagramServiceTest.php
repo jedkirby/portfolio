@@ -5,10 +5,10 @@ namespace App\Tests\Services\Instagram;
 use App\Services\Instagram\Connections\Connection;
 use App\Services\Instagram\Connections\ConnectionInterface;
 use App\Services\Instagram\InstagramService;
-use App\Tests\AbstractTestCase;
+use App\Tests\AbstractAppTestCase;
 use App\Tests\Services\Instagram\Connections\Providers\Fixtures\StaticContent as StaticContentProvider;
 
-class TwitterServiceTest extends AbstractTestCase
+class TwitterServiceTest extends AbstractAppTestCase
 {
     /**
      * @return InstagramService

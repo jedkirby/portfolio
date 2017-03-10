@@ -5,11 +5,11 @@ namespace App\Tests\Services\Twitter\Connections;
 use App\Services\Twitter\Connections\Connection;
 use App\Services\Twitter\Connections\ConnectionInterface;
 use App\Services\Twitter\Entity\Tweet;
-use App\Tests\AbstractTestCase;
+use App\Tests\AbstractAppTestCase;
 use App\Tests\Services\Twitter\Connections\Providers\Fixtures\EmptyContent as EmptyContentProvider;
 use App\Tests\Services\Twitter\Connections\Providers\Fixtures\StaticContent as StaticContentProvider;
 
-class ConnectionTest extends AbstractTestCase
+class ConnectionTest extends AbstractAppTestCase
 {
     /**
      * @return ConnectionInterface

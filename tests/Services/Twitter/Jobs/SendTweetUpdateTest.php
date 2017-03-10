@@ -5,11 +5,11 @@ namespace App\Tests\Services\Twitter\Jobs;
 use App\Services\Twitter\Jobs\SendTweetUpdate;
 use App\Services\Twitter\Mail\TweetUpdate;
 use App\Services\Twitter\TweetManager;
-use App\Tests\AbstractTestCase;
+use App\Tests\AbstractAppTestCase;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Mail;
 
-class SendTweetUpdateTest extends AbstractTestCase
+class SendTweetUpdateTest extends AbstractAppTestCase
 {
     use DispatchesJobs;
 

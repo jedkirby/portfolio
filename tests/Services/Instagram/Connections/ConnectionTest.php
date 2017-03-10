@@ -5,11 +5,11 @@ namespace App\Tests\Services\Instagram\Connections;
 use App\Services\Instagram\Connections\Connection;
 use App\Services\Instagram\Connections\ConnectionInterface;
 use App\Services\Instagram\Entity\Post;
-use App\Tests\AbstractTestCase;
+use App\Tests\AbstractAppTestCase;
 use App\Tests\Services\Instagram\Connections\Providers\Fixtures\EmptyContent as EmptyContentProvider;
 use App\Tests\Services\Instagram\Connections\Providers\Fixtures\StaticContent as StaticContentProvider;
 
-class ConnectionTest extends AbstractTestCase
+class ConnectionTest extends AbstractAppTestCase
 {
     /**
      * @return ConnectionInterface

@@ -2,78 +2,86 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ContactRequest;
-use Carbon\Carbon;
+use App\Domain\Common\Validation\Exception\SpamException;
+use App\Domain\Common\Validation\Exception\ValidationException;
+use App\Domain\Contact\Command\ContactCommand;
+use App\Domain\Contact\Command\ContactHandler;
+use App\Domain\Domain;
+use Illuminate\Http\Request;
 
-class ContactController extends RootController
+class ContactController extends AbstractController
 {
-    protected $complete = false;
+    /**
+     * @var Domain
+     */
+    protected $domain;
 
-    public function getForm($section = null)
-    {
-        $this->setTitle('Contact');
-        $this->setDescription('If you have a specific requirement that you\'d like to talk about, simply fill in this form as fully as possible and I will personally get back to you. Having worked with clients in a number of different time zones, I\'ve given up on using the phone. However, you can reach me through e-mail.');
+    /**
+     * @var ContactHandler
+     */
+    private $handler;
 
-        return view('pages.contact', [
-            'complete' => $this->complete,
-            'subject' => $this->fetchSubject($section),
-        ]);
+    /**
+     * @param Domain $domain
+     * @param ContactHandler $handler
+     */
+    public function __construct(
+        Domain $domain,
+        ContactHandler $handler
+    ) {
+        $domain->setTitle('Contact');
+        $domain->setDescription("If you have a specific requirement that you'd like to talk about, simply fill in this form as fully as possible and I will personally get back to you. Having worked with clients in a number of different time zones, I've given up on using the phone. However, you can reach me through e-mail.");
+
+        $this->domain = $domain;
+        $this->handler = $handler;
     }
 
-    public function postForm(ContactRequest $request)
+    /**
+     * {@inheritdoc}
+     */
+    public function get()
     {
-        try {
-            $this->sendEmail(
-                \Input::get('name'),
-                \Input::get('email'),
-                (\Input::get('subject') ?: 'N/A'),
-                \Input::get('content'),
-                \Input::get('title') // Using the "title" field as a honepot for bots >:}
-            );
-        } catch (\Exception $e) {
-            \Log::error($e);
-        }
-
-        $this->complete = true;
-
-        return $this->getForm();
-    }
-
-    protected function sendEmail($name, $email, $subject, $content, $honeypot)
-    {
-        $site = \Request::server('HTTP_HOST');
-        $sent = Carbon::now()->toDayDateTimeString();
-        $ip = \Request::getClientIp();
-
-        $emailSubject = 'Contact';
-        if (!empty($honeypot)) {
-            $emailSubject .= ' - Bot';
-        }
-
-        \Mail::send(
-            'emails.contact',
-            compact('name', 'email', 'subject', 'content', 'site', 'sent', 'ip'),
-            function ($message) use ($emailSubject) {
-                $message->from(\Config::get('site.meta.email.from'), 'Portfolio');
-                $message->to(\Config::get('site.meta.email.to'), \Config::get('site.meta.title'));
-                $message->subject($emailSubject);
-            }
+        return view(
+            'pages.contact',
+            $this->getViewParams([
+                'command' => ContactCommand::make(),
+                'complete' => false,
+                'errors' => [],
+            ])
         );
     }
 
-    protected function fetchSubject($section)
+    /**
+     * {@inheritdoc}
+     */
+    public function post(Request $request)
     {
-        switch ($section) {
-            case 'demo':
-                return 'Demo Request';
-            case 'more':
-                return 'Request More Information';
-            case 'cv':
-                return 'CV Request';
-            case 'interested':
-                return 'Interested In Services';
-            default:
-                return '';
+        $command = ContactCommand::fromRequest($request);
+
+        $params = [
+            'command' => $command,
+            'complete' => false,
+            'errors' => [],
+        ];
+
+        try {
+            if ($this->handler->handle($command)) {
+                $params['complete'] = true;
+            }
+        } catch (ValidationException $e) {
+            $params['errors'] = $e->getErrors();
+        } catch (SpamException $e) {
+            /*
+             * Pretend we're all done here, the honeypot
+             * field was filled in, and that normally
+             * means it was a bot doing the filling.
+             */
+            $params['complete'] = true;
         }
+
+        return view(
+            'pages.contact',
+            $this->getViewParams($params)
+        );
     }
 }

@@ -2,18 +2,47 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\Twitter\TweetManager;
+use App\Domain\Domain;
+use App\Services\Twitter\TweetManager as Twitter;
 
-class HomeController extends RootController
+class HomeController extends AbstractController
 {
-    public function getHome()
-    {
-        $this->setDescription('Website and application developer based in Stratford Upon Avon, UK. An avid blogger of anything related to social media, business, entertainment or technology. Primarily covering Warwickshire, but expanding to the rest of the world to provide a stress free and professional service. Available for hire.');
+    /**
+     * @var Domain
+     */
+    protected $domain;
 
-        return view('pages.home', [
-            'tweet' => TweetManager::getTweet(),
-            'articles' => BlogController::articles(2),
-            'projects' => ProjectController::projects(3),
-        ]);
+    /**
+     * @var Twitter
+     */
+    private $twitter;
+
+    /**
+     * @param Domain $domain
+     * @param Twitter $twitter
+     */
+    public function __construct(
+        Domain $domain,
+        Twitter $twitter
+    ) {
+        $this->domain = $domain;
+        $this->twitter = $twitter;
+    }
+
+    /**
+     * {@inheritdoc}.
+     */
+    public function __invoke()
+    {
+        $this->domain->setDescription('Website and application developer based in Stratford Upon Avon, UK. An avid blogger of anything related to social media, business, entertainment or technology. Primarily covering Warwickshire, but expanding to the rest of the world to provide a stress free and professional service. Available for hire.');
+
+        return view(
+            'pages.home',
+            $this->getViewParams([
+                'tweet' => $this->twitter->getTweet(),
+                'articles' => BlogController::articles(2),
+                'projects' => ProjectController::projects(3),
+            ])
+        );
     }
 }

@@ -29,16 +29,16 @@ var Interest = {
 		});
 	},
 	handleSuccess: function(data){
-		if(data.success){
+		if(data.complete){
 			this.$container.find(this.selectors.input).addClass('hidden');
 			this.$container.find(this.selectors.complete).removeClass('hidden');
 		}
 		else {
-			this.showError('An unexpected error has occurred.');
+			this.showError(data.errors.email);
 		}
 	},
 	handleError: function(xhr, status, error){
-		this.showError(xhr.responseJSON.email[0]);
+		this.showError('An unexpected error has occurred.');
 	},
 	showError: function(string){
 		var $span = $('<p>', {

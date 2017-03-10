@@ -1,4 +1,6 @@
 @extends('master')
+
+@section('id', 'about')
 @section('content')
 
 	@include('pages.about.introduction')

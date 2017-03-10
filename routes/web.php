@@ -11,36 +11,24 @@
 |
 */
 
-// Main
-Route::get('/', 'HomeController@getHome');
+Route::get('/', 'HomeController');
 
-// Static
-Route::get('about', 'StaticController@getAbout');
+Route::get('about', 'AboutController');
 Route::get('version', function () {
     dd(client_version());
 });
 
-// Work
 Route::get('work', 'ProjectController@getProjects');
 Route::get('work/{slug}', 'ProjectController@getSingle');
 
-// Blog
 Route::get('blog', 'BlogController@getArticles');
 Route::get('blog/{slug}', 'BlogController@getSingle');
 
-// Contact
-// Route::group(['middleware' => 'csrf'], function(){
+Route::get('contact', 'ContactController@get');
+Route::post('contact', 'ContactController@post');
 
-    Route::get('contact/{section?}', 'ContactController@getForm');
-    Route::post('contact', 'ContactController@postForm');
-
-// });
-
-// Api(s)
 Route::group(['prefix' => 'api'], function () {
-    // Interest
-    Route::post('interest/register', '\\App\\Http\\Api\\Interest@postRegister');
+    Route::post('interest/register', 'InterestController');
 });
 
-// Sitemap
-Route::get('sitemap.xml', 'StaticController@getSitemap');
+Route::get('sitemap.xml', 'SitemapController');

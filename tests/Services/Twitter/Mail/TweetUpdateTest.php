@@ -4,9 +4,9 @@ namespace App\Tests\Services\Twitter\Mail;
 
 use App\Services\Twitter\Mail\TweetUpdate;
 use App\Services\Twitter\TweetManager;
-use App\Tests\AbstractTestCase;
+use App\Tests\AbstractAppTestCase;
 
-class TweetUpdateTest extends AbstractTestCase
+class TweetUpdateTest extends AbstractAppTestCase
 {
     /**
      * @test

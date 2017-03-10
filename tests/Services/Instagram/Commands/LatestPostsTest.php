@@ -7,10 +7,10 @@ use App\Services\Instagram\Connections\Connection;
 use App\Services\Instagram\Entity\Post;
 use App\Services\Instagram\InstagramManager;
 use App\Services\Instagram\InstagramService;
-use App\Tests\AbstractTestCase;
+use App\Tests\AbstractAppTestCase;
 use App\Tests\Services\Instagram\Connections\Providers\Fixtures\StaticContent as StaticContentProvider;
 
-class LatestPostsTest extends AbstractTestCase
+class LatestPostsTest extends AbstractAppTestCase
 {
     /**
      * @test

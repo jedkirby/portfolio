@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Domain\Domain;
+use Illuminate\Config\Repository as Config;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -18,18 +20,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->registerNewRelic();
-    }
-
-    /**
-     * Register the New Relic handler.
-     */
-    public function registerNewRelic()
-    {
-        if (extension_loaded('newrelic')) {
-            if (($host = env('NR_HOST')) && ($key = env('NR_KEY'))) {
-                newrelic_set_appname($host, $key);
+        $this->app->singleton(
+            Domain::class,
+            function ($app) {
+                return new Domain(
+                    $app->make(Config::class)
+                );
             }
-        }
+        );
     }
 }
