@@ -21,9 +21,6 @@ class SendInterestEmail
         $this->entity = $entity;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function handle(Mailer $mailer, Config $config)
     {
         $entity = $this->entity;

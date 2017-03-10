@@ -2,9 +2,9 @@
 
 namespace App\Tests\Http\Controllers;
 
-use App\Services\Instagram\InstagramManager as Instagram;
-use App\Services\Instagram\Entity\Post;
 use App\Http\Controllers\AboutController;
+use App\Services\Instagram\Entity\Post;
+use App\Services\Instagram\InstagramManager as Instagram;
 use Mockery;
 
 /**
@@ -63,5 +63,4 @@ class AboutControllerTest extends ControllerTestCase
         $this->assertInternalType('int', $data['counts']['projects']);
         $this->assertInternalType('int', $data['counts']['articles']);
     }
-
 }

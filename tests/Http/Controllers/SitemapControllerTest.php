@@ -40,5 +40,4 @@ class SitemapControllerTest extends TestCase
         $this->assertArrayHasKey('routes', $data);
         $this->assertInternalType('array', $data['routes']);
     }
-
 }
