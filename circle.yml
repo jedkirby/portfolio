@@ -13,6 +13,10 @@ dependencies:
 
 test:
   override:
-    - phpunit -c phpunit.xml.dist
+    - php ./vendor/bin/phpunit -c phpunit.xml.dist
   post:
-    - coveralls -v
+    - php ./vendor/bin/coveralls -v
+
+notify:
+  webhooks:
+    - url: https://coveralls.io/webhook?repo_token=$COVERALLS_REPO_TOKEN
