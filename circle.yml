@@ -7,7 +7,7 @@ machine:
 
 dependencies:
   override:
-    - composer install --dev --no-interaction
+    - composer install --no-interaction
   cache_directories:
     - ~/.composer/cache
 
@@ -15,4 +15,4 @@ test:
   override:
     - phpunit -c phpunit.xml.dist
   post:
-    - coveralls -v --exclude-no-stmt
+    - coveralls -v
