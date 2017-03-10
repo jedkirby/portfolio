@@ -6,8 +6,6 @@ machine:
     version: 4.2.6
 
 dependencies:
-  pre:
-    - sed -i 's/^;//' ~/.phpenv/versions/$(phpenv global)/etc/conf.d/xdebug.ini
   override:
     - composer install --dev --no-interaction
   cache_directories:
