@@ -19,7 +19,8 @@ test:
     - mkdir -p $CIRCLE_TEST_REPORTS/phpunit
   override:
     - php ./vendor/bin/phpunit -c phpunit.xml.dist --log-junit $CIRCLE_TEST_REPORTS/phpunit/junit.xml
-    - php ./vendor/bin/coveralls -v
+  post:
+    - php ./vendor/bin/coveralls
 
 notify:
   webhooks:
