@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Domain\Domain;
+use App\Domain\Project\ProjectManager as Projects;
 use App\Domain\Service\Twitter\TweetManager as Twitter;
 
 class HomeController extends AbstractController
@@ -18,15 +19,23 @@ class HomeController extends AbstractController
     private $twitter;
 
     /**
+     * @var Projects
+     */
+    private $projects;
+
+    /**
      * @param Domain $domain
      * @param Twitter $twitter
+     * @param Projects $projects
      */
     public function __construct(
         Domain $domain,
-        Twitter $twitter
+        Twitter $twitter,
+        Projects $projects
     ) {
         $this->domain = $domain;
         $this->twitter = $twitter;
+        $this->projects = $projects;
     }
 
     /**
@@ -40,8 +49,8 @@ class HomeController extends AbstractController
             'pages.home',
             $this->getViewParams([
                 'tweet' => $this->twitter->getTweet(),
-                'articles' => BlogController::articles(2),
-                'projects' => ProjectController::projects(3),
+                'articles' => [],
+                'posts' => $this->projects->getPosts(3),
             ])
         );
     }

@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Domain\Domain;
+use App\Domain\Project\ProjectManager as Projects;
 use App\Domain\Service\Instagram\InstagramManager as Instagram;
-use App\Http\Controllers\BlogController as Blog;
-use App\Http\Controllers\ProjectController as Project;
 use Carbon\Carbon;
 
 class AboutController extends AbstractController
@@ -21,15 +20,23 @@ class AboutController extends AbstractController
     private $instagram;
 
     /**
+     * @var Projects
+     */
+    private $projects;
+
+    /**
      * @param Domain $domain
      * @param Instagram $instagram
+     * @param Projects $projects
      */
     public function __construct(
         Domain $domain,
-        Instagram $instagram
+        Instagram $instagram,
+        Projects $projects
     ) {
         $this->domain = $domain;
         $this->instagram = $instagram;
+        $this->projects = $projects;
     }
 
     /**
@@ -42,9 +49,6 @@ class AboutController extends AbstractController
 
         $startedWorking = Carbon::createFromDate(2011, 4);
 
-        $totalProjects = count(Project::projects());
-        $totalArticles = count(Blog::articles());
-
         return view(
             'pages.about',
             $this->getViewParams([
@@ -52,8 +56,8 @@ class AboutController extends AbstractController
                 'counts' => [
                     'tea' => $startedWorking->diffInDays(),
                     'food' => $startedWorking->diffInWeeks(),
-                    'projects' => $totalProjects,
-                    'articles' => $totalArticles,
+                    'projects' => $this->projects->getPostsCount(),
+                    'articles' => 0,
                 ],
             ])
         );

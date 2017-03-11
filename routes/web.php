@@ -18,8 +18,8 @@ Route::get('version', function () {
     dd(client_version());
 });
 
-Route::get('work', 'ProjectController@getProjects');
-Route::get('work/{slug}', 'ProjectController@getSingle');
+Route::get('work', 'ProjectController@all');
+Route::get('work/{slug}', 'ProjectController@single');
 
 Route::get('blog', 'BlogController@getArticles');
 Route::get('blog/{slug}', 'BlogController@getSingle');

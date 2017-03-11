@@ -1,4 +1,6 @@
 @extends('master')
+
+@section('id', $id)
 @section('content')
 
 	<div class="site__medium">

@@ -2,14 +2,20 @@
 
 namespace App\Exceptions;
 
-use Config;
+use App\Domain\Domain;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
+use Illuminate\Contracts\Container\Container;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Handler extends ExceptionHandler
 {
+    /**
+     * @var Domain
+     */
+    private $domain;
+
     /**
      * A list of the exception types that should not be reported.
      *
@@ -27,6 +33,17 @@ class Handler extends ExceptionHandler
         \App\Domain\Service\Instagram\Exception\UnableToGetInstagramFeedPostsException::class,
         \App\Domain\Service\Twitter\Exception\UnableToGetLatestTweetException::class,
     ];
+
+    /**
+     * {@inheritdoc}
+     */
+    public function __construct(
+        Container $container,
+        Domain $domain
+    ) {
+        $this->container = $container;
+        $this->domain = $domain;
+    }
 
     /**
      * Report or log an exception.
@@ -83,12 +100,18 @@ class Handler extends ExceptionHandler
         return response()->view(
             $view,
             [
-                'title' => $status,
-                'description' => '',
-                'keywords' => '',
-                'pageid' => implode('  ', ['error', 'error__' . $class]),
-                'facebookId' => Config::get('site.social.streams.facebook.id'),
+                'title' => $this->domain->getTitle(),
+                'description' => $this->domain->getDescription(),
+                'keywords' => $this->domain->getKeywords(),
+                'author' => $this->domain->getAuthor(),
                 'status' => $status,
+                'id' => implode(
+                    '  ',
+                    [
+                        'error',
+                        'error__' . $class,
+                    ]
+                ),
             ],
             $status,
             $e->getHeaders()

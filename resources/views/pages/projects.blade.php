@@ -1,7 +1,9 @@
 @extends('master')
+
+@section('id', 'work')
 @section('content')
 
-	@if($projects)
+	@if($posts)
 		<div class="projects">
 			<div class="site__full">
 
@@ -10,7 +12,7 @@
 
 						<div class="col--wrapper">
 
-							@include('pages.projects.items')
+							@include('pages.projects.posts')
 
 						</div>
 

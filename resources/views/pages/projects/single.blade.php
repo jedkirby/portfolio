@@ -1,4 +1,6 @@
 @extends('master')
+
+@section('id', 'work')
 @section('content')
 
 	<div class="single  js-project">
@@ -13,16 +15,16 @@
 
 						<div class="project__intro">
 
-							<h2>{{ array_get($project, 'title') }}</h2>
-							<p class="project__sub">{{ array_get($project, 'sub') }}</p>
+							<h2>{{ $post->getTitle() }}</h2>
+							<p class="project__sub">{{ $post->getSubTitle() }}</p>
 
-							@if( ($expired = array_get($project, 'expired')) )
+							@if( ($expired = $post->getExpired()) )
 								<p class="project__expired">{{ $expired }}</p>
 							@endif
 
-							{!! array_get($project, 'intro') !!}
+							{!! $post->getIntroduction() !!}
 
-							@if( ($link = array_get($project, 'link')) )
+							@if( ($link = $post->getLink()) )
 								<a href="{{ $link }}" class="btn  btn__primary  btn__icon" target="_blank">
 									<i class="fa fa-globe"></i>
 									Visit Site
@@ -32,7 +34,7 @@
 						</div>
 
 
-						@if( ($images = array_get($project, 'images')) )
+						@if( ($images = $post->getImages()) )
 
 							<div class="browser">
 								<div class="browser__inner">
@@ -56,24 +58,25 @@
 
 
 						<div class="project__content">
-							{!! array_get($project, 'content') !!}
+							{!! $post->getContent() !!}
 						</div>
 
-
-						<div class="social  project__social">
-							<a href="{{ $social->facebook->shareUrl }}" class="btn  btn__icon  social__button  social__button--facebook" title="Facebook" target="_blank">
-								<i class="fa fa-facebook"></i> <span>Facebook</span>
-							</a>
-							<a href="{{ $social->twitter->shareUrl }}" class="btn  btn__icon  social__button  social__button--twitter" title="Twitter" target="_blank">
-								<i class="fa fa-twitter"></i> <span>Twitter</span>
-							</a>
-							<a href="{{ $social->plus->shareUrl }}" class="btn  btn__icon  social__button  social__button--google" title="Google Plus" target="_blank">
-								<i class="fa fa-google"></i> <span>Google</span>
-							</a>
-							<a href="{{ $social->pinterest->shareUrl }}" class="btn  btn__icon  social__button  social__button--pinterest" title="Pinterest" target="_blank">
-								<i class="fa fa-pinterest"></i> <span>Pinterest</span>
-							</a>
-						</div>
+						<?php /*
+                        <div class="social  project__social">
+                            <a href="{{ $social->facebook->shareUrl }}" class="btn  btn__icon  social__button  social__button--facebook" title="Facebook" target="_blank">
+                                <i class="fa fa-facebook"></i> <span>Facebook</span>
+                            </a>
+                            <a href="{{ $social->twitter->shareUrl }}" class="btn  btn__icon  social__button  social__button--twitter" title="Twitter" target="_blank">
+                                <i class="fa fa-twitter"></i> <span>Twitter</span>
+                            </a>
+                            <a href="{{ $social->plus->shareUrl }}" class="btn  btn__icon  social__button  social__button--google" title="Google Plus" target="_blank">
+                                <i class="fa fa-google"></i> <span>Google</span>
+                            </a>
+                            <a href="{{ $social->pinterest->shareUrl }}" class="btn  btn__icon  social__button  social__button--pinterest" title="Pinterest" target="_blank">
+                                <i class="fa fa-pinterest"></i> <span>Pinterest</span>
+                            </a>
+                        </div>
+                        */ ?>
 
 
 					</div>
@@ -83,7 +86,7 @@
 			</div>
 		</div>
 
-		@if( ($testimonial = array_get($project, 'testi')) )
+		@if( ($testimonial = $post->getTestimonial()) )
 
 			<div class="testimonial">
 				<div class="site__full">
@@ -97,7 +100,7 @@
 
 								<p class="testimonial__date">
 									<i class="fa fa-clock-o"></i>
-									{{ array_get($project, 'date')->format('F jS, Y') }}
+									{{ $post->getDate()->format('F jS, Y') }}
 								</p>
 
 							</div>
