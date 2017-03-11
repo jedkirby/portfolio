@@ -14,8 +14,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        \App\Services\Twitter\Commands\LatestTweet::class,
-        \App\Services\Instagram\Commands\LatestPosts::class,
+        \App\Domain\Service\Twitter\Command\LatestTweet::class,
+        \App\Domain\Service\Instagram\Command\LatestPosts::class,
         \App\Console\Commands\Errors::class,
     ];
 
@@ -39,6 +39,5 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        require base_path('routes/console.php');
     }
 }

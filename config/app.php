@@ -157,7 +157,6 @@ return [
         App\Providers\AppServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\BroadcastServiceProvider::class,
         App\Domain\Service\Twitter\TwitterServiceProvider::class,
         App\Domain\Service\Instagram\InstagramServiceProvider::class,
     ],

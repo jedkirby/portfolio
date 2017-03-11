@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Domain\Domain;
+use App\Domain\Service\Instagram\InstagramManager as Instagram;
 use App\Http\Controllers\BlogController as Blog;
 use App\Http\Controllers\ProjectController as Project;
-use App\Services\Instagram\InstagramManager as Instagram;
 use Carbon\Carbon;
 
 class AboutController extends AbstractController

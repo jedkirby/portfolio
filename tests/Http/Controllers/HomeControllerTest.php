@@ -3,9 +3,9 @@
 namespace App\Tests\Http\Controllers;
 
 use App\Domain\Domain;
+use App\Domain\Service\Twitter\Entity\Tweet;
+use App\Domain\Service\Twitter\TweetManager as Twitter;
 use App\Http\Controllers\HomeController;
-use App\Services\Twitter\Entity\Tweet;
-use App\Services\Twitter\TweetManager as Twitter;
 use Mockery;
 
 /**

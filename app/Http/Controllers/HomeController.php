@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Domain\Domain;
-use App\Services\Twitter\TweetManager as Twitter;
+use App\Domain\Service\Twitter\TweetManager as Twitter;
 
 class HomeController extends AbstractController
 {

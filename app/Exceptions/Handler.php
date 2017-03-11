@@ -16,14 +16,16 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
+        \Symfony\Component\HttpKernel\Exception\HttpException::class,
         \Illuminate\Auth\AuthenticationException::class,
         \Illuminate\Auth\Access\AuthorizationException::class,
-        \Symfony\Component\HttpKernel\Exception\HttpException::class,
         \Illuminate\Database\Eloquent\ModelNotFoundException::class,
         \Illuminate\Session\TokenMismatchException::class,
         \Illuminate\Validation\ValidationException::class,
         \App\Domain\Common\Validation\Exception\SpamException::class,
         \App\Domain\Common\Validation\Exception\ValidationException::class,
+        \App\Domain\Service\Instagram\Exception\UnableToGetInstagramFeedPostsException::class,
+        \App\Domain\Service\Twitter\Exception\UnableToGetLatestTweetException::class,
     ];
 
     /**

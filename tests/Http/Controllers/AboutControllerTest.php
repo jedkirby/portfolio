@@ -2,9 +2,9 @@
 
 namespace App\Tests\Http\Controllers;
 
+use App\Domain\Service\Instagram\Entity\Post;
+use App\Domain\Service\Instagram\InstagramManager as Instagram;
 use App\Http\Controllers\AboutController;
-use App\Services\Instagram\Entity\Post;
-use App\Services\Instagram\InstagramManager as Instagram;
 use Mockery;
 
 /**
