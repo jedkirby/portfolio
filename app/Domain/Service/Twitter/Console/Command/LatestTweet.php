@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Service\Twitter\Command;
+namespace App\Domain\Service\Twitter\Console\Command;
 
 use App\Domain\Service\Twitter\Jobs\SendTweetUpdate;
 use App\Domain\Service\Twitter\TweetManager;

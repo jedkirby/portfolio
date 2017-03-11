@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Tests\Domain\Service\Instagram\Command;
+namespace App\Tests\Domain\Service\Instagram\Console\Command;
 
-use App\Domain\Service\Instagram\Command\LatestPosts;
 use App\Domain\Service\Instagram\Connection\Connection;
+use App\Domain\Service\Instagram\Console\Command\LatestPosts;
 use App\Domain\Service\Instagram\Entity\Post;
 use App\Domain\Service\Instagram\InstagramManager;
 use App\Domain\Service\Instagram\InstagramService;
@@ -14,7 +14,8 @@ use App\Tests\Domain\Service\Instagram\Connection\Provider\Fixtures\StaticConten
  * @group domain
  * @group domain.service
  * @group domain.service.instagram
- * @group domain.service.instagram.command
+ * @group domain.service.instagram.console
+ * @group domain.service.instagram.console.command
  */
 class LatestPostsTest extends TestCase
 {

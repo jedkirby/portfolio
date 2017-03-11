@@ -32,6 +32,7 @@ class Handler extends ExceptionHandler
         \App\Domain\Common\Validation\Exception\ValidationException::class,
         \App\Domain\Service\Instagram\Exception\UnableToGetInstagramFeedPostsException::class,
         \App\Domain\Service\Twitter\Exception\UnableToGetLatestTweetException::class,
+        \App\Domain\Project\Exception\PostNotFoundException::class,
     ];
 
     /**

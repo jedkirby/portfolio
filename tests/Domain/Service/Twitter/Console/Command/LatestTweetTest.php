@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Tests\Domain\Service\Twitter\Command;
+namespace App\Tests\Domain\Service\Twitter\Console\Command;
 
-use App\Domain\Service\Twitter\Command\LatestTweet;
 use App\Domain\Service\Twitter\Connection\Connection;
+use App\Domain\Service\Twitter\Console\Command\LatestTweet;
 use App\Domain\Service\Twitter\Entity\Tweet;
 use App\Domain\Service\Twitter\Jobs\SendTweetUpdate;
 use App\Domain\Service\Twitter\TweetManager;
@@ -16,7 +16,8 @@ use Config;
  * @group domain
  * @group domain.service
  * @group domain.service.twitter
- * @group domain.service.twitter.command
+ * @group domain.service.twitter.console
+ * @group domain.service.twitter.console.command
  */
 class LatestTweetTest extends TestCase
 {

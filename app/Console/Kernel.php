@@ -14,9 +14,9 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        \App\Domain\Service\Twitter\Command\LatestTweet::class,
-        \App\Domain\Service\Instagram\Command\LatestPosts::class,
-        \App\Console\Commands\Errors::class,
+        \App\Domain\Service\Twitter\Console\Command\LatestTweet::class,
+        \App\Domain\Service\Instagram\Console\Command\LatestPosts::class,
+        \App\Domain\Handler\Error\Console\Command\ErrorReport::class,
     ];
 
     /**
@@ -30,7 +30,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('twitter:latest-tweet')->everyFiveMinutes();
 
         if (App::environment('production')) {
-            $schedule->command('app:errors')->daily(); // Once every day just gone midnight
+            $schedule->command('app:error-report')->daily(); // Once every day just gone midnight
         }
     }
 

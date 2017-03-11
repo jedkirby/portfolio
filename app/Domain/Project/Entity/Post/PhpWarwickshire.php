@@ -5,6 +5,9 @@ namespace App\Domain\Project\Entity\Post;
 use App\Domain\Project\Entity\PostInterface;
 use Carbon\Carbon;
 
+/**
+ * @codeCoverageIgnore
+ */
 final class PhpWarwickshire implements PostInterface
 {
     /**

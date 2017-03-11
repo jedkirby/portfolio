@@ -2,6 +2,7 @@
 
 namespace App\Tests\Http\Controllers;
 
+use App\Domain\Project\ProjectManager as Projects;
 use App\Domain\Service\Instagram\Entity\Post;
 use App\Domain\Service\Instagram\InstagramManager as Instagram;
 use App\Http\Controllers\AboutController;
@@ -12,9 +13,10 @@ use Mockery;
  * @group http.controllers
  * @group http.controllers.about
  */
-class AboutControllerTest extends ControllerTestCase
+class AboutControllerTest extends AbstractControllerTestCase
 {
     private $instagram;
+    private $projects;
     private $controller;
 
     public function setUp()
@@ -22,9 +24,11 @@ class AboutControllerTest extends ControllerTestCase
         parent::setUp();
 
         $this->instagram = Mockery::mock(Instagram::class);
+        $this->projects = Mockery::mock(Projects::class);
         $this->controller = new AboutController(
             $this->domain,
-            $this->instagram
+            $this->instagram,
+            $this->projects
         );
     }
 
@@ -47,6 +51,11 @@ class AboutControllerTest extends ControllerTestCase
             ])
             ->once();
 
+        $this->projects
+            ->shouldReceive('getPostsCount')
+            ->andReturn(3)
+            ->once();
+
         $view = $this->controller->__invoke();
         $data = $view->getData();
 
@@ -62,5 +71,8 @@ class AboutControllerTest extends ControllerTestCase
         $this->assertInternalType('int', $data['counts']['food']);
         $this->assertInternalType('int', $data['counts']['projects']);
         $this->assertInternalType('int', $data['counts']['articles']);
+
+        $this->assertEquals($data['counts']['projects'], 3);
+        $this->assertEquals($data['counts']['articles'], 0);
     }
 }

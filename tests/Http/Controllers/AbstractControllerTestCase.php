@@ -6,7 +6,7 @@ use App\Domain\Domain;
 use App\Tests\AbstractAppTestCase as TestCase;
 use Mockery;
 
-class ControllerTestCase extends TestCase
+abstract class AbstractControllerTestCase extends TestCase
 {
     protected $domain;
 

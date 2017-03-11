@@ -15,7 +15,7 @@ use Mockery;
  * @group http.controllers
  * @group http.controllers.contact
  */
-class ContactControllerTest extends ControllerTestCase
+class ContactControllerTest extends AbstractControllerTestCase
 {
     private $handler;
     private $controller;

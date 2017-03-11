@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Service\Instagram\Command;
+namespace App\Domain\Service\Instagram\Console\Command;
 
 use App\Domain\Service\Instagram\InstagramManager;
 use App\Domain\Service\Instagram\InstagramService;

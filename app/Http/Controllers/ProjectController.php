@@ -3,12 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Domain\Domain;
+use App\Domain\Project\Exception\PostNotFoundException;
 use App\Domain\Project\ProjectManager as Projects;
 use Illuminate\View\View;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ProjectController extends AbstractController
 {
+    /**
+     * @var int
+     */
+    const KEYWORD_LIMIT = 15;
+
     /**
      * @var Domain
      */
@@ -48,7 +54,7 @@ class ProjectController extends AbstractController
         $this->domain->setDescription('Projects and personal work I have had envolvement with, including web design and development; application development and illustrations.');
         $this->domain->setKeywords(
             array_unique(
-                array_slice($keywords, 0, 15) // NB: We only want a maximum of 15 keywords.
+                array_slice($keywords, 0, static::KEYWORD_LIMIT) // NB: We only want a maximum of 15 keywords.
             )
         );
 
@@ -65,7 +71,9 @@ class ProjectController extends AbstractController
      */
     public function single($id)
     {
-        if (!$post = $this->projects->getPost($id)) {
+        try {
+            $post = $this->projects->getPost($id);
+        } catch (PostNotFoundException $e) {
             throw new NotFoundHttpException();
         }
 

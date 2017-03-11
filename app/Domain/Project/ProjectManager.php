@@ -15,6 +15,7 @@ use App\Domain\Project\Entity\Post\VictoriaJeffs;
 use App\Domain\Project\Entity\Post\Vuven;
 use App\Domain\Project\Entity\Post\WellForgedFilms;
 use App\Domain\Project\Entity\PostInterface;
+use App\Domain\Project\Exception\PostNotFoundException;
 
 class ProjectManager
 {
@@ -62,14 +63,16 @@ class ProjectManager
     /**
      * @param string $id
      *
-     * @return PostInterface|bool
+     * @throws PostNotFoundException
+     *
+     * @return PostInterface
      */
     public function getPost($id)
     {
-        if (array_key_exists($id, $this->posts)) {
-            return new $this->posts[$id]();
+        if (!array_key_exists($id, $this->posts)) {
+            throw new PostNotFoundException();
         }
 
-        return false;
+        return new $this->posts[$id]();
     }
 }

@@ -5,6 +5,9 @@ namespace App\Domain\Project\Entity;
 use Carbon\Carbon;
 use Illuminate\View\View;
 
+/**
+ * @codeCoverageIgnore
+ */
 interface PostInterface
 {
     /**
