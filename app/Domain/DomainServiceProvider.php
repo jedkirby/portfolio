@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Providers;
+namespace App\Domain;
 
-use App\Domain\Domain;
 use Illuminate\Config\Repository as Config;
 use Illuminate\Support\ServiceProvider;
 
-class AppServiceProvider extends ServiceProvider
+class DomainServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any application services.
