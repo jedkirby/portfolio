@@ -72,9 +72,9 @@ class ProjectControllerTest extends AbstractControllerTestCase
         $view = $this->controller->all();
         $data = $view->getData();
 
-        $this->assertArrayHasKey('posts', $data);
-        $this->assertInternalType('array', $data['posts']);
-        $this->assertCount(2, $data['posts']);
+        $this->assertArrayHasKey('projects', $data);
+        $this->assertInternalType('array', $data['projects']);
+        $this->assertCount(2, $data['projects']);
     }
 
     public function testGetAllCompilesKeywords()

@@ -1,19 +1,22 @@
 @extends('master')
+
+@section('id', 'blog')
 @section('header')
 
 	<meta property="og:type" content="article">
 
 	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:site" content="{{ $twitterHandle }}" />
+	<?php /*<meta name="twitter:site" content="{{ $twitterHandle }}" />*/ ?>
 	<meta name="twitter:title" content="{{ $title }}" />
 	<meta name="twitter:description" content="{{ $description }}" />
 
-	@if( ($image = array_get($article, 'image', false)) )
+	@if( ($image = $article->getImage()) )
 		<meta property="og:image" content="{{ $image }}">
 		<meta name="twitter:image" content="{{ $image }}">
 	@endif
 
 @stop
+
 @section('content')
 
 	<div class="site__medium">
@@ -28,16 +31,17 @@
 
 						<article class="articles__article" itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
 
-							<h2 itemprop="headline">{{ array_get($article, 'title') }}</h2>
+							<h2 itemprop="headline">{{ $article->getTitle() }}</h2>
 
-							<time class="articles__article--metadata" pubdate="{{ array_get($article, 'date')->format('Y-m-d') }}" itemprop="datePublished" datetime="{{ array_get($article, 'date')->format('Y-m-d') }}" content="{{ array_get($article, 'date')->format('Y-m-d') }}">{{ array_get($article, 'date')->format('F j, Y') }}</time>
+							<time class="articles__article--metadata" pubdate="{{ $article->getDate() }}" itemprop="datePublished" datetime="{{ $article->getDate() }}" content="{{ $article->getDate() }}">{{ $article->getDate('F j, Y') }}</time>
 
-							@if( ($image = array_get($article, 'image', false)) )
+							@if( ($image = $article->getImage()) )
 								<img itemprop="image" src="{{ asset('assets/img/blank.png') }}" data-src="{{ $image }}" class="articles__article--hero  lazyload">
 							@endif
 
-							<div class="articles__article--content" itemprop="articleBody">{!! array_get($article, 'content') !!}</div>
+							<div class="articles__article--content" itemprop="articleBody">{!! $article->getContent() !!}</div>
 
+							<?php /*
 							<div class="social  articles__social">
 								<a href="{{ $social->facebook->shareUrl }}" class="btn  btn__icon  social__button  social__button--facebook" title="Facebook" target="_blank">
 									<i class="fa fa-facebook"></i> <span>Facebook</span>
@@ -52,13 +56,7 @@
 									<i class="fa fa-pinterest"></i> <span>Pinterest</span>
 								</a>
 							</div>
-
-							@if( ($tags = array_get($article, 'tags')) )
-								<div class="articles__article--tags">
-									<i class="fa fa-tags"></i> 
-									<span itemprop="keywords">{!! implode(', ', $tags) !!}</span>
-								</div>
-							@endif
+							*/?>
 
 						</article>
 

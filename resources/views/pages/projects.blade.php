@@ -3,7 +3,7 @@
 @section('id', 'work')
 @section('content')
 
-	@if($posts)
+	@if($projects)
 		<div class="projects">
 			<div class="site__full">
 
@@ -12,7 +12,7 @@
 
 						<div class="col--wrapper">
 
-							@include('pages.projects.posts')
+							@include('pages.projects.projects')
 
 						</div>
 

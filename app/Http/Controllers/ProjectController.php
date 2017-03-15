@@ -42,12 +42,12 @@ class ProjectController extends AbstractController
      */
     public function all()
     {
-        $posts = $this->project->getAll();
+        $projects = $this->project->getAll();
 
         $keywords = [];
-        foreach ($posts as $post) {
-            $keywords[] = $post->getTitle();
-            $keywords[] = $post->getSubTitle();
+        foreach ($projects as $project) {
+            $keywords[] = $project->getTitle();
+            $keywords[] = $project->getSubTitle();
         }
 
         $this->domain->setTitle('Work');
@@ -60,7 +60,7 @@ class ProjectController extends AbstractController
 
         return view(
             'pages.projects',
-            $this->getViewParams(compact('posts'))
+            $this->getViewParams(compact('projects'))
         );
     }
 
@@ -72,14 +72,14 @@ class ProjectController extends AbstractController
     public function single($id)
     {
         try {
-            $post = $this->project->getById($id);
+            $project = $this->project->getById($id);
         } catch (EntityNotFoundException $e) {
             throw new NotFoundHttpException();
         }
 
-        $this->domain->setTitle($post->getTitle());
-        $this->domain->setDescription(strip_tags($post->getIntroduction()));
-        $this->domain->setKeywords($post->getKeywords());
+        $this->domain->setTitle($project->getTitle());
+        $this->domain->setDescription(strip_tags($project->getIntroduction()));
+        $this->domain->setKeywords($project->getKeywords());
 
         /*
         $social = new \SocialLinks\Page([
@@ -93,7 +93,7 @@ class ProjectController extends AbstractController
 
         return view(
             'pages.projects.single',
-            $this->getViewParams(compact('post'))
+            $this->getViewParams(compact('project'))
         );
     }
 }

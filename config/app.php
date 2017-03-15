@@ -155,7 +155,6 @@ return [
         Illuminate\Notifications\NotificationServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Domain\DomainServiceProvider::class,
         App\Domain\Service\Twitter\TwitterServiceProvider::class,
         App\Domain\Service\Instagram\InstagramServiceProvider::class,
     ],

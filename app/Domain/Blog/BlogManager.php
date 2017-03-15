@@ -21,6 +21,7 @@ class BlogManager implements ManagerInterface
     {
         foreach ($config->get('blog.articles', []) as $id => $article) {
             $this->articles[$id] = new Article(
+                $id,
                 $article['title'],
                 $article['date'],
                 $article['snippet'],

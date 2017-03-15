@@ -9,6 +9,11 @@ class Post
     /**
      * @var string
      */
+    private $id;
+
+    /**
+     * @var string
+     */
     private $title;
 
     /**
@@ -67,6 +72,7 @@ class Post
     private $images = [];
 
     /**
+     * @param string $id
      * @param string $title
      * @param string $subtitle
      * @param string $icon
@@ -81,6 +87,7 @@ class Post
      * @param array $images
      */
     public function __construct(
+        $id,
         $title,
         $subtitle,
         $icon,
@@ -94,6 +101,7 @@ class Post
         array $keywords = [],
         array $images = []
     ) {
+        $this->id = $id;
         $this->title = $title;
         $this->subtitle = $subtitle;
         $this->icon = $icon;
@@ -106,6 +114,14 @@ class Post
         $this->hero = $hero;
         $this->keywords = $keywords;
         $this->images = $images;
+    }
+
+    /**
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
@@ -209,5 +225,16 @@ class Post
         }
 
         return $images;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl()
+    {
+        return url(sprintf(
+            '/work/%s',
+            $this->getId()
+        ));
     }
 }

@@ -21,6 +21,7 @@ class ProjectManager implements ManagerInterface
     {
         foreach ($config->get('project.posts', []) as $id => $article) {
             $this->posts[$id] = new Post(
+                $id,
                 $article['title'],
                 $article['subtitle'],
                 $article['icon'],

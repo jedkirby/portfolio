@@ -9,6 +9,11 @@ class Article
     /**
      * @var string
      */
+    private $id;
+
+    /**
+     * @var string
+     */
     private $title;
 
     /**
@@ -37,6 +42,7 @@ class Article
     private $keywords = [];
 
     /**
+     * @param string $id
      * @param string $title
      * @param Carbon $date
      * @param string $snippet
@@ -45,6 +51,7 @@ class Article
      * @param array $keywords
      */
     public function __construct(
+        $id,
         $title,
         Carbon $date,
         $snippet,
@@ -52,12 +59,21 @@ class Article
         $image,
         array $keywords = []
     ) {
+        $this->id = $id;
         $this->title = $title;
         $this->date = $date;
         $this->snippet = $snippet;
         $this->content = $content;
         $this->image = $image;
         $this->keywords = $keywords;
+    }
+
+    /**
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
@@ -99,7 +115,7 @@ class Article
      */
     public function getImage()
     {
-        return cached_asset($this->image);
+        return ($this->image ? cached_asset($this->image) : false);
     }
 
     /**
@@ -108,5 +124,16 @@ class Article
     public function getKeywords()
     {
         return $this->keywords;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl()
+    {
+        return url(sprintf(
+            '/blog/%s',
+            $this->getId()
+        ));
     }
 }

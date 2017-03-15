@@ -22,18 +22,18 @@ class BlogController extends AbstractController
     /**
      * @var BlogManager
      */
-    private $manager;
+    private $blog;
 
     /**
      * @param Domain $domain
-     * @param BlogManager $manager
+     * @param BlogManager $blog
      */
     public function __construct(
         Domain $domain,
-        BlogManager $manager
+        BlogManager $blog
     ) {
         $this->domain = $domain;
-        $this->manager = $manager;
+        $this->blog = $blog;
     }
 
     /**
@@ -41,11 +41,11 @@ class BlogController extends AbstractController
      */
     public function all()
     {
-        $posts = $this->manager->getPosts();
+        $articles = $this->blog->getAll();
 
         $keywords = [];
-        foreach ($posts as $post) {
-            $keywords[] = $post->getKeywords();
+        foreach ($articles as $article) {
+            $keywords = array_merge($keywords, $article->getKeywords());
         }
 
         $this->domain->setTitle('Blog');
@@ -58,7 +58,7 @@ class BlogController extends AbstractController
 
         return view(
             'pages.blog',
-            $this->getViewParams(compact('posts'))
+            $this->getViewParams(compact('articles'))
         );
     }
 
@@ -70,14 +70,14 @@ class BlogController extends AbstractController
     public function single($id)
     {
         try {
-            $post = $this->manager->getPost($id);
+            $article = $this->blog->getById($id);
         } catch (EntityNotFoundException $e) {
             throw new NotFoundHttpException();
         }
 
-        $this->domain->setTitle($post->getTitle());
-        $this->domain->setDescription($post->getSnippet());
-        $this->domain->setKeywords($post->getKeywords());
+        $this->domain->setTitle($article->getTitle());
+        $this->domain->setDescription($article->getSnippet());
+        $this->domain->setKeywords($article->getKeywords());
 
         /*
         $social = new Page([
@@ -91,7 +91,7 @@ class BlogController extends AbstractController
 
         return view(
             'pages.blog.single',
-            $this->getViewParams(compact('post'))
+            $this->getViewParams(compact('article'))
         );
     }
 }

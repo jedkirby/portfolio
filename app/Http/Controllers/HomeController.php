@@ -57,7 +57,7 @@ class HomeController extends AbstractController
         return view(
             'pages.home',
             $this->getViewParams([
-                'articles' => $this->blog->getLimit(3),
+                'articles' => $this->blog->getLimit(2),
                 'projects' => $this->project->getLimit(3),
                 'tweet' => $this->twitter->getTweet(),
             ])

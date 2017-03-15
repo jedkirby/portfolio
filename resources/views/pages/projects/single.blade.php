@@ -15,16 +15,16 @@
 
 						<div class="project__intro">
 
-							<h2>{{ $post->getTitle() }}</h2>
-							<p class="project__sub">{{ $post->getSubTitle() }}</p>
+							<h2>{{ $project->getTitle() }}</h2>
+							<p class="project__sub">{{ $project->getSubTitle() }}</p>
 
-							@if( ($expired = $post->getExpired()) )
+							@if( ($expired = $project->getExpired()) )
 								<p class="project__expired">{{ $expired }}</p>
 							@endif
 
-							{!! $post->getIntroduction() !!}
+							{!! $project->getIntroduction() !!}
 
-							@if( ($link = $post->getLink()) )
+							@if( ($link = $project->getLink()) )
 								<a href="{{ $link }}" class="btn  btn__primary  btn__icon" target="_blank">
 									<i class="fa fa-globe"></i>
 									Visit Site
@@ -34,7 +34,7 @@
 						</div>
 
 
-						@if( ($images = $post->getImages()) )
+						@if( ($images = $project->getImages()) )
 
 							<div class="browser">
 								<div class="browser__inner">
@@ -58,7 +58,7 @@
 
 
 						<div class="project__content">
-							{!! $post->getContent() !!}
+							{!! $project->getContent() !!}
 						</div>
 
 						<?php /*
@@ -86,7 +86,7 @@
 			</div>
 		</div>
 
-		@if( ($testimonial = $post->getTestimonial()) )
+		@if( ($testimonial = $project->getTestimonial()) )
 
 			<div class="testimonial">
 				<div class="site__full">
@@ -100,7 +100,7 @@
 
 								<p class="testimonial__date">
 									<i class="fa fa-clock-o"></i>
-									{{ $post->getDate()->format('F jS, Y') }}
+									{{ $project->getDate()->format('F jS, Y') }}
 								</p>
 
 							</div>
