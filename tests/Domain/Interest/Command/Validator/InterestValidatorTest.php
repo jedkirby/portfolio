@@ -4,7 +4,7 @@ namespace App\Tests\Domain\Interest\Command\Validator;
 
 use App\Domain\Interest\Command\InterestCommand;
 use App\Domain\Interest\Command\Validator\InterestValidator;
-use App\Tests\AbstractTestCase as TestCase;
+use App\Tests\AbstractAppTestCase as TestCase;
 use Illuminate\Validation\Factory as Validator;
 use Symfony\Component\Translation\Translator;
 

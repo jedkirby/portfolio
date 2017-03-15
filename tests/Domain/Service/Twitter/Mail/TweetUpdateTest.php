@@ -4,7 +4,7 @@ namespace App\Tests\Domain\Service\Twitter\Mail;
 
 use App\Domain\Service\Twitter\Mail\TweetUpdate;
 use App\Domain\Service\Twitter\TweetManager;
-use App\Tests\AbstractTestCase as TestCase;
+use App\Tests\AbstractAppTestCase as TestCase;
 
 /**
  * @group domain

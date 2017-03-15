@@ -4,7 +4,7 @@ namespace App\Tests\Domain\Service\Twitter\Connection;
 
 use App\Domain\Service\Twitter\Connection\Connection;
 use App\Domain\Service\Twitter\Entity\Tweet;
-use App\Tests\AbstractTestCase as TestCase;
+use App\Tests\AbstractAppTestCase as TestCase;
 use App\Tests\Domain\Service\Twitter\Connection\Provider\Fixtures\EmptyContent as EmptyContentProvider;
 use App\Tests\Domain\Service\Twitter\Connection\Provider\Fixtures\StaticContent as StaticContentProvider;
 

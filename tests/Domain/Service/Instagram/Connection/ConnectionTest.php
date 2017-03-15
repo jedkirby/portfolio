@@ -4,7 +4,7 @@ namespace App\Tests\Domain\Service\Instagram\Connection;
 
 use App\Domain\Service\Instagram\Connection\Connection;
 use App\Domain\Service\Instagram\Entity\Post;
-use App\Tests\AbstractTestCase as TestCase;
+use App\Tests\AbstractAppTestCase as TestCase;
 use App\Tests\Domain\Service\Instagram\Connection\Provider\Fixtures\EmptyContent as EmptyContentProvider;
 use App\Tests\Domain\Service\Instagram\Connection\Provider\Fixtures\StaticContent as StaticContentProvider;
 

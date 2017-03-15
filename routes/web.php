@@ -21,8 +21,8 @@ Route::get('version', function () {
 Route::get('work', 'ProjectController@all');
 Route::get('work/{slug}', 'ProjectController@single');
 
-Route::get('blog', 'BlogController@getArticles');
-Route::get('blog/{slug}', 'BlogController@getSingle');
+Route::get('blog', 'BlogController@all');
+Route::get('blog/{slug}', 'BlogController@single');
 
 Route::get('contact', 'ContactController@get');
 Route::post('contact', 'ContactController@post');

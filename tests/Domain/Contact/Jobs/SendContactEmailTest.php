@@ -4,7 +4,7 @@ namespace App\Tests\Domain\Contact\Jobs;
 
 use App\Domain\Contact\Entity\Contact;
 use App\Domain\Contact\Jobs\SendContactEmail;
-use App\Tests\AbstractTestCase as TestCase;
+use App\Tests\AbstractAppTestCase as TestCase;
 use Closure;
 use Datetime;
 use Illuminate\Contracts\Config\Repository as Config;

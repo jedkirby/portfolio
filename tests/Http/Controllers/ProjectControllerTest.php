@@ -3,8 +3,8 @@
 namespace App\Tests\Http\Controllers;
 
 use App\Domain\Domain;
-use App\Domain\Project\Entity\PostInterface;
-use App\Domain\Project\ProjectManager as Projects;
+use App\Domain\Project\Entity\Post;
+use App\Domain\Project\ProjectManager;
 use App\Http\Controllers\ProjectController;
 use Mockery;
 
@@ -15,17 +15,17 @@ use Mockery;
  */
 class ProjectControllerTest extends AbstractControllerTestCase
 {
-    private $projects;
+    private $project;
     private $controller;
 
     public function setUp()
     {
         parent::setUp();
 
-        $this->projects = Mockery::mock(Projects::class);
+        $this->project = Mockery::mock(ProjectManager::class);
         $this->controller = new ProjectController(
             $this->domain,
-            $this->projects
+            $this->project
         );
     }
 
@@ -33,17 +33,17 @@ class ProjectControllerTest extends AbstractControllerTestCase
     {
         return [
             Mockery::mock(
-                PostInterface::class,
+                Post::class,
                 [
                     'getTitle' => 'Post One',
-                    'getSubTitle' => 'Something',
+                    'getSubtitle' => 'Something',
                 ]
             ),
             Mockery::mock(
-                PostInterface::class,
+                Post::class,
                 [
                     'getTitle' => 'Post Two',
-                    'getSubTitle' => 'Else',
+                    'getSubtitle' => 'Else',
                 ]
             ),
         ];
@@ -51,8 +51,8 @@ class ProjectControllerTest extends AbstractControllerTestCase
 
     public function testGetAll()
     {
-        $this->projects
-            ->shouldReceive('getPosts')
+        $this->project
+            ->shouldReceive('getAll')
             ->andReturn($this->getSamplePosts())
             ->once();
 
@@ -81,8 +81,8 @@ class ProjectControllerTest extends AbstractControllerTestCase
     {
         $posts = $this->getSamplePosts();
 
-        $this->projects
-            ->shouldReceive('getPosts')
+        $this->project
+            ->shouldReceive('getAll')
             ->andReturn($posts)
             ->once();
 

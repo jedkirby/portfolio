@@ -5,7 +5,7 @@ namespace App\Tests\Domain\Service\Instagram;
 use App\Domain\Service\Instagram\Connection\Connection;
 use App\Domain\Service\Instagram\Connection\ConnectionInterface;
 use App\Domain\Service\Instagram\InstagramService;
-use App\Tests\AbstractTestCase as TestCase;
+use App\Tests\AbstractAppTestCase as TestCase;
 use App\Tests\Domain\Service\Instagram\Connection\Provider\Fixtures\StaticContent as StaticContentProvider;
 
 /**

@@ -2,8 +2,10 @@
 
 namespace App\Tests\Http\Controllers;
 
-use App\Domain\Project\Entity\PostInterface;
-use App\Domain\Project\ProjectManager as Projects;
+use App\Domain\Blog\BlogManager;
+use App\Domain\Blog\Entity\Article;
+use App\Domain\Project\Entity\Post;
+use App\Domain\Project\ProjectManager;
 use App\Http\Controllers\SitemapController;
 use App\Tests\AbstractAppTestCase as TestCase;
 use Mockery;
@@ -15,25 +17,37 @@ use Mockery;
  */
 class SitemapControllerTest extends TestCase
 {
-    private $projects;
+    private $project;
+    private $blog;
     private $controller;
 
     public function setUp()
     {
         parent::setUp();
 
-        $this->projects = Mockery::mock(
-            Projects::class,
+        $this->project = Mockery::mock(
+            ProjectManager::class,
             [
-                'getPosts' => [
-                    Mockery::mock(PostInterface::class),
-                    Mockery::mock(PostInterface::class),
+                'getAll' => [
+                    Mockery::mock(Post::class),
+                    Mockery::mock(Post::class),
+                ],
+            ]
+        );
+
+        $this->blog = Mockery::mock(
+            BlogManager::class,
+            [
+                'getAll' => [
+                    Mockery::mock(Article::class),
+                    Mockery::mock(Article::class),
                 ],
             ]
         );
 
         $this->controller = new SitemapController(
-            $this->projects
+            $this->project,
+            $this->blog
         );
     }
 

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Domain\Common\Exception\EntityNotFoundException;
 use App\Domain\Domain;
-use App\Domain\Project\Exception\PostNotFoundException;
-use App\Domain\Project\ProjectManager as Projects;
+use App\Domain\Project\ProjectManager;
 use Illuminate\View\View;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -21,20 +21,20 @@ class ProjectController extends AbstractController
     protected $domain;
 
     /**
-     * @var Projects
+     * @var ProjectManager
      */
-    private $projects;
+    private $project;
 
     /**
      * @param Domain $domain
-     * @param Projects $projects
+     * @param ProjectManager $project
      */
     public function __construct(
         Domain $domain,
-        Projects $projects
+        ProjectManager $project
     ) {
         $this->domain = $domain;
-        $this->projects = $projects;
+        $this->project = $project;
     }
 
     /**
@@ -42,7 +42,7 @@ class ProjectController extends AbstractController
      */
     public function all()
     {
-        $posts = $this->projects->getPosts();
+        $posts = $this->project->getAll();
 
         $keywords = [];
         foreach ($posts as $post) {
@@ -72,8 +72,8 @@ class ProjectController extends AbstractController
     public function single($id)
     {
         try {
-            $post = $this->projects->getPost($id);
-        } catch (PostNotFoundException $e) {
+            $post = $this->project->getById($id);
+        } catch (EntityNotFoundException $e) {
             throw new NotFoundHttpException();
         }
 

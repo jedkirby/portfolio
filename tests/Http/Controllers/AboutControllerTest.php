@@ -2,9 +2,10 @@
 
 namespace App\Tests\Http\Controllers;
 
-use App\Domain\Project\ProjectManager as Projects;
+use App\Domain\Blog\BlogManager;
+use App\Domain\Project\ProjectManager;
 use App\Domain\Service\Instagram\Entity\Post;
-use App\Domain\Service\Instagram\InstagramManager as Instagram;
+use App\Domain\Service\Instagram\InstagramManager;
 use App\Http\Controllers\AboutController;
 use Mockery;
 
@@ -15,20 +16,23 @@ use Mockery;
  */
 class AboutControllerTest extends AbstractControllerTestCase
 {
+    private $blog;
+    private $project;
     private $instagram;
-    private $projects;
     private $controller;
 
     public function setUp()
     {
         parent::setUp();
 
-        $this->instagram = Mockery::mock(Instagram::class);
-        $this->projects = Mockery::mock(Projects::class);
+        $this->blog = Mockery::mock(BlogManager::class);
+        $this->project = Mockery::mock(ProjectManager::class);
+        $this->instagram = Mockery::mock(InstagramManager::class);
         $this->controller = new AboutController(
             $this->domain,
-            $this->instagram,
-            $this->projects
+            $this->blog,
+            $this->project,
+            $this->instagram
         );
     }
 
@@ -43,17 +47,22 @@ class AboutControllerTest extends AbstractControllerTestCase
             ->shouldReceive('setDescription')
             ->once();
 
+        $this->blog
+            ->shouldReceive('getCount')
+            ->andReturn(3)
+            ->once();
+
+        $this->project
+            ->shouldReceive('getCount')
+            ->andReturn(3)
+            ->once();
+
         $this->instagram
             ->shouldReceive('getPosts')
             ->andReturn([
                 Mockery::mock(Post::class),
                 Mockery::mock(Post::class),
             ])
-            ->once();
-
-        $this->projects
-            ->shouldReceive('getPostsCount')
-            ->andReturn(3)
             ->once();
 
         $view = $this->controller->__invoke();
@@ -73,6 +82,6 @@ class AboutControllerTest extends AbstractControllerTestCase
         $this->assertInternalType('int', $data['counts']['articles']);
 
         $this->assertEquals($data['counts']['projects'], 3);
-        $this->assertEquals($data['counts']['articles'], 0);
+        $this->assertEquals($data['counts']['articles'], 3);
     }
 }

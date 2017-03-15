@@ -18,24 +18,24 @@
 
 					<div class="articles" itemscope itemtype="http://schema.org/Blog">
 
-						@foreach($articles as $slug => $article)
+						@foreach($posts as $id => $post)
 
 
 							<article class="articles__article" itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
 
-								<h2 itemprop="headline"><a href="{{ \URL::to('blog', [$slug]) }}" itemprop="url">{{ array_get($article, 'title') }}</a></h2>
+								<h2 itemprop="headline"><a href="{{ \URL::to('blog', [$id]) }}" itemprop="url">{{ $post->getTitle() }}</a></h2>
 
-								<time class="articles__article--metadata" pubdate="{{ array_get($article, 'date')->format('Y-m-d') }}" itemprop="datePublished" datetime="{{ array_get($article, 'date')->format('Y-m-d') }}" content="{{ array_get($article, 'date')->format('Y-m-d') }}">{{ array_get($article, 'date')->format('F j, Y') }}</time>
+								<time class="articles__article--metadata" pubdate="{{ $post->getDate() }}" itemprop="datePublished" datetime="{{ $post->getDate() }}" content="{{ $post->getDate() }}">{{ $post->getDate('F j, Y') }}</time>
 
-								@if( ($image = array_get($article, 'image', false)) )
-									<a class="articles__article--link" href="{{ \URL::to('blog', [$slug]) }}">
-										<img src="{{ asset('assets/img/blank.png') }}" data-src="{{ $image }}" class="articles__article--hero  lazyload">
+								@if( ($image = $post->getImage()) )
+									<a class="articles__article--link" href="{{ \URL::to('blog', [$id]) }}">
+										<img src="{{ asset('assets/img/blank.png') }}" data-src="{{ $image }}" class="articles__article--hero  lazyload" alt="{{ $post->getTitle() }}">
 									</a>
 								@endif
 
 								<div class="articles__article--summary">
-									<p itemprop="articleBody">{{ array_get($article, 'snippet') }} ...</p>
-									<a href="{{ \URL::to('blog', [$slug]) }}" class="articles__article--more">
+									<p itemprop="articleBody">{{ $post->getSnippet() }} ...</p>
+									<a href="{{ \URL::to('blog', [$id]) }}" class="articles__article--more">
 										<i class="fa fa-angle-double-right"></i>
 										Read More
 									</a>

@@ -2,77 +2,74 @@
 
 namespace App\Domain\Project;
 
-use App\Domain\Project\Entity\Post\AdminPanel;
-use App\Domain\Project\Entity\Post\AMElectrical;
-use App\Domain\Project\Entity\Post\BlitzGames;
-use App\Domain\Project\Entity\Post\BlitzGamesStudios;
-use App\Domain\Project\Entity\Post\BlitzTech;
-use App\Domain\Project\Entity\Post\CocaCola;
-use App\Domain\Project\Entity\Post\PhpWarwickshire;
-use App\Domain\Project\Entity\Post\ShrekAlarm;
-use App\Domain\Project\Entity\Post\UmbersladeAdventure;
-use App\Domain\Project\Entity\Post\VictoriaJeffs;
-use App\Domain\Project\Entity\Post\Vuven;
-use App\Domain\Project\Entity\Post\WellForgedFilms;
-use App\Domain\Project\Entity\PostInterface;
-use App\Domain\Project\Exception\PostNotFoundException;
+use App\Domain\Common\Exception\EntityNotFoundException;
+use App\Domain\Common\ManagerInterface;
+use App\Domain\Project\Entity\Post;
+use Illuminate\Contracts\Config\Repository as Config;
 
-class ProjectManager
+class ProjectManager implements ManagerInterface
 {
     /**
-     * @var array
+     * @var Post[]
      */
-    private $posts = [
-        'victoria-jeffs' => VictoriaJeffs::class,
-        'php-warwickshire' => PhpWarwickshire::class,
-        'a-m-electrical' => AMElectrical::class,
-        'admin-panel' => AdminPanel::class,
-        'shrek-alarm' => ShrekAlarm::class,
-        'blitz-games' => BlitzGames::class,
-        'vuven' => Vuven::class,
-        'blitz-tech' => BlitzTech::class,
-        'blitz-games-studios' => BlitzGamesStudios::class,
-        'umberslade-adventure' => UmbersladeAdventure::class,
-        'coca-cola' => CocaCola::class,
-        'well-forged-films' => WellForgedFilms::class,
-    ];
+    private $posts = [];
 
     /**
-     * @param int|bool $limit
-     *
-     * @return array
+     * @param Config $config
      */
-    public function getPosts($limit = false)
+    public function __construct(Config $config)
     {
-        $posts = [];
-        foreach ($this->posts as $id => $post) {
-            $posts[$id] = new $post();
+        foreach ($config->get('project.posts', []) as $id => $article) {
+            $this->posts[$id] = new Post(
+                $article['title'],
+                $article['subtitle'],
+                $article['icon'],
+                $article['date'],
+                $article['introduction'],
+                $article['content'],
+                $article['testimonial'],
+                $article['link'],
+                $article['expired'],
+                $article['hero'],
+                $article['keywords'],
+                $article['images']
+            );
         }
-
-        return $limit ? array_slice($posts, 0, $limit) : $posts;
     }
 
     /**
-     * @return int
+     * {@inheritdoc}
      */
-    public function getPostsCount()
+    public function getAll()
     {
-        return count($this->posts);
+        return $this->posts;
     }
 
     /**
-     * @param string $id
-     *
-     * @throws PostNotFoundException
-     *
-     * @return PostInterface
+     * {@inheritdoc}
      */
-    public function getPost($id)
+    public function getLimit($limit)
+    {
+        return array_slice($this->posts, 0, $limit);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getById($id)
     {
         if (!array_key_exists($id, $this->posts)) {
-            throw new PostNotFoundException();
+            throw new EntityNotFoundException();
         }
 
-        return new $this->posts[$id]();
+        return $this->posts[$id];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCount()
+    {
+        return count($this->posts);
     }
 }

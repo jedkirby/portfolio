@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Domain\Blog\BlogManager;
 use App\Domain\Domain;
-use App\Domain\Project\ProjectManager as Projects;
-use App\Domain\Service\Instagram\InstagramManager as Instagram;
+use App\Domain\Project\ProjectManager;
+use App\Domain\Service\Instagram\InstagramManager;
 use Carbon\Carbon;
 
 class AboutController extends AbstractController
@@ -15,28 +16,36 @@ class AboutController extends AbstractController
     protected $domain;
 
     /**
-     * @var Instagram
+     * @var BlogManager
+     */
+    private $blog;
+
+    /**
+     * @var ProjectManager
+     */
+    private $project;
+
+    /**
+     * @var InstagramManager
      */
     private $instagram;
 
     /**
-     * @var Projects
-     */
-    private $projects;
-
-    /**
      * @param Domain $domain
-     * @param Instagram $instagram
-     * @param Projects $projects
+     * @param BlogManager $blog
+     * @param ProjectManager $project
+     * @param InstagramManager $instagram
      */
     public function __construct(
         Domain $domain,
-        Instagram $instagram,
-        Projects $projects
+        BlogManager $blog,
+        ProjectManager $project,
+        InstagramManager $instagram
     ) {
         $this->domain = $domain;
+        $this->blog = $blog;
+        $this->project = $project;
         $this->instagram = $instagram;
-        $this->projects = $projects;
     }
 
     /**
@@ -56,8 +65,8 @@ class AboutController extends AbstractController
                 'counts' => [
                     'tea' => $startedWorking->diffInDays(),
                     'food' => $startedWorking->diffInWeeks(),
-                    'projects' => $this->projects->getPostsCount(),
-                    'articles' => 0,
+                    'projects' => $this->project->getCount(),
+                    'articles' => $this->blog->getCount(),
                 ],
             ])
         );

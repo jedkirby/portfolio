@@ -4,7 +4,7 @@ namespace App\Tests\Domain\Contact\Command\Validator;
 
 use App\Domain\Contact\Command\ContactCommand;
 use App\Domain\Contact\Command\Validator\ContactValidator;
-use App\Tests\AbstractTestCase as TestCase;
+use App\Tests\AbstractAppTestCase as TestCase;
 use Illuminate\Validation\Factory as Validator;
 use Symfony\Component\Translation\Translator;
 

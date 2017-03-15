@@ -3,7 +3,7 @@
 namespace App\Tests\Domain;
 
 use App\Domain\Domain;
-use App\Tests\AbstractTestCase as TestCase;
+use App\Tests\AbstractAppTestCase as TestCase;
 use Illuminate\Contracts\Config\Repository as Config;
 use Mockery;
 

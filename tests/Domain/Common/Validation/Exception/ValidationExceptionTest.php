@@ -3,7 +3,7 @@
 namespace App\Tests\Domain\Common\Validation\Exception;
 
 use App\Domain\Common\Validation\Exception\ValidationException;
-use App\Tests\AbstractTestCase as TestCase;
+use App\Tests\AbstractAppTestCase as TestCase;
 
 /**
  * @group domain

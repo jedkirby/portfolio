@@ -2,23 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use App\Domain\Project\ProjectManager as Projects;
+use App\Domain\Blog\BlogManager;
+use App\Domain\Project\ProjectManager;
 use Illuminate\Routing\Controller as BaseController;
 
 class SitemapController extends BaseController
 {
     /**
-     * @var Projects
+     * @var ProjectManager
      */
-    private $projects;
+    private $project;
 
     /**
-     * @param Projects $projects
+     * @var BlogManager
+     */
+    private $blog;
+
+    /**
+     * @param ProjectManager $project
+     * @param BlogManager $blog
      */
     public function __construct(
-        Projects $projects
+        ProjectManager $project,
+        BlogManager $blog
     ) {
-        $this->projects = $projects;
+        $this->project = $project;
+        $this->blog = $blog;
     }
 
     /**
@@ -33,14 +42,14 @@ class SitemapController extends BaseController
         ];
 
         $routes[] = 'work';
-        foreach ($this->projects->getPosts() as $id => $post) {
+        foreach ($this->project->getAll() as $id => $post) {
             $routes[] = 'work/' . $id;
         }
 
-        // $routes[] = 'blog';
-        // foreach (Blog::articles() as $url => $article) {
-            // $routes[] = 'blog/' . $url;
-        // }
+        $routes[] = 'blog';
+        foreach ($this->blog->getAll() as $id => $article) {
+            $routes[] = 'blog/' . $id;
+        }
 
         return response()
             ->view('pages.sitemap.master', compact('routes'))

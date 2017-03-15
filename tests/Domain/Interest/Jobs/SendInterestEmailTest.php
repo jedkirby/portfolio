@@ -4,7 +4,7 @@ namespace App\Tests\Domain\Interest\Jobs;
 
 use App\Domain\Interest\Entity\Interest;
 use App\Domain\Interest\Jobs\SendInterestEmail;
-use App\Tests\AbstractTestCase as TestCase;
+use App\Tests\AbstractAppTestCase as TestCase;
 use Closure;
 use Datetime;
 use Illuminate\Contracts\Config\Repository as Config;
