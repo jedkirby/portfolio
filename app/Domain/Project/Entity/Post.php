@@ -232,9 +232,6 @@ class Post
      */
     public function getUrl()
     {
-        return url(sprintf(
-            '/work/%s',
-            $this->getId()
-        ));
+        return route('post', $this->getId());
     }
 }

@@ -3,65 +3,65 @@
 @section('id', 'work')
 @section('content')
 
-	<div class="single  js-project">
+    <div class="single  js-project">
 
-		<div class="site__medium  project">
-			<div class="col--wrapper">
-
-
-				<div class="col  col--12">
-					<div class="col--content  col--full">
+        <div class="site__medium  project">
+            <div class="col--wrapper">
 
 
-						<div class="project__intro">
-
-							<h2>{{ $project->getTitle() }}</h2>
-							<p class="project__sub">{{ $project->getSubTitle() }}</p>
-
-							@if( ($expired = $project->getExpired()) )
-								<p class="project__expired">{{ $expired }}</p>
-							@endif
-
-							{!! $project->getIntroduction() !!}
-
-							@if( ($link = $project->getLink()) )
-								<a href="{{ $link }}" class="btn  btn__primary  btn__icon" target="_blank">
-									<i class="fa fa-globe"></i>
-									Visit Site
-								</a>
-							@endif
-
-						</div>
+                <div class="col  col--12">
+                    <div class="col--content  col--full">
 
 
-						@if( ($images = $project->getImages()) )
+                        <div class="project__intro">
 
-							<div class="browser">
-								<div class="browser__inner">
+                            <h2>{{ $project->getTitle() }}</h2>
+                            <p class="project__sub">{{ $project->getSubTitle() }}</p>
 
-									<div class="browser__frame">
-										<span class="js-browser-prev" title="Previous"></span>
-										<span class="js-browser-pause" title="Play/Pause"></span>
-										<span class="js-browser-next" title="Next"></span>
-									</div>
+                            @if( ($expired = $project->getExpired()) )
+                                <p class="project__expired">{{ $expired }}</p>
+                            @endif
 
-									<div class="browser__slider  js-slider">
-										@foreach($images as $src)
-											<div class="browser__slider--slide"><img src="{{ $src }}" /></div>
-										@endforeach
-									</div>
+                            {!! $project->getIntroduction() !!}
 
-								</div>
-							</div>
+                            @if( ($link = $project->getLink()) )
+                                <a href="{{ $link }}" class="btn  btn__primary  btn__icon" target="_blank">
+                                    <i class="fa fa-globe"></i>
+                                    Visit Site
+                                </a>
+                            @endif
 
-						@endif
+                        </div>
 
 
-						<div class="project__content">
-							{!! $project->getContent() !!}
-						</div>
+                        @if( ($images = $project->getImages()) )
 
-						<?php /*
+                            <div class="browser">
+                                <div class="browser__inner">
+
+                                    <div class="browser__frame">
+                                        <span class="js-browser-prev" title="Previous"></span>
+                                        <span class="js-browser-pause" title="Play/Pause"></span>
+                                        <span class="js-browser-next" title="Next"></span>
+                                    </div>
+
+                                    <div class="browser__slider  js-slider">
+                                        @foreach($images as $src)
+                                            <div class="browser__slider--slide"><img src="{{ $src }}" /></div>
+                                        @endforeach
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        @endif
+
+
+                        <div class="project__content">
+                            {!! $project->getContent() !!}
+                        </div>
+
+                        <?php /*
                         <div class="social  project__social">
                             <a href="{{ $social->facebook->shareUrl }}" class="btn  btn__icon  social__button  social__button--facebook" title="Facebook" target="_blank">
                                 <i class="fa fa-facebook"></i> <span>Facebook</span>
@@ -79,39 +79,39 @@
                         */ ?>
 
 
-					</div>
-				</div>
+                    </div>
+                </div>
 
 
-			</div>
-		</div>
+            </div>
+        </div>
 
-		@if( ($testimonial = $project->getTestimonial()) )
+        @if( ($testimonial = $project->getTestimonial()) )
 
-			<div class="testimonial">
-				<div class="site__full">
-					<div class="col--wrapper">
+            <div class="testimonial">
+                <div class="site__full">
+                    <div class="col--wrapper">
 
-						<div class="col  col--12">
-							<div class="col--content  col--no-bottom">
+                        <div class="col  col--12">
+                            <div class="col--content  col--no-bottom">
 
-								<h3>Testimonial</h3>
-								{!! $testimonial !!}
+                                <h3>Testimonial</h3>
+                                {!! $testimonial !!}
 
-								<p class="testimonial__date">
-									<i class="fa fa-clock-o"></i>
-									{{ $project->getDate()->format('F jS, Y') }}
-								</p>
+                                <p class="testimonial__date">
+                                    <i class="fa fa-clock-o"></i>
+                                    {{ $project->getDate()->format('F jS, Y') }}
+                                </p>
 
-							</div>
-						</div>
+                            </div>
+                        </div>
 
-					</div>
-				</div>
-			</div>
+                    </div>
+                </div>
+            </div>
 
-		@endif
+        @endif
 
-	</div>
+    </div>
 
 @stop

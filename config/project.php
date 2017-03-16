@@ -39,7 +39,7 @@ return [
             'content' => 'pages.projects.projects.php-warwickshire.content',
             'testimonial' => false,
             'link' => 'http://phpwarks.co.uk',
-            'expired' => false,
+            'expired' => 'This website has since been re-designed.',
             'hero' => 'assets/img/projects/php-warwickshire/hero.jpg',
             'keywords' => [
                 'PHP',

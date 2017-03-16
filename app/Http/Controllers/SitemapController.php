@@ -36,19 +36,19 @@ class SitemapController extends BaseController
     public function __invoke()
     {
         $routes = [
-            '/',
-            'about',
-            'contact',
+            route('home'),
+            route('about'),
+            route('contact'),
         ];
 
-        $routes[] = 'work';
+        $routes[] = route('projects');
         foreach ($this->project->getAll() as $id => $post) {
-            $routes[] = 'work/' . $id;
+            $routes[] = route('project', $id);
         }
 
-        $routes[] = 'blog';
+        $routes[] = route('articles');
         foreach ($this->blog->getAll() as $id => $article) {
-            $routes[] = 'blog/' . $id;
+            $routes[] = route('article', $id);
         }
 
         return response()

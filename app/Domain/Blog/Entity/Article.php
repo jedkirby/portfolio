@@ -131,9 +131,6 @@ class Article
      */
     public function getUrl()
     {
-        return url(sprintf(
-            '/blog/%s',
-            $this->getId()
-        ));
+        return route('article', $this->getId());
     }
 }

@@ -4,14 +4,14 @@
 
 <h3>Connecting the Content Management System</h3>
 <p>The requirement from Victoria Jeffs was that they needed the ability to manage dynamic content through a secure interface.</p>
-<p>The task was to provide the ability for the management of; properties, news, articles, testimonials and staff profiles. Along side these specific requirements, the <a href="{{ \URL::to('work', ['admin-panel']) }}">Admin Panel</a> that was developed comes pre-built with user, role and permission management functionality which added further flexibility to the end user(s).</p>
-<p>The result of encorporating the <a href="{{ \URL::to('work', ['admin-panel']) }}">Admin Panel</a> into this build enabled Victoria Jeffs to do the following:</p>
+<p>The task was to provide the ability for the management of; properties, news, articles, testimonials and staff profiles. Along side these specific requirements, the <a href="{{ route('project', 'admin-panel') }}">Admin Panel</a> that was developed comes pre-built with user, role and permission management functionality which added further flexibility to the end user(s).</p>
+<p>The result of encorporating the <a href="{{ route('project', 'admin-panel') }}">Admin Panel</a> into this build enabled Victoria Jeffs to do the following:</p>
 <ul>
-	<li>Manage admin users, roles and permissions</li>
-	<li>Manage testimonials and news articles</li>
-	<li>Manage staff profiles and roles</li>
-	<li>Manage properties, property locations &amp; types</li>
-	<li>Control specific parts of their content managed pages; e.g. slideshows</li>
+    <li>Manage admin users, roles and permissions</li>
+    <li>Manage testimonials and news articles</li>
+    <li>Manage staff profiles and roles</li>
+    <li>Manage properties, property locations &amp; types</li>
+    <li>Control specific parts of their content managed pages; e.g. slideshows</li>
 </ul>
 
 <h3>Final Optimization</h3>
@@ -21,9 +21,9 @@
 <h3>Conclusion</h3>
 <p>The project spanned over 6 months and the services involved within the build are, but not limited to:</p>
 <ul>
-	<li>Design</li>
-	<li>Front-end development</li>
-	<li>Back-end development</li>
-	<li>Hosting configuration</li>
+    <li>Design</li>
+    <li>Front-end development</li>
+    <li>Back-end development</li>
+    <li>Hosting configuration</li>
 </ul>
-<p>If the above has interested you, feel free to <a href="{{ \URL::to('contact', ['more']) }}">request more information</a> about this project and I'll happily get back to you.</p>
+<p>If the above has interested you, feel free to <a href="{{ route('contact') }}">request more information</a> about this project and I'll happily get back to you.</p>

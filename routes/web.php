@@ -11,24 +11,21 @@
 |
 */
 
-Route::get('/', 'HomeController');
+Route::get('/', 'HomeController')->name('home');
 
-Route::get('about', 'AboutController');
-Route::get('version', function () {
-    dd(client_version());
-});
+Route::get('about', 'AboutController')->name('about');
 
-Route::get('work', 'ProjectController@all');
-Route::get('work/{slug}', 'ProjectController@single');
+Route::get('version', 'VersionController')->name('version');
 
-Route::get('blog', 'BlogController@all');
-Route::get('blog/{slug}', 'BlogController@single');
+Route::get('work', 'ProjectController@all')->name('projects');
+Route::get('work/{slug}', 'ProjectController@single')->name('project');
 
-Route::get('contact', 'ContactController@get');
+Route::get('blog', 'BlogController@all')->name('articles');
+Route::get('blog/{slug}', 'BlogController@single')->name('article');
+
+Route::get('contact', 'ContactController@get')->name('contact');
 Route::post('contact', 'ContactController@post');
 
-Route::group(['prefix' => 'api'], function () {
-    Route::post('interest/register', 'InterestController');
-});
+Route::post('api/interest/register', 'InterestController')->name('api.interest');
 
-Route::get('sitemap.xml', 'SitemapController');
+Route::get('sitemap.xml', 'SitemapController')->name('sitemap');

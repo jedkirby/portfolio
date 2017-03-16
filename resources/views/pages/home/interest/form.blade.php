@@ -1,8 +1,8 @@
 <div class="js-input">
 
-	<h4 class="interest__title">Lets Collaborate?</h4>
+    <h4 class="interest__title">Lets Collaborate?</h4>
 
-	{!! Form::open(['class' => 'interest__form  js-form', 'novalidate' => 'novalidate']) !!}
+    {!! Form::open(['class' => 'interest__form  js-form', 'novalidate' => 'novalidate']) !!}
 
         {!!
             Form::text(
@@ -15,7 +15,7 @@
             )
         !!}
 
-		{!!
+        {!!
             Form::email(
                 'email',
                 Input::old('email'),
@@ -26,7 +26,7 @@
             )
         !!}
 
-		{!!
+        {!!
             Form::submit(
                 'Go',
                 [
@@ -35,8 +35,8 @@
             )
         !!}
 
-		<div class="js-error"></div>
+        <div class="js-error"></div>
 
-	{!! Form::close() !!}
+    {!! Form::close() !!}
 
 </div>
