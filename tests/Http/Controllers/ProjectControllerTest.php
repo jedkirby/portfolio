@@ -143,6 +143,46 @@ class ProjectControllerTest extends AbstractControllerTestCase
         $this->controller->all();
     }
 
+    public function testKeywordsAreLimitedAndUnique()
+    {
+        $posts = [
+            Mockery::mock(Post::class, ['getTitle' => 'Post One', 'getSubtitle' => 'Same']),
+            Mockery::mock(Post::class, ['getTitle' => 'Post Two', 'getSubtitle' => 'Something Two']),
+            Mockery::mock(Post::class, ['getTitle' => 'Post Three', 'getSubtitle' => 'Something Three']),
+            Mockery::mock(Post::class, ['getTitle' => 'Post Four', 'getSubtitle' => 'Something Four']),
+            Mockery::mock(Post::class, ['getTitle' => 'Post Five', 'getSubtitle' => 'Something Five']),
+            Mockery::mock(Post::class, ['getTitle' => 'Post Six', 'getSubtitle' => 'Something Six']),
+            Mockery::mock(Post::class, ['getTitle' => 'Post Seven', 'getSubtitle' => 'Something Seven']),
+            Mockery::mock(Post::class, ['getTitle' => 'Post Eight', 'getSubtitle' => 'Same']),
+            Mockery::mock(Post::class, ['getTitle' => 'Post Nine', 'getSubtitle' => 'Same']),
+        ];
+
+        $this->postRepository
+            ->shouldReceive('getAll')
+            ->andReturn($posts)
+            ->once();
+
+        $this->domain->shouldReceive('setTitle')->once();
+        $this->domain->shouldReceive('setDescription')->once();
+
+        $keywords = [];
+        foreach ($posts as $post) {
+            $keywords[] = $post->getTitle();
+            $keywords[] = $post->getSubTitle();
+        }
+
+        $expected = array_unique(
+            array_slice($keywords, 0, ProjectController::KEYWORD_LIMIT)
+        );
+
+        $this->domain
+            ->shouldReceive('setKeywords')
+            ->with($expected)
+            ->once();
+
+        $this->controller->all();
+    }
+
     public function testCanGetSinglePost()
     {
         $post = $this->getSamplePost();
