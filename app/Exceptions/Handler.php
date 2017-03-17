@@ -84,7 +84,11 @@ class Handler extends ExceptionHandler
      */
     protected function renderHttpException(HttpException $e)
     {
-        return $this->handler->renderHttpException($e);
+        return response(
+            $this->handler->renderHttpException($e),
+            $e->getStatusCode(),
+            $e->getHeaders()
+        );
     }
 
     /**

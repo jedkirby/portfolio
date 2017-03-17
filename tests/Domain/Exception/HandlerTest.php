@@ -64,11 +64,10 @@ class HandlerTest extends TestCase
             ]
         );
 
-        $response = $this->handler->renderHttpException($e);
-        $content = $response->getOriginalContent();
-        $data = $content->getData();
+        $view = $this->handler->renderHttpException($e);
+        $data = $view->getData();
 
-        $this->assertStringEndsWith('errors/generic.blade.php', $content->getPath());
+        $this->assertStringEndsWith('errors/generic.blade.php', $view->getPath());
         $this->assertEquals($data['status'], $status);
         $this->assertEquals($data['id'], 'error  error__generic');
     }

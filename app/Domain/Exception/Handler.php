@@ -56,7 +56,7 @@ class Handler
                 $this->domain->setTitle(sprintf('%s Error', $status));
         }
 
-        return response()->view(
+        return view(
             $view,
             [
                 'title' => $this->domain->getTitle(),
@@ -71,9 +71,7 @@ class Handler
                         'error__' . $class,
                     ]
                 ),
-            ],
-            $status,
-            $e->getHeaders()
+            ]
         );
     }
 }
