@@ -27,6 +27,5 @@ class ErrorReport extends Command
      */
     public function fire()
     {
-        dd(__METHOD__);
     }
 }

@@ -4,7 +4,6 @@ namespace App\Tests\Domain\Blog;
 
 use App\Domain\Blog\Entity\Article;
 use App\Tests\AbstractAppTestCase as TestCase;
-use Mockery;
 use Carbon\Carbon;
 use Illuminate\View\View;
 
@@ -16,7 +15,6 @@ use Illuminate\View\View;
  */
 class ArticleTest extends TestCase
 {
-
     private function createEntity()
     {
         return new Article(
@@ -28,7 +26,7 @@ class ArticleTest extends TestCase
             'assets/tests/sample.png',
             [
                 'One',
-                'Two'
+                'Two',
             ]
         );
     }
@@ -74,5 +72,4 @@ class ArticleTest extends TestCase
             $expected
         );
     }
-
 }

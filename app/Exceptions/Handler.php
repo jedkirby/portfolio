@@ -2,19 +2,22 @@
 
 namespace App\Exceptions;
 
-use App\Domain\Domain;
+use App\Domain\Exception\Handler as DomainExceptionHandler;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
+/**
+ * @codeCoverageIgnore
+ */
 class Handler extends ExceptionHandler
 {
     /**
-     * @var Domain
+     * @var DomainExceptionHandler
      */
-    private $domain;
+    private $handler;
 
     /**
      * A list of the exception types that should not be reported.
@@ -41,10 +44,10 @@ class Handler extends ExceptionHandler
      */
     public function __construct(
         Container $container,
-        Domain $domain
+        DomainExceptionHandler $handler
     ) {
         $this->container = $container;
-        $this->domain = $domain;
+        $this->handler = $handler;
     }
 
     /**
@@ -81,43 +84,7 @@ class Handler extends ExceptionHandler
      */
     protected function renderHttpException(HttpException $e)
     {
-        $status = $e->getStatusCode();
-
-        $unique = 'errors.' . $status;
-        $generic = 'errors.generic';
-
-        switch (true) {
-            case view()->exists($unique):
-                $view = $unique;
-                $class = $status;
-                break;
-            case view()->exists($generic):
-                $view = $generic;
-                $class = 'generic';
-                break;
-            default:
-                return $this->convertExceptionToResponse($e);
-        }
-
-        return response()->view(
-            $view,
-            [
-                'title' => $this->domain->getTitle(),
-                'description' => $this->domain->getDescription(),
-                'keywords' => $this->domain->getKeywords(),
-                'author' => $this->domain->getAuthor(),
-                'status' => $status,
-                'id' => implode(
-                    '  ',
-                    [
-                        'error',
-                        'error__' . $class,
-                    ]
-                ),
-            ],
-            $status,
-            $e->getHeaders()
-        );
+        return $this->handler->renderHttpException($e);
     }
 
     /**
