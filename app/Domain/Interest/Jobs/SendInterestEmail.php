@@ -21,6 +21,10 @@ class SendInterestEmail
         $this->entity = $entity;
     }
 
+    /**
+     * @param Mailer $mailer
+     * @param Config $config
+     */
     public function handle(Mailer $mailer, Config $config)
     {
         $entity = $this->entity;

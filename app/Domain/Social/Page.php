@@ -27,7 +27,7 @@ class Page extends BasePage
     }
 
     /**
-     * @param string $url
+     * @param string $title
      */
     public function setTitle($title)
     {
@@ -35,7 +35,7 @@ class Page extends BasePage
     }
 
     /**
-     * @param string $url
+     * @param string $text
      */
     public function setText($text)
     {
@@ -43,7 +43,7 @@ class Page extends BasePage
     }
 
     /**
-     * @param string $url
+     * @param string $image
      */
     public function setImage($image)
     {
@@ -51,7 +51,7 @@ class Page extends BasePage
     }
 
     /**
-     * @param string $url
+     * @param string $user
      */
     public function setTwitterUser($user)
     {
