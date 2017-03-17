@@ -30,8 +30,8 @@ class ArticleRepositoryTest extends TestCase
                     'title' => 'Post Title',
                     'date' => Carbon::createFromDate(2017, 3, 15),
                     'snippet' => 'This is the snippet.',
-                    'content' => 'This is the content.',
-                    'image' => 'http://test.com/image.png',
+                    'content' => 'tests.sample',
+                    'image' => 'assets/tests/sample.png',
                     'keywords' => [
                         'First',
                         'Second',
@@ -41,8 +41,8 @@ class ArticleRepositoryTest extends TestCase
                     'title' => 'Another Post Title',
                     'date' => Carbon::createFromDate(2015, 2, 11),
                     'snippet' => 'This is the snippet.',
-                    'content' => 'This is the content.',
-                    'image' => 'http://test.com/image-two.png',
+                    'content' => 'tests.sample',
+                    'image' => 'assets/tests/sample.png',
                     'keywords' => [
                         'Third',
                         'Fourth',
@@ -57,7 +57,7 @@ class ArticleRepositoryTest extends TestCase
     public function testConvertArticlesToEntities()
     {
         $articles = $this->articleRepository->getAll();
-        foreach ($articles as $article) {
+        foreach ($articles as $id => $article) {
             $this->assertInstanceOf(Article::class, $article);
         }
     }

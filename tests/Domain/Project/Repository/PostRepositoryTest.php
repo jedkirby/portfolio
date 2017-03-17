@@ -19,7 +19,7 @@ class PostRepositoryTest extends TestCase
 {
     private $postRepository;
 
-    public function __construct()
+    public function setUp()
     {
         $config = Mockery::mock(Config::class);
         $config
@@ -75,7 +75,7 @@ class PostRepositoryTest extends TestCase
     public function testConvertPostsToEntities()
     {
         $posts = $this->postRepository->getAll();
-        foreach ($posts as $post) {
+        foreach ($posts as $id => $post) {
             $this->assertInstanceOf(Post::class, $post);
         }
     }
