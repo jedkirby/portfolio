@@ -42,7 +42,7 @@ class ArticleTest extends TestCase
         $this->assertEquals($entity->getDate(), '2001-03-10');
         $this->assertEquals($entity->getSnippet(), 'Post Snippet.');
         $this->assertInstanceOf(View::class, $entity->getContent());
-        $this->assertEquals($entity->getImage(), 'http://localhost/assets/tests/sample.png?1489743258');
+        $this->assertStringStartsWith('http://localhost/assets/tests/sample.png', $entity->getImage());
         $this->assertEquals($entity->getKeywords(), ['One', 'Two']);
         $this->assertEquals($entity->getUrl(), 'http://localhost/blog/post-title');
     }
