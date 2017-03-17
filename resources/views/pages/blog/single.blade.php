@@ -6,7 +6,7 @@
     <meta property="og:type" content="article">
 
     <meta name="twitter:card" content="summary_large_image">
-    <?php /*<meta name="twitter:site" content="{{ $twitterHandle }}" />*/ ?>
+    <meta name="twitter:site" content="{{ \Config::get('site.social.streams.twitter.handle') }}" />
     <meta name="twitter:title" content="{{ $title }}" />
     <meta name="twitter:description" content="{{ $description }}" />
 
@@ -41,22 +41,20 @@
 
                             <div class="articles__article--content" itemprop="articleBody">{!! $article->getContent() !!}</div>
 
-                            <?php /*
                             <div class="social  articles__social">
-                                <a href="{{ $social->facebook->shareUrl }}" class="btn  btn__icon  social__button  social__button--facebook" title="Facebook" target="_blank">
+                                <a href="{{ $page->facebook->shareUrl }}" class="btn  btn__icon  social__button  social__button--facebook" title="Facebook" target="_blank">
                                     <i class="fa fa-facebook"></i> <span>Facebook</span>
                                 </a>
-                                <a href="{{ $social->twitter->shareUrl }}" class="btn  btn__icon  social__button  social__button--twitter" title="Twitter" target="_blank">
+                                <a href="{{ $page->twitter->shareUrl }}" class="btn  btn__icon  social__button  social__button--twitter" title="Twitter" target="_blank">
                                     <i class="fa fa-twitter"></i> <span>Twitter</span>
                                 </a>
-                                <a href="{{ $social->plus->shareUrl }}" class="btn  btn__icon  social__button  social__button--google" title="Google Plus" target="_blank">
+                                <a href="{{ $page->plus->shareUrl }}" class="btn  btn__icon  social__button  social__button--google" title="Google Plus" target="_blank">
                                     <i class="fa fa-google"></i> <span>Google</span>
                                 </a>
-                                <a href="{{ $social->pinterest->shareUrl }}" class="btn  btn__icon  social__button  social__button--pinterest" title="Pinterest" target="_blank">
+                                <a href="{{ $page->pinterest->shareUrl }}" class="btn  btn__icon  social__button  social__button--pinterest" title="Pinterest" target="_blank">
                                     <i class="fa fa-pinterest"></i> <span>Pinterest</span>
                                 </a>
                             </div>
-                            */?>
 
                         </article>
 

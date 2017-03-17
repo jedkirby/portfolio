@@ -4,7 +4,7 @@
 @section('header')
 
     <meta name="twitter:card" content="summary" />
-    <?php /*<meta name="twitter:site" content="{{ $twitterHandle }}" />*/ ?>
+    <meta name="twitter:site" content="{{ \Config::get('site.social.streams.twitter.handle') }}" />
     <meta name="twitter:title" content="{{ $title }}" />
     <meta name="twitter:description" content="{{ $description }}" />
 

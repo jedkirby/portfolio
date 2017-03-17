@@ -17,7 +17,7 @@ use Mockery;
  */
 class ContactControllerTest extends AbstractControllerTestCase
 {
-    private $handler;
+    private $contactHandler;
     private $controller;
 
     public function setUp()
@@ -27,10 +27,10 @@ class ContactControllerTest extends AbstractControllerTestCase
         $this->domain->shouldReceive('setTitle')->with('Contact')->andReturn(true)->once();
         $this->domain->shouldReceive('setDescription')->andReturn(true)->once();
 
-        $this->handler = Mockery::mock(ContactHandler::class);
+        $this->contactHandler = Mockery::mock(ContactHandler::class);
         $this->controller = new ContactController(
             $this->domain,
-            $this->handler
+            $this->contactHandler
         );
     }
 
@@ -81,16 +81,16 @@ class ContactControllerTest extends AbstractControllerTestCase
 
         switch ($state) {
             case 'complete':
-                $this->handler->shouldReceive('handle')->andReturn(true)->once();
+                $this->contactHandler->shouldReceive('handle')->andReturn(true)->once();
                 break;
             case 'incomplete':
-                $this->handler->shouldReceive('handle')->andReturn(false)->once();
+                $this->contactHandler->shouldReceive('handle')->andReturn(false)->once();
                 break;
             case 'spam':
-                $this->handler->shouldReceive('handle')->andThrow(SpamException::class)->once();
+                $this->contactHandler->shouldReceive('handle')->andThrow(SpamException::class)->once();
                 break;
             case 'validation':
-                $this->handler->shouldReceive('handle')->andThrow(ValidationException::class)->once();
+                $this->contactHandler->shouldReceive('handle')->andThrow(ValidationException::class)->once();
                 break;
         }
 
@@ -112,7 +112,7 @@ class ContactControllerTest extends AbstractControllerTestCase
     {
         $request = $this->createRequest();
 
-        $this->handler
+        $this->contactHandler
             ->shouldReceive('handle')
             ->andReturn(true)
             ->once();
@@ -128,7 +128,7 @@ class ContactControllerTest extends AbstractControllerTestCase
     {
         $request = $this->createRequest();
 
-        $this->handler
+        $this->contactHandler
             ->shouldReceive('handle')
             ->andThrow(SpamException::class)
             ->once();
@@ -147,7 +147,7 @@ class ContactControllerTest extends AbstractControllerTestCase
             'name' => 'required',
         ]);
 
-        $this->handler
+        $this->contactHandler
             ->shouldReceive('handle')
             ->andThrow($exception)
             ->once();

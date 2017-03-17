@@ -19,21 +19,21 @@ class ContactController extends AbstractController
     /**
      * @var ContactHandler
      */
-    private $handler;
+    private $contactHandler;
 
     /**
      * @param Domain $domain
-     * @param ContactHandler $handler
+     * @param ContactHandler $contactHandler
      */
     public function __construct(
         Domain $domain,
-        ContactHandler $handler
+        ContactHandler $contactHandler
     ) {
         $domain->setTitle('Contact');
         $domain->setDescription("If you have a specific requirement that you'd like to talk about, simply fill in this form as fully as possible and I will personally get back to you. Having worked with clients in a number of different time zones, I've given up on using the phone. However, you can reach me through e-mail.");
 
         $this->domain = $domain;
-        $this->handler = $handler;
+        $this->contactHandler = $contactHandler;
     }
 
     /**
@@ -65,7 +65,7 @@ class ContactController extends AbstractController
         ];
 
         try {
-            if ($this->handler->handle($command)) {
+            if ($this->contactHandler->handle($command)) {
                 $params['complete'] = true;
             }
         } catch (ValidationException $e) {

@@ -169,6 +169,14 @@ class Post
     /**
      * @return string
      */
+    public function getIntroductionForMeta()
+    {
+        return strip_tags($this->getIntroduction());
+    }
+
+    /**
+     * @return string
+     */
     public function getContent()
     {
         return view($this->content);
@@ -232,6 +240,6 @@ class Post
      */
     public function getUrl()
     {
-        return route('post', $this->getId());
+        return route('project', $this->getId());
     }
 }

@@ -15,14 +15,15 @@ class InterestController extends BaseController
     /**
      * @var InterestHandler
      */
-    private $handler;
+    private $interestHandler;
 
     /**
-     * @param InterestHandler $handler
+     * @param InterestHandler $interestHandler
      */
-    public function __construct(InterestHandler $handler)
-    {
-        $this->handler = $handler;
+    public function __construct(
+        InterestHandler $interestHandler
+    ) {
+        $this->interestHandler = $interestHandler;
     }
 
     /**
@@ -39,7 +40,7 @@ class InterestController extends BaseController
         ];
 
         try {
-            if ($this->handler->handle($command)) {
+            if ($this->interestHandler->handle($command)) {
                 $params['complete'] = true;
             }
         } catch (ValidationException $e) {

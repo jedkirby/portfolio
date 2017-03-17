@@ -5,8 +5,9 @@ namespace App\Tests\Domain\Support;
 use App\Tests\AbstractAppTestCase as TestCase;
 
 /**
- * @group support
- * @group support.helpers
+ * @group domain
+ * @group domain.support
+ * @group domain.support.helpers
  */
 class HelpersTest extends TestCase
 {

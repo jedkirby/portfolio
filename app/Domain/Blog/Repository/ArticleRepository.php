@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Domain\Blog;
+namespace App\Domain\Blog\Repository;
 
 use App\Domain\Blog\Entity\Article;
 use App\Domain\Common\Exception\EntityNotFoundException;
-use App\Domain\Common\ManagerInterface;
+use App\Domain\Common\Repository\RepositoryInterface;
 use Illuminate\Contracts\Config\Repository as Config;
 
-class BlogManager implements ManagerInterface
+class ArticleRepository implements RepositoryInterface
 {
     /**
      * @var Article[]

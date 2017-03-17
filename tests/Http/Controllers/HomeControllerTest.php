@@ -2,11 +2,11 @@
 
 namespace App\Tests\Http\Controllers;
 
-use App\Domain\Blog\BlogManager;
+use App\Domain\Blog\Repository\ArticleRepository;
 use App\Domain\Blog\Entity\Article;
 use App\Domain\Domain;
 use App\Domain\Project\Entity\Post;
-use App\Domain\Project\ProjectManager;
+use App\Domain\Project\Repository\PostRepository;
 use App\Domain\Service\Twitter\Entity\Tweet;
 use App\Domain\Service\Twitter\TweetManager;
 use App\Http\Controllers\HomeController;
@@ -19,23 +19,23 @@ use Mockery;
  */
 class HomeControllerTest extends AbstractControllerTestCase
 {
-    private $blog;
-    private $project;
-    private $twitter;
+    private $articleRepository;
+    private $postRepository;
+    private $tweetManager;
     private $controller;
 
     public function setUp()
     {
         parent::setUp();
 
-        $this->blog = Mockery::mock(BlogManager::class);
-        $this->project = Mockery::mock(ProjectManager::class);
-        $this->twitter = Mockery::mock(TweetManager::class);
+        $this->articleRepository = Mockery::mock(ArticleRepository::class);
+        $this->postRepository = Mockery::mock(PostRepository::class);
+        $this->tweetManager = Mockery::mock(TweetManager::class);
         $this->controller = new HomeController(
             $this->domain,
-            $this->blog,
-            $this->project,
-            $this->twitter
+            $this->articleRepository,
+            $this->postRepository,
+            $this->tweetManager
         );
     }
 
@@ -45,7 +45,7 @@ class HomeControllerTest extends AbstractControllerTestCase
             ->shouldReceive('setDescription')
             ->once();
 
-        $this->blog
+        $this->articleRepository
             ->shouldReceive('getLimit')
             ->andReturn([
                 Mockery::mock(Article::class),
@@ -53,7 +53,7 @@ class HomeControllerTest extends AbstractControllerTestCase
             ])
             ->once();
 
-        $this->project
+        $this->postRepository
             ->shouldReceive('getLimit')
             ->andReturn([
                 Mockery::mock(Post::class),
@@ -61,7 +61,7 @@ class HomeControllerTest extends AbstractControllerTestCase
             ])
             ->once();
 
-        $this->twitter
+        $this->tweetManager
             ->shouldReceive('getTweet')
             ->andReturn(Mockery::mock(Tweet::class))
             ->once();

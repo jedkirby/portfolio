@@ -2,9 +2,10 @@
 
 namespace App\Tests\Http\Controllers;
 
+use App\Domain\Social\Page;
 use App\Domain\Common\Exception\EntityNotFoundException;
 use App\Domain\Domain;
-use App\Domain\Project\ProjectManager;
+use App\Domain\Project\Repository\PostRepository;
 use App\Http\Controllers\ProjectController;
 use App\Tests\AbstractAppTestCase as TestCase;
 use Mockery;
@@ -17,7 +18,8 @@ use Mockery;
 class ProjectControllerExceptionTest extends TestCase
 {
     private $domain;
-    private $project;
+    private $postRepository;
+    private $page;
     private $controller;
 
     public function setUp()
@@ -25,10 +27,12 @@ class ProjectControllerExceptionTest extends TestCase
         parent::setUp();
 
         $this->domain = Mockery::mock(Domain::class);
-        $this->project = Mockery::mock(ProjectManager::class);
+        $this->postRepository = Mockery::mock(PostRepository::class);
+        $this->page = Mockery::mock(Page::class);
         $this->controller = new ProjectController(
             $this->domain,
-            $this->project
+            $this->postRepository,
+            $this->page
         );
     }
 
@@ -37,7 +41,7 @@ class ProjectControllerExceptionTest extends TestCase
      */
     public function testThrowsExceptionWhenNotFound()
     {
-        $this->project
+        $this->postRepository
             ->shouldReceive('getById')
             ->with('my-project')
             ->andThrow(EntityNotFoundException::class)

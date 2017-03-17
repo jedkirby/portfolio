@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Domain\Social\Page;
 use App\Domain\Common\Exception\EntityNotFoundException;
 use App\Domain\Domain;
-use App\Domain\Project\ProjectManager;
+use App\Domain\Project\Repository\PostRepository;
 use Illuminate\View\View;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -21,20 +22,28 @@ class ProjectController extends AbstractController
     protected $domain;
 
     /**
-     * @var ProjectManager
+     * @var PostRepository
      */
-    private $project;
+    private $postRepository;
+
+    /**
+     * @var Page
+     */
+    private $page;
 
     /**
      * @param Domain $domain
-     * @param ProjectManager $project
+     * @param PostRepository $postRepository
+     * @param Page $page
      */
     public function __construct(
         Domain $domain,
-        ProjectManager $project
+        PostRepository $postRepository,
+        Page $page
     ) {
         $this->domain = $domain;
-        $this->project = $project;
+        $this->postRepository = $postRepository;
+        $this->page = $page;
     }
 
     /**
@@ -42,7 +51,7 @@ class ProjectController extends AbstractController
      */
     public function all()
     {
-        $projects = $this->project->getAll();
+        $projects = $this->postRepository->getAll();
 
         $keywords = [];
         foreach ($projects as $project) {
@@ -72,28 +81,29 @@ class ProjectController extends AbstractController
     public function single($id)
     {
         try {
-            $project = $this->project->getById($id);
+            $project = $this->postRepository->getById($id);
         } catch (EntityNotFoundException $e) {
             throw new NotFoundHttpException();
         }
 
         $this->domain->setTitle($project->getTitle());
-        $this->domain->setDescription(strip_tags($project->getIntroduction()));
+        $this->domain->setDescription($project->getIntroductionForMeta());
         $this->domain->setKeywords($project->getKeywords());
 
-        /*
-        $social = new \SocialLinks\Page([
-            'url' => \URL::current(),
-            'title' => array_get($project, 'title'),
-            'text' => array_get($project, 'intro'),
-            'image' => array_get($project, 'images.0', ''),
-            'twitterUser' => \Config::get('site.meta.twitter.handle'),
-        ]);
-        */
+        $this->page->setUrl($project->getUrl());
+        $this->page->setTitle($project->getTitle());
+        $this->page->setText($project->getIntroductionForMeta());
+
+        if ($images = $project->getImages()) {
+            $this->page->setImage(reset($images));
+        }
 
         return view(
             'pages.projects.single',
-            $this->getViewParams(compact('project'))
+            $this->getViewParams([
+                'project' => $project,
+                'page' => $this->page,
+            ])
         );
     }
 }

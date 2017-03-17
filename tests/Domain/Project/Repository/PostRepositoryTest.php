@@ -3,7 +3,7 @@
 namespace App\Tests\Domain\Project;
 
 use App\Domain\Project\Entity\Post;
-use App\Domain\Project\ProjectManager;
+use App\Domain\Project\Repository\PostRepository;
 use App\Tests\AbstractAppTestCase as TestCase;
 use Carbon\Carbon;
 use Illuminate\Contracts\Config\Repository as Config;
@@ -12,11 +12,12 @@ use Mockery;
 /**
  * @group domain
  * @group domain.project
- * @group domain.project.manager
+ * @group domain.project.repository
+ * @group domain.project.repository.post
  */
-class ProjectManagerTest extends TestCase
+class PostRepositoryTest extends TestCase
 {
-    private $project;
+    private $postRepository;
 
     public function __construct()
     {
@@ -68,12 +69,12 @@ class ProjectManagerTest extends TestCase
             ])
             ->once();
 
-        $this->project = new ProjectManager($config);
+        $this->postRepository = new PostRepository($config);
     }
 
     public function testConvertPostsToEntities()
     {
-        $posts = $this->project->getAll();
+        $posts = $this->postRepository->getAll();
         foreach ($posts as $post) {
             $this->assertInstanceOf(Post::class, $post);
         }
@@ -83,7 +84,7 @@ class ProjectManagerTest extends TestCase
     {
         $this->assertEquals(
             2,
-            $this->project->getCount()
+            $this->postRepository->getCount()
         );
     }
 
@@ -92,7 +93,7 @@ class ProjectManagerTest extends TestCase
         $limit = 1;
         $this->assertCount(
             $limit,
-            $this->project->getLimit($limit)
+            $this->postRepository->getLimit($limit)
         );
     }
 
@@ -101,14 +102,14 @@ class ProjectManagerTest extends TestCase
      */
     public function testThrowsExceptionWhenNotFound()
     {
-        $post = $this->project->getById('does-not-exist');
+        $post = $this->postRepository->getById('does-not-exist');
     }
 
     public function testCanGetById()
     {
         $this->assertInstanceOf(
             Post::class,
-            $this->project->getById('project-title')
+            $this->postRepository->getById('project-title')
         );
     }
 }

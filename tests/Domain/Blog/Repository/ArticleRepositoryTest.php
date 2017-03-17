@@ -2,7 +2,7 @@
 
 namespace App\Tests\Domain\Blog;
 
-use App\Domain\Blog\BlogManager;
+use App\Domain\Blog\Repository\ArticleRepository;
 use App\Domain\Blog\Entity\Article;
 use App\Tests\AbstractAppTestCase as TestCase;
 use Carbon\Carbon;
@@ -12,11 +12,12 @@ use Mockery;
 /**
  * @group domain
  * @group domain.blog
- * @group domain.blog.manager
+ * @group domain.blog.repository
+ * @group domain.blog.repository.article
  */
-class BlogManagerTest extends TestCase
+class ArticleRepositoryTest extends TestCase
 {
-    private $blog;
+    private $articleRepository;
 
     public function setUp()
     {
@@ -50,12 +51,12 @@ class BlogManagerTest extends TestCase
             ])
             ->once();
 
-        $this->blog = new BlogManager($config);
+        $this->articleRepository = new ArticleRepository($config);
     }
 
     public function testConvertArticlesToEntities()
     {
-        $articles = $this->blog->getAll();
+        $articles = $this->articleRepository->getAll();
         foreach ($articles as $article) {
             $this->assertInstanceOf(Article::class, $article);
         }
@@ -65,7 +66,7 @@ class BlogManagerTest extends TestCase
     {
         $this->assertEquals(
             2,
-            $this->blog->getCount()
+            $this->articleRepository->getCount()
         );
     }
 
@@ -74,7 +75,7 @@ class BlogManagerTest extends TestCase
         $limit = 1;
         $this->assertCount(
             $limit,
-            $this->blog->getLimit($limit)
+            $this->articleRepository->getLimit($limit)
         );
     }
 
@@ -83,14 +84,14 @@ class BlogManagerTest extends TestCase
      */
     public function testThrowsExceptionWhenArticleIsNotFound()
     {
-        $post = $this->blog->getById('does-not-exist');
+        $post = $this->articleRepository->getById('does-not-exist');
     }
 
     public function testCanGetArticleById()
     {
         $this->assertInstanceOf(
             Article::class,
-            $this->blog->getById('post-title')
+            $this->articleRepository->getById('post-title')
         );
     }
 }

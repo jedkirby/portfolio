@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Domain\Project;
+namespace App\Domain\Project\Repository;
 
 use App\Domain\Common\Exception\EntityNotFoundException;
-use App\Domain\Common\ManagerInterface;
+use App\Domain\Common\Repository\RepositoryInterface;
 use App\Domain\Project\Entity\Post;
 use Illuminate\Contracts\Config\Repository as Config;
 
-class ProjectManager implements ManagerInterface
+class PostRepository implements RepositoryInterface
 {
     /**
      * @var Post[]

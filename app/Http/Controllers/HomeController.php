@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Domain\Blog\BlogManager;
+use App\Domain\Blog\Repository\ArticleRepository;
 use App\Domain\Domain;
-use App\Domain\Project\ProjectManager;
+use App\Domain\Project\Repository\PostRepository;
 use App\Domain\Service\Twitter\TweetManager;
 
 class HomeController extends AbstractController
@@ -15,36 +15,36 @@ class HomeController extends AbstractController
     protected $domain;
 
     /**
-     * @var BlogManager
+     * @var ArticleRepository
      */
-    private $blog;
+    private $articleRepository;
 
     /**
-     * @var ProjectManager
+     * @var PostRepository
      */
-    private $project;
+    private $postRepository;
 
     /**
      * @var TweetManager
      */
-    private $twitter;
+    private $tweetManager;
 
     /**
      * @param Domain $domain
-     * @param BlogManager $blog
-     * @param ProjectManager $project
-     * @param TweetManager $twitter
+     * @param ArticleRepository $articleRepository
+     * @param PostRepository $postRepository
+     * @param TweetManager $tweetManager
      */
     public function __construct(
         Domain $domain,
-        BlogManager $blog,
-        ProjectManager $project,
-        TweetManager $twitter
+        ArticleRepository $articleRepository,
+        PostRepository $postRepository,
+        TweetManager $tweetManager
     ) {
         $this->domain = $domain;
-        $this->blog = $blog;
-        $this->project = $project;
-        $this->twitter = $twitter;
+        $this->articleRepository = $articleRepository;
+        $this->postRepository = $postRepository;
+        $this->tweetManager = $tweetManager;
     }
 
     /**
@@ -57,9 +57,9 @@ class HomeController extends AbstractController
         return view(
             'pages.home',
             $this->getViewParams([
-                'articles' => $this->blog->getLimit(2),
-                'projects' => $this->project->getLimit(3),
-                'tweet' => $this->twitter->getTweet(),
+                'articles' => $this->articleRepository->getLimit(2),
+                'projects' => $this->postRepository->getLimit(3),
+                'tweet' => $this->tweetManager->getTweet(),
             ])
         );
     }

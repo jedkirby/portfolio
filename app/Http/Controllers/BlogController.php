@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Domain\Blog\BlogManager;
+use App\Domain\Social\Page;
+use App\Domain\Blog\Repository\ArticleRepository;
 use App\Domain\Common\Exception\EntityNotFoundException;
 use App\Domain\Domain;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -20,20 +21,28 @@ class BlogController extends AbstractController
     protected $domain;
 
     /**
-     * @var BlogManager
+     * @var ArticleRepository
      */
-    private $blog;
+    private $articleRepository;
+
+    /**
+     * @var Page
+     */
+    private $page;
 
     /**
      * @param Domain $domain
-     * @param BlogManager $blog
+     * @param ArticleRepository $articleRepository
+     * @param Page $page
      */
     public function __construct(
         Domain $domain,
-        BlogManager $blog
+        ArticleRepository $articleRepository,
+        Page $page
     ) {
         $this->domain = $domain;
-        $this->blog = $blog;
+        $this->articleRepository = $articleRepository;
+        $this->page = $page;
     }
 
     /**
@@ -41,7 +50,7 @@ class BlogController extends AbstractController
      */
     public function all()
     {
-        $articles = $this->blog->getAll();
+        $articles = $this->articleRepository->getAll();
 
         $keywords = [];
         foreach ($articles as $article) {
@@ -70,7 +79,7 @@ class BlogController extends AbstractController
     public function single($id)
     {
         try {
-            $article = $this->blog->getById($id);
+            $article = $this->articleRepository->getById($id);
         } catch (EntityNotFoundException $e) {
             throw new NotFoundHttpException();
         }
@@ -79,19 +88,17 @@ class BlogController extends AbstractController
         $this->domain->setDescription($article->getSnippet());
         $this->domain->setKeywords($article->getKeywords());
 
-        /*
-        $social = new Page([
-            'url' => \URL::current(),
-            'title' => array_get($article, 'title'),
-            'text' => array_get($article, 'snippet'),
-            'image' => array_get($article, 'image', ''),
-            'twitterUser' => \Config::get('site.meta.twitter.handle'),
-        ]);
-        */
+        $this->page->setUrl($article->getUrl());
+        $this->page->setTitle($article->getTitle());
+        $this->page->setText($article->getSnippet());
+        $this->page->setImage($article->getImage());
 
         return view(
             'pages.blog.single',
-            $this->getViewParams(compact('article'))
+            $this->getViewParams([
+                'article' => $article,
+                'page' => $this->page
+            ])
         );
     }
 }

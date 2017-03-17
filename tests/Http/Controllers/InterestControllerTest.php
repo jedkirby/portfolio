@@ -18,16 +18,16 @@ use Mockery;
  */
 class InterestControllerTest extends TestCase
 {
-    private $handler;
+    private $interestHandler;
     private $controller;
 
     public function setUp()
     {
         parent::setUp();
 
-        $this->handler = Mockery::mock(InterestHandler::class);
+        $this->interestHandler = Mockery::mock(InterestHandler::class);
         $this->controller = new InterestController(
-            $this->handler
+            $this->interestHandler
         );
     }
 
@@ -61,16 +61,16 @@ class InterestControllerTest extends TestCase
 
         switch ($state) {
             case 'complete':
-                $this->handler->shouldReceive('handle')->andReturn(true)->once();
+                $this->interestHandler->shouldReceive('handle')->andReturn(true)->once();
                 break;
             case 'incomplete':
-                $this->handler->shouldReceive('handle')->andReturn(false)->once();
+                $this->interestHandler->shouldReceive('handle')->andReturn(false)->once();
                 break;
             case 'spam':
-                $this->handler->shouldReceive('handle')->andThrow(SpamException::class)->once();
+                $this->interestHandler->shouldReceive('handle')->andThrow(SpamException::class)->once();
                 break;
             case 'validation':
-                $this->handler->shouldReceive('handle')->andThrow(ValidationException::class)->once();
+                $this->interestHandler->shouldReceive('handle')->andThrow(ValidationException::class)->once();
                 break;
         }
 
@@ -85,7 +85,7 @@ class InterestControllerTest extends TestCase
     {
         $request = $this->createRequest();
 
-        $this->handler
+        $this->interestHandler
             ->shouldReceive('handle')
             ->andReturn(true)
             ->once();
@@ -101,7 +101,7 @@ class InterestControllerTest extends TestCase
     {
         $request = $this->createRequest();
 
-        $this->handler
+        $this->interestHandler
             ->shouldReceive('handle')
             ->andThrow(SpamException::class)
             ->once();
@@ -120,7 +120,7 @@ class InterestControllerTest extends TestCase
             'name' => 'required',
         ]);
 
-        $this->handler
+        $this->interestHandler
             ->shouldReceive('handle')
             ->andThrow($exception)
             ->once();

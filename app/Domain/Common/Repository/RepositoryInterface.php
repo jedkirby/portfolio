@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Domain\Common;
+namespace App\Domain\Common\Repository;
 
-interface ManagerInterface
+interface RepositoryInterface
 {
     /**
      * @return array

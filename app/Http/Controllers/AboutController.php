@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Domain\Blog\BlogManager;
+use App\Domain\Blog\Repository\ArticleRepository;
 use App\Domain\Domain;
-use App\Domain\Project\ProjectManager;
+use App\Domain\Project\Repository\PostRepository;
 use App\Domain\Service\Instagram\InstagramManager;
 use Carbon\Carbon;
 
@@ -16,36 +16,36 @@ class AboutController extends AbstractController
     protected $domain;
 
     /**
-     * @var BlogManager
+     * @var ArticleRepository
      */
-    private $blog;
+    private $articleRepository;
 
     /**
-     * @var ProjectManager
+     * @var PostRepository
      */
-    private $project;
+    private $postRepository;
 
     /**
      * @var InstagramManager
      */
-    private $instagram;
+    private $instagramManager;
 
     /**
      * @param Domain $domain
-     * @param BlogManager $blog
-     * @param ProjectManager $project
-     * @param InstagramManager $instagram
+     * @param ArticleRepository $articleRepository
+     * @param PostRepository $postRepository
+     * @param InstagramManager $instagramManager
      */
     public function __construct(
         Domain $domain,
-        BlogManager $blog,
-        ProjectManager $project,
-        InstagramManager $instagram
+        ArticleRepository $articleRepository,
+        PostRepository $postRepository,
+        InstagramManager $instagramManager
     ) {
         $this->domain = $domain;
-        $this->blog = $blog;
-        $this->project = $project;
-        $this->instagram = $instagram;
+        $this->articleRepository = $articleRepository;
+        $this->postRepository = $postRepository;
+        $this->instagramManager = $instagramManager;
     }
 
     /**
@@ -61,12 +61,12 @@ class AboutController extends AbstractController
         return view(
             'pages.about',
             $this->getViewParams([
-                'instagram' => $this->instagram->getPosts(),
+                'instagram' => $this->instagramManager->getPosts(),
                 'counts' => [
                     'tea' => $startedWorking->diffInDays(),
                     'food' => $startedWorking->diffInWeeks(),
-                    'projects' => $this->project->getCount(),
-                    'articles' => $this->blog->getCount(),
+                    'projects' => $this->postRepository->getCount(),
+                    'articles' => $this->articleRepository->getCount(),
                 ],
             ])
         );
