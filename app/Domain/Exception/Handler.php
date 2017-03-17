@@ -24,29 +24,13 @@ class Handler
     /**
      * Render the given HttpException.
      *
-     * @param  \Symfony\Component\HttpKernel\Exception\HttpException  $e
+     * @param \Symfony\Component\HttpKernel\Exception\HttpException $e
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function renderHttpException(HttpException $e)
     {
         $status = $e->getStatusCode();
-
-        $unique = sprintf('errors.%s', $status);
-        $generic = 'errors.generic';
-
-        switch (true) {
-            case view()->exists($unique):
-                $view = $unique;
-                $class = $status;
-                break;
-            case view()->exists($generic):
-                $view = $generic;
-                $class = 'generic';
-                break;
-            default:
-                return $this->convertExceptionToResponse($e);
-        }
 
         switch ($status) {
             case 404:
@@ -57,7 +41,7 @@ class Handler
         }
 
         return view(
-            $view,
+            'errors.generic',
             [
                 'title' => $this->domain->getTitle(),
                 'description' => $this->domain->getDescription(),
@@ -68,7 +52,7 @@ class Handler
                     '  ',
                     [
                         'error',
-                        'error__' . $class,
+                        'error__generic',
                     ]
                 ),
             ]
