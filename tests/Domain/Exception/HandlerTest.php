@@ -60,7 +60,7 @@ class HandlerTest extends TestCase
             HttpException::class,
             [
                 'getStatusCode' => $status,
-                'getHeaders' => []
+                'getHeaders' => [],
             ]
         );
 

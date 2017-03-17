@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Domain\Blog;
+namespace App\Tests\Domain\Blog\Entity;
 
 use App\Domain\Blog\Entity\Article;
 use App\Tests\AbstractAppTestCase as TestCase;

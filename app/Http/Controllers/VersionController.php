@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Routing\Controller as BaseController;
 
+/**
+ * @codeCoverageIgnore
+ */
 class VersionController extends BaseController
 {
     /**
