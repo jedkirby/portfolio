@@ -2,9 +2,9 @@
 
 namespace App\Tests\Http\Controllers;
 
+use App\Domain\Blog\Repository\ArticleRepository;
 use App\Domain\Common\Exception\EntityNotFoundException;
 use App\Domain\Domain;
-use App\Domain\Blog\Repository\ArticleRepository;
 use App\Domain\Social\Page;
 use App\Http\Controllers\BlogController;
 use App\Tests\AbstractAppTestCase as TestCase;

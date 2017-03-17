@@ -2,13 +2,13 @@
 
 namespace App\Tests\Http\Controllers;
 
-use App\Domain\Domain;
 use App\Domain\Blog\Entity\Article;
 use App\Domain\Blog\Repository\ArticleRepository;
+use App\Domain\Domain;
 use App\Domain\Social\Page;
 use App\Http\Controllers\BlogController;
-use Mockery;
 use Carbon\Carbon;
+use Mockery;
 
 /**
  * @group http
@@ -40,7 +40,7 @@ class BlogControllerTest extends AbstractControllerTestCase
             Mockery::mock(
                 Article::class,
                 [
-                    'getKeywords' => ['One', 'Two']
+                    'getKeywords' => ['One', 'Two'],
                 ]
             ),
             Mockery::mock(
