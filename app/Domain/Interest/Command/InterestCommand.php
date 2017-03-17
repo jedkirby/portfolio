@@ -56,12 +56,4 @@ class InterestCommand
             $request->get('honeypot', '')
         );
     }
-
-    /**
-     * @return InterestCommand
-     */
-    public static function make()
-    {
-        return new static('', '', '');
-    }
 }

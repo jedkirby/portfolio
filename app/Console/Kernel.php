@@ -2,7 +2,6 @@
 
 namespace App\Console;
 
-use App;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -22,22 +21,12 @@ class Kernel extends ConsoleKernel
     /**
      * Define the application's command schedule.
      *
-     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
+     * @param \Illuminate\Console\Scheduling\Schedule $schedule
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('instagram:latest-posts')->twiceDaily();
         $schedule->command('twitter:latest-tweet')->everyFiveMinutes();
-
-        if (App::environment('production')) {
-            $schedule->command('app:error-report')->daily(); // Once every day just gone midnight
-        }
-    }
-
-    /**
-     * Register the Closure based commands for the application.
-     */
-    protected function commands()
-    {
+        $schedule->command('instagram:latest-posts')->twiceDaily();
+        $schedule->command('app:error-report')->daily(); // Once every day just gone midnight
     }
 }
