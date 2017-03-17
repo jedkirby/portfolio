@@ -2,10 +2,10 @@
 
 namespace App\Tests\Http\Controllers;
 
-use App\Domain\Social\Page;
 use App\Domain\Common\Exception\EntityNotFoundException;
 use App\Domain\Domain;
 use App\Domain\Project\Repository\PostRepository;
+use App\Domain\Social\Page;
 use App\Http\Controllers\ProjectController;
 use App\Tests\AbstractAppTestCase as TestCase;
 use Mockery;

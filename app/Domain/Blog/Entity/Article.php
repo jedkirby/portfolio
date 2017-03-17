@@ -115,7 +115,7 @@ class Article
      */
     public function getImage()
     {
-        return ($this->image ? cached_asset($this->image) : false);
+        return $this->image ? cached_asset($this->image) : false;
     }
 
     /**

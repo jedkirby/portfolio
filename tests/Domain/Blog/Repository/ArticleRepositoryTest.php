@@ -2,8 +2,8 @@
 
 namespace App\Tests\Domain\Blog;
 
-use App\Domain\Blog\Repository\ArticleRepository;
 use App\Domain\Blog\Entity\Article;
+use App\Domain\Blog\Repository\ArticleRepository;
 use App\Tests\AbstractAppTestCase as TestCase;
 use Carbon\Carbon;
 use Illuminate\Contracts\Config\Repository as Config;

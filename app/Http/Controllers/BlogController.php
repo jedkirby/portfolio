@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Domain\Social\Page;
 use App\Domain\Blog\Repository\ArticleRepository;
 use App\Domain\Common\Exception\EntityNotFoundException;
 use App\Domain\Domain;
+use App\Domain\Social\Page;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class BlogController extends AbstractController
@@ -97,7 +97,7 @@ class BlogController extends AbstractController
             'pages.blog.single',
             $this->getViewParams([
                 'article' => $article,
-                'page' => $this->page
+                'page' => $this->page,
             ])
         );
     }

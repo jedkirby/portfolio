@@ -2,8 +2,8 @@
 
 namespace App\Domain\Social;
 
-use SocialLinks\Page as BasePage;
 use Illuminate\Contracts\Config\Repository as Config;
+use SocialLinks\Page as BasePage;
 
 class Page extends BasePage
 {

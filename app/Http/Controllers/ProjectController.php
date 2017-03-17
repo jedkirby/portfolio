@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Domain\Social\Page;
 use App\Domain\Common\Exception\EntityNotFoundException;
 use App\Domain\Domain;
 use App\Domain\Project\Repository\PostRepository;
+use App\Domain\Social\Page;
 use Illuminate\View\View;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
