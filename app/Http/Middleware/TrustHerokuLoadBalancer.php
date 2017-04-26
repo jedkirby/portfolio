@@ -19,6 +19,7 @@ class TrustHerokuLoadBalancer
      * @var array
      */
     private $envs = [
+        'development',
         'staging',
         'production',
     ];
