@@ -15,7 +15,7 @@
         @yield('header')
         @include('sections.favicons')
         @include('sections.typekit')
-        {!! Html::style(elixir('assets/css/build/main.css')) !!}
+        <link href="{{ elixir('assets/css/build/main.css') }}" rel="stylesheet">
     </head>
     <body class="@yield('id', 'home')" itemscope itemtype="http://schema.org/WebPage">
 
@@ -27,8 +27,8 @@
 
         @include('sections.analytics')
 
-        {!! Html::script(elixir('assets/js/build/vendor.js')) !!}
-        {!! Html::script(elixir('assets/js/build/app.js')) !!}
+        <script src="{{ elixir('assets/js/build/vendor.js') }}"></script>
+        <script src="{{ elixir('assets/js/build/app.js') }}"></script>
 
         @yield('footer')
 
