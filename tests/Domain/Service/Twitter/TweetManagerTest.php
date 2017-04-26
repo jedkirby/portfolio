@@ -18,6 +18,7 @@ use Config;
  */
 class TweetManagerTest extends TestCase
 {
+    private $manager;
     private $tweetDetails = [
         'id' => 12987913324876991,
         'text' => 'This is the tweet text with a @mention, #Hashtag, and a link https://t.co/qeSnkprYiP.',
@@ -46,6 +47,12 @@ class TweetManagerTest extends TestCase
         ],
     ];
 
+    public function setUp()
+    {
+        parent::setUp();
+        $this->manager = new TweetManager();
+    }
+
     private function getTweet()
     {
         return TweetManager::createFromArray($this->tweetDetails);
@@ -64,7 +71,7 @@ class TweetManagerTest extends TestCase
     {
         $this->assertInternalType(
             'array',
-            TweetManager::getAllowedHashtags()
+            $this->manager->getAllowedHashtags()
         );
     }
 
@@ -80,16 +87,16 @@ class TweetManagerTest extends TestCase
     {
         $tweet = $this->getTweet();
 
-        TweetManager::setTweet($tweet);
+        $this->manager->setTweet($tweet);
 
-        $storedTweet = TweetManager::getTweet();
+        $storedTweet = $this->manager->getTweet();
 
         $this->assertEquals(
             $tweet->getId(),
             $storedTweet->getId()
         );
 
-        TweetManager::clearCache();
+        $this->manager->clearCache();
     }
 
     public function testItHasTheCorrectId()
@@ -191,7 +198,7 @@ class TweetManagerTest extends TestCase
         $service = $this->getService();
         $timeline = $service->getConnection()->getTimeline();
 
-        $tweet = TweetManager::getLatestTweet($timeline, ['Twitterbird']);
+        $tweet = $this->manager->getLatestTweet($timeline, ['Twitterbird']);
 
         $this->assertInstanceOf(
             Tweet::class,
@@ -212,7 +219,7 @@ class TweetManagerTest extends TestCase
         $service = $this->getService();
         $timeline = $service->getConnection()->getTimeline();
 
-        $tweet = TweetManager::getLatestTweet($timeline, []);
+        $tweet = $this->manager->getLatestTweet($timeline, []);
     }
 
     public function testItCorrectlyKnowsWhenTheTweetHasChanged()
@@ -220,23 +227,23 @@ class TweetManagerTest extends TestCase
         $storedTweet = TweetManager::createFromArray(['id' => 1, 'text' => 'Stored Tweet']);
         $newTweet = TweetManager::createFromArray(['id' => 2, 'text' => 'New Tweet']);
 
-        TweetManager::setTweet($storedTweet);
+        $this->manager->setTweet($storedTweet);
 
         $this->assertTrue(
-            TweetManager::hasTweetChanged($newTweet)
+            $this->manager->hasTweetChanged($newTweet)
         );
 
-        TweetManager::clearCache();
+        $this->manager->clearCache();
     }
 
     public function testItReportsTheTweetChangingWhenOneIsNotStored()
     {
         $tweet = TweetManager::createFromArray(['id' => 1, 'text' => 'Tweet']);
 
-        TweetManager::clearCache();
+        $this->manager->clearCache();
 
         $this->assertTrue(
-            TweetManager::hasTweetChanged($tweet)
+            $this->manager->hasTweetChanged($tweet)
         );
     }
 
@@ -244,12 +251,12 @@ class TweetManagerTest extends TestCase
     {
         $tweet = TweetManager::createFromArray(['id' => 1, 'text' => 'Tweet']);
 
-        TweetManager::setTweet($tweet);
+        $this->manager->setTweet($tweet);
 
         $this->assertFalse(
-            TweetManager::hasTweetChanged($tweet)
+            $this->manager->hasTweetChanged($tweet)
         );
 
-        TweetManager::clearCache();
+        $this->manager->clearCache();
     }
 }
