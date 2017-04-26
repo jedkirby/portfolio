@@ -116,7 +116,7 @@ class Article implements EntityInterface
      */
     public function getImage()
     {
-        return $this->image ? cached_asset($this->image) : false;
+        return $this->image ? casset($this->image) : false;
     }
 
     /**

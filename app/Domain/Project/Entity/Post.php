@@ -212,7 +212,7 @@ class Post implements EntityInterface
      */
     public function getHero()
     {
-        return cached_asset($this->hero);
+        return casset($this->hero);
     }
 
     /**
@@ -230,7 +230,7 @@ class Post implements EntityInterface
     {
         $images = [];
         foreach ($this->images as $image) {
-            $images[] = cached_asset($image);
+            $images[] = casset($image);
         }
 
         return $images;

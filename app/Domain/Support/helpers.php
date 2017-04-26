@@ -1,33 +1,25 @@
 <?php
 
-use App\Domain\Support\Exception\AssetNotFoundException;
-
-if (!function_exists('cached_asset')) {
+if (!function_exists('casset')) {
     /**
-     * Returns the asset with the modified timestamp appended to it.
+     * Generate an asset path for the application, with modifies timestamps.
      *
      * @param string $path
      *
-     * @throws AssetNotFoundException
-     *
      * @return string
      */
-    function cached_asset($path)
+    function casset($path)
     {
-        $realPath = public_path($path);
+        $file = public_path($path);
 
-        if (!file_exists($realPath)) {
-            throw new AssetNotFoundException(sprintf(
-                'File "%s" not found.',
-                $realPath
-            ));
+        if (file_exists($file)) {
+            $path .= '?t=' . filemtime($file);
         }
 
-        return asset(sprintf(
-            '%s?%s',
+        return asset(
             $path,
-            filemtime($realPath)
-        ));
+            request()->secure()
+        );
     }
 }
 
