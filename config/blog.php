@@ -4,6 +4,23 @@ use Carbon\Carbon;
 
 return [
     'articles' => [
+        'heroku-laravel-load-balancers-and-ssl' => [
+            'title' => 'Heroku, Laravel, Load Balancers &amp; SSL',
+            'date' => Carbon::createFromDate(2017, 4, 26),
+            'snippet' => "Recently I've been working with Heroku for a few Laravel projects and I came across an issue with how assets were being loaded over non-ssl based urls.",
+            'content' => 'pages.blog.articles.heroku-laravel-load-balancers-and-ssl',
+            'image' => 'assets/img/blog/heroku-laravel-load-balancers-and-ssl.jpg',
+            'keywords' => [
+                'Heroku',
+                'Laravel',
+                'Load Balancer',
+                'LB',
+                'SSL',
+                'Secure',
+                'Proxies',
+                'Middleware',
+            ],
+        ],
         'digital-ocean' => [
             'title' => 'Digital Ocean',
             'date' => Carbon::createFromDate(2014, 6, 9),
@@ -13,7 +30,7 @@ return [
             'keywords' => [
                 'VPS',
                 'Linux',
-                'Digital Oceal',
+                'Digital Ocean',
                 'DO',
             ],
         ],
