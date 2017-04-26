@@ -44,7 +44,7 @@ class TweetManager
     /**
      * @return array
      */
-    public static function getAllowedHashtags()
+    public function getAllowedHashtags()
     {
         return Config::get('site.social.streams.twitter.hashtags', []);
     }
@@ -54,7 +54,7 @@ class TweetManager
      *
      * @return Tweet|bool
      */
-    public static function getTweet()
+    public function getTweet()
     {
         return Cache::get(self::CACHE_NAME, false);
     }
@@ -64,7 +64,7 @@ class TweetManager
      *
      * @param Tweet $tweet
      */
-    public static function setTweet(Tweet $tweet)
+    public function setTweet(Tweet $tweet)
     {
         Cache::forever(self::CACHE_NAME, $tweet);
     }
@@ -72,7 +72,7 @@ class TweetManager
     /**
      * Clear the cache.
      */
-    public static function clearCache()
+    public function clearCache()
     {
         Cache::forget(self::CACHE_NAME);
     }
@@ -85,7 +85,7 @@ class TweetManager
      *
      * @return Tweet
      */
-    public static function getLatestTweet(array $timeline = [], array $allowedHashtags = [])
+    public function getLatestTweet(array $timeline = [], array $allowedHashtags = [])
     {
         foreach ($timeline as $tweet) {
             foreach ($tweet->getHashtags() as $hashtag) {
@@ -103,7 +103,7 @@ class TweetManager
      *
      * @return bool
      */
-    public static function hasTweetChanged(Tweet $tweet)
+    public function hasTweetChanged(Tweet $tweet)
     {
         if ($storedTweet = self::getTweet()) {
             return $storedTweet->getId() !== $tweet->getId();

@@ -11,6 +11,8 @@ use App\Domain\Service\Twitter\TwitterService;
 use App\Tests\AbstractAppTestCase as TestCase;
 use App\Tests\Domain\Service\Twitter\Connection\Provider\Fixtures\StaticContent as StaticContentProvider;
 use Config;
+use Illuminate\Contracts\Foundation\Application;
+use Mockery;
 
 /**
  * @group domain
@@ -21,28 +23,105 @@ use Config;
  */
 class LatestTweetTest extends TestCase
 {
-    public function testItRunsTheCommandCorrectly()
+    private $application;
+    private $manager;
+    private $service;
+
+    public function setUp()
     {
-        Config::set('site.social.streams.twitter.hashtags', ['Twitterbird']);
+        parent::setUp();
 
-        $this->expectsJobs(SendTweetUpdate::class);
-
-        $manager = new TweetManager();
-        $service = new TwitterService(
+        $this->application = Mockery::mock(Application::class);
+        $this->service = new TwitterService(
             new Connection(
                 new StaticContentProvider()
             )
         );
+    }
 
-        $manager::clearCache();
-
-        $this->assertFalse(
-            $manager::getTweet()
+    public function testEmailIsNotSentForNoneProductionEnvs()
+    {
+        $manager = Mockery::mock(
+            TweetManager::class,
+            [
+                'getAllowedHashtags' => ['Twitterbird'],
+                'getLatestTweet' => Mockery::mock(Tweet::class),
+                'hasTweetChanged' => true,
+                'setTweet' => true,
+            ]
         );
 
-        (new LatestTweet($service, $manager))->handle();
+        $command = new LatestTweet(
+            $this->application,
+            $this->service,
+            $manager
+        );
 
-        $tweet = $manager::getTweet();
+        $this->application
+            ->shouldReceive('environment')
+            ->andReturn(false)
+            ->once();
+
+        $this->doesntExpectJobs(SendTweetUpdate::class);
+
+        $command->handle();
+    }
+
+    public function testEmailIsSentForProduction()
+    {
+        $manager = Mockery::mock(
+            TweetManager::class,
+            [
+                'getAllowedHashtags' => ['Twitterbird'],
+                'getLatestTweet' => Mockery::mock(Tweet::class),
+                'hasTweetChanged' => true,
+                'setTweet' => true,
+            ]
+        );
+
+        $command = new LatestTweet(
+            $this->application,
+            $this->service,
+            $manager
+        );
+
+        $this->application
+            ->shouldReceive('environment')
+            ->andReturn(true)
+            ->once();
+
+        $this->expectsJobs(SendTweetUpdate::class);
+
+        $command->handle();
+    }
+
+    public function testItRunsTheCommandCorrectly()
+    {
+        Config::set('site.social.streams.twitter.hashtags', ['Twitterbird']);
+
+        $manager = new TweetManager();
+        $command = new LatestTweet(
+            $this->application,
+            $this->service,
+            $manager
+        );
+
+        $this->application
+            ->shouldReceive('environment')
+            ->andReturn(true)
+            ->once();
+
+        $manager->clearCache();
+
+        $this->assertFalse(
+            $manager->getTweet()
+        );
+
+        $this->expectsJobs(SendTweetUpdate::class);
+
+        $command->handle();
+
+        $tweet = $manager->getTweet();
 
         $this->assertInstanceOf(
             Tweet::class,
@@ -54,6 +133,6 @@ class LatestTweetTest extends TestCase
             "Along with our new #Twitterbird, we've also updated our Display Guidelines: https://t.co/Ed4omjYs"
         );
 
-        $manager::clearCache();
+        $manager->clearCache();
     }
 }
