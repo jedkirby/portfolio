@@ -2,7 +2,6 @@
 
 namespace App\Tests\Http\Controllers;
 
-use App\Domain\Domain;
 use App\Tests\Http\Controllers\Fixtures\SampleController;
 
 /**

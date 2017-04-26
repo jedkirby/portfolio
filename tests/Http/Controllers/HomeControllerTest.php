@@ -4,7 +4,6 @@ namespace App\Tests\Http\Controllers;
 
 use App\Domain\Blog\Entity\Article;
 use App\Domain\Blog\Repository\ArticleRepository;
-use App\Domain\Domain;
 use App\Domain\Project\Entity\Post;
 use App\Domain\Project\Repository\PostRepository;
 use App\Domain\Service\Twitter\Entity\Tweet;

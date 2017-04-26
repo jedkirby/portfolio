@@ -38,6 +38,12 @@
 			"App\\Tests\\": "tests/"
 		}
 	},
+	"scripts": {
+		"post-install-cmd": [
+			"php artisan instagram:latest-posts",
+			"php artisan twitter:latest-tweet"
+		]
+	},
     "config": {
         "platform": {
             "php": "5.6.22"

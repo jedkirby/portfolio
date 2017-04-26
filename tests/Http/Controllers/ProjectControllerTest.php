@@ -2,7 +2,6 @@
 
 namespace App\Tests\Http\Controllers;
 
-use App\Domain\Domain;
 use App\Domain\Project\Entity\Post;
 use App\Domain\Project\Repository\PostRepository;
 use App\Domain\Social\Page;
