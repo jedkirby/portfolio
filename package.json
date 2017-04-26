@@ -6,7 +6,6 @@
         "postinstall": "yarn prod"
     },
     "dependencies": {
-        "dotenv": "^1.1.0",
         "gulp": "^3.8.8",
         "laravel-elixir": "*"
     },

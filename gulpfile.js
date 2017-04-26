@@ -1,9 +1,6 @@
-var dotenv = require('dotenv').load();
-var elixir = require('laravel-elixir');
+process.env.DISABLE_NOTIFIER = true;
 
-elixir.isProduction = function(){ return (['production', 'staging'].indexOf(process.env.APP_ENV) != -1); };
-elixir.extend('production', elixir.isProduction());
-elixir.extend('sourcemaps', !elixir.isProduction());
+var elixir = require('laravel-elixir');
 
 elixir(function(mix){
 
