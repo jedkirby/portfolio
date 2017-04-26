@@ -1,9 +1,17 @@
 {
-  "devDependencies": {
-    "gulp": "^3.8.8",
-    "laravel-elixir": "*"
-  },
-  "dependencies": {
-    "dotenv": "^1.1.0"
-  }
+    "name": "jedkirby.com",
+    "description": "Site repository for https://jedkirby.com",
+    "scripts": {
+        "prod": "gulp --production",
+        "heroku-postinstall": "npm run prod"
+    },
+    "dependencies": {
+        "dotenv": "^1.1.0",
+        "gulp": "^3.8.8",
+        "laravel-elixir": "*"
+    },
+    "engines": {
+        "node": "^7.7.0",
+        "npm": "^3.10.0"
+    }
 }
