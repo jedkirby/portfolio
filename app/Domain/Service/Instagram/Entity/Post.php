@@ -2,7 +2,9 @@
 
 namespace App\Domain\Service\Instagram\Entity;
 
-class Post
+use App\Domain\Common\Entity\EntityInterface;
+
+class Post implements EntityInterface
 {
     /**
      * @var string

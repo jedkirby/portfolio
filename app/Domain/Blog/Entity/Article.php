@@ -2,9 +2,10 @@
 
 namespace App\Domain\Blog\Entity;
 
+use App\Domain\Common\Entity\EntityInterface;
 use Carbon\Carbon;
 
-class Article
+class Article implements EntityInterface
 {
     /**
      * @var string

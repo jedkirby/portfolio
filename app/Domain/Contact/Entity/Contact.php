@@ -2,9 +2,10 @@
 
 namespace App\Domain\Contact\Entity;
 
+use App\Domain\Common\Entity\EntityInterface;
 use DateTime;
 
-class Contact
+class Contact implements EntityInterface
 {
     /**
      * @var string

@@ -2,10 +2,11 @@
 
 namespace App\Domain\Service\Twitter\Entity;
 
+use App\Domain\Common\Entity\EntityInterface;
 use Config;
 use Jedkirby\TweetEntityLinker\Tweet as TweetEntityLinker;
 
-class Tweet
+class Tweet implements EntityInterface
 {
     /**
      * @var int

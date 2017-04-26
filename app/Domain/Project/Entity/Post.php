@@ -2,9 +2,10 @@
 
 namespace App\Domain\Project\Entity;
 
+use App\Domain\Common\Entity\EntityInterface;
 use Carbon\Carbon;
 
-class Post
+class Post implements EntityInterface
 {
     /**
      * @var string

@@ -2,9 +2,10 @@
 
 namespace App\Domain\Interest\Entity;
 
+use App\Domain\Common\Entity\EntityInterface;
 use DateTime;
 
-class Interest
+class Interest implements EntityInterface
 {
     /**
      * @var string
