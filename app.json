@@ -1,0 +1,41 @@
+{
+    "name": "jedkirby.com",
+    "scripts": {},
+    "env": {
+        "APP_DEBUG": {"required": true},
+        "APP_ENV": {"required": true},
+        "APP_KEY": {"required": true},
+        "APP_LOG": {"required": true},
+        "DISABLE_NOTIFIER": {"required": true},
+        "INSTAGRAM_ACCESS_TOKEN": {"required": true},
+        "MAIL_DRIVER": {"required": true},
+        "MAILGUN_DOMAIN": {"required": true},
+        "MAILGUN_SECRET": {"required": true},
+        "MEETUP_API_KEY": {"required": true},
+        "NODE_MODULES_CACHE": {"required": true},
+        "TWITTER_CONSUMER_KEY": {"required": true},
+        "TWITTER_CONSUMER_SECRET": {"required": true},
+        "TWITTER_HASHTAGS": {"required": true},
+        "TWITTER_TOKEN": {"required": true},
+        "TWITTER_TOKEN_SECRET": {"required": true},
+        "TYPEKIT_KIT_ID": {"required": true},
+        "USER_META_EMAIL_FROM": {"required": true},
+        "USER_META_EMAIL_TO": {"required": true},
+        "USER_META_TELEPHONE": {"required": true}
+    },
+    "formation": {
+        "web": {
+            "quantity": 1,
+            "size": "Free"
+        }
+    },
+    "addons": [],
+    "buildpacks": [
+        {
+            "url": "heroku/php"
+        },
+        {
+            "url": "heroku/nodejs"
+        }
+    ]
+}
