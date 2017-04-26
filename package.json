@@ -3,7 +3,7 @@
     "description": "Site repository for https://jedkirby.com",
     "scripts": {
         "prod": "gulp --production",
-        "heroku-postinstall": "npm run prod"
+        "heroku-postinstall": "yarn prod"
     },
     "dependencies": {
         "dotenv": "^1.1.0",
