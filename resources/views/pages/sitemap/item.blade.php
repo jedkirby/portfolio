@@ -1,3 +1,3 @@
 <url>
-	<loc>{{ \URL::to($route) }}</loc> 
+    <loc>{{ $route }}</loc> 
 </url>

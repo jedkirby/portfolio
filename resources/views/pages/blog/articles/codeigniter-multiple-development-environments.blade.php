@@ -11,31 +11,31 @@
 <pre><code class="language-php">function domains_determine_uri($domain_environment = 'prefix')
 {
 
-	$http_host = (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : FALSE);
-	$http_split = ($http_host ? explode('.', $http_host) : FALSE);
+    $http_host = (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : FALSE);
+    $http_split = ($http_host ? explode('.', $http_host) : FALSE);
 
-	switch(strtolower($domain_environment))
-	{
-		case 'prefix':
-			$domain_uri = $http_split[0];
-			break;
-		case 'suffix':
-			$domain_uri = end($http_split);
-			break;
-		default:
-			exit('The domain environment has not been set correctly, please use either prefix or suffix.');	
-	}
+    switch(strtolower($domain_environment))
+    {
+        case 'prefix':
+            $domain_uri = $http_split[0];
+            break;
+        case 'suffix':
+            $domain_uri = end($http_split);
+            break;
+        default:
+            exit('The domain environment has not been set correctly, please use either prefix or suffix.'); 
+    }
 
-	return (isset($domain_uri) ? $domain_uri : FALSE);
+    return (isset($domain_uri) ? $domain_uri : FALSE);
 
 }</code></pre>
 
 <p>Now it’s just a simple case of using a switch statement to choose between the different environments, this uses either the prefix or suffix of the domain depending on your set-up. For this example we’re using the prefix option so these are our URLs:</p>
 
 <ul>
-	<li>http://dev.site.com</li>
-	<li>http://stage.site.com</li>
-	<li>http://site.com</li>
+    <li>http://dev.site.com</li>
+    <li>http://stage.site.com</li>
+    <li>http://site.com</li>
 </ul>
 
 <p>This is the switch statement we’re using; you can see you’re able to define different system & application paths for each environment:</p>
@@ -44,20 +44,20 @@
 
 switch( domains_determine_uri( $domains['environment'] ) )
 {
-	case 'dev':
-		define('ENVIRONMENT', 'development');
-			$system_path = 'system';
-			$application_folder = 'application';
-			break;
-	case 'stage':
-		define('ENVIRONMENT', 'staging');
-			$system_path = 'system';
-			$application_folder = 'application';
-			break;		
-	default:
-		define('ENVIRONMENT', 'production');
-			$system_path = 'system';
-			$application_folder = 'application';
+    case 'dev':
+        define('ENVIRONMENT', 'development');
+            $system_path = 'system';
+            $application_folder = 'application';
+            break;
+    case 'stage':
+        define('ENVIRONMENT', 'staging');
+            $system_path = 'system';
+            $application_folder = 'application';
+            break;      
+    default:
+        define('ENVIRONMENT', 'production');
+            $system_path = 'system';
+            $application_folder = 'application';
 }</code></pre>
 
 <p>From the above you can see the first case is ‘dev’ which the URL <i>http://dev.site.com</i> would use. The second is ‘stage’ which would use the URL <i>http://stage.site.com</i>, and the third is the default one. So anything that isn’t one of the above cases will use this, i.e. <i>http://site.com</i> or any other sub-domains.</p>

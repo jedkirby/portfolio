@@ -5,4 +5,4 @@
 <p>The CMS is built in modules and is highly customisable and extendible ensuring it’s future proof and easily manageable. It makes use of the latest technologies and can be tailored to any specific client giving them the ability to manage any CMS enabled part of their site.</p>
 
 <h3>Demo</h3>
-<p>If you're interested in this CMS, please <a href="{{ \URL::to('contact', ['demo']) }}">get in touch</a> to arrange a demo.</p>
+<p>If you're interested in this CMS, please <a href="{{ route('contact') }}">get in touch</a> to arrange a demo.</p>

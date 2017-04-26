@@ -22,8 +22,15 @@
 	}
 
 	&__field {
+
 		background: tint($secondary, 90%);
 		min-width: 175px;
+
+		&--poof {
+			display: none;
+			visibility: hidden;
+		}
+
 	}
 
 	&__button {

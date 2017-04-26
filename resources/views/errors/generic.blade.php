@@ -1,15 +1,17 @@
 @extends('master')
+
+@section('id', $id)
 @section('content')
 
-	<div class="site__medium">
-		<div class="col--wrapper">
-			<div class="error__wrap  text-center">
+    <div class="site__medium">
+        <div class="col--wrapper">
+            <div class="error__wrap  text-center">
 
-				<h1 class="error__heading">{{ $status }}</h1>
-				<p class="error__body">Apologies for this, it's very embarrassing but an error has occurred, and I've been notified. Please navigate back to the <a href="/">home page</a> and start your journey again.</p>
+                <h1 class="error__heading">{{ $status }}</h1>
+                <p class="error__body">Apologies for this, it's very embarrassing but an error has occurred, and I've been notified. Please navigate back to the <a href="{{ route('home') }}">home page</a> and start your journey again.</p>
 
-			</div>
-		</div>
-	</div>
+            </div>
+        </div>
+    </div>
 
 @stop

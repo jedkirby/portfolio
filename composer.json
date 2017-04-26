@@ -3,7 +3,7 @@
 	"description": "James Kirby's Portfolio.",
 	"type": "project",
 	"require": {
-		"php": ">=5.6.4",
+		"php": "^5.6.22",
 		"laravel/framework": "5.3.*",
 		"fzaninotto/faker": "1.4.0",
 		"social-links/social-links": "1.5.*",
@@ -30,12 +30,17 @@
 			"App\\": "app/"
 		},
 		"files": [
-			"app/Support/helpers.php"
+			"app/Domain/Support/helpers.php"
 		]
 	},
 	"autoload-dev": {
 		"psr-4": {
 			"App\\Tests\\": "tests/"
 		}
-	}
+	},
+    "config": {
+        "platform": {
+            "php": "5.6.22"
+        }
+    }
 }

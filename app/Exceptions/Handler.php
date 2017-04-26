@@ -2,27 +2,53 @@
 
 namespace App\Exceptions;
 
-use Config;
+use App\Domain\Exception\Handler as DomainExceptionHandler;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
+use Illuminate\Contracts\Container\Container;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
+/**
+ * @codeCoverageIgnore
+ */
 class Handler extends ExceptionHandler
 {
+    /**
+     * @var DomainExceptionHandler
+     */
+    private $handler;
+
     /**
      * A list of the exception types that should not be reported.
      *
      * @var array
      */
     protected $dontReport = [
+        \Symfony\Component\HttpKernel\Exception\HttpException::class,
         \Illuminate\Auth\AuthenticationException::class,
         \Illuminate\Auth\Access\AuthorizationException::class,
-        \Symfony\Component\HttpKernel\Exception\HttpException::class,
         \Illuminate\Database\Eloquent\ModelNotFoundException::class,
         \Illuminate\Session\TokenMismatchException::class,
         \Illuminate\Validation\ValidationException::class,
+        \App\Domain\Common\Exception\EntityNotFoundException::class,
+        \App\Domain\Common\Validation\Exception\SpamException::class,
+        \App\Domain\Common\Validation\Exception\ValidationException::class,
+        \App\Domain\Service\Instagram\Exception\UnableToGetInstagramFeedPostsException::class,
+        \App\Domain\Service\Twitter\Exception\UnableToGetLatestTweetException::class,
+        \App\Domain\Project\Exception\PostNotFoundException::class,
     ];
+
+    /**
+     * {@inheritdoc}
+     */
+    public function __construct(
+        Container $container,
+        DomainExceptionHandler $handler
+    ) {
+        $this->container = $container;
+        $this->handler = $handler;
+    }
 
     /**
      * Report or log an exception.
@@ -58,35 +84,9 @@ class Handler extends ExceptionHandler
      */
     protected function renderHttpException(HttpException $e)
     {
-        $status = $e->getStatusCode();
-
-        $unique = 'errors.' . $status;
-        $generic = 'errors.generic';
-
-        switch (true) {
-            case view()->exists($unique):
-                $view = $unique;
-                $class = $status;
-                break;
-            case view()->exists($generic):
-                $view = $generic;
-                $class = 'generic';
-                break;
-            default:
-                return $this->convertExceptionToResponse($e);
-        }
-
-        return response()->view(
-            $view,
-            [
-                'title' => $status,
-                'description' => '',
-                'keywords' => '',
-                'pageid' => implode('  ', ['error', 'error__' . $class]),
-                'facebookId' => Config::get('site.social.streams.facebook.id'),
-                'status' => $status,
-            ],
-            $status,
+        return response(
+            $this->handler->renderHttpException($e),
+            $e->getStatusCode(),
             $e->getHeaders()
         );
     }

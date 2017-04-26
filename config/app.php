@@ -154,12 +154,9 @@ return [
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Notifications\NotificationServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-        App\Providers\AppServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\BroadcastServiceProvider::class,
-        App\Services\Twitter\TwitterServiceProvider::class,
-        App\Services\Instagram\InstagramServiceProvider::class,
+        App\Domain\Service\Twitter\TwitterServiceProvider::class,
+        App\Domain\Service\Instagram\InstagramServiceProvider::class,
     ],
 
     /*

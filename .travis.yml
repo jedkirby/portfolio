@@ -7,8 +7,10 @@ install:
   - composer install --no-interaction
   - composer dump-autoload --optimize
 
-script:
+before_script:
   - mkdir -p build/logs
+
+script:
   - php vendor/bin/phpunit -c phpunit.xml.dist
 
 after_script:

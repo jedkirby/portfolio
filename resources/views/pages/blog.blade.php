@@ -1,58 +1,60 @@
 @extends('master')
+
+@section('id', 'blog')
 @section('header')
 
-	<meta name="twitter:card" content="summary" />
-	<meta name="twitter:site" content="{{ $twitterHandle }}" />
-	<meta name="twitter:title" content="{{ $title }}" />
-	<meta name="twitter:description" content="{{ $description }}" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="{{ \Config::get('site.social.streams.twitter.handle') }}" />
+    <meta name="twitter:title" content="{{ $title }}" />
+    <meta name="twitter:description" content="{{ $description }}" />
 
 @stop
+
 @section('content')
 
-	<div class="site__medium">
-		<div class="col--wrapper">
+    <div class="site__medium">
+        <div class="col--wrapper">
 
 
-			<div class="col  col--12">
-				<div class="col--content">
+            <div class="col  col--12">
+                <div class="col--content">
 
-					<div class="articles" itemscope itemtype="http://schema.org/Blog">
+                    <div class="articles" itemscope itemtype="http://schema.org/Blog">
 
-						@foreach($articles as $slug => $article)
+                        @foreach($articles as $article)
 
+                            <article class="articles__article" itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
 
-							<article class="articles__article" itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
+                                <h2 itemprop="headline"><a href="{{ $article->getUrl() }}" itemprop="url">{{ $article->getTitle() }}</a></h2>
 
-								<h2 itemprop="headline"><a href="{{ \URL::to('blog', [$slug]) }}" itemprop="url">{{ array_get($article, 'title') }}</a></h2>
+                                <time class="articles__article--metadata" pubdate="{{ $article->getDate() }}" itemprop="datePublished" datetime="{{ $article->getDate() }}" content="{{ $article->getDate() }}">{{ $article->getDate('F j, Y') }}</time>
 
-								<time class="articles__article--metadata" pubdate="{{ array_get($article, 'date')->format('Y-m-d') }}" itemprop="datePublished" datetime="{{ array_get($article, 'date')->format('Y-m-d') }}" content="{{ array_get($article, 'date')->format('Y-m-d') }}">{{ array_get($article, 'date')->format('F j, Y') }}</time>
+                                @if( ($image = $article->getImage()) )
+                                    <a class="articles__article--link" href="{{ $article->getUrl() }}">
+                                        <img src="{{ asset('assets/img/blank.png') }}" data-src="{{ $image }}" class="articles__article--hero  lazyload" alt="{{ $article->getTitle() }}">
+                                    </a>
+                                @endif
 
-								@if( ($image = array_get($article, 'image', false)) )
-									<a class="articles__article--link" href="{{ \URL::to('blog', [$slug]) }}">
-										<img src="{{ asset('assets/img/blank.png') }}" data-src="{{ $image }}" class="articles__article--hero  lazyload">
-									</a>
-								@endif
+                                <div class="articles__article--summary">
+                                    <p itemprop="articleBody">{{ $article->getSnippet() }} ...</p>
+                                    <a href="{{ $article->getUrl() }}" class="articles__article--more">
+                                        <i class="fa fa-angle-double-right"></i>
+                                        Read More
+                                    </a>
+                                </div>
 
-								<div class="articles__article--summary">
-									<p itemprop="articleBody">{{ array_get($article, 'snippet') }} ...</p>
-									<a href="{{ \URL::to('blog', [$slug]) }}" class="articles__article--more">
-										<i class="fa fa-angle-double-right"></i>
-										Read More
-									</a>
-								</div>
-
-							</article>
-
-
-						@endforeach
-
-					</div>
-
-				</div>
-			</div>
+                            </article>
 
 
-		</div>
-	</div>
+                        @endforeach
+
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
 
 @stop

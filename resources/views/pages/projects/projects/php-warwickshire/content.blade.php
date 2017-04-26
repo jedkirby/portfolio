@@ -4,4 +4,4 @@
 <p>I developed a single page website as there wasn't enough content to spread over multiple pages. It includes some elegant animations as you scroll down the page for a friendly-feel to the site.</p>
 
 <h3>Moving Forward</h3>
-<p>Because this user group is fairly new, the website is only basic. The future will plan to incorporate an <a href="{{ \URL::to('work', ['admin-panel']) }}">Admin Panel</a> into the site to enable the managing of events and inclusion of a Twitter &amp; Instagram feed.</p>
+<p>Because this user group is fairly new, the website is only basic. The future will plan to incorporate an <a href="{{ route('project', 'admin-panel') }}">Admin Panel</a> into the site to enable the managing of events and inclusion of a Twitter &amp; Instagram feed.</p>
