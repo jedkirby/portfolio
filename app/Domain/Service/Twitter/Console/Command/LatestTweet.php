@@ -6,6 +6,7 @@ use App\Domain\Service\Twitter\Jobs\SendTweetUpdate;
 use App\Domain\Service\Twitter\TweetManager;
 use App\Domain\Service\Twitter\TwitterService;
 use Illuminate\Console\Command;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
 class LatestTweet extends Command
@@ -27,6 +28,11 @@ class LatestTweet extends Command
     protected $description = 'Fetch or update the latest relevant tweet';
 
     /**
+     * @var Application
+     */
+    protected $app;
+
+    /**
      * @var TwitterService
      */
     protected $service;
@@ -39,10 +45,14 @@ class LatestTweet extends Command
     /**
      * Create a new command instance.
      */
-    public function __construct(TwitterService $service, TweetManager $manager)
-    {
+    public function __construct(
+        Application $app,
+        TwitterService $service,
+        TweetManager $manager
+    ) {
         parent::__construct();
 
+        $this->app = $app;
         $this->service = $service;
         $this->manager = $manager;
     }
@@ -58,7 +68,10 @@ class LatestTweet extends Command
         $allowedHashtags = $this->manager->getAllowedHashtags();
 
         if ($tweet = $this->manager->getLatestTweet($timeline, $allowedHashtags)) {
-            if ($this->manager->hasTweetChanged($tweet)) {
+            if (
+                $this->manager->hasTweetChanged($tweet) &&
+                $this->app->environment('production')
+            ) {
                 $this->dispatch(new SendTweetUpdate($tweet));
             }
 
