@@ -39,7 +39,7 @@
 		}
 	},
 	"scripts": {
-		"post-install-cmd": [
+		"compile": [
 			"php artisan instagram:latest-posts",
 			"php artisan twitter:latest-tweet"
 		]
