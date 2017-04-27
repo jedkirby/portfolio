@@ -29,7 +29,7 @@
 
 <h3>Middleware to the Rescue</h3>
 <p>
-    The solution was to create a <strong>Middleware</strong> which will trust the Heroku load balancer as a proxy, and configure some additonal headers to maximise security. The exact details have been taken from the <a href="https://devcenter.heroku.com/articles/getting-started-with-symfony">Heroku Symfony example</a> within their docs and modified to work with Laravel's Middleware:
+    The solution was to create a <strong>Middleware</strong> which will trust the Heroku load balancer as a proxy, and configure some additonal headers to maximise security. The exact details have been taken from the <a href="https://devcenter.heroku.com/articles/getting-started-with-symfony#trusting-the-load-balancer">Heroku Symfony example</a> within their docs and modified to work with <a href="https://laravel.com/docs/5.4/middleware">Laravel's Middleware</a>.
 </p>
 
 <p>
@@ -50,7 +50,7 @@
 }</code></pre>
 
 <p>
-    <i>The above example has been simplified. The actual code utilises dependency injection to aid in testability.</i>
+    <i>The above example has been simplified. The actual code utilises dependency injection to aid in <a href="https://github.com/jedkirby/portfolio/blob/2.0.0/tests/Http/Middleware/TrustHerokuLoadBalancerTest.php">testability</a>.</i>
 </p>
 
 <h3>Complete Solution</h3>
@@ -142,5 +142,5 @@ class Kernel extends HttpKernel
 </p>
 
 <p>
-    The actual implementation of this <a href="https://github.com/jedkirby/portfolio/blob/master/app/Http/Middleware/TrustHerokuLoadBalancer.php">can be found here</a>.
+    The actual implementation of this <a href="https://github.com/jedkirby/portfolio/blob/2.0.0/app/Http/Middleware/TrustHerokuLoadBalancer.php">can be found here</a>.
 </p>
