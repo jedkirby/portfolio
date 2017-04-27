@@ -1,7 +1,5 @@
 <?php
 
-require_once realpath(__DIR__ . '/vendor/autoload.php');
-
 use PhpCsFixer\Finder;
 use Jedkirby\PhpCs\Config;
 
