@@ -5,7 +5,6 @@
 	"require": {
 		"php": "^5.6.22",
 		"laravel/framework": "5.3.*",
-		"fzaninotto/faker": "1.4.0",
 		"social-links/social-links": "1.5.*",
 		"pulse00/monolog-parser": "^0.0.3",
 		"guzzlehttp/guzzle": "^6.0",
@@ -15,11 +14,8 @@
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",
-		"phpspec/phpspec": "~2.1",
 		"satooshi/php-coveralls": "^1.0",
 		"mockery/mockery": "^0.9.7",
-		"symfony/dom-crawler": "~3.1",
-		"symfony/css-selector": "~3.1",
 		"jedkirby/php-cs": "^1.0"
 	},
 	"autoload": {
@@ -43,10 +39,5 @@
 			"php artisan instagram:latest-posts",
 			"php artisan twitter:latest-tweet"
 		]
-	},
-    "config": {
-        "platform": {
-            "php": "5.6.22"
-        }
-    }
+	}
 }
