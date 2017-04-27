@@ -11,7 +11,8 @@ before_script:
   - mkdir -p build/logs
 
 script:
-  - php vendor/bin/phpunit -c phpunit.xml.dist
+  - php ./vendor/bin/php-cs-fixer --dry-run -v fix
+  - php ./vendor/bin/phpunit -c phpunit.xml.dist
 
 after_script:
-  - travis_retry php vendor/bin/coveralls -v
+  - travis_retry php ./vendor/bin/coveralls -v
