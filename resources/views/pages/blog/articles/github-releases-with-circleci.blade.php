@@ -1,10 +1,11 @@
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed gravida dapibus nisi, nec dictum lorem tempus in. Aenean ac nisi dapibus, blandit tellus non, porttitor nisl. Maecenas facilisis metus risus, a lacinia augue gravida non. Nullam dictum vitae nisi quis faucibus. Cras ligula sapien, malesuada ut lobortis in, porta ut dui. Duis lobortis, erat at ullamcorper pellentesque, odio leo tempus orci, ut porttitor sem lacus in ante. Nunc consequat suscipit dolor. Curabitur hendrerit dolor tellus, a tempus nisi aliquam eu. Donec sem magna, viverra a facilisis a, scelerisque ut lectus.</p>
+<p><a href="https://circleci.com" title="CitcleCI">CircleCI</a> is a very powerful Continuious Integration tool, and it already seemlessly integrates with <a href="https://github.com" title="GitHub">GitHub</a>, however, I've always struggled to understand how to setup the CI to create builds when a tag is created, and add that build to the tag release on GitHub, until now.</p>
 
-<h3>Title</h3>
-<p>Etiam in diam at elit finibus blandit id quis nisi. Fusce faucibus arcu sagittis rutrum semper. Maecenas viverra efficitur dui, eget vestibulum urna malesuada dictum. Praesent at iaculis metus. Phasellus feugiat aliquet lectus at euismod. Fusce maximus, augue nec rutrum dignissim, magna neque sodales tellus, ut varius sapien nibh nec orci. Ut finibus auctor orci at pulvinar. Fusce eleifend ante eu varius accumsan. Vivamus ac odio at lacus facilisis suscipit eu sit amet enim. Proin at sapien massa. Aenean bibendum lacus et nibh scelerisque mattis.</p>
+<p>To make things simpler in this post, I'm going to assume you've already got methods of creating a build, whether it be <a href="http://ant.apache.org" title="Apache Ant">Apache Ant</a> for a PHP project, or something else for an iOS application, for example.</p>
 
-<h3>Title</h3>
-<p>Aliquam eleifend dapibus odio nec auctor. Vestibulum arcu risus, interdum suscipit maximus eget, efficitur vel turpis. Cras quis ultricies erat, sit amet vehicula velit. Quisque sagittis euismod elit at bibendum. Nullam finibus dui aliquet enim ultrices, eget maximus ex aliquet. Quisque vel sollicitudin tellus. Sed porttitor volutpat nisl, eget tincidunt ante blandit scelerisque. Cras mollis neque in erat aliquet pulvinar. Quisque est est, commodo sit amet nisl quis, vulputate rutrum dui. Vestibulum imperdiet a ligula ac facilisis. Vestibulum sed justo quis sem hendrerit luctus ac in velit. Phasellus nulla massa, suscipit ut suscipit ut, volutpat eget urna. Maecenas lorem nulla, aliquet eget ante a, feugiat tempor nibh. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc at blandit arcu. Aenean eleifend interdum velit, eu dapibus sapien dapibus quis.</p>
+<p><strong>This method should work on any project, whether it be a GoLang application, a PHP website, or even a static HTML site.</strong></p>
+
+<h3>Demo</h3>
+<p>We all know you like videos, so, here's one that demos the below process:</p>
 
 <div class="wistia  wistia_responsive_padding">
     <div class="wistia--wrapper  wistia_responsive_wrapper">
@@ -12,10 +13,57 @@
     </div>
 </div>
 
-<h3>Title</h3>
-<p>Ut et vestibulum massa, a consectetur leo. Etiam sit amet orci in est tincidunt consectetur a quis dolor. In viverra mollis dui vitae consequat. Donec mattis ullamcorper faucibus. Vestibulum maximus urna vel laoreet fringilla. Duis auctor vitae tortor non gravida. Aenean turpis lorem, hendrerit a magna in, tincidunt mollis leo. Aenean suscipit nulla vel velit ultrices volutpat.</p>
+<h3>Setup</h3>
+<p>In order to use the GitHub API, you'll need to firstly generate a new API key, which can be done via your <a href="https://github.com/settings/tokens/new" title="Generate New GitHub API Token">account settings</a>. Once you've generated the key, you'll need to add it to the CircleCI project environment variables, naming it <code>GITHUB_TOKEN</code>.</p>
 
-<p>Mauris nibh diam, scelerisque eget ullamcorper eu, porta quis mauris. Praesent dui nunc, auctor efficitur velit at, tristique elementum dui. Praesent diam magna, commodo et eleifend quis, pharetra eu quam. Phasellus est velit, iaculis ut viverra ut, lobortis quis nibh. Morbi ultrices aliquam nisi, eu efficitur est posuere eu. Cras vel leo ipsum. Nulla scelerisque eleifend odio ut tempus. Suspendisse potenti. Cras at libero id libero aliquam hendrerit. Maecenas orci urna, euismod in nisi non, molestie rutrum tellus. Maecenas molestie odio non dolor elementum aliquam. Aliquam sit amet condimentum metus.</p>
+<h3>Configuration Parts</h3>
+<p>Here are the parts that build up the CircleCI configuration file, named circle.yml, which is placed within the root of the project:</p>
+
+<p>The first thing that needs to happen here is to install the GoLang application called <a href="https://github.com/tcnksm/ghr" title="ghr">ghr</a>. This is a very lightweight package that allows the creation of GitHub Releases and the uploading of artefacts:</p>
+
+<pre><code class="language-yaml">dependencies:
+  pre:
+    - go get github.com/tcnksm/ghr
+</code></pre>
+
+<p>Once that's complete, the package needs to be created using a build service, in this case it's Apache Ant:</p>
+
+<pre><code class="language-yaml">compile:
+  override:
+    - ant package
+</code></pre>
+
+<p>And then finally the deployment step is listening out for a fixed <a href="http://semver.org" title="Semantic Versioning">semver</a> version in order to publish the release to GitHub, for example <code>1.0.0</code>:</p>
+
+<pre><code class="language-yaml">deployment:
+  release:
+    tag: /(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)/
+    commands:
+      - ghr -t $GITHUB_TOKEN -u $CIRCLE_PROJECT_USERNAME -r $CIRCLE_PROJECT_REPONAME --replace `git describe --tags` output/
+</code></pre>
+
+<h3>Complete Configuration</h3>
+<p>Brining that all together makes the complete configuration file:</p>
+
+<pre><code class="language-yaml">dependencies:
+  pre:
+    - go get github.com/tcnksm/ghr
+
+compile:
+  override:
+    - ant package
+
+deployment:
+  release:
+    tag: /(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)/
+    commands:
+      - ghr -t $GITHUB_TOKEN -u $CIRCLE_PROJECT_USERNAME -r $CIRCLE_PROJECT_REPONAME --replace `git describe --tags` output/
+</code></pre>
+
+<h3>Just Send It</h3>
+<p>Now we've got the project setup, we simply need to create a tag on the project, and push it up to GitHub which should trigger CircleCI to create a build. Once the build is complete it should be uploaded to the GitHub Release.</p>
+
+<p>Feel free to <a href="{{ \Config::get('site.social.streams.twitter.url', '#') }}" title="Send me a Tweet">Tweet Me</a> if you have any questions or need any guidance.</p>
 
 @section('footer')
     <script src="https://fast.wistia.com/embed/medias/7790hytqfa.jsonp" async></script>
