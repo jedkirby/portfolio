@@ -4,6 +4,14 @@ use Carbon\Carbon;
 
 return [
     'articles' => [
+        'github-releases-with-circleci' => [
+            'title' => 'GitHub Releases with CircleCI',
+            'date' => Carbon::createFromDate(2017, 6, 15),
+            'snippet' => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed gravida dapibus nisi, nec dictum lorem tempus in. Aenean ac nisi dapibus, blandit tellus non, porttitor nisl.",
+            'content' => 'pages.blog.articles.github-releases-with-circleci',
+            'image' => 'assets/img/blog/github-releases-with-circleci.jpeg',
+            'keywords' => [],
+        ],
         'heroku-laravel-load-balancers-and-ssl' => [
             'title' => 'Heroku, Laravel, Load Balancers &amp; SSL',
             'date' => Carbon::createFromDate(2017, 4, 26),
