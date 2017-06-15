@@ -4,6 +4,21 @@ use Carbon\Carbon;
 
 return [
     'articles' => [
+        'github-releases-with-circleci' => [
+            'title' => 'GitHub Releases with CircleCI',
+            'date' => Carbon::createFromDate(2017, 6, 15),
+            'snippet' => "CircleCI is a very powerful Continuious Integration tool, and it already seemlessly integrates with GitHub, however, I've always struggled to understand how to setup the CI to create builds when a tag is created, and add that build to the tag release on GitHub, until now.",
+            'content' => 'pages.blog.articles.github-releases-with-circleci',
+            'image' => 'assets/img/blog/github-releases-with-circleci.jpg',
+            'keywords' => [
+                'GitHub',
+                'Releases',
+                'CI',
+                'Continuious Integration',
+                'CircleCI',
+                'Builds',
+            ],
+        ],
         'heroku-laravel-load-balancers-and-ssl' => [
             'title' => 'Heroku, Laravel, Load Balancers &amp; SSL',
             'date' => Carbon::createFromDate(2017, 4, 26),
