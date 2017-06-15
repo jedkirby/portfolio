@@ -52,6 +52,27 @@
 					word-wrap: normal;
 				}
 
+				.wistia {
+
+					margin: 30px 0;
+					padding: 62.5% 0 0 0;
+					position: relative;
+
+					&--wrapper {
+						height: 100%;
+						left: 0;
+						position: absolute;
+						top: 0;
+						width: 100%;
+					}
+
+					&--embed {
+						height:100%;
+						width:100%
+					}
+
+				}
+
 			}
 
 			&--tags {
