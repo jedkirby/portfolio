@@ -1,0 +1,75 @@
+.work {
+
+    &__item {
+
+        overflow: hidden;
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 100vh;
+        width: 100%;
+
+        &--wrap {
+            margin: 0 100px;
+        }        
+
+    }
+
+    &__meta {
+
+        margin-top: 200px;
+        color: #FFF;
+
+        &--date {
+
+            color: shade($white, 25%);
+            font-size: 1.0rem;
+            font-weight: 300;
+            margin: 0;
+            text-transform: uppercase;
+
+            i {
+                margin-right: 3px;
+            }
+
+        }
+
+        &--title {
+
+            margin: 6px 0 0;
+            width: 100%;
+
+            a {
+
+                @include transition(color 0.4s);
+                color: $white;
+                font-size: 2.8rem;
+                font-weight: 200;
+
+                &:hover {
+                    color: $primary;
+                }
+
+            }
+
+            &:after {
+                content: " ";
+                height: 1px;
+                width: 40px;
+                background-color: rgba(255,255,255,0.8);
+                display: block;
+                margin: 14px 0;
+            }
+
+        }
+
+        &--intro {
+            color: shade($white, 10%);
+            font-size: 1.4rem;
+            font-weight: 100;
+            margin: 0;
+            width: 65%;
+        }
+
+    }
+
+}
