@@ -7,6 +7,7 @@
         "APP_KEY": {"required": true},
         "APP_LOG": {"required": true},
         "DISABLE_NOTIFIER": {"required": true},
+        "HEROKU_APP_NAME": {"required": true},
         "INSTAGRAM_ACCESS_TOKEN": {"required": true},
         "MAIL_DRIVER": {"required": true},
         "MAILGUN_DOMAIN": {"required": true},
@@ -18,6 +19,7 @@
         "TWITTER_HASHTAGS": {"required": true},
         "TWITTER_TOKEN": {"required": true},
         "TWITTER_TOKEN_SECRET": {"required": true},
+        "TYPEKIT_API_KEY": {"required": true},
         "TYPEKIT_KIT_ID": {"required": true},
         "USER_META_EMAIL_FROM": {"required": true},
         "USER_META_EMAIL_TO": {"required": true},
@@ -36,6 +38,9 @@
         },
         {
             "url": "heroku/nodejs"
+        },
+        {
+            "url": "https://github.com/jedkirby/heroku-buildpack-typekit"
         }
     ]
 }
