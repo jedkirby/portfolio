@@ -54,7 +54,7 @@
 
 				.wistia {
 
-					margin: 30px 0;
+					margin: 20px 0;
 					padding: 62.5% 0 0 0;
 					position: relative;
 
@@ -69,6 +69,23 @@
 					&--embed {
 						height:100%;
 						width:100%
+					}
+
+				}
+
+				.tweet {
+
+					&--wrapper {
+
+						margin: 28px 0;
+
+						.twitter-tweet {
+							margin-top: 0 !important;
+							margin-right: auto;
+							margin-bottom: 0 !important;
+							margin-left: auto;
+						}
+
 					}
 
 				}

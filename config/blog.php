@@ -4,6 +4,18 @@ use Carbon\Carbon;
 
 return [
     'articles' => [
+        'heroku-typekit-buildpack-introduction' => [
+            'title' => 'Heroku Typekit buildpack introduction',
+            'date' => Carbon::createFromDate(2017, 8, 19),
+            'snippet' => "Heroku makes running tests and automated deployments very easy, and I thank them for that! However, there's been a long running issue of having to manually update your Typekit account with the domains of either pipeline stage apps or review apps to make custom fonts work.",
+            'content' => 'pages.blog.articles.heroku-typekit-buildpack-introduction',
+            'image' => 'assets/img/blog/heroku-typekit-buildpack-introduction.jpg',
+            'keywords' => [
+                'Heroku',
+                'Typekit',
+                'Buildpack',
+            ],
+        ],
         'github-releases-with-circleci' => [
             'title' => 'GitHub Releases with CircleCI',
             'date' => Carbon::createFromDate(2017, 6, 15),
