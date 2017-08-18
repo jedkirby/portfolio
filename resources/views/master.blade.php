@@ -6,7 +6,7 @@
         <meta name="description" content="{{ $description }}">
         <meta name="keywords" content="{{ $keywords }}">
         <meta name="author" content="{{ $author }}" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="google-site-verification" content="5oK0ivrxJyKh1zsSMbHewySVjxfZRALukAlInk8F7iI" />
         <meta property="fb:admins" content="732500050">
         <meta property="og:title" content="{{ $title }}">
