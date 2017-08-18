@@ -7,11 +7,7 @@
 <h3>Demo</h3>
 <p>We all know you like videos, so, here's one that demos the below process:</p>
 
-<div class="wistia  wistia_responsive_padding">
-    <div class="wistia--wrapper  wistia_responsive_wrapper">
-        <div class="wistia--embed  wistia_embed wistia_async_7790hytqfa videoFoam=true">&nbsp;</div>
-    </div>
-</div>
+@include('pages.blog.articles.includes.wistia', ['videoId' => '7790hytqfa'])
 
 <h3>Setup</h3>
 <p>In order to use the GitHub API, you'll need to firstly generate a new API key, which can be done via your <a href="https://github.com/settings/tokens/new" title="Generate New GitHub API Token">account settings</a>. Once you've generated the key, you'll need to add it to the CircleCI project environment variables, naming it <code>GITHUB_TOKEN</code>.</p>
@@ -64,8 +60,3 @@ deployment:
 <p>Now we've got the project setup, we simply need to create a tag on the project, and push it up to GitHub which should trigger CircleCI to create a build. Once the build is complete it should be uploaded to the GitHub Release.</p>
 
 <p>Feel free to <a href="{{ \Config::get('site.social.streams.twitter.url', '#') }}" title="Send me a Tweet">Tweet Me</a> if you have any questions or need any guidance.</p>
-
-@section('footer')
-    <script src="https://fast.wistia.com/embed/medias/7790hytqfa.jsonp" async></script>
-    <script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
-@stop
