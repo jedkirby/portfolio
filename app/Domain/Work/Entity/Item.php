@@ -2,9 +2,9 @@
 
 namespace App\Domain\Work\Entity;
 
+use App\Domain\Common\Entity\EntityInterface;
 use App\Domain\Date\Dateable;
 use App\Domain\Date\DateFormats;
-use App\Domain\Common\Entity\EntityInterface;
 use Carbon\Carbon;
 
 class Item implements EntityInterface, Dateable
@@ -74,7 +74,7 @@ class Item implements EntityInterface, Dateable
     }
 
     /**
-     * @{inheritdoc}
+     * {@inheritdoc}
      */
     public function getDate()
     {
