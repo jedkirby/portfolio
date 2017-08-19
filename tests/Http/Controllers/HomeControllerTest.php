@@ -4,8 +4,8 @@ namespace App\Tests\Http\Controllers;
 
 use App\Domain\Blog\Entity\Article;
 use App\Domain\Blog\Repository\ArticleRepository;
-use App\Domain\Project\Entity\Post;
-use App\Domain\Project\Repository\PostRepository;
+use App\Domain\Work\Repository\WorkRepository;
+use App\Domain\Work\Entity\Item;
 use App\Domain\Service\Twitter\Entity\Tweet;
 use App\Domain\Service\Twitter\TweetManager;
 use App\Http\Controllers\HomeController;
@@ -19,7 +19,7 @@ use Mockery;
 class HomeControllerTest extends AbstractControllerTestCase
 {
     private $articleRepository;
-    private $postRepository;
+    private $workRepository;
     private $tweetManager;
     private $controller;
 
@@ -28,12 +28,12 @@ class HomeControllerTest extends AbstractControllerTestCase
         parent::setUp();
 
         $this->articleRepository = Mockery::mock(ArticleRepository::class);
-        $this->postRepository = Mockery::mock(PostRepository::class);
+        $this->workRepository = Mockery::mock(WorkRepository::class);
         $this->tweetManager = Mockery::mock(TweetManager::class);
         $this->controller = new HomeController(
             $this->domain,
             $this->articleRepository,
-            $this->postRepository,
+            $this->workRepository,
             $this->tweetManager
         );
     }
@@ -46,17 +46,19 @@ class HomeControllerTest extends AbstractControllerTestCase
 
         $this->articleRepository
             ->shouldReceive('getLimit')
+            ->with(2)
             ->andReturn([
                 Mockery::mock(Article::class),
                 Mockery::mock(Article::class),
             ])
             ->once();
 
-        $this->postRepository
+        $this->workRepository
             ->shouldReceive('getLimit')
+            ->with(3)
             ->andReturn([
-                Mockery::mock(Post::class),
-                Mockery::mock(Post::class),
+                Mockery::mock(Item::class),
+                Mockery::mock(Item::class),
             ])
             ->once();
 
@@ -71,12 +73,12 @@ class HomeControllerTest extends AbstractControllerTestCase
         $this->assertInstanceOf(Tweet::class, $data['tweet']);
 
         $this->assertArrayHasKey('articles', $data);
-        $this->assertArrayHasKey('projects', $data);
+        $this->assertArrayHasKey('work', $data);
 
         $this->assertInternalType('array', $data['articles']);
-        $this->assertInternalType('array', $data['projects']);
+        $this->assertInternalType('array', $data['work']);
 
         $this->assertCount(2, $data['articles']);
-        $this->assertCount(2, $data['projects']);
+        $this->assertCount(2, $data['work']);
     }
 }

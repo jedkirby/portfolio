@@ -1,7 +1,5 @@
 .home {
-    @import "module/home/introduction";
-    @import "module/home/projects";
-    @import "module/home/interest";
-    @import "module/home/tweet";
     @import "module/home/articles";
+    @import "module/home/tweet";
+    @import "module/home/work";
 }

@@ -161,21 +161,31 @@ body {
 
 				a {
 
-					@include transition(color .1s ease-in-out);
+					@include transition(
+						border-top-color .2s ease-in-out,
+						background-color .2s ease-in-out,
+						color .2s ease-in-out
+					);
+
 					border-top: 3px solid $secondary;
-					color: $white;
+					color: tint($secondary, 80%);
 					display: block;
 					font-size: 1.2rem;
 					padding: 25px;
 					text-decoration: none;
 
+					$backgroundTint: tint($secondary, 2%);
+
 					&.active {
-						background: tint($secondary, 5%);
+						background-color: $backgroundTint;
 						border-top-color: $primary;
+						color: $white;
 					}
 
 					&:hover:not(.active) {
-						color: tint($secondary, 40%);
+						background-color: $backgroundTint;
+						border-top-color: tint($secondary, 35%);
+						color: $white;
 					}
 
 				}

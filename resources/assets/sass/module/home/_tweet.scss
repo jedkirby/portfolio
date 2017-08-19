@@ -1,7 +1,8 @@
 .tweet {
 
 	background: $secondary-background;
-	padding: 40px 0;
+	background: $secondary;
+	padding: 40px 0 55px;
 
 	&__icon {
 		
@@ -11,7 +12,7 @@
 
 		a {
 
-			@include transition(color 0.2s);
+			@include transition(color .5s);
 			color: $secondary-sub-heading;
 
 			&:hover,
@@ -28,16 +29,21 @@
 
 		margin: 20px auto;
 		text-align: center;
+		color: tint($secondary, 70%);
+		font-size: 2.2rem;
+		line-height: 3.2rem;
+		word-break: break-word;
 
 		a {
 
-			background-color: $secondary-border;
+			background-color: transparent;
+			color: tint($secondary, 85%);
+			padding: 0;
 
 			&:hover,
 			&:active,
 			&:focus {
-				background-color: $secondary-sub-heading;
-				color: $white;
+				color: $primary;
 			}
 
 		}
