@@ -1,0 +1,69 @@
+.work {
+
+    &__item {
+
+        overflow: hidden;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        height: 100vh;
+        width: 100%;
+
+        &--wrap {
+            margin: 0 100px;
+        }        
+
+    }
+
+    &__meta {
+
+        margin-top: 200px;
+
+        &--date {
+
+            color: shade($white, 25%);
+            font-size: 1.1rem;
+            font-weight: 300;
+            margin: 0;
+
+            i {
+                margin-right: 3px;
+            }
+
+        }
+
+        &--title {
+
+            margin: 6px 0 0;
+            width: 100%;
+
+            a {
+
+                text-decoration: none;
+                color: $white;
+
+                &:hover {
+                    color: $primary;
+                }
+
+            }
+
+            &:after {
+                content: " ";
+                height: 1px;
+                width: 40px;
+                background-color: shade($white, 10%);
+                display: block;
+                margin: 14px 0;
+            }
+
+        }
+
+        &--intro {
+            color: shade($white, 10%);
+            width: 65%;
+        }
+
+    }
+
+}

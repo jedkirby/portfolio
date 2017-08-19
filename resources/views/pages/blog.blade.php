@@ -27,7 +27,7 @@
 
                                 <h2 itemprop="headline"><a href="{{ $article->getUrl() }}" itemprop="url">{{ $article->getTitle() }}</a></h2>
 
-                                <time class="articles__article--metadata" pubdate="{{ $article->getDate() }}" itemprop="datePublished" datetime="{{ $article->getDate() }}" content="{{ $article->getDate() }}">{{ $article->getDate('F j, Y') }}</time>
+                                <time class="articles__article--metadata" pubdate="{{ $article->getDateForMeta() }}" itemprop="datePublished" datetime="{{ $article->getDateForMeta() }}" content="{{ $article->getDateForMeta() }}">{{ $article->getDateForHuman() }}</time>
 
                                 @if( ($image = $article->getImage()) )
                                     <a class="articles__article--link" href="{{ $article->getUrl() }}">
@@ -36,7 +36,7 @@
                                 @endif
 
                                 <div class="articles__article--summary">
-                                    <p itemprop="articleBody">{{ $article->getSnippet() }} ...</p>
+                                    <p itemprop="articleBody">{{ $article->getSnippet() }}..</p>
                                     <a href="{{ $article->getUrl() }}" class="articles__article--more">
                                         <i class="fa fa-angle-double-right"></i>
                                         Read More

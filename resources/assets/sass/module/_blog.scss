@@ -12,12 +12,12 @@
 
 			h2 {
 
-				font-weight: 200;
+				// font-weight: 200;
 				margin-bottom: 3px;
 
 				a {
 
-					@include transition(color 0.2s);
+					// @include transition(color 0.2s);
 					text-decoration: none;
 
 					&:hover {
@@ -29,7 +29,8 @@
 			}
 
 			&--metadata {
-				color: $secondary-sub-heading;
+				color: shade($white, 35%);
+				font-size: 1.4rem;
 				font-weight: 200;
 				margin: 0;
 			}
@@ -92,27 +93,10 @@
 
 			}
 
-			&--tags {
-
-				$gap: 25px;
-
-				border-top: 1px dotted $secondary-border;
-				font-weight: 200;
-				font-size: 1.2rem;
-				margin-top: $gap;
-				padding-top: ($gap / 2);
-
-				i {
-					margin-right: 3px;
-				}
-
-			}
-
 			&--more {
 
-				@include transition(color 0.2s);
 				color: $secondary-link-hover;
-				font-size: 1.2rem;
+				font-size: 1.4rem;
 				font-weight: 200;
 				text-decoration: none;
 

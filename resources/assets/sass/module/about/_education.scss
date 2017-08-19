@@ -28,7 +28,7 @@
 
 			a {
 
-				@include transition(color 0.2s);
+				text-decoration: none;
 				color: $white;
 
 				&:hover {
@@ -51,7 +51,7 @@
 
 	}
 
-	@include max-screen(540px) {
+	@include max-screen(640px) {
 
 		&__item {
 			width: 100%;
