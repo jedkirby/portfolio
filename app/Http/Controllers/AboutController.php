@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Domain\Blog\Repository\ArticleRepository;
 use App\Domain\Domain;
-use App\Domain\Project\Repository\PostRepository;
+use App\Domain\Work\Repository\WorkRepository;
 use App\Domain\Service\Instagram\InstagramManager;
 use Carbon\Carbon;
 
@@ -21,9 +21,9 @@ class AboutController extends AbstractController
     private $articleRepository;
 
     /**
-     * @var PostRepository
+     * @var WorkRepository
      */
-    private $postRepository;
+    private $workRepository;
 
     /**
      * @var InstagramManager
@@ -33,18 +33,18 @@ class AboutController extends AbstractController
     /**
      * @param Domain $domain
      * @param ArticleRepository $articleRepository
-     * @param PostRepository $postRepository
+     * @param WorkRepository $workRepository
      * @param InstagramManager $instagramManager
      */
     public function __construct(
         Domain $domain,
         ArticleRepository $articleRepository,
-        PostRepository $postRepository,
+        WorkRepository $workRepository,
         InstagramManager $instagramManager
     ) {
         $this->domain = $domain;
         $this->articleRepository = $articleRepository;
-        $this->postRepository = $postRepository;
+        $this->workRepository = $workRepository;
         $this->instagramManager = $instagramManager;
     }
 
@@ -65,7 +65,7 @@ class AboutController extends AbstractController
                 'counts' => [
                     'tea' => $startedWorking->diffInDays(),
                     'food' => $startedWorking->diffInWeeks(),
-                    'projects' => $this->postRepository->getCount(),
+                    'work' => ($this->workRepository->getCount() + 12), // NB: Add the projects that aren't listed any more.
                     'articles' => $this->articleRepository->getCount(),
                 ],
             ])
