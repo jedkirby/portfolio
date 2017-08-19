@@ -2,6 +2,9 @@
 
 namespace App\Domain\Date;
 
+/**
+ * @codeCoverageIgnore
+ */
 trait DateFormats
 {
     /**

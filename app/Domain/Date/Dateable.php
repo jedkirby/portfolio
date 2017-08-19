@@ -4,6 +4,9 @@ namespace App\Domain\Date;
 
 use Carbon\Carbon;
 
+/**
+ * @codeCoverageIgnore
+ */
 interface Dateable
 {
     /**
