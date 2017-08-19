@@ -28,10 +28,9 @@
 		&__date {
 
 			color: shade($white, 25%);
-			font-size: 1.0rem;
+			font-size: 1.1rem;
 			font-weight: 300;
 			margin: 0;
-			text-transform: uppercase;
 
 			i {
 				margin-right: 3px;
@@ -43,8 +42,6 @@
 			@include transition(color 0.4s);
 			@include ellipsis(90%);
 			color: $white;
-			font-size: 2.5rem;
-			font-weight: 200;
 			margin: 5px 0 0;
 			width: 100%;
 		}
@@ -52,8 +49,6 @@
 		&__sub {
 			@include ellipsis(90%);
 			color: shade($white, 10%);
-			font-size: 1.4rem;
-			font-weight: 100;
 			margin: 0;
 		}
 

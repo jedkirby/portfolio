@@ -33,7 +33,7 @@
 
                             <h2 itemprop="headline">{{ $article->getTitle() }}</h2>
 
-                            <time class="articles__article--metadata" pubdate="{{ $article->getDate() }}" itemprop="datePublished" datetime="{{ $article->getDate() }}" content="{{ $article->getDate() }}">{{ $article->getDate('F j, Y') }}</time>
+                            <time class="articles__article--metadata" pubdate="{{ $article->getDateForMeta() }}" itemprop="datePublished" datetime="{{ $article->getDateForMeta() }}" content="{{ $article->getDateForMeta() }}">{{ $article->getDateForHuman() }}</time>
 
                             @if( ($image = $article->getImage()) )
                                 <img itemprop="image" src="{{ asset('assets/img/blank.png') }}" data-src="{{ $image }}" class="articles__article--hero  lazyload">

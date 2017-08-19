@@ -1,7 +1,7 @@
 <div class="experience">
 
     <div class="experience__title  text-center">
-        <h3>Experience</h3>
+        <h2>Experience</h2>
     </div>
 
     <div class="experience__content">
@@ -10,11 +10,11 @@
 
                 <div class="col  col--12  experience__wrapper">
 
-                    <div class="experience__item  text-left">
+                    <div class="experience__item">
                         <div class="experience__icon">
                             <i class="fa fa-square"></i>
                         </div>
-                        <div class="experience__desc  experience__desc--right">
+                        <div class="experience__item--desc experience__desc">
                             <h3 id="tmwi">
                                 <a href="https://www.tmwi.co.uk" target="_blank">TMWI</a>
                             </h3>
@@ -27,11 +27,11 @@
                         </div>
                     </div>
 
-                    <div class="experience__item  text-right">
+                    <div class="experience__item">
                         <div class="experience__icon">
                             <i class="fa fa-square"></i>
                         </div>
-                        <div class="experience__desc  experience__desc--left">
+                        <div class="experience__item--desc experience__desc">
                             <h3 id="php-warwickshire">
                                 <a href="http://phpwarks.co.uk" target="_blank">PHP Warwickshire</a>
                             </h3>
@@ -44,11 +44,11 @@
                         </div>
                     </div>
 
-                    <div class="experience__item  text-left">
+                    <div class="experience__item">
                         <div class="experience__icon">
                             <i class="fa fa-square"></i>
                         </div>
-                        <div class="experience__desc  experience__desc--right">
+                        <div class="experience__item--desc experience__desc">
                             <h3 id="jadu">
                                 <a href="https://www.jadu.net/xforms-professional-forms-solution" target="_blank">Jadu</a>
                             </h3>
@@ -65,7 +65,7 @@
                         <div class="experience__icon">
                             <i class="fa fa-square"></i>
                         </div>
-                        <div class="experience__desc  experience__desc--left">
+                        <div class="experience__item--desc  experience__desc">
                             <h3 id="spacecraft-digital">
                                 <a href="https://spacecraft.digital" target="_blank">Spacecraft Digital</a>
                             </h3>
@@ -78,11 +78,11 @@
                         </div>
                     </div>
 
-                    <div class="experience__item  text-left">
+                    <div class="experience__item">
                         <div class="experience__icon">
                             <i class="fa fa-square"></i>
                         </div>
-                        <div class="experience__desc  experience__desc--right">
+                        <div class="experience__item--desc  experience__desc">
                             <h3 id="propeller-communication">
                                 <a href="http://www.propcom.co.uk" target="_blank">Propeller Communications</a>
                             </h3>
@@ -95,11 +95,11 @@
                         </div>
                     </div>
 
-                    <div class="experience__item  text-right">
+                    <div class="experience__item">
                         <div class="experience__icon">
                             <i class="fa fa-square"></i>
                         </div>
-                        <div class="experience__desc  experience__desc--left">
+                        <div class="experience__item--desc  experience__desc">
                             <h3 id="blitz-games-studios">
                                 <a href="http://www.blitzgamesstudios.com" target="_blank">Blitz Games Studios</a>
                             </h3>

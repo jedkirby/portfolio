@@ -5,7 +5,7 @@ html {
 	font-size: 62.5%;
 }
 body {
-	font-size: 1.4rem;
+	font-size: 1.5rem;
 	font-family: $font;
 }
 
@@ -34,10 +34,10 @@ h2 {
 	font-size: 2.8rem;
 }
 h3 {
-	font-size: 2.2rem;
+	font-size: 2.5rem;
 }
 h4 {
-	font-size: 1.6rem;
+	font-size: 2.2rem;
 }
 h5 {}
 h6 {}
@@ -48,7 +48,7 @@ h6 {}
 p, blockquote, ul {
 	color: $secondary;
 	font-weight: 200;
-	line-height: 2.3rem;
+	line-height: 2.4rem;
 }
 p {
 
@@ -64,24 +64,23 @@ pre {
 	color: tint($secondary, 10%);
 	font-size: 1.2rem;
 }
+strong, b {
+	font-weight: 500;
+}
+
 
 /**
  * Links
  */
 a {
+
+	@include transition(color 0.2s);
 	color: $secondary;
-	text-decoration: none;
-}
-p > a, .links a {
+	text-decoration: underline;
 
-	@include transition(background 0.2s, color 0.2s);
-	background: tint($secondary, 92%);
-	padding: 0 3px;
-
-	&:hover {
-		background: tint($secondary, 70%);
-		color: #FFF;
-	}
+    &:hover {
+        color: $secondary-link-hover;
+    }
 
 }
 

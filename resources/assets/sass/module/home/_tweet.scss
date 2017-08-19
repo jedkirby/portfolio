@@ -1,6 +1,5 @@
 .tweet {
 
-	background: $secondary-background;
 	background: $secondary;
 	padding: 40px 0 55px;
 
@@ -30,15 +29,12 @@
 		margin: 20px auto;
 		text-align: center;
 		color: tint($secondary, 70%);
-		font-size: 2.2rem;
-		line-height: 3.2rem;
 		word-break: break-word;
 
 		a {
 
-			background-color: transparent;
 			color: tint($secondary, 85%);
-			padding: 0;
+			text-decoration: none;
 
 			&:hover,
 			&:active,
@@ -61,6 +57,7 @@
 			color: $secondary-sub-heading;
 			display: inline-block;
 			font-size: 1.1rem;
+			font-weight: 300;
 			margin: 0 3px;
 		}
 
