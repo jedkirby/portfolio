@@ -1,1 +1,0 @@
-<p>Working as part of <a href="http://www.blitzgamesstudios.com" target="_blank">Blitz Games Studios</a>, I helped develop an interactive application for use during the NFL Super Bowl 46 (2012) as part of a Coca-Cola promotion.</p>

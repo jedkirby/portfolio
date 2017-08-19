@@ -1,1 +1,0 @@
-<p>Working with the development team, I created an interactive web UI application as an alternative interface to the main animations. The web application was developed using multiple technologies to ensure the slickest interface possible.</p>

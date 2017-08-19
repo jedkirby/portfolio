@@ -1,1 +1,0 @@
-<p>This is only the first step in an ongoing project; many more features will soon be added, such as a custom online booking form with complete back-end management. The website uses the latest HTML5 elements and semantic mark-up, whilst the homepage uses jQuery animations for the cover images.</p>
