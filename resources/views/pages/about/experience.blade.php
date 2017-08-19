@@ -90,7 +90,7 @@
                                 <time>September 2013</time> - <time>July 2015</time>
                             </div>
                             <p>
-                                Back-end website development primarily using <a href="http://fuelphp.com" target="_blank">FuelPHP</a> as a framework whilst making use of shared packages. Project version control and package management using <a href="https://git-scm.com" target="_blank">Git</a>. Involvement in complete life cycles of projects whilst also providing support for previously developed websites. Some examples of the sites I had involvement with are <a href="https://zizzi.co.uk" target="_blank">zizzi.co.uk</a> and <a href="http://galet.com" target="_blank">galet.com</a>.
+                                Back-end website development primarily using <a href="http://fuelphp.com" target="_blank">FuelPHP</a> as a framework whilst making use of shared packages. Project version control and package management using <a href="https://git-scm.com" target="_blank">Git</a>. Involvement in complete life cycles of projects whilst also providing support for previously developed websites. Some examples of the sites I had involvement with are <a href="https://zizzi.co.uk" target="_blank">zizzi.co.uk</a> and <a href="https://www.pingpongdimsum.com" target="_blank">pingpongdimsum.com</a>.
                             </p>
                         </div>
                     </div>

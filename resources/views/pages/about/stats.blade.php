@@ -19,10 +19,8 @@
 
             <div class="col  col--3  stats__item">
                 <div class="col--content  text-center">
-                    <a href="{{ route('projects') }}" title="View my work">
-                        <p class="stats__count">{{ array_get($counts, 'projects', 0) }}</p>
-                        <p class="stats__type">Complete Projects</p>
-                    </a>
+                    <p class="stats__count">{{ array_get($counts, 'projects', 0) }}</p>
+                    <p class="stats__type">Complete Projects</p>
                 </div>
             </div>
 
