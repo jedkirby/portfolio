@@ -2,11 +2,15 @@
 
 namespace App\Domain\Work\Entity;
 
+use App\Domain\Date\Dateable;
+use App\Domain\Date\DateFormats;
 use App\Domain\Common\Entity\EntityInterface;
 use Carbon\Carbon;
 
-class Item implements EntityInterface
+class Item implements EntityInterface, Dateable
 {
+    use DateFormats;
+
     /**
      * @var string
      */
@@ -70,13 +74,11 @@ class Item implements EntityInterface
     }
 
     /**
-     * @param string $format
-     *
-     * @return string
+     * @{inheritdoc}
      */
-    public function getDate($format = 'Y-m-d')
+    public function getDate()
     {
-        return $this->date->format($format);
+        return $this->date;
     }
 
     /**
