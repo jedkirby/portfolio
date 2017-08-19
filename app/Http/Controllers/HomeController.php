@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Domain\Blog\Repository\ArticleRepository;
 use App\Domain\Domain;
-use App\Domain\Work\Repository\WorkRepository;
 use App\Domain\Service\Twitter\TweetManager;
+use App\Domain\Work\Repository\WorkRepository;
 
 class HomeController extends AbstractController
 {
@@ -52,7 +52,6 @@ class HomeController extends AbstractController
      */
     public function __invoke()
     {
-
         $this->domain->setDescription('Website and application developer based in Stratford Upon Avon, UK. An avid blogger of anything related to social media, business, entertainment or technology. Primarily covering Warwickshire, but expanding to the rest of the world to provide a stress free and professional service. Available for hire.');
 
         return view(

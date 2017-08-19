@@ -4,10 +4,10 @@ namespace App\Tests\Http\Controllers;
 
 use App\Domain\Blog\Entity\Article;
 use App\Domain\Blog\Repository\ArticleRepository;
-use App\Domain\Work\Repository\WorkRepository;
-use App\Domain\Work\Entity\Item;
 use App\Domain\Service\Twitter\Entity\Tweet;
 use App\Domain\Service\Twitter\TweetManager;
+use App\Domain\Work\Entity\Item;
+use App\Domain\Work\Repository\WorkRepository;
 use App\Http\Controllers\HomeController;
 use Mockery;
 

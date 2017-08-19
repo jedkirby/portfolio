@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Domain\Blog\Repository\ArticleRepository;
 use App\Domain\Domain;
-use App\Domain\Work\Repository\WorkRepository;
 use App\Domain\Service\Instagram\InstagramManager;
+use App\Domain\Work\Repository\WorkRepository;
 use Carbon\Carbon;
 
 class AboutController extends AbstractController

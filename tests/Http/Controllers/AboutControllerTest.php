@@ -3,9 +3,9 @@
 namespace App\Tests\Http\Controllers;
 
 use App\Domain\Blog\Repository\ArticleRepository;
-use App\Domain\Work\Repository\WorkRepository;
 use App\Domain\Service\Instagram\Entity\Post;
 use App\Domain\Service\Instagram\InstagramManager;
+use App\Domain\Work\Repository\WorkRepository;
 use App\Http\Controllers\AboutController;
 use Mockery;
 
