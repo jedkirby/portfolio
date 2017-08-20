@@ -9,17 +9,16 @@
                 <div class="site__medium  work__item--wrap">
 
                     <div class="work__meta">
-
-                        <p class="work__meta--date">
-                            <i class="fa fa-clock-o"></i>
-                            <time pubdate="{{ $item->getDateForMeta() }}" itemprop="datePublished" datetime="{{ $item->getDateForMeta() }}" content="{{ $item->getDateForMeta() }}">{{ $item->getDateForHuman() }}</time>
-                        </p>
                         
                         <h2 class="work__meta--title">
-                            <a href="#" title="Find out more about {{ $item->getTitle() }}">{{ $item->getTitle() }}</a>
+                            <a href="#" title="Open the {{ $item->getTitle() }} case study">{{ $item->getTitle() }}</a>
                         </h2>
 
                         <p class="work__meta--intro">{{ $item->getIntro() }}</p>
+
+                        <a href="#" class="work__meta--link" title="Open the {{ $item->getTitle() }} case study">
+                            <i class="fa fa-angle-double-right"></i> Open Case Study
+                        </a>
 
                     </div>
 

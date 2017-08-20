@@ -79,7 +79,7 @@ return [
             ],
         ],
         'multiple-apache-virtual-host-configuration-files' => [
-            'title' => 'Multiple apache virtual host configuration files',
+            'title' => 'Multiple apache virtual hosts configuration files',
             'date' => Carbon::createFromDate(2014, 1, 16),
             'snippet' => 'Recently I’ve developed a control panel for my server so I’m able to manage all the websites I control using a simple interface.',
             'content' => 'pages.blog.articles.multiple-apache-virtual-host-configuration-files',

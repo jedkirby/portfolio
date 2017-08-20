@@ -1,0 +1,35 @@
+&__articles {
+
+    @include prefixer(display, flex, webkit ms moz o spec);
+    @include prefixer(flex-wrap, wrap, webkit ms moz o spec);
+    margin: 10px 0;
+
+    .article {
+
+        margin: 4% 1%;
+        width: 48%;
+
+        &__snippet {
+            margin-top: 15px;
+        }
+
+        &__link {
+
+            color: $secondary-link-hover;
+            font-size: 1.4rem;
+            font-weight: 200;
+            text-decoration: none;
+
+            &:hover {
+                color: $secondary;
+            }
+
+        }
+
+        @include max-screen(640px) {
+            width: 98%;
+        }
+
+    }
+
+}
