@@ -10,27 +10,28 @@
         width: 100%;
 
         &--wrap {
+
             margin: 0 100px;
+
+            @include max-screen(640px) {
+                margin: 0 50px;
+            }
+
+            @include max-screen(430px) {
+                margin: 0 5px;
+            }
+
         }        
+
+        @include max-screen(640px) {
+            height: auto;
+        }
 
     }
 
     &__meta {
 
         margin-top: 200px;
-
-        &--date {
-
-            color: shade($white, 25%);
-            font-size: 1.1rem;
-            font-weight: 300;
-            margin: 0;
-
-            i {
-                margin-right: 3px;
-            }
-
-        }
 
         &--title {
 
@@ -60,8 +61,36 @@
         }
 
         &--intro {
+
             color: shade($white, 10%);
+            margin-bottom: 14px;
             width: 65%;
+
+            @include max-screen(640px) {
+                width: 100%;
+            }
+
+        }
+
+        &--link {
+
+            color: shade($white, 25%);
+            font-size: 1.4rem;
+            font-weight: 200;
+            text-decoration: none;
+
+            &:hover {
+                color: $primary;
+            }
+
+        }
+
+        @include max-screen(640px) {
+            margin: 100px 0;
+        }
+
+        @include max-screen(430px) {
+            margin: 50px 0;
         }
 
     }

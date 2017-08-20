@@ -10,7 +10,7 @@
     I had a search around, and couldn't find anything which automatically allowed Typekit to wildcard the <code>*.herokuapp.com</code> domain, only a few frustrated people, albeit a while ago now:
 </p>
 
-<div class="tweet--wrapper">
+<div class="article__content--twitter">
     <blockquote class="twitter-tweet" data-lang="en">
         <p lang="en" dir="ltr"><a href="https://twitter.com/typekit">@typekit</a> What&#39;s the recommendation for using Typekit with dynamic subdomains? I have a customer asking. Allow `static-*.herokuapp.com` ?</p>&mdash; Jon McCartie (@jmccartie) <a href="https://twitter.com/jmccartie/status/661953245552640000">November 4, 2015</a>
     </blockquote>

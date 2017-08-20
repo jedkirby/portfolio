@@ -8,7 +8,7 @@
 
                 <article class="col  col--6" itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
 
-                    <a href="{{ $article->getUrl() }}" class="article" itemprop="url">
+                    <a href="{{ $article->getUrl() }}" class="article" itemprop="url" title="Read more about {{ $article->getTitle() }}">
                         <img itemprop="image" src="{{ asset('assets/img/blank.png') }}" data-src="{{ $article->getImage() }}" class="article__image  lazyload" width="720" height="" />
                         <div class="article__meta">
                             <p class="article__date">
