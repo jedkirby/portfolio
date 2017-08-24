@@ -33,12 +33,19 @@
     }
 
     &__overlay {
+
+        @include transition(opacity .6s);
         position: absolute;
         background: $secondary;
         width: 100%;
         height: 100%;
         opacity: .45;
         z-index: 12;
+
+        @include max-screen(640px) {
+            opacity: .7;
+        }
+
     }
 
     &__meta {
