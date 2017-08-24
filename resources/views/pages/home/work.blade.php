@@ -6,6 +6,8 @@
 
             <div class="work__item" style="background-image: url({{ $item->getHero() }})">
 
+                <div class="work__overlay"></div>
+
                 <div class="site__medium  work__item--wrap">
 
                     <div class="work__meta">

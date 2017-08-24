@@ -2,12 +2,15 @@
 
     &__item {
 
+        position: relative;
         overflow: hidden;
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
         height: 100vh;
         width: 100%;
+        z-index: 10;
+
 
         &--wrap {
 
@@ -29,9 +32,20 @@
 
     }
 
+    &__overlay {
+        position: absolute;
+        background: $secondary;
+        width: 100%;
+        height: 100%;
+        opacity: .45;
+        z-index: 12;
+    }
+
     &__meta {
 
+        position: relative;
         margin-top: 200px;
+        z-index: 13;
 
         &--title {
 
