@@ -32,4 +32,8 @@ return [
         'model' => 'User',
         'secret' => '',
     ],
+
+    'slack' => [
+        'webhook' => env('SLACK_WEBHOOK'),
+    ],
 ];

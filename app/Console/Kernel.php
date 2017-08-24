@@ -15,7 +15,6 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         \App\Domain\Service\Twitter\Console\Command\LatestTweet::class,
         \App\Domain\Service\Instagram\Console\Command\LatestPosts::class,
-        \App\Domain\Handler\Error\Console\Command\ErrorReport::class,
     ];
 
     /**
@@ -27,6 +26,5 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('twitter:latest-tweet')->everyFiveMinutes();
         $schedule->command('instagram:latest-posts')->twiceDaily();
-        $schedule->command('app:error-report')->daily(); // Once every day just gone midnight
     }
 }

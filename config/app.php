@@ -131,6 +131,7 @@ return [
     */
 
     'providers' => [
+        App\Providers\SlackLoggingServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,
         Illuminate\Cache\CacheServiceProvider::class,
