@@ -17,7 +17,6 @@
 	}
 
 	&__type {
-		@include transition(color .2s);
 		color: $secondary-shaded;
 		display: inline-block;
 		font-weight: 300;
@@ -31,8 +30,12 @@
 
 		text-decoration: none;
 
+		& > p {
+			@include transition(color .2s);
+		}
+
 		&:hover > p {
-			color: $white;
+			color: $primary;
 		}
 
 	}

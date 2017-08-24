@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Domain\Blog\Repository\ArticleRepository;
 use App\Domain\Domain;
 use App\Domain\Service\Twitter\TweetManager;
-use App\Domain\Work\Repository\WorkRepository;
+use App\Domain\Study\Repository\StudyRepository;
 
 class HomeController extends AbstractController
 {
@@ -20,9 +20,9 @@ class HomeController extends AbstractController
     private $articleRepository;
 
     /**
-     * @var WorkRepository
+     * @var StudyRepository
      */
-    private $workRepository;
+    private $studyRepository;
 
     /**
      * @var TweetManager
@@ -32,18 +32,18 @@ class HomeController extends AbstractController
     /**
      * @param Domain $domain
      * @param ArticleRepository $articleRepository
-     * @param WorkRepository $workRepository
+     * @param StudyRepository $studyRepository
      * @param TweetManager $tweetManager
      */
     public function __construct(
         Domain $domain,
         ArticleRepository $articleRepository,
-        WorkRepository $workRepository,
+        StudyRepository $studyRepository,
         TweetManager $tweetManager
     ) {
         $this->domain = $domain;
         $this->articleRepository = $articleRepository;
-        $this->workRepository = $workRepository;
+        $this->studyRepository = $studyRepository;
         $this->tweetManager = $tweetManager;
     }
 
@@ -58,7 +58,7 @@ class HomeController extends AbstractController
             'pages.home',
             $this->getViewParams([
                 'articles' => $this->articleRepository->getLimit(2),
-                'work' => $this->workRepository->getLimit(3),
+                'studies' => $this->studyRepository->getLimit(3),
                 'tweet' => $this->tweetManager->getTweet(),
             ])
         );

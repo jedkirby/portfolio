@@ -1,22 +1,22 @@
 <?php
 
-namespace App\Domain\Work\Repository;
+namespace App\Domain\Study\Repository;
 
 use App\Domain\Common\Repository\AbstractStaticRepository;
-use App\Domain\Work\Entity\Item;
+use App\Domain\Study\Entity\Item;
 use Illuminate\Contracts\Config\Repository as Config;
 
 /**
  * @codeCoverageIgnore
  */
-class WorkRepository extends AbstractStaticRepository
+class StudyRepository extends AbstractStaticRepository
 {
     /**
      * @param Config $config
      */
     public function __construct(Config $config)
     {
-        foreach ($config->get('content.work', []) as $id => $article) {
+        foreach ($config->get('content.studies', []) as $id => $article) {
             $this->entities[$id] = new Item(
                 $id,
                 $article['title'],

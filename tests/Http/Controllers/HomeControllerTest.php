@@ -6,8 +6,8 @@ use App\Domain\Blog\Entity\Article;
 use App\Domain\Blog\Repository\ArticleRepository;
 use App\Domain\Service\Twitter\Entity\Tweet;
 use App\Domain\Service\Twitter\TweetManager;
-use App\Domain\Work\Entity\Item;
-use App\Domain\Work\Repository\WorkRepository;
+use App\Domain\Study\Entity\Item;
+use App\Domain\Study\Repository\StudyRepository;
 use App\Http\Controllers\HomeController;
 use Mockery;
 
@@ -19,7 +19,7 @@ use Mockery;
 class HomeControllerTest extends AbstractControllerTestCase
 {
     private $articleRepository;
-    private $workRepository;
+    private $studyRepository;
     private $tweetManager;
     private $controller;
 
@@ -28,12 +28,12 @@ class HomeControllerTest extends AbstractControllerTestCase
         parent::setUp();
 
         $this->articleRepository = Mockery::mock(ArticleRepository::class);
-        $this->workRepository = Mockery::mock(WorkRepository::class);
+        $this->studyRepository = Mockery::mock(StudyRepository::class);
         $this->tweetManager = Mockery::mock(TweetManager::class);
         $this->controller = new HomeController(
             $this->domain,
             $this->articleRepository,
-            $this->workRepository,
+            $this->studyRepository,
             $this->tweetManager
         );
     }
@@ -53,7 +53,7 @@ class HomeControllerTest extends AbstractControllerTestCase
             ])
             ->once();
 
-        $this->workRepository
+        $this->studyRepository
             ->shouldReceive('getLimit')
             ->with(3)
             ->andReturn([
@@ -73,12 +73,12 @@ class HomeControllerTest extends AbstractControllerTestCase
         $this->assertInstanceOf(Tweet::class, $data['tweet']);
 
         $this->assertArrayHasKey('articles', $data);
-        $this->assertArrayHasKey('work', $data);
+        $this->assertArrayHasKey('studies', $data);
 
         $this->assertInternalType('array', $data['articles']);
-        $this->assertInternalType('array', $data['work']);
+        $this->assertInternalType('array', $data['studies']);
 
         $this->assertCount(2, $data['articles']);
-        $this->assertCount(2, $data['work']);
+        $this->assertCount(2, $data['studies']);
     }
 }

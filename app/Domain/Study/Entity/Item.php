@@ -1,12 +1,15 @@
 <?php
 
-namespace App\Domain\Work\Entity;
+namespace App\Domain\Study\Entity;
 
 use App\Domain\Common\Entity\EntityInterface;
 use App\Domain\Date\Dateable;
 use App\Domain\Date\DateFormats;
 use Carbon\Carbon;
 
+/**
+ * @codeCoverageIgnore
+ */
 class Item implements EntityInterface, Dateable
 {
     use DateFormats;
@@ -95,5 +98,16 @@ class Item implements EntityInterface, Dateable
     public function getHero()
     {
         return casset($this->hero);
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl()
+    {
+        return route(
+            'case-study',
+            $this->getId()
+        );
     }
 }
