@@ -23,3 +23,7 @@ Route::get('sitemap.xml', 'SitemapController')->name('sitemap');
 
 Route::post('contact', 'ContactController@post');
 Route::post('api/interest/register', 'InterestController')->name('api.interest');
+
+Route::get('error', function () {
+    throw new \RuntimeException('This is a sample exception.');
+});
