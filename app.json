@@ -14,6 +14,7 @@
         "MAILGUN_SECRET": {"required": true},
         "MEETUP_API_KEY": {"required": true},
         "NODE_MODULES_CACHE": {"required": true},
+        "SLACK_WEBHOOK": {"required": true},
         "TWITTER_CONSUMER_KEY": {"required": true},
         "TWITTER_CONSUMER_SECRET": {"required": true},
         "TWITTER_HASHTAGS": {"required": true},
