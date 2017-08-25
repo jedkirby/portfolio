@@ -39,7 +39,7 @@ class SlackLoggingServiceProviderTest extends TestCase
     {
         $this->app
             ->shouldReceive('environment')
-            ->with('production')
+            ->with(['production', 'staging'])
             ->andReturn(false)
             ->once();
 
@@ -58,7 +58,7 @@ class SlackLoggingServiceProviderTest extends TestCase
     {
         $this->app
             ->shouldReceive('environment')
-            ->with('production')
+            ->with(['production', 'staging'])
             ->andReturn(true)
             ->once();
 
@@ -81,7 +81,7 @@ class SlackLoggingServiceProviderTest extends TestCase
     {
         $this->app
             ->shouldReceive('environment')
-            ->with('production')
+            ->with(['production', 'staging'])
             ->andReturn(true)
             ->once();
 
