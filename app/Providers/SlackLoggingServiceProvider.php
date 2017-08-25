@@ -23,7 +23,7 @@ class SlackLoggingServiceProvider extends ServiceProvider
         Config $config,
         Application $app
     ) {
-        if ($app->environment('production')) {
+        if ($app->environment(['production', 'staging'])) {
             $webhook = $config->get('services.slack.webhook');
             if ($webhook) {
                 $logger->getMonolog()->pushHandler(new SlackWebhookHandler(
