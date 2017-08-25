@@ -6,7 +6,7 @@ class ProjectService
 {
     /**
      * Projects have now been removed from the site, so, best way is to just
-     * list the project names and provide the count. They're in descending 
+     * list the project names and provide the count. They're in descending
      * order of completion.
      *
      * @return int

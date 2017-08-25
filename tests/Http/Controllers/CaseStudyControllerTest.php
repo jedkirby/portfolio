@@ -6,7 +6,6 @@ use App\Domain\Study\Entity\Item;
 use App\Domain\Study\Repository\StudyRepository;
 use App\Http\Controllers\CaseStudyController;
 use Carbon\Carbon;
-use Illuminate\Http\RedirectResponse;
 use Mockery;
 
 /**
