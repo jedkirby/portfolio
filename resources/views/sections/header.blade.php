@@ -20,6 +20,7 @@
                 <ul>
                     <li><a href="{{ route('home') }}" class="{{ \Request::is('home', '/') ? 'active' : '' }}">Home</a></li>
                     <li><a href="{{ route('about') }}" class="{{ \Request::is('about') ? 'active' : '' }}">About</a></li>
+                    <li><a href="{{ route('studies') }}" class="{{ \Request::is('case-study', 'case-study/*') ? 'active' : '' }}">Studies</a></li>
                     <li><a href="{{ route('articles') }}" class="{{ \Request::is('blog', 'blog/*') ? 'active' : '' }}">Blog</a></li>
                     <li><a href="{{ route('contact') }}" class="{{ \Request::is('contact', 'contact/*') ? 'active' : '' }}">Contact</a></li>
                 </ul>

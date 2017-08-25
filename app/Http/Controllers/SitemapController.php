@@ -41,8 +41,9 @@ class SitemapController extends BaseController
             route('contact'),
         ];
 
+        $routes[] = route('studies');
         foreach ($this->studyRepository->getAll() as $id => $post) {
-            $routes[] = route('case-study', $id);
+            $routes[] = route('study', $id);
         }
 
         $routes[] = route('articles');

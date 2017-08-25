@@ -3,6 +3,7 @@
 namespace App\Domain\Study\Entity;
 
 use App\Domain\Common\Entity\EntityInterface;
+use App\Domain\Common\KeywordGenerator;
 use App\Domain\Date\Dateable;
 use App\Domain\Date\DateFormats;
 use Carbon\Carbon;
@@ -40,24 +41,32 @@ class Item implements EntityInterface, Dateable
     private $hero;
 
     /**
+     * @var array
+     */
+    private $keywords = [];
+
+    /**
      * @param string $id
      * @param string $title
      * @param Carbon $date
      * @param string $intro
      * @param string $hero
+     * @param array $keywords
      */
     public function __construct(
         $id,
         $title,
         Carbon $date,
         $intro,
-        $hero
+        $hero,
+        $keywords = []
     ) {
         $this->id = $id;
         $this->title = $title;
         $this->date = $date;
         $this->intro = $intro;
         $this->hero = $hero;
+        $this->keywords = $keywords;
     }
 
     /**
@@ -101,12 +110,32 @@ class Item implements EntityInterface, Dateable
     }
 
     /**
+     * @return array
+     */
+    public function getKeywords()
+    {
+        return $this->keywords;
+    }
+
+    /**
+     * @return string
+     */
+    public function getKeywordsForMeta()
+    {
+        $generator = new KeywordGenerator(
+            $this->getKeywords()
+        );
+
+        return $generator->run();
+    }
+
+    /**
      * @return string
      */
     public function getUrl()
     {
         return route(
-            'case-study',
+            'study',
             $this->getId()
         );
     }

@@ -22,7 +22,8 @@ class StudyRepository extends AbstractStaticRepository
                 $article['title'],
                 $article['date'],
                 $article['intro'],
-                $article['hero']
+                $article['hero'],
+                $article['keywords']
             );
         }
     }

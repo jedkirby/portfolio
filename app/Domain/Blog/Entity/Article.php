@@ -3,6 +3,7 @@
 namespace App\Domain\Blog\Entity;
 
 use App\Domain\Common\Entity\EntityInterface;
+use App\Domain\Common\KeywordGenerator;
 use App\Domain\Date\Dateable;
 use App\Domain\Date\DateFormats;
 use Carbon\Carbon;
@@ -127,6 +128,18 @@ class Article implements EntityInterface, Dateable
     public function getKeywords()
     {
         return $this->keywords;
+    }
+
+    /**
+     * @return string
+     */
+    public function getKeywordsForMeta()
+    {
+        $generator = new KeywordGenerator(
+            $this->getKeywords()
+        );
+
+        return $generator->run();
     }
 
     /**

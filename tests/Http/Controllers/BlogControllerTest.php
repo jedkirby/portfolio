@@ -40,12 +40,14 @@ class BlogControllerTest extends AbstractControllerTestCase
                 Article::class,
                 [
                     'getKeywords' => ['One', 'Two'],
+                    'getKeywordsForMeta' => 'One, Two',
                 ]
             ),
             Mockery::mock(
                 Article::class,
                 [
                     'getKeywords' => ['Three', 'Four'],
+                    'getKeywordsForMeta' => 'Three, Four',
                 ]
             ),
         ];
@@ -95,70 +97,6 @@ class BlogControllerTest extends AbstractControllerTestCase
         $this->assertCount(2, $data['articles']);
     }
 
-    public function testGetAllCompilesKeywords()
-    {
-        $entities = $this->getSampleEntities();
-
-        $this->articleRepository
-            ->shouldReceive('getAll')
-            ->andReturn($entities)
-            ->once();
-
-        $this->domain
-            ->shouldReceive('setTitle')
-            ->with('Blog')
-            ->once();
-
-        $this->domain
-            ->shouldReceive('setDescription')
-            ->once();
-
-        $keywords = [];
-        foreach ($entities as $entity) {
-            $keywords = array_merge($keywords, $entity->getKeywords());
-        }
-
-        $this->domain
-            ->shouldReceive('setKeywords')
-            ->with($keywords)
-            ->once();
-
-        $this->controller->all();
-    }
-
-    public function testKeywordsAreLimitedAndUnique()
-    {
-        $entities = [
-            Mockery::mock(Article::class, ['getKeywords' => ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven']]),
-            Mockery::mock(Article::class, ['getKeywords' => ['Eight', 'Nine', 'Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen']]),
-            Mockery::mock(Article::class, ['getKeywords' => ['Fifteen', 'Sixteen', 'Seventeen', 'One']]),
-        ];
-
-        $this->articleRepository
-            ->shouldReceive('getAll')
-            ->andReturn($entities)
-            ->once();
-
-        $this->domain->shouldReceive('setTitle')->once();
-        $this->domain->shouldReceive('setDescription')->once();
-
-        $keywords = [];
-        foreach ($entities as $entity) {
-            $keywords = array_merge($keywords, $entity->getKeywords());
-        }
-
-        $expected = array_unique(
-            array_slice($keywords, 0, BlogController::KEYWORD_LIMIT)
-        );
-
-        $this->domain
-            ->shouldReceive('setKeywords')
-            ->with($expected)
-            ->once();
-
-        $this->controller->all();
-    }
-
     public function testCanGetSinglePost()
     {
         $entity = $this->getSampleEntity();
@@ -181,10 +119,7 @@ class BlogControllerTest extends AbstractControllerTestCase
 
         $this->domain
             ->shouldReceive('setKeywords')
-            ->with([
-                    'One',
-                    'Two',
-            ])
+            ->with('One, Two')
             ->once();
 
         $this->page

@@ -14,8 +14,8 @@
 Route::get('/', 'HomeController')->name('home');
 Route::get('about', 'AboutController')->name('about');
 Route::get('version', 'VersionController')->name('version');
-Route::get('case-study', 'CaseStudyController@all');
-Route::get('case-study/{slug}', 'CaseStudyController@single')->name('case-study');
+Route::get('case-study', 'CaseStudyController@all')->name('studies');
+Route::get('case-study/{slug}', 'CaseStudyController@single')->name('study');
 Route::get('blog', 'BlogController@all')->name('articles');
 Route::get('blog/{slug}', 'BlogController@single')->name('article');
 Route::get('contact', 'ContactController@get')->name('contact');
