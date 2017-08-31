@@ -10,17 +10,9 @@
 
 	&__item {
 
-		margin: 15px 0.5%;
-		padding: 1% 1.5%;
-		width: 49%;
-
-		&--left {
-			float: left;
-		}
-
-		&--right {
-			float: right;
-		}
+		float: left;
+		margin: 20px 0;
+		width: calc(100% / 3);
 
 		h3 {
 
