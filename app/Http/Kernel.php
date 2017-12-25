@@ -27,6 +27,10 @@ class Kernel extends HttpKernel
             'csrf',
             'bindings',
         ],
+        'api' => [
+            'session',
+            'bindings',
+        ],
     ];
 
     /**
