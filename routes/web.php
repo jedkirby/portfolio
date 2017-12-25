@@ -23,5 +23,4 @@ Route::get('pings', 'PingController');
 Route::get('sitemap.xml', 'SitemapController')->name('sitemap');
 
 Route::post('contact', 'ContactController@post');
-
 Route::post('api/interest/register', 'InterestController')->name('api.interest');
