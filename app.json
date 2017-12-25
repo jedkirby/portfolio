@@ -41,7 +41,7 @@
             "url": "heroku/nodejs"
         },
         {
-            "url": "https://github.com/jedkirby/heroku-buildpack-typekit"
+            "url": "https://github.com/jedkirby/heroku-buildpack-typekit#feature/tracking"
         }
     ]
 }
