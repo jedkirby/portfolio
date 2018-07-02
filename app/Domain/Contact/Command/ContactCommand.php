@@ -80,7 +80,7 @@ class ContactCommand
             $request->get('subject'),
             $request->get('message'),
             $request->getClientIp(),
-            $request->get('honeypot', '')
+            $request->get('website', '') // NB: The `website` field is currently the honeypot.
         );
     }
 
