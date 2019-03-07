@@ -1,0 +1,38 @@
+version: "3.1"
+
+services:
+
+  ##
+  # Command: `docker-compose -f ./docker-compose.build.yml run --rm cli composer install`
+  ##
+  cli:
+    build: ./server/docker/php/cli
+    restart: 'no'
+    working_dir: /var/www/html
+    volumes:
+      - .:/var/www/html
+    networks:
+      - jedkirby
+    environment:
+      - COMPOSER_ALLOW_SUPERUSER=1
+
+  ##
+  # Command: `docker-compose -f ./docker-compose.build.yml run --rm node yarn install`
+  # Command: `docker-compose -f ./docker-compose.build.yml run --rm node yarn prod`
+  ##
+  node:
+    build: ./server/docker/node
+    restart: 'no'
+    working_dir: /var/www/html
+    volumes:
+      - .:/var/www/html
+      - node_modules:/var/www/html/node_modules
+    networks:
+      - jedkirby
+
+networks:
+  jedkirby:
+    driver: bridge
+
+volumes:
+  node_modules:
