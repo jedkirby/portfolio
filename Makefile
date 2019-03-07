@@ -70,4 +70,4 @@ clean: clean-vendor clean-docker
 ##
 # Helpers
 ##
-start: env depend key compile doc-start
+start: depend key compile doc-start
