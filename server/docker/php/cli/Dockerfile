@@ -1,12 +1,11 @@
-FROM php:5.6-alpine
+FROM php:7.2-cli-alpine
 
-RUN apk update && apk add curl && \
-  curl -sS https://getcomposer.org/installer | php \
-  && chmod +x composer.phar && mv composer.phar /usr/local/bin/composer
+RUN docker-php-ext-install pdo pdo_mysql
 
-RUN apk update && apk add libmcrypt-dev
-
-RUN docker-php-ext-install pcntl
-RUN docker-php-ext-install mcrypt
+RUN apk update && \
+    apk add curl && \
+    curl -sS https://getcomposer.org/installer | php && \
+    chmod +x composer.phar && \
+    mv composer.phar /usr/local/bin/composer
 
 CMD php

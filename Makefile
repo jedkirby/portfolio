@@ -27,6 +27,9 @@ compile:
 test:
 	${CLI} php vendor/bin/phpunit
 
+migrate:
+	${ARTISAN} migrate
+
 
 ##
 # Dependencies

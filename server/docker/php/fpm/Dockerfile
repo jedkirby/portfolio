@@ -1,6 +1,3 @@
-FROM php:5.6-fpm-alpine
+FROM php:7.2-fpm-alpine
 
-RUN apk update && apk add libmcrypt-dev
-
-RUN docker-php-ext-install pcntl
-RUN docker-php-ext-install mcrypt
+RUN docker-php-ext-install pdo pdo_mysql
