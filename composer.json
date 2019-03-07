@@ -3,7 +3,7 @@
 	"description": "James Kirby's Portfolio.",
 	"type": "project",
 	"require": {
-		"php": "^5.6.22",
+		"php": "^7.2.0",
 		"laravel/framework": "5.3.*",
 		"social-links/social-links": "1.5.*",
 		"guzzlehttp/guzzle": "^6.0",
@@ -31,17 +31,6 @@
 	"autoload-dev": {
 		"psr-4": {
 			"App\\Tests\\": "tests/"
-		}
-	},
-	"scripts": {
-		"compile": [
-			"php artisan instagram:latest-posts",
-			"php artisan twitter:latest-tweet"
-		]
-	},
-	"config": {
-		"platform": {
-			"php": "5.6.22"
 		}
 	}
 }
