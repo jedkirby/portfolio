@@ -28,11 +28,11 @@
                             <div class="form__wrap form__wrap--poof">
                                 {!!
                                     Form::text(
-                                        'honeypot',
+                                        'website',
                                         $command->honeypot,
                                         [
                                             'class' => 'form__field',
-                                            'placeholder' => 'Title'
+                                            'placeholder' => 'Website'
                                         ]
                                     )
                                 !!}
