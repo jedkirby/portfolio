@@ -27,6 +27,7 @@ Because the entire project makes use of Docker, and is held together using a Mak
 | `make compile`  | Compile production ready assets  |
 | `make test`  | Run all testing suites  |
 | `make cs`  | Run coding standards enforcers  |
+| `make migrate`  | Run database migrations  |
 | `make clean`  | **!!** This will remove all dependencies, and stop & delete the instance containers  |
 
 
