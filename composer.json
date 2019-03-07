@@ -3,7 +3,7 @@
 	"description": "James Kirby's Portfolio.",
 	"type": "project",
 	"require": {
-		"php": "7.2.15",
+		"php": "7.2.*",
 		"laravel/framework": "5.3.*",
 		"social-links/social-links": "1.5.*",
 		"guzzlehttp/guzzle": "^6.0",
