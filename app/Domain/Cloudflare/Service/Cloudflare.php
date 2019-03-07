@@ -54,7 +54,8 @@ class Cloudflare
                         1440
                     );
                 }
-            } catch (Exception $e) {}
+            } catch (Exception $e) {
+            }
         } else {
             $ips = $this->cache->get($key);
         }
