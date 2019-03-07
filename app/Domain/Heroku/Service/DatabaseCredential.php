@@ -2,6 +2,9 @@
 
 namespace App\Domain\Heroku\Service;
 
+/**
+ * @codeCoverageIgnore
+ */
 class DatabaseCredential
 {
     /**

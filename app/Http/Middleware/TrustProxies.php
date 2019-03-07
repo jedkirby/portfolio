@@ -7,6 +7,9 @@ use App\Domain\Heroku\Service\Heroku;
 use Closure;
 use Illuminate\Http\Request;
 
+/**
+ * @codeCoverageIgnore
+ */
 class TrustProxies
 {
     /**

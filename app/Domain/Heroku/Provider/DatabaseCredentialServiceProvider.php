@@ -7,6 +7,9 @@ use Illuminate\Contracts\Config\Repository as Config;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Support\ServiceProvider;
 
+/**
+ * @codeCoverageIgnore
+ */
 class DatabaseCredentialServiceProvider extends ServiceProvider
 {
     /**

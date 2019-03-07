@@ -5,6 +5,9 @@ namespace App\Domain\Cloudflare\Service;
 use Exception;
 use Illuminate\Cache\Repository as Cache;
 
+/**
+ * @codeCoverageIgnore
+ */
 class Cloudflare
 {
     /**

@@ -4,6 +4,9 @@ namespace App\Domain\Heroku\Service;
 
 use Illuminate\Http\Request;
 
+/**
+ * @codeCoverageIgnore
+ */
 class Heroku
 {
     /**
