@@ -94,7 +94,7 @@ class Guzzle implements ProviderInterface
                     'auth' => 'oauth',
                     'query' => [
                         'screen_name' => Config::get('site.social.streams.twitter.name'),
-                        'count' => 200,
+                        'count' => 1000,
                         'trim_user' => true,
                         'exclude_replies' => true,
                         'contributor_details' => false,

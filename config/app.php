@@ -131,6 +131,7 @@ return [
     */
 
     'providers' => [
+        App\Domain\Heroku\Provider\DatabaseCredentialServiceProvider::class,
         App\Providers\SlackLoggingServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,

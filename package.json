@@ -1,9 +1,8 @@
 {
     "name": "jedkirby.com",
-    "description": "Site repository for https://jedkirby.com",
     "scripts": {
         "prod": "gulp --production",
-        "postinstall": "yarn prod"
+        "heroku-postbuild": "yarn prod"
     },
     "dependencies": {
         "gulp": "^3.8.8",

@@ -1,4 +1,0 @@
----
-php_listen: 127.0.0.1:9000
-php_display_errors: on
-php_short_tags: off

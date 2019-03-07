@@ -1,0 +1,51 @@
+version: "3.1"
+
+##
+# Main Environment: `docker-compose up --build -d`
+##
+services:
+
+  php:
+    container_name: jedkirby-app-php
+    build: ./server/docker/php/fpm
+    restart: always
+    volumes:
+      - .:/var/www/html
+    networks:
+      - jedkirby
+
+  db:
+    container_name: jedkirby-app-db
+    build: ./server/docker/database
+    restart: always
+    networks:
+      - jedkirby
+    environment:
+      MYSQL_DATABASE: "$DB_DATABASE"
+      MYSQL_USER: "$DB_USERNAME"
+      MYSQL_PASSWORD: "$DB_PASSWORD"
+      MYSQL_ROOT_PASSWORD: "$DB_PASSWORD"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "${APP_PORT_DB}:3306"
+
+  nginx:
+    container_name: jedkirby-app-nginx
+    build: ./server/docker/nginx
+    restart: always
+    volumes:
+      - .:/var/www/html
+      - ./server/docker/nginx/conf.d:/etc/nginx/conf.d
+    networks:
+      - jedkirby
+    ports:
+      - "${APP_PORT}:80"
+      - "${APP_PORT_SSL}:443"
+
+networks:
+  jedkirby:
+    driver: bridge
+
+volumes:
+  mysql_data:
