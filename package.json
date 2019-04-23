@@ -4,13 +4,13 @@
         "prod": "gulp --production",
         "heroku-postbuild": "yarn prod"
     },
-    "dependencies": {
-        "gulp": "^3.8.8",
-        "laravel-elixir": "*"
+    "devDependencies": {
+        "gulp": "^3.9.1",
+        "laravel-elixir": "^6.0.0-14"
     },
     "engines": {
-        "node": "^7.7.0",
-        "npm": "^3.10.0",
-        "yarn": "^0.24.0"
+        "node": "^8.15.0",
+        "npm": "^6.4.1",
+        "yarn": "^1.12.2"
     }
 }
