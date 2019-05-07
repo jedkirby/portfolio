@@ -155,6 +155,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Notifications\NotificationServiceProvider::class,
+        Biscolab\ReCaptcha\ReCaptchaServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Domain\Service\Twitter\TwitterServiceProvider::class,
@@ -208,5 +209,6 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'ReCaptcha' => Biscolab\ReCaptcha\Facades\ReCaptcha::class,
     ],
 ];

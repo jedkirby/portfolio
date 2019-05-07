@@ -9,7 +9,8 @@
 		"guzzlehttp/guzzle": "^6.0",
 		"guzzlehttp/oauth-subscriber": "^0.3.0",
 		"jedkirby/tweet-entity-linker": "^1.1",
-		"laravelcollective/html": "^5.2.0"
+		"laravelcollective/html": "^5.2.0",
+		"biscolab/laravel-recaptcha": "^2.0"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",
