@@ -41,6 +41,7 @@ class ContactHandlerTest extends TestCase
             'Message Subject',
             'Message Body',
             '192.168.1.125',
+            'abc-123',
             ''
         );
     }

@@ -6,7 +6,6 @@ use App\Domain\Contact\Command\ContactCommand;
 use App\Domain\Contact\Command\Validator\ContactValidator;
 use App\Tests\AbstractAppTestCase as TestCase;
 use Illuminate\Validation\Factory as Validator;
-use Symfony\Component\Translation\Translator;
 
 /**
  * @group domain
@@ -23,9 +22,7 @@ class ContactValidatorTest extends TestCase
         parent::setUp();
 
         $this->validator = new ContactValidator(
-            new Validator(
-                new Translator('en-gb')
-            )
+            app('validator')
         );
     }
 
@@ -37,6 +34,7 @@ class ContactValidatorTest extends TestCase
             'Message Subject',
             'Message Body',
             '192.168.1.125',
+            'abc-123',
             ''
         );
     }
