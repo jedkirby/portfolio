@@ -4,17 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Domain\Blog\Repository\ArticleRepository;
 use App\Domain\Common\Exception\EntityNotFoundException;
+use App\Domain\Common\KeywordGenerator;
 use App\Domain\Domain;
 use App\Domain\Social\Page;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class BlogController extends AbstractController
 {
-    /**
-     * @var int
-     */
-    const KEYWORD_LIMIT = 15;
-
     /**
      * @var Domain
      */
@@ -57,13 +53,11 @@ class BlogController extends AbstractController
             $keywords = array_merge($keywords, $article->getKeywords());
         }
 
+        $generator = new KeywordGenerator($keywords);
+
         $this->domain->setTitle('Blog');
         $this->domain->setDescription('From time to time I create articles. These could range from server configuration guides to life experiences. Feel free to get to know me more by reading a few of my articles.');
-        $this->domain->setKeywords(
-            array_unique(
-                array_slice($keywords, 0, static::KEYWORD_LIMIT) // NB: We only want a maximum of 15 keywords.
-            )
-        );
+        $this->domain->setKeywords($generator->run());
 
         return view(
             'pages.blog',
@@ -86,7 +80,7 @@ class BlogController extends AbstractController
 
         $this->domain->setTitle($article->getTitle());
         $this->domain->setDescription($article->getSnippet());
-        $this->domain->setKeywords($article->getKeywords());
+        $this->domain->setKeywords($article->getKeywordsForMeta());
 
         $this->page->setUrl($article->getUrl());
         $this->page->setTitle($article->getTitle());

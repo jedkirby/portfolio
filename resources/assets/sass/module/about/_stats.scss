@@ -17,18 +17,26 @@
 	}
 
 	&__type {
-		@include transition(color .2s);
 		color: $secondary-shaded;
 		display: inline-block;
-		font-weight: 200;
 		font-size: 1.1rem;
 		line-height: 2.3rem;
 		text-transform: uppercase;
 		margin-top: 5px;
 	}
 
-	a:hover .stats__type {
-		color: $white;
+	a {
+
+		text-decoration: none;
+
+		& > p {
+			@include transition(color .2s);
+		}
+
+		&:hover > p {
+			color: $primary;
+		}
+
 	}
 
 	@include max-screen(640px) {

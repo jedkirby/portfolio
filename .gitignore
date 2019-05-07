@@ -14,7 +14,3 @@
 
 ## Environment Settings
 .env
-
-## Vagrant/Ansible Setup
-/server/ansible/*.retry
-/.vagrant/**

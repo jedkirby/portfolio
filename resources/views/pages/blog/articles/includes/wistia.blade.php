@@ -1,6 +1,6 @@
-<div class="wistia  wistia_responsive_padding">
-    <div class="wistia--wrapper  wistia_responsive_wrapper">
-        <div class="wistia--embed  wistia_embed wistia_async_{{ $videoId }} videoFoam=true">&nbsp;</div>
+<div class="article__content--wistia  wistia_responsive_padding">
+    <div class="article__content--wistia-wrapper  wistia_responsive_wrapper">
+        <div class="article__content--wistia-embed  wistia_embed wistia_async_{{ $videoId }} videoFoam=true">&nbsp;</div>
     </div>
 </div>
 

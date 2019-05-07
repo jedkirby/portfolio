@@ -6,4 +6,37 @@
 		margin-bottom: 10px;
 	}
 
+    &__column {
+
+        margin: 14px 2%;
+        width: 46%;
+
+        &--left {
+            float: left;
+            text-align: right;
+        }
+
+        &--right {
+            float: right;
+            text-align: left;
+        }
+
+    }
+
+    @include max-screen(640px) {
+
+        &__column {
+
+            width: 100%;
+
+            &--left,
+            &--right {
+                float: none;
+                text-align: center;
+            }
+
+        }
+
+    }
+
 }

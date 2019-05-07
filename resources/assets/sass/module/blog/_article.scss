@@ -1,0 +1,61 @@
+&__article {
+
+    margin: 50px 0;
+
+    .article {
+
+        &__content {
+
+            pre {
+                background: $secondary-background;
+                display: block;
+                overflow: auto;
+                padding: 15px;
+                white-space: pre;
+                word-wrap: normal;
+            }
+
+            &--twitter {
+
+                margin: 28px 0;
+
+                // NB: This class is added by JS.
+                .twitter-tweet {
+                    margin-top: 0 !important;
+                    margin-right: auto;
+                    margin-bottom: 0 !important;
+                    margin-left: auto;
+                }
+
+            }
+
+            &--wistia {
+
+                margin: 20px 0;
+                padding: 62.5% 0 0 0;
+                position: relative;
+
+                &-wrapper {
+                    height: 100%;
+                    left: 0;
+                    position: absolute;
+                    top: 0;
+                    width: 100%;
+                }
+
+                &-embed {
+                    height: 100%;
+                    width: 100%;
+                }
+
+            }
+
+        }
+
+        &__social {
+            margin: 30px 0;
+        }
+
+    }
+
+}

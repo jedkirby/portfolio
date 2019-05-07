@@ -12,9 +12,9 @@
                         </a>
                     </div>
 
-                    <p class="tweet__text">
+                    <h4 class="tweet__text">
                         {!! $tweet->getText() !!}
-                    </p>
+                    </h4>
 
                     @if($tweet->hasLocation() || $tweet->hasRetweets() || $tweet->hasFavorites())
                         <ul class="tweet__meta">

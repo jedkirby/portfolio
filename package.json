@@ -2,6 +2,7 @@
     "name": "jedkirby.com",
     "scripts": {
         "prod": "gulp --production",
+        "watch": "gulp watch",
         "heroku-postbuild": "yarn prod"
     },
     "devDependencies": {

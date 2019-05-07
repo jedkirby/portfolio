@@ -12,47 +12,51 @@
 
 @section('content')
 
-    <div class="site__medium">
+    <div class="site__full">
         <div class="col--wrapper">
 
 
             <div class="col  col--12">
                 <div class="col--content">
-
-                    <div class="articles" itemscope itemtype="http://schema.org/Blog">
+                    <div class="blog__articles" itemscope itemtype="http://schema.org/Blog">
 
                         @foreach($articles as $article)
 
-                            <article class="articles__article" itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
+                            <article class="article" itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
 
-                                <h2 itemprop="headline"><a href="{{ $article->getUrl() }}" itemprop="url">{{ $article->getTitle() }}</a></h2>
+                                <h3 itemprop="headline" class="article__title">
+                                    <a href="{{ $article->getUrl() }}" itemprop="url">
+                                        {{ $article->getTitle() }}
+                                    </a>
+                                </h3>
 
-                                <time class="articles__article--metadata" pubdate="{{ $article->getDate() }}" itemprop="datePublished" datetime="{{ $article->getDate() }}" content="{{ $article->getDate() }}">{{ $article->getDate('F j, Y') }}</time>
+                                <time class="article__date" pubdate="{{ $article->getDateForMeta() }}" itemprop="datePublished" datetime="{{ $article->getDateForMeta() }}" content="{{ $article->getDateForMeta() }}">
+                                    {{ $article->getDateForHuman() }}
+                                </time>
 
                                 @if( ($image = $article->getImage()) )
-                                    <a class="articles__article--link" href="{{ $article->getUrl() }}">
-                                        <img src="{{ asset('assets/img/blank.png') }}" data-src="{{ $image }}" class="articles__article--hero  lazyload" alt="{{ $article->getTitle() }}">
-                                    </a>
+                                    <div class="article__hero">
+                                        <a href="{{ $article->getUrl() }}">
+                                            <img src="{{ asset('assets/img/blank.png') }}" data-src="{{ $image }}" class="lazyload" alt="{{ $article->getTitle() }}">
+                                        </a>
+                                    </div>
                                 @endif
 
-                                <div class="articles__article--summary">
-                                    <p itemprop="articleBody">{{ $article->getSnippet() }} ...</p>
-                                    <a href="{{ $article->getUrl() }}" class="articles__article--more">
-                                        <i class="fa fa-angle-double-right"></i>
-                                        Read More
-                                    </a>
-                                </div>
+                                <p itemprop="articleBody" class="article__snippet">
+                                    {{ $article->getSnippet() }}..
+                                </p>
+
+                                <a href="{{ $article->getUrl() }}" class="article__link">
+                                    <i class="fa fa-angle-double-right"></i> Read More
+                                </a>
 
                             </article>
-
 
                         @endforeach
 
                     </div>
-
                 </div>
             </div>
-
 
         </div>
     </div>

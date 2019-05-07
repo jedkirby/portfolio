@@ -1,1 +1,0 @@
-<p>As a independent residential sales agency, the new Victoria Jeffs site needed to match the exacting details of the provided designs, function on many different devices and browsers, be easy to update with the latest properties and company information, be accessible for both users and search engines, be well optimised, and be fast to load and navigate.</p>

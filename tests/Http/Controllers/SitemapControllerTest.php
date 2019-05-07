@@ -4,8 +4,8 @@ namespace App\Tests\Http\Controllers;
 
 use App\Domain\Blog\Entity\Article;
 use App\Domain\Blog\Repository\ArticleRepository;
-use App\Domain\Project\Entity\Post;
-use App\Domain\Project\Repository\PostRepository;
+use App\Domain\Study\Entity\Item;
+use App\Domain\Study\Repository\StudyRepository;
 use App\Http\Controllers\SitemapController;
 use App\Tests\AbstractAppTestCase as TestCase;
 use Mockery;
@@ -17,7 +17,7 @@ use Mockery;
  */
 class SitemapControllerTest extends TestCase
 {
-    private $postRepository;
+    private $studyRepository;
     private $articleRepository;
     private $controller;
 
@@ -25,12 +25,12 @@ class SitemapControllerTest extends TestCase
     {
         parent::setUp();
 
-        $this->postRepository = Mockery::mock(
-            PostRepository::class,
+        $this->studyRepository = Mockery::mock(
+            StudyRepository::class,
             [
                 'getAll' => [
-                    Mockery::mock(Post::class),
-                    Mockery::mock(Post::class),
+                    Mockery::mock(Item::class),
+                    Mockery::mock(Item::class),
                 ],
             ]
         );
@@ -46,7 +46,7 @@ class SitemapControllerTest extends TestCase
         );
 
         $this->controller = new SitemapController(
-            $this->postRepository,
+            $this->studyRepository,
             $this->articleRepository
         );
     }

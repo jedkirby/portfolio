@@ -3,10 +3,15 @@
 namespace App\Domain\Blog\Entity;
 
 use App\Domain\Common\Entity\EntityInterface;
+use App\Domain\Common\KeywordGenerator;
+use App\Domain\Date\Dateable;
+use App\Domain\Date\DateFormats;
 use Carbon\Carbon;
 
-class Article implements EntityInterface
+class Article implements EntityInterface, Dateable
 {
+    use DateFormats;
+
     /**
      * @var string
      */
@@ -86,13 +91,11 @@ class Article implements EntityInterface
     }
 
     /**
-     * @param string $format
-     *
-     * @return string
+     * {@inheritdoc}
      */
-    public function getDate($format = 'Y-m-d')
+    public function getDate()
     {
-        return $this->date->format($format);
+        return $this->date;
     }
 
     /**
@@ -125,6 +128,18 @@ class Article implements EntityInterface
     public function getKeywords()
     {
         return $this->keywords;
+    }
+
+    /**
+     * @return string
+     */
+    public function getKeywordsForMeta()
+    {
+        $generator = new KeywordGenerator(
+            $this->getKeywords()
+        );
+
+        return $generator->run();
     }
 
     /**

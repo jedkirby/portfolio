@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Domain\Blog\Repository\ArticleRepository;
-use App\Domain\Project\Repository\PostRepository;
+use App\Domain\Study\Repository\StudyRepository;
 use Illuminate\Routing\Controller as BaseController;
 
 class SitemapController extends BaseController
 {
     /**
-     * @var PostRepository
+     * @var StudyRepository
      */
-    private $postRepository;
+    private $studyRepository;
 
     /**
      * @var ArticleRepository
@@ -19,14 +19,14 @@ class SitemapController extends BaseController
     private $articleRepository;
 
     /**
-     * @param PostRepository $postRepository
+     * @param StudyRepository $studyRepository
      * @param ArticleRepository $articleRepository
      */
     public function __construct(
-        PostRepository $postRepository,
+        StudyRepository $studyRepository,
         ArticleRepository $articleRepository
     ) {
-        $this->postRepository = $postRepository;
+        $this->studyRepository = $studyRepository;
         $this->articleRepository = $articleRepository;
     }
 
@@ -41,9 +41,9 @@ class SitemapController extends BaseController
             route('contact'),
         ];
 
-        $routes[] = route('projects');
-        foreach ($this->postRepository->getAll() as $id => $post) {
-            $routes[] = route('project', $id);
+        $routes[] = route('studies');
+        foreach ($this->studyRepository->getAll() as $id => $post) {
+            $routes[] = route('study', $id);
         }
 
         $routes[] = route('articles');

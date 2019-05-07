@@ -3,7 +3,6 @@
 namespace App\Tests\Http\Controllers;
 
 use App\Domain\Blog\Repository\ArticleRepository;
-use App\Domain\Project\Repository\PostRepository;
 use App\Domain\Service\Instagram\Entity\Post;
 use App\Domain\Service\Instagram\InstagramManager;
 use App\Http\Controllers\AboutController;
@@ -17,7 +16,6 @@ use Mockery;
 class AboutControllerTest extends AbstractControllerTestCase
 {
     private $articleRepository;
-    private $postRepository;
     private $instagramManager;
     private $controller;
 
@@ -26,12 +24,10 @@ class AboutControllerTest extends AbstractControllerTestCase
         parent::setUp();
 
         $this->articleRepository = Mockery::mock(ArticleRepository::class);
-        $this->postRepository = Mockery::mock(PostRepository::class);
         $this->instagramManager = Mockery::mock(InstagramManager::class);
         $this->controller = new AboutController(
             $this->domain,
             $this->articleRepository,
-            $this->postRepository,
             $this->instagramManager
         );
     }
@@ -48,11 +44,6 @@ class AboutControllerTest extends AbstractControllerTestCase
             ->once();
 
         $this->articleRepository
-            ->shouldReceive('getCount')
-            ->andReturn(3)
-            ->once();
-
-        $this->postRepository
             ->shouldReceive('getCount')
             ->andReturn(3)
             ->once();
@@ -81,7 +72,6 @@ class AboutControllerTest extends AbstractControllerTestCase
         $this->assertInternalType('int', $data['counts']['projects']);
         $this->assertInternalType('int', $data['counts']['articles']);
 
-        $this->assertEquals($data['counts']['projects'], 3);
         $this->assertEquals($data['counts']['articles'], 3);
     }
 }
