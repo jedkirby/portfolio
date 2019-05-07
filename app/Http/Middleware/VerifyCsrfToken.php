@@ -13,5 +13,6 @@ class VerifyCsrfToken extends BaseVerifier
      */
     protected $except = [
         'autodiscover/autodiscover.xml',
+        'contact', // NB: This is disabled because Google Captcha is in use.
     ];
 }

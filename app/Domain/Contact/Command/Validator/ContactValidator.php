@@ -35,6 +35,7 @@ class ContactValidator
                 'name' => 'required',
                 'email' => 'required|email',
                 'message' => 'required',
+                'recaptcha' => 'recaptcha',
             ],
             [
                 'required' => 'Required',

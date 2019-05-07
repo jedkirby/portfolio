@@ -35,6 +35,11 @@ class ContactCommand
     /**
      * @var string
      */
+    public $recaptcha;
+
+    /**
+     * @var string
+     */
     public $honeypot;
 
     /**
@@ -48,6 +53,7 @@ class ContactCommand
      * @param string $subject
      * @param string $message
      * @param string $ip
+     * @param string $recaptcha
      * @param string $honeypot
      */
     public function __construct(
@@ -56,6 +62,7 @@ class ContactCommand
         $subject,
         $message,
         $ip,
+        $recaptcha,
         $honeypot
     ) {
         $this->name = $name;
@@ -63,6 +70,7 @@ class ContactCommand
         $this->subject = $subject;
         $this->message = $message;
         $this->ip = $ip;
+        $this->recaptcha = $recaptcha;
         $this->honeypot = $honeypot;
         $this->datetime = new DateTime();
     }
@@ -80,6 +88,7 @@ class ContactCommand
             $request->get('subject'),
             $request->get('message'),
             $request->getClientIp(),
+            $request->get('g-recaptcha-response', ''),
             $request->get('website', '') // NB: The `website` field is currently the honeypot.
         );
     }
@@ -89,6 +98,6 @@ class ContactCommand
      */
     public static function make()
     {
-        return new static('', '', '', '', '', '');
+        return new static('', '', '', '', '', '', '');
     }
 }

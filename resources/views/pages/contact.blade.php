@@ -1,5 +1,11 @@
 @extends('master')
 
+@section('header')
+
+    {!! htmlScriptTagJsApi('contact-form') !!}
+
+@endsection
+
 @section('id', 'contact')
 @section('content')
 
@@ -12,7 +18,7 @@
 
                     @if(!$complete)
 
-                        {!! \Form::open(['route' => 'contact', 'class' => 'form', 'novalidate' => 'novalidate']) !!}
+                        {!! \Form::open(['route' => 'contact', 'class' => 'form', 'novalidate' => 'novalidate', 'id' => 'contact-form']) !!}
 
                             <div class="form__intro">
                                 <h2>Lets talk!</h2>
@@ -96,7 +102,7 @@
                             </div>
 
                             <div class="form__control">
-                                <button type="submit" class="form__button  btn  btn__primary">Start the conversation...</button>
+                                <button class="g-recaptcha form__button  btn  btn__primary" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}" data-callback="biscolabLaravelReCaptcha">Start the conversation...</button>
                             </div>
 
                         {!! \Form::close() !!}
