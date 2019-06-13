@@ -11,7 +11,7 @@
 		&__image {
 			@include transition(opacity 0.4s);
 			background: $secondary-background;
-			max-height: 400px;
+			// max-height: 400px;
 			opacity: 0.5;
 			vertical-align: bottom;
 			width: 100%;
