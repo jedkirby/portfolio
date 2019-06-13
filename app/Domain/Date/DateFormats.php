@@ -2,8 +2,6 @@
 
 namespace App\Domain\Date;
 
-use App\Domain\Date\DateFormatter;
-
 trait DateFormats
 {
     /**
