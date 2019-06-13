@@ -1,139 +1,43 @@
 .blog {
 
-	.articles {
+    @import "module/blog/article";
+    @import "module/blog/articles";
 
-		margin: $section-margin auto;
+    // NB: These are common styles across the articles and single-article page(s).
+    .article {
 
-		&__article {
+        &__title {
 
-			border-bottom: 1px dotted $secondary-border;
-			margin-bottom: $section-margin;
-			padding-bottom: $section-margin;
+            a {
 
-			h2 {
+                text-decoration: none;
 
-				font-weight: 200;
-				margin-bottom: 3px;
+                &:hover {
+                    color: $secondary-link-hover;
+                }
 
-				a {
+            }
 
-					@include transition(color 0.2s);
-					text-decoration: none;
+        }
 
-					&:hover {
-						color: $secondary-link-hover;
-					}
+        &__date {
+            color: shade($white, 35%);
+            font-size: 1.3rem;
+            font-weight: 200;
+            margin: 0;
+        }
 
-				}
+        &__hero {
 
-			}
+            margin-top: 15px;
 
-			&--metadata {
-				color: $secondary-sub-heading;
-				font-weight: 200;
-				margin: 0;
-			}
+            img {
+                max-height: 385px;
+                width: 100%;
+            }
 
-			&--hero {
-				background: $secondary-background;
-				margin: 15px 0 0;
-				max-height: 385px;
-				width: 100%;
-			}
+        }
 
-			&--content {
-
-				pre {
-					background: $secondary-background;
-					display: block;
-					overflow: auto;
-					padding: 15px;
-					white-space: pre;
-					word-wrap: normal;
-				}
-
-				.wistia {
-
-					margin: 20px 0;
-					padding: 62.5% 0 0 0;
-					position: relative;
-
-					&--wrapper {
-						height: 100%;
-						left: 0;
-						position: absolute;
-						top: 0;
-						width: 100%;
-					}
-
-					&--embed {
-						height:100%;
-						width:100%
-					}
-
-				}
-
-				.tweet {
-
-					&--wrapper {
-
-						margin: 28px 0;
-
-						.twitter-tweet {
-							margin-top: 0 !important;
-							margin-right: auto;
-							margin-bottom: 0 !important;
-							margin-left: auto;
-						}
-
-					}
-
-				}
-
-			}
-
-			&--tags {
-
-				$gap: 25px;
-
-				border-top: 1px dotted $secondary-border;
-				font-weight: 200;
-				font-size: 1.2rem;
-				margin-top: $gap;
-				padding-top: ($gap / 2);
-
-				i {
-					margin-right: 3px;
-				}
-
-			}
-
-			&--more {
-
-				@include transition(color 0.2s);
-				color: $secondary-link-hover;
-				font-size: 1.2rem;
-				font-weight: 200;
-				text-decoration: none;
-
-				&:hover {
-					color: $secondary;
-				}
-
-			}
-
-			&:last-child {
-				border: none;
-				margin-bottom: 0;
-				padding-bottom: 0;
-			}
-
-		}
-
-		&__social {
-			margin: 30px 0;
-		}
-
-	}
+    }
 
 }

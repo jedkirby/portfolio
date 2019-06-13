@@ -1,0 +1,98 @@
+.work {
+
+    &__item {
+
+        overflow: hidden;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        height: 100vh;
+        width: 100%;
+
+        &--wrap {
+
+            margin: 0 100px;
+
+            @include max-screen(640px) {
+                margin: 0 50px;
+            }
+
+            @include max-screen(430px) {
+                margin: 0 5px;
+            }
+
+        }        
+
+        @include max-screen(640px) {
+            height: auto;
+        }
+
+    }
+
+    &__meta {
+
+        margin-top: 200px;
+
+        &--title {
+
+            margin: 6px 0 0;
+            width: 100%;
+
+            a {
+
+                text-decoration: none;
+                color: $white;
+
+                &:hover {
+                    color: $primary;
+                }
+
+            }
+
+            &:after {
+                content: " ";
+                height: 1px;
+                width: 40px;
+                background-color: shade($white, 10%);
+                display: block;
+                margin: 14px 0;
+            }
+
+        }
+
+        &--intro {
+
+            color: shade($white, 10%);
+            margin-bottom: 14px;
+            width: 65%;
+
+            @include max-screen(640px) {
+                width: 100%;
+            }
+
+        }
+
+        &--link {
+
+            color: shade($white, 25%);
+            font-size: 1.4rem;
+            font-weight: 200;
+            text-decoration: none;
+
+            &:hover {
+                color: $primary;
+            }
+
+        }
+
+        @include max-screen(640px) {
+            margin: 100px 0;
+        }
+
+        @include max-screen(430px) {
+            margin: 50px 0;
+        }
+
+    }
+
+}

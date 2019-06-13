@@ -25,23 +25,29 @@
 
             <div class="col  col--12">
                 <div class="col--content">
+                    <div class="blog__article" itemscope itemtype="http://schema.org/Blog">
 
-                    <div class="articles" itemscope itemtype="http://schema.org/Blog">
+                        <article class="article" itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
 
+                            <h2 itemprop="headline" class="article__title">
+                                {{ $article->getTitle() }}
+                            </h2>
 
-                        <article class="articles__article" itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
-
-                            <h2 itemprop="headline">{{ $article->getTitle() }}</h2>
-
-                            <time class="articles__article--metadata" pubdate="{{ $article->getDate() }}" itemprop="datePublished" datetime="{{ $article->getDate() }}" content="{{ $article->getDate() }}">{{ $article->getDate('F j, Y') }}</time>
+                            <time class="article__date" pubdate="{{ $article->getDateForMeta() }}" itemprop="datePublished" datetime="{{ $article->getDateForMeta() }}" content="{{ $article->getDateForMeta() }}">
+                                {{ $article->getDateForHuman() }}
+                            </time>
 
                             @if( ($image = $article->getImage()) )
-                                <img itemprop="image" src="{{ asset('assets/img/blank.png') }}" data-src="{{ $image }}" class="articles__article--hero  lazyload">
+                                <div class="article__hero">
+                                    <img src="{{ asset('assets/img/blank.png') }}" data-src="{{ $image }}" class="lazyload" alt="{{ $article->getTitle() }}">
+                                </div>
                             @endif
 
-                            <div class="articles__article--content" itemprop="articleBody">{!! $article->getContent() !!}</div>
+                            <div class="article__content" itemprop="articleBody">
+                                {!! $article->getContent() !!}
+                            </div>
 
-                            <div class="social  articles__social">
+                            <div class="article__social  social">
                                 <a href="{{ $page->facebook->shareUrl }}" class="btn  btn__icon  social__button  social__button--facebook" title="Facebook" target="_blank">
                                     <i class="fa fa-facebook"></i> <span>Facebook</span>
                                 </a>
@@ -58,9 +64,7 @@
 
                         </article>
 
-
                     </div>
-
                 </div>
             </div>
 

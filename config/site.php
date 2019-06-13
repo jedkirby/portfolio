@@ -28,7 +28,7 @@ return [
      * Master social details
      */
     'social' => [
-        'visible' => ['twitter', 'facebook', 'github', 'instagram', 'linkedin'],
+        'visible' => ['twitter', 'github', 'instagram', 'linkedin'],
         'streams' => [
             'twitter' => [
                 'title' => 'Twitter',

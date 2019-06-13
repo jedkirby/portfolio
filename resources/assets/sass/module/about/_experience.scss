@@ -5,7 +5,7 @@
 		background-color: tint($secondary, 5%);
 		padding: 20px 0;
 
-		h3 {
+		h2 {
 			color: $white;
 		}
 
@@ -19,7 +19,7 @@
 
 		&:before {
 			background: tint($secondary, 5%);
-			content: "";
+			content: " ";
 			height: 100%;
 			left: 50%;
 			margin-left: -1px;
@@ -44,6 +44,28 @@
 			margin-bottom: 0;
 		}
 
+		&:nth-child(odd) {
+
+			text-align: right;
+
+			.experience__item--desc {
+				float: left;
+				margin-right: 51%;
+			}
+
+		}
+
+		&:nth-child(even) {
+
+			text-align: left;
+
+			.experience__item--desc {
+				float: right;
+				margin-left: 51%;
+			}
+
+		}
+
 	}
 
 	&__icon {
@@ -63,28 +85,8 @@
 		padding: 10px;
 		width: 49%;
 
-		&--left {
-			float: left;
-			margin-right: 51%;
-		}
-
-		&--right {
-			float: right;
-			margin-left: 51%;
-		}
-
-		h3 {
-
-			a {
-
-				@include transition(color 0.2s);
-
-				&:hover {
-					color: $secondary-link-hover;
-				}
-
-			}
-
+		h3 > a {
+			text-decoration: none;
 		}
 
 		p {
@@ -94,7 +96,8 @@
 	}
 
 	&__meta {
-		color: $secondary-sub-heading;
+		color: shade($white, 35%);
+		font-size: 1.4rem;
 		font-weight: 200;
 	}
 
@@ -106,19 +109,23 @@
 		}
 
 		&__item {
-			text-align: left;
+
+			&:nth-child(odd),
+			&:nth-child(even) {
+
+				text-align: left;
+
+				.experience__item--desc {
+					float: none;
+					margin: 0 0 0 10px;
+				}
+
+			}
+
 		}
 
 		&__desc {
-
 			width: 100%;
-
-			&--left,
-			&--right {
-				float: none;
-				margin: 0 0 0 10px;
-			}
-
 		}
 
 	}
@@ -130,9 +137,17 @@
 			display: none;			
 		}
 
-		&__desc--left,
-		&__desc--right {
-			margin: 0;
+		&__item {
+
+			&:nth-child(odd),
+			&:nth-child(even) {
+
+				.experience__item--desc {
+					margin: 0;
+				}
+
+			}
+
 		}
 
 	}
