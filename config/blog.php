@@ -4,6 +4,7 @@ use Carbon\Carbon;
 
 return [
     'articles' => [
+        /*
         'blossom-vehicle-leasing-review' => [
             'title' => 'Blossom Vehicle Leasing - Review',
             'date' => Carbon::createFromDate(2019, 6, 14),
@@ -21,6 +22,7 @@ return [
                 'A35',
             ],
         ],
+        */
         'heroku-typekit-buildpack-introduction' => [
             'title' => 'Heroku Typekit buildpack introduction',
             'date' => Carbon::createFromDate(2017, 8, 19),
