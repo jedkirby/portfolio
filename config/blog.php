@@ -4,9 +4,10 @@ use Carbon\Carbon;
 
 return [
     'articles' => [
+        /*
         'blossom-vehicle-leasing-review' => [
             'title' => 'Blossom Vehicle Leasing - Review',
-            'date' => Carbon::createFromDate(2019, 6, 13),
+            'date' => Carbon::createFromDate(2019, 6, 14),
             'snippet' => 'I cannot stress enough to not use this company. They mess up order after order and push the mistakes onto other companies, ignore emails, leave you stranded with no transport, and stall for weeks on end when providing refunds.',
             'content' => 'pages.blog.articles.blossom-vehicle-leasing-review',
             'image' => 'assets/img/blog/blossom-vehicle-leasing-review.jpg',
@@ -21,6 +22,7 @@ return [
                 'A35',
             ],
         ],
+        */
         'heroku-typekit-buildpack-introduction' => [
             'title' => 'Heroku Typekit buildpack introduction',
             'date' => Carbon::createFromDate(2017, 8, 19),
