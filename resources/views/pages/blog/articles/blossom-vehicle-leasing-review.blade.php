@@ -18,6 +18,6 @@
 
 <p>Now we come to the current day; I'm 7 days post-delivery, and 29 days post hire-car payment, and still I have not received a refund for the hire car, my emails are being ignored, and I’m being told key people are "busy" or "away". I've also still been ignored regarding the roof.</p>
 
-<p>To summarise; Blossom will do everything in their power to help get you through their door. They'll source a car for you, but, once you're through that door, the customer service, specifically from the Directors, will be next to nothing. They do not care about you as individuals, and will not go above and beyond to ensure their customers are happy, even in a case where there's a huge mistake.</p>
+<p>To summarise; Blossom will do everything in their power to get you through their door. They'll source a car for you, but, once you're through that door, the customer service, specifically from the Directors, will be next to nothing. They do not care about you as individuals, and will not go above and beyond to ensure their customers are happy, even in a case where there's a huge mistake.</p>
 
-<p>I cannot stress enough to not use this company. There are many other leasing companies which will look after you far-far better than Blossom.</p>
+<p>Please consider all your options before using this company.</p>
