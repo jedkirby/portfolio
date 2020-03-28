@@ -2,6 +2,8 @@
 
 <p>To make things simpler in this post, I'm going to assume you've already got methods of creating a build, whether it be <a href="http://ant.apache.org" title="Apache Ant">Apache Ant</a> for a PHP project, or something else for an iOS application, for example.</p>
 
+@include('pages.blog.sections.advert')
+
 <p><strong>This method should work on any project, whether it be a GoLang application, a PHP website, or even a static HTML site.</strong></p>
 
 <h3>Demo</h3>

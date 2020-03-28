@@ -2,6 +2,9 @@
 
 <h3>Current VPS</h3>
 <p>This had been giving me some grief from day one, primarily sporadic latency times and the occasional down time, however, I was willing to look over these issues as I’d been with them only a few months and spent a while configuring the server – not something that was easy with this provider.</p>
+
+@include('pages.blog.sections.advert')
+
 <p>After another month of putting up with the issues (I thought these were widespread across all VPS providers – little did I know!) my provider got hit by a serious network outage, knocking all their VPS’s offline for 4 consecutive days. This was the icing on the cake for me – it was time to look else where.</p>
 
 <h3>Time to Move</h3>

@@ -1,5 +1,7 @@
 <p>When I started working for <a href="http://www.blitzgamesstudios.com" target="_blank">Blitz Games Studios</a> (Blitz) in the Summer of 2011 I swiftly found that their preferred choice of framework was <a href="http://codeigniter.com" target="_blank">CodeIgniter</a> (CI). I had next to no experience with frameworks so this was a great opportunity for me to broaden my knowledge. This is a bit about my first encounter with this framework and my workarounds to make the most of it:</p>
 
+@include('pages.blog.sections.advert')
+
 <p>During learning and creating new websites using the CI framework I discovered Blitz used multiple environments for the websites to enable me to develop locally, test on a staging server and – once finalised - push to the live server. CI gives you the ability to have separate configuration files for different environments, however, the environment global variable is user defined. This means you have to manually change it to enable the site to switch between each environment; a pain to keep up-to-date, especially when working with three different environments and using version source control.</p>
 
 <p>Having encountered this problem a lot, this led me to create a simple module that automatically determines the environment based on a user-defined part of the URL. It can also apply specific application & system paths and set the error reporting based on the URL used to reach the site.</p>
@@ -37,6 +39,8 @@
     <li>http://stage.site.com</li>
     <li>http://site.com</li>
 </ul>
+
+@include('pages.blog.sections.advert')
 
 <p>This is the switch statement we’re using; you can see you’re able to define different system & application paths for each environment:</p>
 
