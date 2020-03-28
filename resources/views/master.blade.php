@@ -16,6 +16,7 @@
         @include('sections.favicons')
         @include('sections.typekit')
         <link href="{{ elixir('assets/css/build/main.css') }}" rel="stylesheet">
+        <script data-ad-client="ca-pub-5509017732830376" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     </head>
     <body class="@yield('id', 'home')" itemscope itemtype="http://schema.org/WebPage">
 
