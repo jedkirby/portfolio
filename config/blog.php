@@ -48,7 +48,7 @@ return [
             ],
         ],
         'heroku-laravel-load-balancers-and-ssl' => [
-            'title' => 'Heroku, Laravel, Load Balancers &amp; SSL',
+            'title' => 'Heroku, Laravel, Load Balancers & SSL',
             'date' => Carbon::createFromDate(2017, 4, 26),
             'snippet' => "Recently I've been working with Heroku for a few Laravel projects and I came across an issue with how assets were being loaded over non-ssl based urls.",
             'content' => 'pages.blog.articles.heroku-laravel-load-balancers-and-ssl',
