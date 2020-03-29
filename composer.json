@@ -4,7 +4,7 @@
 	"type": "project",
 	"require": {
 		"php": "7.2.*",
-		"laravel/framework": "5.3.*",
+		"laravel/framework": "5.4.*",
 		"social-links/social-links": "1.5.*",
 		"guzzlehttp/guzzle": "^6.0",
 		"guzzlehttp/oauth-subscriber": "^0.3.0",
@@ -13,7 +13,7 @@
 		"biscolab/laravel-recaptcha": "^2.0"
 	},
 	"require-dev": {
-		"phpunit/phpunit": "~4.0",
+		"phpunit/phpunit": "~5.7",
 		"satooshi/php-coveralls": "^1.0",
 		"mockery/mockery": "^0.9.7",
 		"jedkirby/php-cs": "^1.0"

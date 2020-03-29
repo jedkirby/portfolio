@@ -28,6 +28,7 @@
 
     <php>
         <env name="APP_ENV" value="testing"/>
+        <env name="APP_DOMAIN" value="http://jedkirby.testing"/>
         <env name="APP_KEY" value="base64:jUQ8R9Xx0x1aVc0QByQtvEl3h6W8+HPHn4zRQqdM3S4="/>
         <env name="CACHE_DRIVER" value="array"/>
         <env name="SESSION_DRIVER" value="array"/>

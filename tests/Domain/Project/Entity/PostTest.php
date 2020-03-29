@@ -55,12 +55,12 @@ class PostTest extends TestCase
         $this->assertEquals($entity->getTestimonial(), false);
         $this->assertEquals($entity->getLink(), 'http://test.com');
         $this->assertEquals($entity->getExpired(), false);
-        $this->assertStringStartsWith('http://localhost/assets/tests/sample.png', $entity->getHero());
+        $this->assertStringStartsWith('http://jedkirby.testing/assets/tests/sample.png', $entity->getHero());
         $this->assertEquals($entity->getKeywords(), ['One', 'Two']);
-        $this->assertEquals($entity->getUrl(), 'http://localhost/work/project-title');
+        $this->assertEquals($entity->getUrl(), 'http://jedkirby.testing/work/project-title');
 
         foreach ($entity->getImages() as $image) {
-            $this->assertStringStartsWith('http://localhost/assets/tests/sample.png', $image);
+            $this->assertStringStartsWith('http://jedkirby.testing/assets/tests/sample.png', $image);
         }
     }
 }

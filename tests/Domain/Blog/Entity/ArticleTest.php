@@ -41,8 +41,8 @@ class ArticleTest extends TestCase
         $this->assertEquals($entity->getDateForMeta(), '2001-03-10');
         $this->assertEquals($entity->getSnippet(), 'Post Snippet.');
         $this->assertInstanceOf(View::class, $entity->getContent());
-        $this->assertStringStartsWith('http://localhost/assets/tests/sample.png', $entity->getImage());
+        $this->assertStringStartsWith('http://jedkirby.testing/assets/tests/sample.png', $entity->getImage());
         $this->assertEquals($entity->getKeywords(), ['One', 'Two']);
-        $this->assertEquals($entity->getUrl(), 'http://localhost/blog/post-title');
+        $this->assertEquals($entity->getUrl(), 'http://jedkirby.testing/blog/post-title');
     }
 }
