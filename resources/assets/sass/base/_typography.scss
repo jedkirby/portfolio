@@ -52,6 +52,8 @@ p, blockquote, ul {
 }
 p {
 
+	word-break: break-word;
+
 	&:last-child {
 		margin-bottom: 0;
 	}
