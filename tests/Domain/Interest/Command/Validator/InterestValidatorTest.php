@@ -5,8 +5,8 @@ namespace App\Tests\Domain\Interest\Command\Validator;
 use App\Domain\Interest\Command\InterestCommand;
 use App\Domain\Interest\Command\Validator\InterestValidator;
 use App\Tests\AbstractAppTestCase as TestCase;
-use Illuminate\Validation\Factory as Validator;
 use Illuminate\Translation\Translator;
+use Illuminate\Validation\Factory as Validator;
 use Mockery;
 
 /**
