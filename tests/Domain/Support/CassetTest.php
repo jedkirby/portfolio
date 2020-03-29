@@ -26,7 +26,7 @@ class CassetTest extends TestCase
         $path = 'assets/img/tests/does-not-exist.png';
 
         $this->assertEquals(
-            'http://localhost/' . $path,
+            'http://jedkirby.testing/' . $path,
             casset($path)
         );
     }

@@ -189,7 +189,7 @@ class BlogControllerTest extends AbstractControllerTestCase
 
         $this->page
             ->shouldReceive('setUrl')
-            ->with('http://localhost/blog/post-title')
+            ->with('http://jedkirby.testing/blog/post-title')
             ->once();
 
         $this->page

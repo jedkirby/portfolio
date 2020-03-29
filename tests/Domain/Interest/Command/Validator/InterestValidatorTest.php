@@ -6,7 +6,8 @@ use App\Domain\Interest\Command\InterestCommand;
 use App\Domain\Interest\Command\Validator\InterestValidator;
 use App\Tests\AbstractAppTestCase as TestCase;
 use Illuminate\Validation\Factory as Validator;
-use Symfony\Component\Translation\Translator;
+use Illuminate\Translation\Translator;
+use Mockery;
 
 /**
  * @group domain
@@ -24,7 +25,10 @@ class InterestValidatorTest extends TestCase
 
         $this->validator = new InterestValidator(
             new Validator(
-                new Translator('en-gb')
+                new Translator(
+                    Mockery::mock('Illuminate\Translation\LoaderInterface', ['load' => true]),
+                    'en-gb'
+                )
             )
         );
     }
