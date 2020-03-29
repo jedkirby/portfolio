@@ -4,25 +4,22 @@ use Carbon\Carbon;
 
 return [
     'articles' => [
-        /*
-        'blossom-vehicle-leasing-review' => [
-            'title' => 'Blossom Vehicle Leasing - Review',
-            'date' => Carbon::createFromDate(2019, 6, 14),
-            'snippet' => 'I cannot stress enough to not use this company. They mess up order after order and push the mistakes onto other companies, ignore emails, leave you stranded with no transport, and stall for weeks on end when providing refunds.',
-            'content' => 'pages.blog.articles.blossom-vehicle-leasing-review',
-            'image' => 'assets/img/blog/blossom-vehicle-leasing-review.jpg',
+        'hive-home-rest-api' => [
+            'title' => "Hive Home's Rest API",
+            'date' => Carbon::createFromDate(2020, 3, 28),
+            'snippet' => "Hive Home doesn't have an official Public Facing Rest API, so, I spent some time unearthing how to connect programmatically and (for now) it's working perfectly",
+            'content' => 'pages.blog.articles.hive-home-rest-api',
+            'image' => 'assets/img/blog/hive-home-rest-api.jpg',
             'keywords' => [
-                'Blossom',
-                'Vehicle',
-                'Leasing',
-                'Review',
-                'Terrible',
-                'Bad',
-                'Mercedes',
-                'A35',
+                'British',
+                'Gas',
+                'Hive',
+                'Home',
+                'Rest',
+                'API',
+                'PHP',
             ],
         ],
-        */
         'heroku-typekit-buildpack-introduction' => [
             'title' => 'Heroku Typekit buildpack introduction',
             'date' => Carbon::createFromDate(2017, 8, 19),

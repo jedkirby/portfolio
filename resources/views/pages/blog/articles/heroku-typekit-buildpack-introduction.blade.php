@@ -6,6 +6,8 @@
     While this isn't really a huge problem, when you're working on multiple features daily, it adds an additional overhead of logging into Typekit, whitelisting the domain, and waiting for it to propagate. Something which I'd had enough of.
 </p>
 
+@include('pages.blog.articles.includes.advert')
+
 <p>
     I had a search around, and couldn't find anything which automatically allowed Typekit to wildcard the <code>*.herokuapp.com</code> domain, only a few frustrated people, albeit a while ago now:
 </p>

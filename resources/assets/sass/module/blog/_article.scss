@@ -32,7 +32,7 @@
             &--wistia {
 
                 margin: 20px 0;
-                padding: 62.5% 0 0 0;
+                padding: 57.5% 0 0 0;
                 position: relative;
 
                 &-wrapper {
@@ -45,6 +45,17 @@
 
                 &-embed {
                     height: 100%;
+                    width: 100%;
+                }
+
+            }
+
+            &--advert {
+
+                max-width: 728px;
+                max-height: 90px;
+
+                img {
                     width: 100%;
                 }
 

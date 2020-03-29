@@ -1,4 +1,8 @@
-<p>In JavaScript you may sometimes find yourself having multi-dimensional arrays which you're required to search through to check for a value match. There are quite a few different methods you can use to handle this kind of problem, but below is probably the neatest and most optimized process. Here's a sample multi-dimensional array that we'll use as an example to search through:</p>
+<p>In JavaScript you may sometimes find yourself having multi-dimensional arrays which you're required to search through to check for a value match. There are quite a few different methods you can use to handle this kind of problem, but below is probably the neatest and most optimized process.</p>
+
+@include('pages.blog.articles.includes.advert')
+
+<p>Here's a sample multi-dimensional array that we'll use as an example to search through:</p>
 
 <pre><code class="language-javascript">var data = [
     ['lorem', 'ipsum', 'dolor'],
@@ -26,6 +30,8 @@
 }</code></pre>
 
 <p>The above would output to the console, the data index and item index if there is a item in any of the arrays that matches the value we're searching for. Currently, after finding the item it breaks. However, it only breaks from the first loop and continues with the parent loop. Ideally we'd like to break from both loops at once - this is where loop labels come into play.</p>
+
+@include('pages.blog.articles.includes.advert')
 
 <p>By assigning each 'for()' loop a label, you can use breaks to target a specific loop and break from any nested loops automatically. Here's an example of using loop labels and breaking from the parent loop:</p>
 

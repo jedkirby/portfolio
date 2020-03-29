@@ -1,6 +1,8 @@
 <p>First of all, we need to go back to the year of 2001 where I was in my second year at <a title="Open the Henley-In-Arden High School website" href="http://www.henleyschool.com/" target="_blank">Henley-In-Arden High School</a>.</p>
 <p>I had always been fascinated with music, particularly with playing the drums, and thrived to start a band. Whilst taking a music module at Henley, two other music-talented friends and I decided to create this band. We named it “Panini”. We use to practice our songs once a week during our lunch break, whilst in our music module, and when we had some spare time.</p>
 
+@include('pages.blog.articles.includes.advert')
+
 <h3>A New Hobby</h3>
 <p>We wanted a place on the internet to be able to start a following. Build an audience. At the time the best, and only, place for this was <a title="Open MySpace" href="http://www.myspace.com" target="_blank">MySpace</a>. I created us an account and instantly found a new hobby, one that I’m not so proud of now – customizing people’s MySpace pages. I found it incredibly rewarding modifying something that had the potential to be seen by so many others. In the end, I ended up customizing quite a few of my friends pages.</p>
 <p>Whilst writing these very messy stylesheet hacks, it encouraged me to go to Google and do some more in-depth digging about the wider web. I often found myself coming home from school and sitting staring at my <a title="CRT Monitor" href="https://www.google.co.uk/search?q=crt+monitor&amp;tbm=isch" target="_blank">PC’s CRT monitor</a> for hours on end, sometimes until the early hours of the mornings. I thought I worked better at night… I paid the price for that the next day at school. But never learnt my lesson.</p>

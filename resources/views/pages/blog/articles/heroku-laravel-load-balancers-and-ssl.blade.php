@@ -7,6 +7,8 @@
     Heroku's HTTP Routing routes each request through a layer of reverse proxies which are, among other things, responsible for load balancing and terminating SSL connections.
 </p>
 
+@include('pages.blog.articles.includes.advert')
+
 <h3>The Problem</h3>
 <p>
     This means that <a href="https://github.com/symfony/http-foundation/blob/master/Request.php#L1223">deep down in Symfony core</a> (The building blocks of Laravel), the HTTP Request class checks for the HTTPS server variable when checking if the request is secure ...
