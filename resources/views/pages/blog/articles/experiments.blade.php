@@ -1,6 +1,6 @@
 <p>Recently I have been working on a couple of side projects to further expand my knowledge of JavaScript. These are random ideas that I feel would create challenging tasks for me to complete, whilst giving me a solid learning experience.</p>
 
-@include('pages.blog.sections.advert')
+@include('pages.blog.articles.includes.advert')
 
 <h3>Particles</h3>
 <p>After seeing another web developer that had created a particle effect sphere using only the HTML5 canvas and JavaScript, I challenged myself with reproducing a similar version that was made using jQuery. The method for creating the particles is fairly simple, however, the calculation to place the particles within the canvas is where it gets complex. Knowledge of mathematical methods like sin and cos were used, and obviously pi too.</p>

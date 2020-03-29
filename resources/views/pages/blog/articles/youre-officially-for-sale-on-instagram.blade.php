@@ -4,7 +4,7 @@
 <p>Basically what the above means is that Instagram can now effectively <strong>sell</strong> the use of your <strong>username</strong>, <strong>profile picture</strong>, <strong>photos</strong> and records of what you’ve <strong>liked</strong> or <strong>commented</strong> on to another company – like an <strong>advertiser</strong> – and they don’t have to pay you. And you can’t stop them.</p>
 <p>The only way to stop them at the moment is to cancel your account as they give you no opt-in/opt-out feature.</p>
 
-@include('pages.blog.sections.advert')
+@include('pages.blog.articles.includes.advert')
 
 <p>A great alternative to Instagram is <a title="Flickr" href="http://www.flickr.com/" target="_blank">Flickr</a>. There is a <a title="Free the Photos" href="http://freethephotos.com/" target="_blank">pretty neat website</a> that allows you to easily transfer all of your photos from your Instagram account to your Flickr. The only caveat that Flickr has is with free accounts you’re only allowed to transfer 300mb of data a month, so if you’ve got more than 10,000 photos – it’ll take you a couple of months to transfer. You can upgrade to a paid account to lift those restrictions though.</p>
 <p>All-in-all, I think Instagram might have just written its self a suicide note and published it to the world. If this doesn’t kill them, it’ll seriously batter their reputation.</p>

@@ -50,6 +50,17 @@
 
             }
 
+            &--advert {
+
+                max-width: 728px;
+                max-height: 90px;
+
+                img {
+                    width: 100%;
+                }
+
+            }
+
         }
 
         &__social {

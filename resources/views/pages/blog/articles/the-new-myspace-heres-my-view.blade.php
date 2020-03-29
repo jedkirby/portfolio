@@ -1,6 +1,6 @@
 <p>I know most of you will be thinking "Uhh, not another social network to keep track of" but hold out – Although the <a href="http://new.myspace.com" target="_blank">New Myspace</a> is fairly basic in what it can do at the moment, it still boasts some impressive user interfaces (UI) and has a few feature which make it stand out and differentiate its self from the crowd.</p>
 
-@include('pages.blog.sections.advert')
+@include('pages.blog.articles.includes.advert')
 
 <p>It was a few months ago when Myspace released an incentive to get people on-board to show their interest for the new site. They gave you a <a href="https://new.myspace.com/play" target="_blank">video</a> of what the new site would bring, and left you with a box to drop your email in to get a personal invitation. If you gave them your email address, all you had to do was to sit around twiddling your thumbs waiting for that invitation to arrive in your inbox.</p>
 

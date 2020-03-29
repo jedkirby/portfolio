@@ -2,7 +2,7 @@
     When my girlfriend and I purchased our <a href="https://www.instagram.com/p/B28jBVwnqk_">first house</a> together, we decided to go with British Gas' <a href="https://www.hivehome.com">Hive Home</a> products to help us with some level of automation. There are many similar alternatives out there, but, Hive suited us the best so we went ahead and purchased an <a href="https://www.hivehome.com/products/hive-view-outdoor">Outdoor Camera</a> to cover the drive, an <a href="https://www.hivehome.com/products/hive-view">Indoor Camera</a> to keep an eye on our <a href="https://www.instagram.com/p/Bmg078xBZ8_/">puppy</a>, and a few <a href="https://www.hivehome.com/products/hive-active-plug">Smart Plugs</a> to automate switching lights on.
 </p>
 
-@include('pages.blog.sections.advert')
+@include('pages.blog.articles.includes.advert')
 
 <p>
     One thing I presumed they had is a Public Facing Rest API, however, I was bitterly dissapointed to find that one didn't exist, and customers have been asking on their <a href="https://community.hivehome.com/s/question/0D50J00004z1HKO/hi-does-hive-have-any-external-apis-for-integration-if-so-how-do-i-get-hold-of-the-documentation-regarding-these-thanks">forums for a while now</a>, with no developments to date. This lead me down a bit of a rabbit hole, and is the basis of this post. Here's how I went about unearthing how to connect programmatically.
@@ -41,6 +41,8 @@
 <p>
     If successful, what this returns is a JSON object which contains all the data we need, specifically the <strong>token</strong> field. We need to take a copy of this token to be used in further requests. At this stage i'm unsure of how long the token lives for, so, logging in each time you want to make a request ensures the token won't have expired.
 </p>
+
+@include('pages.blog.articles.includes.advert')
 
 <p>
     The other data in the response is also important, as it lists all the available devices attached to your account, and with that, their <strong>id</strong>'s, which are required within subsequent device-based requests. You'll probably want to make a copy of the response so you're able to target the correct devices in the next section.
@@ -84,6 +86,8 @@
 <p>
     To do this, I used a bit of software called <a href="https://mitmproxy.org">mitmproxy</a>. I started an instance of this using Docker on my laptop, specifically using this command <code>docker run --rm -it -p 8080:8080 -p 127.0.0.1:8081:8081 mitmproxy/mitmproxy mitmweb --web-iface 0.0.0.0</code>, then followed the documentation on their website and setup my iPhone to utilise this as a proxy, thus sending all my data via the application. Note; there were some specific steps involve to allow SSL traffic to be tracked, which is covered within their documentation.
 </p>
+
+@include('pages.blog.articles.includes.advert')
 
 <p>
     Once this was setup, I opened my laptop browser to <a href="http://0.0.0.0:8081">http://0.0.0.0:8081</a> so i'm able to see all incoming requests, then used my iPhone to open the Hive app and click through until the camera was activated. The below is the result I got.

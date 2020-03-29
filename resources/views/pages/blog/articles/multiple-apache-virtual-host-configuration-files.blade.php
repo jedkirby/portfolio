@@ -1,6 +1,6 @@
 <p>Recently I’ve developed a control panel for my server so I’m able to manage all the websites I control using a simple interface. One of the main features is enabling me to update Apache’s virtual host files without ever going into the server and manually editing the vhosts.conf file.</p>
 
-@include('pages.blog.sections.advert')
+@include('pages.blog.articles.includes.advert')
 
 <h3>Problem</h3>
 <p>As I’m a very organised person, I wanted to split each of the virtual hosts into separate configuration files and not have them all crammed into a single vhosts.conf file. Doing a search online return very little help about how to do this, but luckily I was able to workout a very simple yet effective solution.</p>

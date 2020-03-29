@@ -1,6 +1,6 @@
 <p>The likes of Mark Zuckerberg and Bill Gates have both agreed that understanding how to code is the new literacy. Even non-techies are now getting involved, with singer Will.I.Am saying he’s currently taking classes. You have no excuses, If you’re reading this, then you obviously have some sort of inkling to learn to code.</p>
 
-@include('pages.blog.sections.advert')
+@include('pages.blog.articles.includes.advert')
 
 <p>We’re in 2013. Every day we depend on technology, from using our mobile phones to walking through electric doors, however, only a few of us know how to read and write code. “The whole limit in the system is there just aren’t enough people trained in these skills today” says Zuckerberg.</p>
 <p>Getting started with coding may seem like a daunting task, but once you get your head around the basics, it’s actually pretty straight forward. Here are a 5 free useful resources that’ll get you started:</p>

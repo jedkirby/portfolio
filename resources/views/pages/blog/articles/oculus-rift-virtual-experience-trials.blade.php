@@ -1,6 +1,6 @@
 <p>A few weeks ago I heard of an opportunity to give an <a title="Oculus Rift Virtual Experience Headset" href="http://www.oculusvr.com" target="_blank">Oculus Rift</a>&nbsp;a run for its money during some trials that were being undertaken at <a title="Blitz Games Studios" href="http://www.blitzgamesstudios.com" target="_blank">Blitz Games Studios</a>. I quickly added my name to the list of potential candidates for the trials and was lucky enough to get a slot. I’d heard quite a bit about this Virtual Reality (VR) headset, mainly because of working in a gaming environment, however, the feedback I’d heard wasn’t all that good; it was mainly what it made you feel like during/after the experience, I’ll explain more later.</p>
 
-@include('pages.blog.sections.advert')
+@include('pages.blog.articles.includes.advert')
 
 <h3>Getting Ready</h3>
 <p>The slot I was given was at 10:30am on a Monday morning. I came into work feeling surprisingly good for a Monday morning; oh how that was about to change. I knew that quite a few people had been experiencing nausea from this device, but I was determined to prove them wrong and actually enjoy the experience.</p>

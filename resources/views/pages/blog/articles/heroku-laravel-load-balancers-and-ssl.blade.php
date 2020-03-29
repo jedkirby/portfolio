@@ -7,7 +7,7 @@
     Heroku's HTTP Routing routes each request through a layer of reverse proxies which are, among other things, responsible for load balancing and terminating SSL connections.
 </p>
 
-@include('pages.blog.sections.advert')
+@include('pages.blog.articles.includes.advert')
 
 <h3>The Problem</h3>
 <p>

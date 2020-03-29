@@ -1,6 +1,6 @@
 <p>Earlier this month Google released a Chrome experiment to take you on a trip through space. It gives you the opportunity to view our stellar neighbourhood in a way you've never seen before.</p>
 
-@include('pages.blog.sections.advert')
+@include('pages.blog.articles.includes.advert')
 
 <p>Using either your mouse or track-pad, the experiment allows you to seemingly "fly" through an incredible 3D graphic of our galaxy, taking a close look at stars that are both near and far. If you start close in on Earth and zoom out all the way to the edge of the Milky Way it'll leave you feeling minute, but utterly astounded.</p>
 
