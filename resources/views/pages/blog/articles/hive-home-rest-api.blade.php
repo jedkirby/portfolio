@@ -1,11 +1,11 @@
 <p>
-    When my girlfriend and I purchased our <a href="https://www.instagram.com/p/B28jBVwnqk_">first house</a> together, we decided to go with British Gas' <a href="https://www.hivehome.com">Hive Home</a> products to help us with some level of automation. There are many similar alternatives out there, but, Hive suited us the best so we went ahead and purchased an <a href="https://www.hivehome.com/products/hive-view-outdoor">Outdoor Camera</a> to cover the drive, an <a href="https://www.hivehome.com/products/hive-view">Indoor Camera</a> to keep an eye on our <a href="https://www.instagram.com/p/Bmg078xBZ8_/">puppy</a>, and a few <a href="https://www.hivehome.com/products/hive-active-plug">Smart Plugs</a> to automate switching lights on.
+    When my girlfriend and I purchased our <a href="https://www.instagram.com/p/B28jBVwnqk_">first house</a> together, we decided to go with British Gas' <a href="https://www.hivehome.com">Hive Home</a> products to help us with some level of automation. There are many similar alternatives out there, but Hive suited us the best so we went ahead and purchased an <a href="https://www.hivehome.com/products/hive-view-outdoor">Outdoor Camera</a> to cover the drive, an <a href="https://www.hivehome.com/products/hive-view">Indoor Camera</a> to keep an eye on our <a href="https://www.instagram.com/p/Bmg078xBZ8_/">puppy</a>, and a few <a href="https://www.hivehome.com/products/hive-active-plug">Smart Plugs</a> to automate switching lights on.
 </p>
 
 @include('pages.blog.articles.includes.advert')
 
 <p>
-    One thing I presumed they had is a Public Facing Rest API, however, I was bitterly dissapointed to find that one didn't exist, and customers have been asking on their <a href="https://community.hivehome.com/s/question/0D50J00004z1HKO/hi-does-hive-have-any-external-apis-for-integration-if-so-how-do-i-get-hold-of-the-documentation-regarding-these-thanks">forums for a while now</a>, with no developments to date. This lead me down a bit of a rabbit hole, and is the basis of this post. Here's how I went about unearthing how to connect programmatically.
+    One thing I presumed they had was a Public Facing Rest API, however, I was bitterly disappointed to find that one didn't exist, and customers have been asking on their <a href="https://community.hivehome.com/s/question/0D50J00004z1HKO/hi-does-hive-have-any-external-apis-for-integration-if-so-how-do-i-get-hold-of-the-documentation-regarding-these-thanks">forums for a while now</a>, with no developments to date. This lead me down a bit of a rabbit hole, and is the basis of this post. Here's how I went about unearthing how to connect programmatically.
 </p>
 
 <h3>Capturing</h3>
@@ -29,17 +29,17 @@
 </p>
 
 <p>
-    One of the first things we need to do is to be able to authenticate ourselves in order to obtain a <strong>token</strong> which will be used throught all other requests.
+    One of the first things we need to do is to be able to authenticate ourselves in order to obtain a <strong>token</strong> which will be used throughout all other requests.
 </p>
 
 <img src="{{ asset('assets/img/blog/hive-home-rest-api/postman-authentication-request.png') }}" style="width: 100%;" />
 
 <p>
-    From the above, you can see that the POST endpoint we've hit for authentication is <code>https://beekeeper.hivehome.com/1.0/global/login</code>, and we've added some JSON raw body to the request which replicates exactly what was seen within the wep-app login request, shown in the image within the Capturing section above.
+    From the above, you can see that the POST endpoint we've hit for authentication is <code>https://beekeeper.hivehome.com/1.0/global/login</code>, and we've added some JSON raw body to the request which replicates exactly what was seen within the web-app login request, shown in the image within the Capturing section above.
 </p>
 
 <p>
-    If successful, what this returns is a JSON object which contains all the data we need, specifically the <strong>token</strong> field. We need to take a copy of this token to be used in further requests. At this stage i'm unsure of how long the token lives for, so, logging in each time you want to make a request ensures the token won't have expired.
+    If successful, what this returns is a JSON object which contains all the data we need, specifically the <strong>token</strong> field. We need to take a copy of this token to be used in further requests. At this stage I'm unsure of how long the token lives for, so, logging in each time you want to make a request ensures the token won't have expired.
 </p>
 
 @include('pages.blog.articles.includes.advert')
@@ -69,13 +69,13 @@
 <img src="{{ asset('assets/img/blog/hive-home-rest-api/postman-light-off-request.png') }}" style="width: 100%;" />
 
 <p>
-    You can see that the request returns a <code>200</code> status code, which means it was successful. Here's a little video of it in action:
+    You can see that the request returns a <code>200</code>-status code, which means it was successful. Here's a little video of it in action:
 </p>
 
 @include('pages.blog.articles.includes.wistia', ['videoId' => '7tvsou0pfa'])
 
 <p>
-    You can use this method to replicate all the functions the web-app has, however, the camera required some further investigation.
+    You can use this method to replicate all the functions the web-app has; however, the camera required some further investigation.
 </p>
 
 <h3>MITM</h3>
@@ -90,7 +90,7 @@
 @include('pages.blog.articles.includes.advert')
 
 <p>
-    Once this was setup, I opened my laptop browser to <a href="http://0.0.0.0:8081">http://0.0.0.0:8081</a> so i'm able to see all incoming requests, then used my iPhone to open the Hive app and click through until the camera was activated. The below is the result I got.
+    Once this was setup, I opened my laptop browser to <a href="http://0.0.0.0:8081">http://0.0.0.0:8081</a> so I'm able to see all incoming requests, then used my iPhone to open the Hive app and click through until the camera was activated. The below is the result I got.
 </p>
 
 <img src="{{ asset('assets/img/blog/hive-home-rest-api/mitm-camera-enable-request.png') }}" style="width: 100%;" />
@@ -109,7 +109,7 @@
 </p>
 
 <p>
-    We're going to utilise <a href="http://docs.guzzlephp.org/en/stable">Guzzle</a> in this as it's a market leader in making requests via PHP, and i'm also going to assume that the package (guzzlehttp/guzzle) has been loaded using <a href="https://getcomposer.org/">Composer</a>.
+    We're going to utilise <a href="http://docs.guzzlephp.org/en/stable">Guzzle</a> in this as it's a market leader in making requests via PHP, and I'm also going to assume that the package (guzzlehttp/guzzle) has been loaded using <a href="https://getcomposer.org/">Composer</a>.
 </p>
 
 <p>
