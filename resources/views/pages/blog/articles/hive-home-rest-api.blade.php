@@ -80,7 +80,7 @@
 
 <h3>MITM</h3>
 <p>
-    I knew that the iPhone app has the ability to change the status of the camera, so, I decided to MITM attack myself, in order to see the requests, and body, the iPhone was making to the endpoint.
+    I knew that the iPhone app has the ability to change the status of the camera, so, I decided to MITM (<a href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack">Man in the Middle</a>) attack myself, in order to see the requests, and body, the iPhone was making to the endpoint.
 </p>
 
 <p>
