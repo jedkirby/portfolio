@@ -12,8 +12,8 @@ return [
             'introduction' => 'pages.projects.projects.victoria-jeffs.intro',
             'content' => 'pages.projects.projects.victoria-jeffs.content',
             'testimonial' => false,
-            'link' => 'http://victoriajeffs.co.uk',
-            'expired' => false,
+            'link' => false,
+            'expired' => 'This website is no longer available',
             'hero' => 'assets/img/projects/victoria-jeffs/hero.jpg',
             'keywords' => [
                 'Victoria',
@@ -38,7 +38,7 @@ return [
             'introduction' => 'pages.projects.projects.php-warwickshire.intro',
             'content' => 'pages.projects.projects.php-warwickshire.content',
             'testimonial' => false,
-            'link' => 'http://phpwarks.co.uk',
+            'link' => false,
             'expired' => 'This website has since been re-designed.',
             'hero' => 'assets/img/projects/php-warwickshire/hero.jpg',
             'keywords' => [
@@ -167,8 +167,8 @@ return [
             'introduction' => 'pages.projects.projects.vuven.intro',
             'content' => 'pages.projects.projects.vuven.content',
             'testimonial' => false,
-            'link' => 'http://vuven.com',
-            'expired' => false,
+            'link' => false,
+            'expired' => 'This website is no longer available',
             'hero' => 'assets/img/projects/vuven/hero.jpg',
             'keywords' => [
                 'Vuven',
