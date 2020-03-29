@@ -21,7 +21,7 @@
     Whilst performing a login attempt using your credentials, you can see the requests the web-app is making, and more importantly, the endpoints, headers and data sent. The below is what we see:
 </p>
 
-<img src="{{ asset('assets/img/blog/hive-home-rest-api/hive-app-login-request.png') }}" style="width: 100%;" />
+<img src="{{ asset('assets/img/blank.png') }}" data-src="{{ asset('assets/img/blog/hive-home-rest-api/hive-app-login-request.png') }}" class="lazyload" />
 
 <h3>Authentication</h3>
 <p>
@@ -32,7 +32,7 @@
     One of the first things we need to do is to be able to authenticate ourselves in order to obtain a <strong>token</strong> which will be used throughout all other requests.
 </p>
 
-<img src="{{ asset('assets/img/blog/hive-home-rest-api/postman-authentication-request.png') }}" style="width: 100%;" />
+<img src="{{ asset('assets/img/blank.png') }}" data-src="{{ asset('assets/img/blog/hive-home-rest-api/postman-authentication-request.png') }}" class="lazyload" />
 
 <p>
     From the above, you can see that the POST endpoint we've hit for authentication is <code>https://beekeeper.hivehome.com/1.0/global/login</code>, and we've added some JSON raw body to the request which replicates exactly what was seen within the web-app login request, shown in the image within the Capturing section above.
@@ -66,7 +66,7 @@
     For switching the light <strong>on</strong> we had to include <code>{"status":"ON"}</code>, and for switching off it was <code>{"status":"OFF"}</code>. Let's see what switching the light on looks like, and the response we get.
 </p>
 
-<img src="{{ asset('assets/img/blog/hive-home-rest-api/postman-light-off-request.png') }}" style="width: 100%;" />
+<img src="{{ asset('assets/img/blank.png') }}" data-src="{{ asset('assets/img/blog/hive-home-rest-api/postman-light-off-request.png') }}" class="lazyload" />
 
 <p>
     You can see that the request returns a <code>200</code>-status code, which means it was successful. Here's a little video of it in action:
@@ -93,7 +93,7 @@
     Once this was setup, I opened my laptop browser to <a href="http://0.0.0.0:8081">http://0.0.0.0:8081</a> so I'm able to see all incoming requests, then used my iPhone to open the Hive app and click through until the camera was activated. The below is the result I got.
 </p>
 
-<img src="{{ asset('assets/img/blog/hive-home-rest-api/mitm-camera-enable-request.png') }}" style="width: 100%;" />
+<img src="{{ asset('assets/img/blank.png') }}" data-src="{{ asset('assets/img/blog/hive-home-rest-api/mitm-camera-enable-request.png') }}" class="lazyload" />
 
 <p>
     What you can see from the above is the request that was made, the endpoint that was hit <code>https://beekeeper-uk.hivehome.com/1.0/nodes/hivecamera/abc-123</code> and the JSON body content that was needed to turn <strong>on</strong> the camera <code>{"mode":"ARMED"}</code>. Turning off the camera requires you to use the following content <code>{"mode":"PRIVACY"}</code>.
