@@ -10,6 +10,7 @@
         <meta name="google-site-verification" content="5oK0ivrxJyKh1zsSMbHewySVjxfZRALukAlInk8F7iI" />
         <meta property="fb:admins" content="732500050">
         <meta property="og:title" content="{{ $title }}">
+        <meta property="og:site_name" content="{{ $author }}'s Portfolio">
         <meta property="og:description" content="{{ $description }}">
         <meta property="og:url" content="{{ \URL::current() }}">
         @yield('header')
