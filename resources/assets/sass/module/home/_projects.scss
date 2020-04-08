@@ -14,6 +14,10 @@
 		margin-top: ( $section-margin / 2 );
 	}
 
+	a {
+		text-decoration: none !important;
+	}
+
 	@import "module/projects/items";
 
 	@include max-screen(640px) {

@@ -17,7 +17,15 @@
 
 
             <div class="col  col--6  footer__copyright">
-                <p>Copyright &copy; {{ \Carbon\Carbon::now()->year.' '.\Config::get('site.meta.title') }}. All Rights Reserved.</p>
+                <p>&copy; {{ \Carbon\Carbon::now()->year.' '.\Config::get('site.meta.title') }}. All Rights Reserved</p>
+                <ul class="footer__links">
+                    <li>
+                        <a href="{{ route('policy.privacy') }}" title="View our Privacy Policy">Privacy Policy</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('policy.cookie') }}" title="View our Cookie Policy">Cookie Policy</a>
+                    </li>
+                </ul>
             </div>
 
 

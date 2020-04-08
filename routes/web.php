@@ -21,5 +21,8 @@ Route::get('blog/{slug}', 'BlogController@single')->name('article');
 Route::get('contact', 'ContactController@get')->name('contact');
 Route::get('sitemap.xml', 'SitemapController')->name('sitemap');
 
+Route::get('policy/privacy', 'PrivacyPolicyController')->name('policy.privacy');
+Route::get('policy/cookie', 'CookiePolicyController')->name('policy.cookie');
+
 Route::post('contact', 'ContactController@post');
 Route::post('api/interest/register', 'InterestController')->name('api.interest');
