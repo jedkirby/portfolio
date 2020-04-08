@@ -39,6 +39,8 @@ class SitemapController extends BaseController
             route('home'),
             route('about'),
             route('contact'),
+            route('policy.privacy'),
+            route('policy.cookie'),
         ];
 
         $routes[] = route('projects');
