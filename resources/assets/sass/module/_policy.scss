@@ -1,0 +1,40 @@
+.policy {
+
+    .privacy {
+
+        padding: 60px 0;
+
+        ul > li  {
+            margin-top: 5px;
+        }
+
+    }
+
+    .cookie {
+
+        padding: 60px 0;
+
+        &__container {
+            min-width: 300px;
+            overflow: scroll;
+        }
+
+        &__inner {
+            min-width: 500px;
+        }
+
+        table {
+
+            td {
+                padding: 7px 5px;
+            }
+
+            tbody td {
+                font-weight: 200;
+            }
+
+        }
+
+    }
+
+}

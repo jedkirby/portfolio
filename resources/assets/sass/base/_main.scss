@@ -308,6 +308,38 @@ body {
 
 		}
 
+		&__links {
+
+			padding: 0;
+			margin: 2px 0 0 0;
+
+			li {
+
+				display: inline-block;
+
+				&:first-child {
+					margin-right: 5px;
+				}
+
+			}
+
+			a {
+
+				color: tint($secondary, 20%);
+				font-size: 1.1rem;
+				font-weight: 300;
+				line-height: 1.3rem;
+				margin: 0;
+				text-decoration: none;
+
+				&:hover {
+					color: $hover;
+				}
+
+			}
+
+		}
+
 		@include max-screen(640px) {
 
 			padding: 30px 0;
