@@ -192,3 +192,8 @@ $code = $response->getStatusCode(); // 200
 <p>
     Feel free to <a href="{{ \Config::get('site.social.streams.twitter.url', '#') }}" title="Send me a Tweet">Tweet Me</a> if you have any questions or need any help.
 </p>
+
+<h3>Package</h3>
+<p>
+    I've since created a PHP composer package which allows you to do all the above, but in a nice easy way, included in your application using Composer. You're able to see this using the following link: <a href="https://packagist.org/packages/kan-agency/hive-php-api">https://packagist.org/packages/kan-agency/hive-php-api</a>.
+</p>
